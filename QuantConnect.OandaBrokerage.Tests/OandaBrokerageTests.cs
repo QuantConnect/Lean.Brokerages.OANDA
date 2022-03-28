@@ -139,7 +139,8 @@ namespace QuantConnect.Tests.Brokerages.Oanda
             Assert.IsTrue(oanda.UpdateOrder(order));
 
             // move Buy Limit order above market
-            order.LimitPrice = quote.AskPrice + 0.5m;
+            var request = new UpdateOrderRequest(DateTime.UtcNow, order.Id, new UpdateOrderFields { LimitPrice = quote.AskPrice + 0.5m });
+            order.ApplyUpdateOrderRequest(request);
             Assert.IsTrue(oanda.UpdateOrder(order));
             oanda.OrderStatusChanged -= orderStatusChangedCallback;
             Assert.AreEqual(orderEventTracker.Count(x => x.Status == OrderStatus.Submitted), 1);
