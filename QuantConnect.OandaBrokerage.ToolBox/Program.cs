@@ -13,15 +13,15 @@
  * limitations under the License.
 */
 
-using QuantConnect.ToolBox;
 using QuantConnect.Configuration;
+using System;
 using static QuantConnect.Configuration.ApplicationParser;
 
-namespace QuantConnect.TemplateBrokerage.ToolBox
+namespace QuantConnect.ToolBox.OandaDownloader
 {
-    static class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var optionsObject = ToolboxArgumentParser.ParseArguments(args);
             if (optionsObject.Count == 0)
@@ -37,12 +37,13 @@ namespace QuantConnect.TemplateBrokerage.ToolBox
             var targetAppName = targetApp.ToString();
             if (targetAppName.Contains("download") || targetAppName.Contains("dl"))
             {
-                var downloader = new TemplateBrokerageDownloader();
-            }
-            else if (targetAppName.Contains("updater") || targetAppName.EndsWith("spu"))
-            {
-                new ExchangeInfoUpdater(new TemplateExchangeInfoDownloader())
-                    .Run();
+                var fromDate = Parse.DateTimeExact(GetParameterOrExit(optionsObject, "from-date"), "yyyyMMdd-HH:mm:ss");
+                var resolution = optionsObject.ContainsKey("resolution") ? optionsObject["resolution"].ToString() : "";
+                var tickers = ToolboxArgumentParser.GetTickers(optionsObject);
+                var toDate = optionsObject.ContainsKey("to-date")
+                    ? Parse.DateTimeExact(optionsObject["to-date"].ToString(), "yyyyMMdd-HH:mm:ss")
+                    : DateTime.UtcNow;
+                OandaDownloaderProgram.OandaDownloader(tickers, resolution, fromDate, toDate);
             }
             else
             {

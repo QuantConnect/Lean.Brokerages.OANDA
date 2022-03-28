@@ -20,8 +20,8 @@ jobs:
         uses: actions/checkout@v2
         continue-on-error: true
         with:
-          ref: ${{ github.ref }}
-          repository: QuantConnect/Lean
+          ref: refactor-extract-oanda-brokerage
+          repository: rjra2611/Lean
           path: Lean
 
       - name: Checkout Lean Master
@@ -35,7 +35,7 @@ jobs:
         run: mv Lean ../Lean
 
       - name: Build
-        run: dotnet build /p:Configuration=Release /v:quiet /p:WarningLevel=1 QuantConnect.TemplateBrokerage.sln
+        run: dotnet build /p:Configuration=Release /v:quiet /p:WarningLevel=1 QuantConnect.OandaBrokerage.sln
 
       - name: Run Tests
-        run: dotnet test ./QuantConnect.TemplateBrokerage.Tests/bin/Release/QuantConnect.TemplateBrokerage.Tests.dll
+        run: dotnet test ./QuantConnect.OandaBrokerage.Tests/bin/Release/QuantConnect.OandaBrokerage.Tests.dll

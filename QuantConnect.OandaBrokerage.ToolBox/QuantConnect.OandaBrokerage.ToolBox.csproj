@@ -7,14 +7,14 @@
         <TargetFramework>net5.0</TargetFramework>
         <Copyright>Copyright ©  2021</Copyright>
         <OutputPath>bin\$(Configuration)\</OutputPath>
-        <Product>QuantConnect.TemplateBrokerage.ToolBox</Product>
-        <AssemblyName>QuantConnect.TemplateBrokerage.ToolBox</AssemblyName>
-        <RootNamespace>QuantConnect.TemplateBrokerage.ToolBox</RootNamespace>
-        <AssemblyTitle>QuantConnect.TemplateBrokerage.ToolBox</AssemblyTitle>
+        <Product>QuantConnect.OandaBrokerage.ToolBox</Product>
+        <AssemblyName>QuantConnect.OandaBrokerage.ToolBox</AssemblyName>
+        <RootNamespace>QuantConnect.OandaBrokerage.ToolBox</RootNamespace>
+        <AssemblyTitle>QuantConnect.OandaBrokerage.ToolBox</AssemblyTitle>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-        <Description>QuantConnect LEAN Template Brokerage: Brokerage Template toolbox plugin for Lean</Description>
+        <Description>QuantConnect LEAN Oanda Brokerage: Brokerage Template toolbox plugin for Lean</Description>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <DebugType>full</DebugType>
@@ -27,7 +27,7 @@
     <ItemGroup>
         <Compile Include="..\..\Lean\Common\Properties\SharedAssemblyInfo.cs" Link="Properties\SharedAssemblyInfo.cs" />
     </ItemGroup>
-    <ItemGroup>
-        <PackageReference Include="QuantConnect.ToolBox" Version="2.5.*" />
-    </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\Lean\ToolBox\QuantConnect.ToolBox.csproj" />
+	</ItemGroup>
 </Project>
