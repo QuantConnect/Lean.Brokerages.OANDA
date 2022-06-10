@@ -15,6 +15,7 @@
 
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
@@ -87,14 +88,19 @@ namespace QuantConnect.Tests.Brokerages.Oanda
             return quote.AskPrice;
         }
         [Test]
-        [Ignore("Ignore a test")]
         public void ValidateMarketOrders()
         {
             var orderEventTracker = new ConcurrentBag<OrderEvent>();
+            Dictionary<int, Order> orders = new();
             var oanda = (OandaBrokerage)Brokerage;
             var symbol = Symbol;
             EventHandler<OrderEvent> orderStatusChangedCallback = (s, e) => {
                 orderEventTracker.Add(e);
+                if (orders.TryGetValue(e.OrderId, out Order order))
+                {
+                    order.Status = e.Status;
+                    orders[order.Id] = order;
+                }
             };
             oanda.OrderStatusChanged += orderStatusChangedCallback;
             const int numberOfOrders = 100;
@@ -102,10 +108,12 @@ namespace QuantConnect.Tests.Brokerages.Oanda
             {
                 var order = new MarketOrder(symbol, 100, DateTime.Now);
                 OrderProvider.Add(order);
+                orders[order.Id] = order;
                 Assert.IsTrue(oanda.PlaceOrder(order));
                 Assert.IsTrue(order.Status == OrderStatus.Filled || order.Status == OrderStatus.PartiallyFilled);
                 var orderr = new MarketOrder(symbol, -100, DateTime.UtcNow);
                 OrderProvider.Add(orderr);
+                orders[orderr.Id] = orderr;
                 Assert.IsTrue(oanda.PlaceOrder(orderr));
                 Assert.IsTrue(orderr.Status == OrderStatus.Filled || orderr.Status == OrderStatus.PartiallyFilled);
 
