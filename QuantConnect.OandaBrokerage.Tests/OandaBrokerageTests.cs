@@ -23,7 +23,6 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using QuantConnect.Brokerages.Oanda;
 using QuantConnect.Configuration;
-using QuantConnect.Data;
 using QuantConnect.Interfaces;
 using QuantConnect.Lean.Engine.DataFeeds;
 using QuantConnect.Logging;
@@ -36,6 +35,8 @@ namespace QuantConnect.Tests.Brokerages.Oanda
 {
     public partial class OandaBrokerageTests : BrokerageTests
     {
+        private readonly object _lock = new();
+
         /// <summary>
         ///     Creates the brokerage under test and connects it
         /// </summary>
@@ -100,8 +101,11 @@ namespace QuantConnect.Tests.Brokerages.Oanda
                 orderEventTracker.Add(e);
                 if (orders.TryGetValue(e.OrderId, out Order order))
                 {
-                    order.Status = e.Status;
-                    orders[order.Id] = order;
+                    lock (_lock)
+                    {
+                        order.Status = e.Status;
+                        orders[order.Id] = order;
+                    }   
                 }
             };
             oanda.OrderStatusChanged += orderStatusChangedCallback;
@@ -110,13 +114,19 @@ namespace QuantConnect.Tests.Brokerages.Oanda
             {
                 var order = new MarketOrder(symbol, 100, DateTime.Now);
                 OrderProvider.Add(order);
-                orders[order.Id] = order;
-                Assert.IsTrue(oanda.PlaceOrder(order));
+                lock (_lock)
+                {
+                    orders[order.Id] = order;
+                    Assert.IsTrue(oanda.PlaceOrder(order));
+                }
                 Assert.IsTrue(order.Status == OrderStatus.Filled || order.Status == OrderStatus.PartiallyFilled);
                 var orderr = new MarketOrder(symbol, -100, DateTime.UtcNow);
                 OrderProvider.Add(orderr);
-                orders[orderr.Id] = orderr;
-                Assert.IsTrue(oanda.PlaceOrder(orderr));
+                lock (_lock)
+                {
+                    orders[orderr.Id] = orderr;
+                    Assert.IsTrue(oanda.PlaceOrder(orderr));
+                }
                 Assert.IsTrue(orderr.Status == OrderStatus.Filled || orderr.Status == OrderStatus.PartiallyFilled);
 
             });
