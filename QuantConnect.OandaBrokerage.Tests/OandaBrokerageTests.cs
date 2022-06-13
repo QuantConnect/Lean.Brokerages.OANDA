@@ -85,7 +85,9 @@ namespace QuantConnect.Tests.Brokerages.Oanda
         {
             var oanda = (OandaBrokerage) Brokerage;
             var quote = oanda.GetRates(new OandaSymbolMapper().GetBrokerageSymbol(symbol));
-            return quote.AskPrice;
+            var spdb = SymbolPropertiesDatabase.FromDataFolder();
+            var symbolProperties = spdb.GetSymbolProperties(symbol.ID.Market, symbol, symbol.SecurityType, "USD");
+            return Math.Round(quote.AskPrice, BitConverter.GetBytes(decimal.GetBits(symbolProperties.MinimumPriceVariation)[3])[2]);
         }
         [Test]
         public void ValidateMarketOrders()
