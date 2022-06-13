@@ -266,7 +266,7 @@ namespace QuantConnect.Tests.Brokerages.Oanda
         [TestCase("EURUSD", SecurityType.Forex, Market.Oanda, -50000)]
         [TestCase("WTICOUSD", SecurityType.Cfd, Market.Oanda, 500)]
         [TestCase("WTICOUSD", SecurityType.Cfd, Market.Oanda, -500)]
-        [Ignore("Ignore a test")]
+        [Explicit("This test requires a practice account with GBP account currency")]
         public void GetCashBalanceIncludesCurrencySwapsForOpenPositions(string ticker, SecurityType securityType, string market, decimal quantity)
         {
             // This test requires a practice account with GBP account currency
