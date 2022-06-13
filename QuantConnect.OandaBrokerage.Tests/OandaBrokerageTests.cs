@@ -15,6 +15,7 @@
 
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
@@ -22,7 +23,6 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using QuantConnect.Brokerages.Oanda;
 using QuantConnect.Configuration;
-using QuantConnect.Data;
 using QuantConnect.Interfaces;
 using QuantConnect.Lean.Engine.DataFeeds;
 using QuantConnect.Logging;
@@ -33,9 +33,11 @@ using Environment = QuantConnect.Brokerages.Oanda.Environment;
 
 namespace QuantConnect.Tests.Brokerages.Oanda
 {
-    [TestFixture, Ignore("This test requires a configured and testable Oanda practice account")]
+    [TestFixture]
     public partial class OandaBrokerageTests : BrokerageTests
     {
+        private readonly object _lock = new();
+
         /// <summary>
         ///     Creates the brokerage under test and connects it
         /// </summary>
@@ -85,16 +87,27 @@ namespace QuantConnect.Tests.Brokerages.Oanda
         {
             var oanda = (OandaBrokerage) Brokerage;
             var quote = oanda.GetRates(new OandaSymbolMapper().GetBrokerageSymbol(symbol));
-            return quote.AskPrice;
+            var spdb = SymbolPropertiesDatabase.FromDataFolder();
+            var symbolProperties = spdb.GetSymbolProperties(symbol.ID.Market, symbol, symbol.SecurityType, "USD");
+            return Math.Round(quote.AskPrice, BitConverter.GetBytes(decimal.GetBits(symbolProperties.MinimumPriceVariation)[3])[2]);
         }
         [Test]
         public void ValidateMarketOrders()
         {
             var orderEventTracker = new ConcurrentBag<OrderEvent>();
+            Dictionary<int, Order> orders = new();
             var oanda = (OandaBrokerage)Brokerage;
             var symbol = Symbol;
             EventHandler<OrderEvent> orderStatusChangedCallback = (s, e) => {
                 orderEventTracker.Add(e);
+                if (orders.TryGetValue(e.OrderId, out Order order))
+                {
+                    lock (_lock)
+                    {
+                        order.Status = e.Status;
+                        orders[order.Id] = order;
+                    }   
+                }
             };
             oanda.OrderStatusChanged += orderStatusChangedCallback;
             const int numberOfOrders = 100;
@@ -102,11 +115,19 @@ namespace QuantConnect.Tests.Brokerages.Oanda
             {
                 var order = new MarketOrder(symbol, 100, DateTime.Now);
                 OrderProvider.Add(order);
-                Assert.IsTrue(oanda.PlaceOrder(order));
+                lock (_lock)
+                {
+                    orders[order.Id] = order;
+                    Assert.IsTrue(oanda.PlaceOrder(order));
+                }
                 Assert.IsTrue(order.Status == OrderStatus.Filled || order.Status == OrderStatus.PartiallyFilled);
                 var orderr = new MarketOrder(symbol, -100, DateTime.UtcNow);
                 OrderProvider.Add(orderr);
-                Assert.IsTrue(oanda.PlaceOrder(orderr));
+                lock (_lock)
+                {
+                    orders[orderr.Id] = orderr;
+                    Assert.IsTrue(oanda.PlaceOrder(orderr));
+                }
                 Assert.IsTrue(orderr.Status == OrderStatus.Filled || orderr.Status == OrderStatus.PartiallyFilled);
 
             });
@@ -246,6 +267,7 @@ namespace QuantConnect.Tests.Brokerages.Oanda
         [TestCase("EURUSD", SecurityType.Forex, Market.Oanda, -50000)]
         [TestCase("WTICOUSD", SecurityType.Cfd, Market.Oanda, 500)]
         [TestCase("WTICOUSD", SecurityType.Cfd, Market.Oanda, -500)]
+        [Explicit("This test requires a practice account with GBP account currency")]
         public void GetCashBalanceIncludesCurrencySwapsForOpenPositions(string ticker, SecurityType securityType, string market, decimal quantity)
         {
             // This test requires a practice account with GBP account currency
