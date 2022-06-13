@@ -33,6 +33,7 @@ using Environment = QuantConnect.Brokerages.Oanda.Environment;
 
 namespace QuantConnect.Tests.Brokerages.Oanda
 {
+    [TestFixture]
     public partial class OandaBrokerageTests : BrokerageTests
     {
         private readonly object _lock = new();

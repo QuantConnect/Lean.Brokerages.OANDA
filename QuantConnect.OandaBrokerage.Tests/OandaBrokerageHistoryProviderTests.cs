@@ -28,6 +28,7 @@ using Environment = QuantConnect.Brokerages.Oanda.Environment;
 
 namespace QuantConnect.Tests.Brokerages.Oanda
 {
+    [TestFixture]
     public class OandaBrokerageHistoryProviderTests
     {
         private static TestCaseData[] TestParameters
