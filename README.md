@@ -69,7 +69,7 @@ Follow these steps to start local live trading with the OANDA brokerage:
        Enter an option: 1
     ```
 
-4.  Enter your [OANDA](https://www.oanda.com/) environment.
+4.  Enter your OANDA environment.
 
     ``` 
     $ lean live "My Project"
@@ -77,7 +77,7 @@ Follow these steps to start local live trading with the OANDA brokerage:
     Environment? (Practice, Trade) [Practice]:
     ```
 
-5.  Enter your [OANDA](https://www.oanda.com/) credentials.
+5.  Enter your OANDA credentials.
 
     ```
     $ lean live "My Project" 
@@ -122,12 +122,12 @@ If you already have a live environment configured in your [Lean configuration fi
 
 ## Account Types
 
-[OANDA](https://www.oanda.com/) supports cash and margin accounts.
+OANDA supports cash and margin accounts.
 
 ## Order Types and Asset Classes
 
 
-[OANDA](https://www.oanda.com/) supports trading Forex and CFDs with the following order types:
+OANDA supports trading Forex and CFDs with the following order types:
 
 - Market Order
 - Limit Order
@@ -155,7 +155,7 @@ You can set the Brokerage Model with the following statements
 
 ### Fees
 
-We model the order fees of [OANDA](https://www.oanda.com/), which are $0.
+We model the order fees of OANDA, which are $0.
 
 ### Margin
 
@@ -165,7 +165,7 @@ We model buying power and margin calls to ensure your algorithm stays within the
 
 #### Buying Power
 
-[OANDA](https://www.oanda.com/) allows up to 50x leverage for margin accounts.
+OANDA allows up to 50x leverage for margin accounts.
 
 #### Margin Calls
 
@@ -173,7 +173,7 @@ Regulation T margin rules apply. When the amount of margin remaining in your por
 
 ### Slippage
 
-Orders through [OANDA](https://www.oanda.com/) do not experience slippage in backtests. In paper trading and live trading, your orders may experience slippage.
+Orders through OANDA do not experience slippage in backtests. In paper trading and live trading, your orders may experience slippage.
 
 ### Fills
 
