@@ -147,10 +147,10 @@ For local deployment, the algorithm needs to download the following dataset:
 Lean models the brokerage behavior for backtesting purposes. The margin model is used in live trading to avoid placing orders that will be rejected due to insufficient buying power.
 
 You can set the Brokerage Model with the following statements
-
-    SetBrokerageModel(BrokerageName.OandaBrokerage, AccountType.Cash);
-    SetBrokerageModel(BrokerageName.OandaBrokerage, AccountType.Margin);
-
+```
+SetBrokerageModel(BrokerageName.OandaBrokerage, AccountType.Cash);
+SetBrokerageModel(BrokerageName.OandaBrokerage, AccountType.Margin);
+```
 [Read Documentation](https://www.quantconnect.com/docs/v2/our-platform/live-trading/brokerages/oanda)
 
 ### Fees
