@@ -27,11 +27,15 @@ For more information about the OANDA brokerage, see the [QuantConnect-OANDA Inte
 
 ## Using the Brokerage Plugin
   
-### QuantConnect Cloud
+### Deploying Oanda with VSCode User Interace
 
-  This plugin is integrated in the QuantConnect Cloud Platform where you can use this integration with a simple visual interface, and harness the QuantConnect Live Data Feed. For most users this is substantially cheaper and easier than self-hosting. For more information see the [QuantConnect-OANDA Integration Page](https://www.quantconnect.com/brokerages/oanda). 
+  You can deploy using a visual interface in the QuantConnect cloud. For instructions, [QuantConnect-OANDA Integration Page](https://www.quantconnect.com/brokerages/oanda). 
   
-### Locally
+  ![deploy-oanda](https://user-images.githubusercontent.com/38889814/188247050-5333413b-b0a0-4fe6-b89d-b1393ab85062.gif)
+  
+  In the QuantConnect Cloud Platform, you can harness the QuantConnect Live Data Feed. For most users, this is substantially cheaper and easier than self-hosting.
+  
+### Deploying Oanda with LEAN CLI
 
 Follow these steps to start local live trading with the OANDA brokerage:
 
