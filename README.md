@@ -22,6 +22,8 @@ This repository hosts the OANDA Brokerage Plugin Integration with the QuantConne
 
 [OANDA](https://www.oanda.com/) was co-founded by Dr. Stumm, a computer scientist and Dr. Olsen, an economist, in 1997. The company was born out of the belief that the Internet and technology would open up the markets for both currency data and trading. OANDA uses innovative computer and financial technology to provide Internet-based forex trading and currency information services to everyone, from individuals to large corporations, from portfolio managers to financial institutions. OANDA is a market maker and a trusted source for currency data. It has access to one of the world's largest historical, high-frequency, filtered currency databases.
 
+For more information about the OANDA brokerage, see the [QuantConnect-OANDA Integration Page](https://www.quantconnect.com/docs/v2/our-platform/live-trading/brokerages/oanda).
+
 
 ## Using the Brokerage Plugin
   
@@ -34,7 +36,7 @@ This repository hosts the OANDA Brokerage Plugin Integration with the QuantConne
 Follow these steps to start local live trading with the OANDA brokerage:
 
 1.  Open a terminal in your [CLI root directory](https://www.quantconnect.com/docs/v2/lean-cli/initialization/directory-structure#02-lean-init).
-2.  Run lean live "`<projectName>`" to start a live deployment wizard for the project in ./`<projectName>` and then enter the brokerage number.
+2.  Run `lean live "<projectName>`" to start a live deployment wizard for the project in ./`<projectName>` and then enter the brokerage number.
 
     ```
     $ lean live 'My Project'
@@ -66,7 +68,7 @@ Follow these steps to start local live trading with the OANDA brokerage:
     1. Organization 1
     2. Organization 2
     3. Organization 3
-       Enter an option: 1
+    Enter an option: 1
     ```
 
 4.  Enter your OANDA environment.
@@ -109,16 +111,15 @@ Follow these steps to start local live trading with the OANDA brokerage:
     13. IQFeed
     14. Polygon Data Feed
     15. Custom Data Only
-  
-        To enter multiple options, separate them with comma:
+    To enter multiple options, separate them with comma:
     ```
 
-If you select IQFeed, see [IQFeed](https://www.quantconnect.com/docs/v2/lean-cli/live-trading/other-data-feeds/iqfeed) for set up instructions.  
-If you select Polygon Data Feed, see [Polygon](https://www.quantconnect.com/docs/v2/lean-cli/live-trading/other-data-feeds/polygon) for set up instructions.
+    If you select IQFeed, see [IQFeed](https://www.quantconnect.com/docs/v2/lean-cli/live-trading/other-data-feeds/iqfeed) for set up instructions.  
+    If you select Polygon Data Feed, see [Polygon](https://www.quantconnect.com/docs/v2/lean-cli/live-trading/other-data-feeds/polygon) for set up instructions.
 
-7. View the result in the `<projectName>`/live/`<timestamp>` directory. Results are stored in real-time in JSON format. You can save results to a different directory by providing the --output `<path>` option in step 2.
+1. View the result in the `<projectName>/live/<timestamp>` directory. Results are stored in real-time in JSON format. You can save results to a different directory by providing the `--output <path>` option in step 2.
 
-If you already have a live environment configured in your [Lean configuration file](https://www.quantconnect.com/docs/v2/lean-cli/initialization/configuration#03-Lean-Configuration), you can skip the interactive wizard by providing the --environment `<value>` option in step 2. The value of this option must be the name of an environment which has live-mode set to true.
+If you already have a live environment configured in your [Lean configuration file](https://www.quantconnect.com/docs/v2/lean-cli/initialization/configuration#03-Lean-Configuration), you can skip the interactive wizard by providing the `--environment <value>` option in step 2. The value of this option must be the name of an environment which has `live-mode` set to true.
 
 ## Account Types
 
