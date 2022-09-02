@@ -148,10 +148,10 @@ Lean models the brokerage behavior for backtesting purposes. The margin model is
 
 You can set the Brokerage Model with the following statements
 
-    SetBrokerageModel(BrokerageName.Atreyu, AccountType.Cash);
-    SetBrokerageModel(BrokerageName.Atreyu, AccountType.Margin);
+    SetBrokerageModel(BrokerageName.OandaBrokerage, AccountType.Cash);
+    SetBrokerageModel(BrokerageName.OandaBrokerage, AccountType.Margin);
 
-[Read Documentation](https://www.quantconnect.com/docs/v2/our-platform/live-trading/brokerages/atreyu)
+[Read Documentation](https://www.quantconnect.com/docs/v2/our-platform/live-trading/brokerages/oanda)
 
 ### Fees
 
