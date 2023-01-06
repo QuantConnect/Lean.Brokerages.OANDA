@@ -377,7 +377,7 @@ namespace QuantConnect.Brokerages.Oanda
             _api = new OandaRestApiV20(_symbolMapper, orderProvider, securityProvider, aggregator, environment, accessToken, accountId, agent);
 
             // forward events received from API
-            _api.OrderStatusChanged += (sender, orderEvent) => OnOrderEvent(orderEvent);
+            _api.OrdersStatusChanged += (sender, orderEvents) => OnOrderEvents(orderEvents);
             _api.AccountChanged += (sender, accountEvent) => OnAccountChanged(accountEvent);
             _api.Message += (sender, messageEvent) => OnMessage(messageEvent);
             ValidateSubscription();

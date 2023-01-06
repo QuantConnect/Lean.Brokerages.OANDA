@@ -366,7 +366,7 @@ namespace QuantConnect.Brokerages.Oanda
                     Order order;
                     lock (Locker)
                     {
-                        order = OrderProvider.GetOrderByBrokerageId(transaction.OrderID);
+                        order = OrderProvider.GetOrdersByBrokerageId(transaction.OrderID).SingleOrDefault();
                     }
                     if (order != null)
                     {

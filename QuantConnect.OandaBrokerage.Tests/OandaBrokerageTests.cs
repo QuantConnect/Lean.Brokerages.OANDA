@@ -98,18 +98,19 @@ namespace QuantConnect.Tests.Brokerages.Oanda
             Dictionary<int, Order> orders = new();
             var oanda = (OandaBrokerage)Brokerage;
             var symbol = Symbol;
-            EventHandler<OrderEvent> orderStatusChangedCallback = (s, e) => {
-                orderEventTracker.Add(e);
-                if (orders.TryGetValue(e.OrderId, out Order order))
+            EventHandler<List<OrderEvent>> orderStatusChangedCallback = (s, e) => {
+                var orderEvent = e.Single();
+                orderEventTracker.Add(orderEvent);
+                if (orders.TryGetValue(orderEvent.OrderId, out Order order))
                 {
                     lock (_lock)
                     {
-                        order.Status = e.Status;
+                        order.Status = orderEvent.Status;
                         orders[order.Id] = order;
                     }   
                 }
             };
-            oanda.OrderStatusChanged += orderStatusChangedCallback;
+            oanda.OrdersStatusChanged += orderStatusChangedCallback;
             const int numberOfOrders = 100;
             Parallel.For(0, numberOfOrders, (i) =>
             {
@@ -133,7 +134,7 @@ namespace QuantConnect.Tests.Brokerages.Oanda
             });
             // We want to verify the number of order events with OrderStatus.Filled sent
             Thread.Sleep(4000);
-            oanda.OrderStatusChanged -= orderStatusChangedCallback;
+            oanda.OrdersStatusChanged -= orderStatusChangedCallback;
             Assert.AreEqual(orderEventTracker.Count(x => x.Status == OrderStatus.Submitted), numberOfOrders * 2);
             Assert.AreEqual(orderEventTracker.Count(x => x.Status == OrderStatus.Filled), numberOfOrders * 2);
         }
@@ -145,10 +146,10 @@ namespace QuantConnect.Tests.Brokerages.Oanda
             var oanda = (OandaBrokerage)Brokerage;
             var symbol = Symbol;
             var quote = oanda.GetRates(new OandaSymbolMapper().GetBrokerageSymbol(symbol));
-            EventHandler<OrderEvent> orderStatusChangedCallback = (s, e) => {
-                orderEventTracker.Add(e);
+            EventHandler<List<OrderEvent>> orderStatusChangedCallback = (s, e) => {
+                orderEventTracker.Add(e.Single());
             };
-            oanda.OrderStatusChanged += orderStatusChangedCallback;
+            oanda.OrdersStatusChanged += orderStatusChangedCallback;
 
             // Buy Limit order below market
             var limitPrice = quote.BidPrice - 0.5m;
@@ -163,7 +164,7 @@ namespace QuantConnect.Tests.Brokerages.Oanda
             var request = new UpdateOrderRequest(DateTime.UtcNow, order.Id, new UpdateOrderFields { LimitPrice = quote.AskPrice + 0.5m });
             order.ApplyUpdateOrderRequest(request);
             Assert.IsTrue(oanda.UpdateOrder(order));
-            oanda.OrderStatusChanged -= orderStatusChangedCallback;
+            oanda.OrdersStatusChanged -= orderStatusChangedCallback;
             Assert.AreEqual(orderEventTracker.Count(x => x.Status == OrderStatus.Submitted), 1);
             Assert.AreEqual(orderEventTracker.Count(x => x.Status == OrderStatus.Filled), 1);
         }
