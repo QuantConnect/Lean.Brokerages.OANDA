@@ -620,10 +620,7 @@ namespace QuantConnect.Brokerages.Oanda
             {
                 case "MARKET_IF_TOUCHED":
                     var stopOrder = order.ToObject<MarketIfTouchedOrder>();
-                    qcOrder = new StopMarketOrder
-                    {
-                        StopPrice = stopOrder.Price.ToDecimal()
-                    };
+                    qcOrder = new StopMarketOrder(symbol, quantity, stopOrder.Price.ToDecimal(), time);
                     break;
 
                 case "LIMIT":
