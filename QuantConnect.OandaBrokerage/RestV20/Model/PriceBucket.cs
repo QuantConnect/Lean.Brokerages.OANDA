@@ -34,7 +34,7 @@ namespace Oanda.RestV20.Model
         /// </summary>
         /// <param name="Price">The Price offered by the PriceBucket.</param>
         /// <param name="Liquidity">The amount of liquidity offered by the PriceBucket.</param>
-        public PriceBucket(string Price = default(string), int? Liquidity = default(int?))
+        public PriceBucket(string Price = default(string), decimal? Liquidity = default(decimal?))
         {
             this.Price = Price;
             this.Liquidity = Liquidity;
@@ -51,7 +51,7 @@ namespace Oanda.RestV20.Model
         /// </summary>
         /// <value>The amount of liquidity offered by the PriceBucket</value>
         [DataMember(Name="liquidity", EmitDefaultValue=false)]
-        public int? Liquidity { get; set; }
+        public decimal? Liquidity { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
