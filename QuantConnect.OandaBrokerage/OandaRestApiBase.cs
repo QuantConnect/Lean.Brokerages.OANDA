@@ -419,9 +419,18 @@ namespace QuantConnect.Brokerages.Oanda
         /// <param name="symbolsToSubscribe">The list of symbols to subscribe</param>
         protected void SubscribeSymbols(IEnumerable<Symbol> symbolsToSubscribe)
         {
-            var instruments = symbolsToSubscribe
-                .Select(symbol => SymbolMapper.GetBrokerageSymbol(symbol))
-                .ToList();
+            var instruments = new List<string>();
+
+            try
+            {
+                instruments.AddRange(symbolsToSubscribe
+                    .Select(SymbolMapper.GetBrokerageSymbol));
+            }
+            catch (Exception e)
+            {
+                // GetBrokerageSymbol will raise an exception if at least one invalid symbol, e.g. GPBEUR, is requested
+                OnMessage(new BrokerageMessageEvent(BrokerageMessageType.Error, -1, e.Message));
+            }
 
             PricingConnectionHandler.EnableMonitoring(false);
 
