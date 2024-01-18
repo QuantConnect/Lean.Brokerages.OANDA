@@ -603,36 +603,40 @@ namespace QuantConnect.Brokerages.Oanda
         /// </summary>
         private Order ConvertOrder(JToken order)
         {
+            Symbol getSymbol(string instrument)
+            {
+                var securityType = SymbolMapper.GetBrokerageSecurityType(instrument);
+                return SymbolMapper.GetLeanSymbol(instrument, securityType, Market.Oanda);
+            }
+
             var type = order["type"].ToString();
-
             Order qcOrder;
-
-            var instrument = order["instrument"].ToString();
-            var id = order["id"].ToString();
-            var units = order["units"].ConvertInvariant<decimal>();
-            var createTime = order["createTime"].ToString();
-            var securityType = SymbolMapper.GetBrokerageSecurityType(instrument);
-            var symbol = SymbolMapper.GetLeanSymbol(instrument, securityType, Market.Oanda);
-            var time = GetTickDateTimeFromString(createTime);
-            var quantity = units;
 
             switch (type)
             {
                 case "MARKET_IF_TOUCHED":
                     var stopOrder = order.ToObject<MarketIfTouchedOrder>();
-                    qcOrder = new StopMarketOrder(symbol, quantity, stopOrder.Price.ToDecimal(), time);
+                    qcOrder = new StopMarketOrder(getSymbol(stopOrder.Instrument),
+                        stopOrder.Units.ConvertInvariant<decimal>(),
+                        stopOrder.Price.ConvertInvariant<decimal>(),
+                        GetTickDateTimeFromString(stopOrder.CreateTime));
                     break;
 
                 case "LIMIT":
                     var limitOrder = order.ToObject<OandaLimitOrder>();
-                    qcOrder = new LimitOrder(symbol, quantity, limitOrder.Price.ToDecimal(), time);
+                    qcOrder = new LimitOrder(getSymbol(limitOrder.Instrument),
+                        limitOrder.Units.ConvertInvariant<decimal>(),
+                        limitOrder.Price.ConvertInvariant<decimal>(),
+                        GetTickDateTimeFromString(limitOrder.CreateTime));
                     break;
 
                 case "STOP":
                     var stopLimitOrder = order.ToObject<StopOrder>();
-                    var price = stopLimitOrder.Price.ConvertInvariant<decimal>();
-                    var limitPrice = stopLimitOrder.PriceBound.ConvertInvariant<decimal>();
-                    qcOrder = new StopLimitOrder(symbol, quantity, price, limitPrice, time);
+                    qcOrder = new StopLimitOrder(getSymbol(stopLimitOrder.Instrument),
+                        stopLimitOrder.Units.ConvertInvariant<decimal>(),
+                        stopLimitOrder.Price.ConvertInvariant<decimal>(),
+                        stopLimitOrder.PriceBound.ConvertInvariant<decimal>(),
+                        GetTickDateTimeFromString(stopLimitOrder.CreateTime));
                     break;
 
                 case "MARKET":
@@ -645,7 +649,7 @@ namespace QuantConnect.Brokerages.Oanda
             }
 
             qcOrder.Status = OrderStatus.None;
-            qcOrder.BrokerId.Add(id);
+            qcOrder.BrokerId.Add(order["id"].ToString());
 
             var gtdTime = order["gtdTime"];
             if (gtdTime != null)
