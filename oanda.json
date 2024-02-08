@@ -10,8 +10,8 @@
 			"Live Trading":	[1,1,1]
 		}
 	],
-  "order-types": [ "Market", "Limit", "Stop Market" ],
-	"data-supported": ["Forex", "CFD"], 
+	"order-types": [ "Market", "Limit", "Stop Market" ],
+	"assets": ["Forex", "CFD"], 
 	"brokerage-url": "https://www.oanda.com/",
-  "documentation": "/docs/v2/cloud-platform/live-trading/brokerages/oanda"
+	"documentation": "/docs/v2/cloud-platform/live-trading/brokerages/oanda"
 }
