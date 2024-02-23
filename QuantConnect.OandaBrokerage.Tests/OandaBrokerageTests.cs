@@ -55,12 +55,17 @@ namespace QuantConnect.Tests.Brokerages.Oanda
         /// <summary>
         /// Provides the data required to test each order type in various cases
         /// </summary>
-        public static TestCaseData[] OrderParameters => new[]
+        public static IEnumerable<TestCaseData> OrderParameters
         {
-            new TestCaseData(new MarketOrderTestParameters(Symbol.Create("EURUSD", SecurityType.Forex, Market.Oanda))).SetName("MarketOrder"),
-            new TestCaseData(new LimitOrderTestParameters(Symbol.Create("EURUSD", SecurityType.Forex, Market.Oanda), 5m, 0.32m)).SetName("LimitOrder"),
-            new TestCaseData(new StopMarketOrderTestParameters(Symbol.Create("EURUSD", SecurityType.Forex, Market.Oanda), 5m, 0.32m)).SetName("StopMarketOrder")
-        };
+            get
+            {
+                TestGlobals.Initialize();
+
+                yield return new TestCaseData(new MarketOrderTestParameters(Symbol.Create("EURUSD", SecurityType.Forex, Market.Oanda))).SetName("MarketOrder");
+                yield return new TestCaseData(new LimitOrderTestParameters(Symbol.Create("EURUSD", SecurityType.Forex, Market.Oanda), 5m, 0.32m)).SetName("LimitOrder");
+                yield return new TestCaseData(new StopMarketOrderTestParameters(Symbol.Create("EURUSD", SecurityType.Forex, Market.Oanda), 5m, 0.32m)).SetName("StopMarketOrder");
+            }
+        }
 
         /// <summary>
         ///     Gets the symbol to be traded, must be shortable
@@ -107,7 +112,7 @@ namespace QuantConnect.Tests.Brokerages.Oanda
                     {
                         order.Status = orderEvent.Status;
                         orders[order.Id] = order;
-                    }   
+                    }
                 }
             };
             oanda.OrdersStatusChanged += orderStatusChangedCallback;

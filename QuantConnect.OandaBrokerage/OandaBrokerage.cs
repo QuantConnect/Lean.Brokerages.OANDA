@@ -51,6 +51,10 @@ namespace QuantConnect.Brokerages.Oanda
         private OandaRestApiBase _api;
         private bool _isInitialized;
 
+        private bool _unsupportedAssetForHistoryLogged;
+        private bool _unsupportedResolutionForHistoryLogged;
+        private bool _unsupportedTickTypeForHistoryLogged;
+
         /// <summary>
         /// The maximum number of bars per historical data request
         /// </summary>
@@ -220,12 +224,41 @@ namespace QuantConnect.Brokerages.Oanda
         /// <returns>An enumerable of bars covering the span specified in the request</returns>
         public override IEnumerable<BaseData> GetHistory(HistoryRequest request)
         {
-            if (!_symbolMapper.IsKnownLeanSymbol(request.Symbol))
+            if (!_api.CanSubscribe(request.Symbol) || !_symbolMapper.IsKnownLeanSymbol(request.Symbol))
             {
-                Log.Trace("OandaBrokerage.GetHistory(): Invalid symbol: {0}, no history returned", request.Symbol.Value);
-                yield break;
+                if (!_unsupportedAssetForHistoryLogged)
+                {
+                    Log.Trace($"OandaBrokerage.GetHistory(): Unsupported asset: {request.Symbol}, no history returned");
+                    _unsupportedAssetForHistoryLogged = true;
+                }
+                return null;
             }
 
+            if (request.Resolution == Resolution.Tick)
+            {
+                if (!_unsupportedResolutionForHistoryLogged)
+                {
+                    Log.Trace($"OandaBrokerage.GetHistory(): Unsupported resolution: {request.Resolution}, no history returned");
+                    _unsupportedResolutionForHistoryLogged = true;
+                }
+                return null;
+            }
+
+            if (request.TickType != TickType.Quote)
+            {
+                if (!_unsupportedTickTypeForHistoryLogged)
+                {
+                    Log.Trace($"OandaBrokerage.GetHistory(): Unsupported tick type: {request.TickType}, no history returned");
+                    _unsupportedTickTypeForHistoryLogged = true;
+                }
+                return null;
+            }
+
+            return GetHistoryImpl(request);
+        }
+
+        private IEnumerable<BaseData> GetHistoryImpl(HistoryRequest request)
+        {
             var exchangeTimeZone = MarketHoursDatabase.FromDataFolder().GetExchangeHours(Market.Oanda, request.Symbol, request.Symbol.SecurityType).TimeZone;
 
             // Oanda only has 5-second bars, we return these for Resolution.Second

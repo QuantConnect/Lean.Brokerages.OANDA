@@ -397,14 +397,14 @@ namespace QuantConnect.Brokerages.Oanda
         /// <summary>
         /// Returns true if this brokerage supports the specified symbol
         /// </summary>
-        private bool CanSubscribe(Symbol symbol)
+        public bool CanSubscribe(Symbol symbol)
         {
-            // ignore unsupported security types
-            if (symbol.ID.SecurityType != SecurityType.Forex && symbol.ID.SecurityType != SecurityType.Cfd)
-                return false;
-
-            // ignore universe symbols
-            return !symbol.Value.Contains("-UNIVERSE-") && symbol.ID.Market == Market.Oanda;
+            return
+                // ignore unsupported security types
+                (symbol.ID.SecurityType == SecurityType.Forex || symbol.ID.SecurityType == SecurityType.Cfd) &&
+                // ignore universe symbols
+                !symbol.Value.Contains("-UNIVERSE-") &&
+                symbol.ID.Market == Market.Oanda;
         }
 
         private bool Refresh()

@@ -76,26 +76,41 @@ namespace QuantConnect.ToolBox.OandaDownloader
         {
             var symbol = dataDownloaderGetParameters.Symbol;
             var resolution = dataDownloaderGetParameters.Resolution;
-            var startUtc = dataDownloaderGetParameters.StartUtc;
-            var endUtc = dataDownloaderGetParameters.EndUtc;
             var tickType = dataDownloaderGetParameters.TickType;
 
             if (tickType != TickType.Quote)
             {
-                yield break;
+                Logging.Log.Trace("OandaDataDownloader.Get(): Unsupported tick type: " + tickType);
+                return null;
             }
 
             if (!_symbolMapper.IsKnownLeanSymbol(symbol))
-                throw new ArgumentException("Invalid symbol requested: " + symbol.Value);
+            {
+                Logging.Log.Trace("OandaDataDownloader.Get(): Unsupported symbol: " + symbol);
+                return null;
+            }
 
             if (resolution == Resolution.Tick)
-                throw new NotSupportedException("Resolution not available: " + resolution);
+            {
+                Logging.Log.Trace("OandaDataDownloader.Get(): Unsupported resolution: " + resolution);
+                return null;
+            }
 
             if (symbol.ID.SecurityType != SecurityType.Forex && symbol.ID.SecurityType != SecurityType.Cfd)
-                throw new NotSupportedException("SecurityType not available: " + symbol.ID.SecurityType);
+            {
+                Logging.Log.Trace("OandaDataDownloader.Get(): Unsupported security type: " + symbol.ID.SecurityType);
+                return null;
+            }
 
-            if (endUtc < startUtc)
-                throw new ArgumentException("The end date must be greater or equal than the start date.");
+            return GetData(dataDownloaderGetParameters);
+        }
+
+        private IEnumerable<BaseData> GetData(DataDownloaderGetParameters parameters)
+        {
+            var symbol = parameters.Symbol;
+            var resolution = parameters.Resolution;
+            var startUtc = parameters.StartUtc;
+            var endUtc = parameters.EndUtc;
 
             var barsTotalInPeriod = new List<QuoteBar>();
             var barsToSave = new List<QuoteBar>();
@@ -175,7 +190,7 @@ namespace QuantConnect.ToolBox.OandaDownloader
                     break;
             }
         }
-        
+
 
         /// <summary>
         /// Groups a list of bars into a dictionary keyed by date

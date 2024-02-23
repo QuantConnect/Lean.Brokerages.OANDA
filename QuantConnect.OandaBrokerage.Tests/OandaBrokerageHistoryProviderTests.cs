@@ -14,14 +14,13 @@
 */
 
 using System;
+using System.Linq;
 using NodaTime;
 using NUnit.Framework;
 using QuantConnect.Brokerages.Oanda;
 using QuantConnect.Configuration;
 using QuantConnect.Data;
 using QuantConnect.Data.Market;
-using QuantConnect.Lean.Engine.DataFeeds;
-using QuantConnect.Lean.Engine.HistoricalData;
 using QuantConnect.Logging;
 using QuantConnect.Securities;
 using Environment = QuantConnect.Brokerages.Oanda.Environment;
@@ -35,94 +34,82 @@ namespace QuantConnect.Tests.Brokerages.Oanda
         {
             get
             {
+                TestGlobals.Initialize();
                 var eurusd = Symbol.Create("EURUSD", SecurityType.Forex, Market.Oanda);
 
                 return new[]
                 {
                     // valid parameters
-                    new TestCaseData(eurusd, Resolution.Second, Time.OneMinute, false),
-                    new TestCaseData(eurusd, Resolution.Minute, Time.OneHour, false),
-                    new TestCaseData(eurusd, Resolution.Hour, Time.OneDay, false),
-                    new TestCaseData(eurusd, Resolution.Daily, TimeSpan.FromDays(15), false),
+                    new TestCaseData(eurusd, Resolution.Second, Time.OneMinute, TickType.Quote, false, false),
+                    new TestCaseData(eurusd, Resolution.Minute, Time.OneHour, TickType.Quote, false, false),
+                    new TestCaseData(eurusd, Resolution.Hour, Time.OneDay, TickType.Quote, false, false),
+                    new TestCaseData(eurusd, Resolution.Daily, TimeSpan.FromDays(15), TickType.Quote, false, false),
 
-                    // invalid resolution, throws "System.ArgumentException : Unsupported resolution: Tick"
-                    new TestCaseData(eurusd, Resolution.Tick, TimeSpan.FromSeconds(15), true),
+                    // invalid resolution, null result
+                    new TestCaseData(eurusd, Resolution.Tick, TimeSpan.FromSeconds(15), TickType.Quote, false, true),
 
                     // invalid period, no error, empty result
-                    new TestCaseData(eurusd, Resolution.Daily, TimeSpan.FromDays(-15), false),
+                    new TestCaseData(eurusd, Resolution.Daily, TimeSpan.FromDays(-15), TickType.Quote, true, false),
 
-                    // invalid symbol, no error, empty result
-                    new TestCaseData(Symbol.Create("XYZ", SecurityType.Forex, Market.FXCM), Resolution.Daily, TimeSpan.FromDays(15), false),
+                    // invalid symbol, null result
+                    new TestCaseData(Symbol.Create("XYZ", SecurityType.Forex, Market.FXCM), Resolution.Daily, TimeSpan.FromDays(15), TickType.Quote, false, true),
 
-                    // invalid security type, no error, empty result
-                    new TestCaseData(Symbols.AAPL, Resolution.Daily, TimeSpan.FromDays(15), false),
+                    // invalid security type, null result
+                    new TestCaseData(Symbols.AAPL, Resolution.Daily, TimeSpan.FromDays(15), TickType.Quote, false, true),
+
+                    // invalid market, null result
+                    new TestCaseData(Symbol.Create("EURUSD", SecurityType.Forex, Market.USA), Resolution.Daily, TimeSpan.FromDays(15), TickType.Quote, false, true),
+
+                    // invalid tick type, null result
+                    new TestCaseData(eurusd, Resolution.Daily, TimeSpan.FromDays(15), TickType.Trade, false, true),
+                    new TestCaseData(eurusd, Resolution.Daily, TimeSpan.FromDays(15), TickType.OpenInterest, false, true),
                 };
             }
         }
 
         [Test, TestCaseSource(nameof(TestParameters))]
-        public void GetsHistory(Symbol symbol, Resolution resolution, TimeSpan period, bool throwsException)
+        public void GetsHistory(Symbol symbol, Resolution resolution, TimeSpan period, TickType tickType, bool shouldBeEmpty, bool unsupported)
         {
-            TestDelegate test = () =>
+            var environment = Config.Get("oanda-environment").ConvertTo<Environment>();
+            var accessToken = Config.Get("oanda-access-token");
+            var accountId = Config.Get("oanda-account-id");
+
+            var brokerage = new OandaBrokerage(null, null, null, environment, accessToken, accountId);
+
+            var now = DateTime.UtcNow;
+            var request = new HistoryRequest(now.Add(-period),
+                now,
+                tickType == TickType.Quote ? typeof(QuoteBar) : typeof(TradeBar),
+                symbol,
+                resolution,
+                SecurityExchangeHours.AlwaysOpen(TimeZones.EasternStandard),
+                DateTimeZone.Utc,
+                Resolution.Minute,
+                false,
+                false,
+                DataNormalizationMode.Adjusted,
+                tickType);
+
+            var history = brokerage.GetHistory(request)?.ToList();
+
+            if (unsupported)
             {
-                var environment = Config.Get("oanda-environment").ConvertTo<Environment>();
-                var accessToken = Config.Get("oanda-access-token");
-                var accountId = Config.Get("oanda-account-id");
-
-                var brokerage = new OandaBrokerage(null, null, null, environment, accessToken, accountId);
-
-                var historyProvider = new BrokerageHistoryProvider();
-                historyProvider.SetBrokerage(brokerage);
-                historyProvider.Initialize(new HistoryProviderInitializeParameters(null, null, null, null, null, null, null, false, new DataPermissionManager(), null));
-
-                var now = DateTime.UtcNow;
-
-                var requests = new[]
-                {
-                    new HistoryRequest(now.Add(-period),
-                        now,
-                        typeof(QuoteBar),
-                        symbol,
-                        resolution,
-                        SecurityExchangeHours.AlwaysOpen(TimeZones.EasternStandard),
-                        DateTimeZone.Utc,
-                        Resolution.Minute,
-                        false,
-                        false,
-                        DataNormalizationMode.Adjusted,
-                        TickType.Quote)
-                };
-
-                var history = historyProvider.GetHistory(requests, TimeZones.Utc);
-
-                foreach (var slice in history)
-                {
-                    if (resolution == Resolution.Tick)
-                    {
-                        foreach (var tick in slice.Ticks[symbol])
-                        {
-                            Log.Trace("{0}: {1} - {2} / {3}", tick.Time, tick.Symbol, tick.BidPrice, tick.AskPrice);
-                        }
-                    }
-                    else
-                    {
-                        var bar = slice.QuoteBars[symbol];
-
-                        Log.Trace("{0}: {1} - O={2}, H={3}, L={4}, C={5}", bar.Time, bar.Symbol, bar.Open, bar.High, bar.Low, bar.Close);
-                    }
-                }
-
-                Log.Trace("Data points retrieved: " + historyProvider.DataPointCount);
-            };
-
-            if (throwsException)
-            {
-                Assert.Throws<ArgumentException>(test);
+                Assert.IsNull(history);
+                return;
             }
-            else
+
+            if (shouldBeEmpty)
             {
-                Assert.DoesNotThrow(test);
+                Assert.IsEmpty(history);
+                return;
             }
+
+            foreach (var bar in history.Cast<QuoteBar>())
+            {
+                Log.Trace("{0}: {1} - O={2}, H={3}, L={4}, C={5}", bar.Time, bar.Symbol, bar.Open, bar.High, bar.Low, bar.Close);
+            }
+
+            Log.Trace("Data points retrieved: " + history.Count);
         }
     }
 }
