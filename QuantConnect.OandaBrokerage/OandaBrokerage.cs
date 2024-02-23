@@ -54,6 +54,7 @@ namespace QuantConnect.Brokerages.Oanda
         private bool _unsupportedAssetForHistoryLogged;
         private bool _unsupportedResolutionForHistoryLogged;
         private bool _unsupportedTickTypeForHistoryLogged;
+        private bool _invalidTimeRangeHistoryLogged;
 
         /// <summary>
         /// The maximum number of bars per historical data request
@@ -251,6 +252,17 @@ namespace QuantConnect.Brokerages.Oanda
                     Log.Trace($"OandaBrokerage.GetHistory(): Unsupported tick type: {request.TickType}, no history returned");
                     _unsupportedTickTypeForHistoryLogged = true;
                 }
+                return null;
+            }
+
+            if (request.StartTimeUtc >= request.EndTimeUtc)
+            {
+                if (!_invalidTimeRangeHistoryLogged)
+                {
+                    Log.Trace("OandaBrokerage.GetHistory(): The request start date must precede the end date, no history returned.");
+                    _invalidTimeRangeHistoryLogged = true;
+                }
+
                 return null;
             }
 

@@ -40,35 +40,35 @@ namespace QuantConnect.Tests.Brokerages.Oanda
                 return new[]
                 {
                     // valid parameters
-                    new TestCaseData(eurusd, Resolution.Second, Time.OneMinute, TickType.Quote, false, false),
-                    new TestCaseData(eurusd, Resolution.Minute, Time.OneHour, TickType.Quote, false, false),
-                    new TestCaseData(eurusd, Resolution.Hour, Time.OneDay, TickType.Quote, false, false),
-                    new TestCaseData(eurusd, Resolution.Daily, TimeSpan.FromDays(15), TickType.Quote, false, false),
+                    new TestCaseData(eurusd, Resolution.Second, Time.OneMinute, TickType.Quote, false),
+                    new TestCaseData(eurusd, Resolution.Minute, Time.OneHour, TickType.Quote, false),
+                    new TestCaseData(eurusd, Resolution.Hour, Time.OneDay, TickType.Quote, false),
+                    new TestCaseData(eurusd, Resolution.Daily, TimeSpan.FromDays(15), TickType.Quote, false),
 
                     // invalid resolution, null result
-                    new TestCaseData(eurusd, Resolution.Tick, TimeSpan.FromSeconds(15), TickType.Quote, false, true),
+                    new TestCaseData(eurusd, Resolution.Tick, TimeSpan.FromSeconds(15), TickType.Quote, true),
 
-                    // invalid period, no error, empty result
-                    new TestCaseData(eurusd, Resolution.Daily, TimeSpan.FromDays(-15), TickType.Quote, true, false),
+                    // invalid period, null result
+                    new TestCaseData(eurusd, Resolution.Daily, TimeSpan.FromDays(-15), TickType.Quote, true),
 
                     // invalid symbol, null result
-                    new TestCaseData(Symbol.Create("XYZ", SecurityType.Forex, Market.FXCM), Resolution.Daily, TimeSpan.FromDays(15), TickType.Quote, false, true),
+                    new TestCaseData(Symbol.Create("XYZ", SecurityType.Forex, Market.FXCM), Resolution.Daily, TimeSpan.FromDays(15), TickType.Quote, true),
 
                     // invalid security type, null result
-                    new TestCaseData(Symbols.AAPL, Resolution.Daily, TimeSpan.FromDays(15), TickType.Quote, false, true),
+                    new TestCaseData(Symbols.AAPL, Resolution.Daily, TimeSpan.FromDays(15), TickType.Quote, true),
 
                     // invalid market, null result
-                    new TestCaseData(Symbol.Create("EURUSD", SecurityType.Forex, Market.USA), Resolution.Daily, TimeSpan.FromDays(15), TickType.Quote, false, true),
+                    new TestCaseData(Symbol.Create("EURUSD", SecurityType.Forex, Market.USA), Resolution.Daily, TimeSpan.FromDays(15), TickType.Quote, true),
 
                     // invalid tick type, null result
-                    new TestCaseData(eurusd, Resolution.Daily, TimeSpan.FromDays(15), TickType.Trade, false, true),
-                    new TestCaseData(eurusd, Resolution.Daily, TimeSpan.FromDays(15), TickType.OpenInterest, false, true),
+                    new TestCaseData(eurusd, Resolution.Daily, TimeSpan.FromDays(15), TickType.Trade, true),
+                    new TestCaseData(eurusd, Resolution.Daily, TimeSpan.FromDays(15), TickType.OpenInterest, true),
                 };
             }
         }
 
         [Test, TestCaseSource(nameof(TestParameters))]
-        public void GetsHistory(Symbol symbol, Resolution resolution, TimeSpan period, TickType tickType, bool shouldBeEmpty, bool unsupported)
+        public void GetsHistory(Symbol symbol, Resolution resolution, TimeSpan period, TickType tickType, bool unsupported)
         {
             var environment = Config.Get("oanda-environment").ConvertTo<Environment>();
             var accessToken = Config.Get("oanda-access-token");
@@ -98,11 +98,7 @@ namespace QuantConnect.Tests.Brokerages.Oanda
                 return;
             }
 
-            if (shouldBeEmpty)
-            {
-                Assert.IsEmpty(history);
-                return;
-            }
+            Assert.IsNotNull(history);
 
             foreach (var bar in history.Cast<QuoteBar>())
             {

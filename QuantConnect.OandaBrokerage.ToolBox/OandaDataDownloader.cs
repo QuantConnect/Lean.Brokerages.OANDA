@@ -102,6 +102,12 @@ namespace QuantConnect.ToolBox.OandaDownloader
                 return null;
             }
 
+            if (dataDownloaderGetParameters.StartUtc >= dataDownloaderGetParameters.EndUtc)
+            {
+                Logging.Log.Trace("OandaDataDownloader.Get(): The history request start date must precede the end date, no history returned");
+                return null;
+            }
+
             return GetData(dataDownloaderGetParameters);
         }
 
