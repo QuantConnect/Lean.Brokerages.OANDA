@@ -225,37 +225,56 @@ namespace QuantConnect.Brokerages.Oanda
         /// <returns>An enumerable of bars covering the span specified in the request</returns>
         public override IEnumerable<BaseData> GetHistory(HistoryRequest request)
         {
-            if (!_api.CanSubscribe(request.Symbol) || !_symbolMapper.IsKnownLeanSymbol(request.Symbol))
+            if (!IsValidHistoryRequest(request.Symbol, request.StartTimeUtc, request.EndTimeUtc, request.Resolution, request.TickType))
+            {
+                return null;
+            }
+
+            return GetHistoryImpl(request);
+        }
+
+        /// <summary>
+        /// Validates the historical data request parameters
+        /// </summary>
+        /// <param name="symbol">The asset symbol data is being requested for</param>
+        /// <param name="startTimeUtc">The UTC start time of the request</param>
+        /// <param name="endTimeUtc">The UTC end time of the request</param>
+        /// <param name="resolution">The resolution of the requested data</param>
+        /// <param name="tickType">The tick type of the requested data</param>
+        /// <returns>Whether the parameters are valid for a history request</returns>
+        public bool IsValidHistoryRequest(Symbol symbol, DateTime startTimeUtc, DateTime endTimeUtc, Resolution resolution, TickType tickType)
+        {
+            if (!_api.CanSubscribe(symbol) || !_symbolMapper.IsKnownLeanSymbol(symbol))
             {
                 if (!_unsupportedAssetForHistoryLogged)
                 {
-                    Log.Trace($"OandaBrokerage.GetHistory(): Unsupported asset: {request.Symbol}, no history returned");
+                    Log.Trace($"OandaBrokerage.GetHistory(): Unsupported asset: {symbol}, no history returned");
                     _unsupportedAssetForHistoryLogged = true;
                 }
-                return null;
+                return false;
             }
 
-            if (request.Resolution == Resolution.Tick)
+            if (resolution == Resolution.Tick)
             {
                 if (!_unsupportedResolutionForHistoryLogged)
                 {
-                    Log.Trace($"OandaBrokerage.GetHistory(): Unsupported resolution: {request.Resolution}, no history returned");
+                    Log.Trace($"OandaBrokerage.GetHistory(): Unsupported resolution: {resolution}, no history returned");
                     _unsupportedResolutionForHistoryLogged = true;
                 }
-                return null;
+                return false;
             }
 
-            if (request.TickType != TickType.Quote)
+            if (tickType != TickType.Quote)
             {
                 if (!_unsupportedTickTypeForHistoryLogged)
                 {
-                    Log.Trace($"OandaBrokerage.GetHistory(): Unsupported tick type: {request.TickType}, no history returned");
+                    Log.Trace($"OandaBrokerage.GetHistory(): Unsupported tick type: {tickType}, no history returned");
                     _unsupportedTickTypeForHistoryLogged = true;
                 }
-                return null;
+                return false;
             }
 
-            if (request.StartTimeUtc >= request.EndTimeUtc)
+            if (startTimeUtc >= endTimeUtc)
             {
                 if (!_invalidTimeRangeHistoryLogged)
                 {
@@ -263,10 +282,10 @@ namespace QuantConnect.Brokerages.Oanda
                     _invalidTimeRangeHistoryLogged = true;
                 }
 
-                return null;
+                return false;
             }
 
-            return GetHistoryImpl(request);
+            return true;
         }
 
         private IEnumerable<BaseData> GetHistoryImpl(HistoryRequest request)
