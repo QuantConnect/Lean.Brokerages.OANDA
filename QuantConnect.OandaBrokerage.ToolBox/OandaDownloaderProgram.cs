@@ -67,6 +67,10 @@ namespace QuantConnect.ToolBox.OandaDownloader
                     var symbol = Symbol.Create(ticker, securityType, market);
 
                     var data = downloader.Get(new DataDownloaderGetParameters(symbol, castResolution, startDate, endDate, TickType.Quote));
+                    if (data == null)
+                    {
+                        continue;
+                    }
 
                     if (allResolutions)
                     {

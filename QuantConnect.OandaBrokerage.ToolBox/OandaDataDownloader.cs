@@ -70,32 +70,19 @@ namespace QuantConnect.ToolBox.OandaDownloader
         /// <summary>
         /// Get historical data enumerable for a single symbol, type and resolution given this start and end time (in UTC).
         /// </summary>
-        /// <param name="dataDownloaderGetParameters">model class for passing in parameters for historical data</param>
+        /// <param name="parameters">model class for passing in parameters for historical data</param>
         /// <returns>Enumerable of base data for this symbol</returns>
-        public IEnumerable<BaseData> Get(DataDownloaderGetParameters dataDownloaderGetParameters)
+        public IEnumerable<BaseData> Get(DataDownloaderGetParameters parameters)
         {
-            var symbol = dataDownloaderGetParameters.Symbol;
-            var resolution = dataDownloaderGetParameters.Resolution;
-            var startUtc = dataDownloaderGetParameters.StartUtc;
-            var endUtc = dataDownloaderGetParameters.EndUtc;
-            var tickType = dataDownloaderGetParameters.TickType;
-
-            if (tickType != TickType.Quote)
+            if (!_brokerage.IsValidHistoryRequest(parameters.Symbol, parameters.StartUtc, parameters.EndUtc, parameters.Resolution, parameters.TickType))
             {
-                yield break;
+                return null;
             }
 
-            if (!_symbolMapper.IsKnownLeanSymbol(symbol))
-                throw new ArgumentException("Invalid symbol requested: " + symbol.Value);
-
-            if (resolution == Resolution.Tick)
-                throw new NotSupportedException("Resolution not available: " + resolution);
-
-            if (symbol.ID.SecurityType != SecurityType.Forex && symbol.ID.SecurityType != SecurityType.Cfd)
-                throw new NotSupportedException("SecurityType not available: " + symbol.ID.SecurityType);
-
-            if (endUtc < startUtc)
-                throw new ArgumentException("The end date must be greater or equal than the start date.");
+            var symbol = parameters.Symbol;
+            var resolution = parameters.Resolution;
+            var startUtc = parameters.StartUtc;
+            var endUtc = parameters.EndUtc;
 
             var barsTotalInPeriod = new List<QuoteBar>();
             var barsToSave = new List<QuoteBar>();
@@ -162,20 +149,8 @@ namespace QuantConnect.ToolBox.OandaDownloader
                 barsTotalInPeriod.AddRange(barsToSave);
             }
 
-            switch (resolution)
-            {
-                case Resolution.Second:
-                case Resolution.Minute:
-                case Resolution.Hour:
-                case Resolution.Daily:
-                    foreach (var bar in LeanData.AggregateQuoteBars(barsTotalInPeriod, symbol, resolution.ToTimeSpan()))
-                    {
-                        yield return bar;
-                    }
-                    break;
-            }
+            return LeanData.AggregateQuoteBars(barsTotalInPeriod, symbol, resolution.ToTimeSpan());
         }
-        
 
         /// <summary>
         /// Groups a list of bars into a dictionary keyed by date

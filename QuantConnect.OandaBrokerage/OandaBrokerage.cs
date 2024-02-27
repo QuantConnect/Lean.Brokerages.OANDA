@@ -51,6 +51,11 @@ namespace QuantConnect.Brokerages.Oanda
         private OandaRestApiBase _api;
         private bool _isInitialized;
 
+        private bool _unsupportedAssetForHistoryLogged;
+        private bool _unsupportedResolutionForHistoryLogged;
+        private bool _unsupportedTickTypeForHistoryLogged;
+        private bool _invalidTimeRangeHistoryLogged;
+
         /// <summary>
         /// The maximum number of bars per historical data request
         /// </summary>
@@ -220,12 +225,71 @@ namespace QuantConnect.Brokerages.Oanda
         /// <returns>An enumerable of bars covering the span specified in the request</returns>
         public override IEnumerable<BaseData> GetHistory(HistoryRequest request)
         {
-            if (!_symbolMapper.IsKnownLeanSymbol(request.Symbol))
+            if (!IsValidHistoryRequest(request.Symbol, request.StartTimeUtc, request.EndTimeUtc, request.Resolution, request.TickType))
             {
-                Log.Trace("OandaBrokerage.GetHistory(): Invalid symbol: {0}, no history returned", request.Symbol.Value);
-                yield break;
+                return null;
             }
 
+            return GetHistoryImpl(request);
+        }
+
+        /// <summary>
+        /// Validates the historical data request parameters
+        /// </summary>
+        /// <param name="symbol">The asset symbol data is being requested for</param>
+        /// <param name="startTimeUtc">The UTC start time of the request</param>
+        /// <param name="endTimeUtc">The UTC end time of the request</param>
+        /// <param name="resolution">The resolution of the requested data</param>
+        /// <param name="tickType">The tick type of the requested data</param>
+        /// <returns>Whether the parameters are valid for a history request</returns>
+        public bool IsValidHistoryRequest(Symbol symbol, DateTime startTimeUtc, DateTime endTimeUtc, Resolution resolution, TickType tickType)
+        {
+            if (!_api.CanSubscribe(symbol) || !_symbolMapper.IsKnownLeanSymbol(symbol))
+            {
+                if (!_unsupportedAssetForHistoryLogged)
+                {
+                    Log.Trace($"OandaBrokerage.GetHistory(): Unsupported asset: {symbol}, no history returned");
+                    _unsupportedAssetForHistoryLogged = true;
+                }
+                return false;
+            }
+
+            if (resolution == Resolution.Tick)
+            {
+                if (!_unsupportedResolutionForHistoryLogged)
+                {
+                    Log.Trace($"OandaBrokerage.GetHistory(): Unsupported resolution: {resolution}, no history returned");
+                    _unsupportedResolutionForHistoryLogged = true;
+                }
+                return false;
+            }
+
+            if (tickType != TickType.Quote)
+            {
+                if (!_unsupportedTickTypeForHistoryLogged)
+                {
+                    Log.Trace($"OandaBrokerage.GetHistory(): Unsupported tick type: {tickType}, no history returned");
+                    _unsupportedTickTypeForHistoryLogged = true;
+                }
+                return false;
+            }
+
+            if (startTimeUtc >= endTimeUtc)
+            {
+                if (!_invalidTimeRangeHistoryLogged)
+                {
+                    Log.Trace("OandaBrokerage.GetHistory(): The request start date must precede the end date, no history returned.");
+                    _invalidTimeRangeHistoryLogged = true;
+                }
+
+                return false;
+            }
+
+            return true;
+        }
+
+        private IEnumerable<BaseData> GetHistoryImpl(HistoryRequest request)
+        {
             var exchangeTimeZone = MarketHoursDatabase.FromDataFolder().GetExchangeHours(Market.Oanda, request.Symbol, request.Symbol.SecurityType).TimeZone;
 
             // Oanda only has 5-second bars, we return these for Resolution.Second
