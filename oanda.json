@@ -13,5 +13,24 @@
 	"order-types": [ "Market", "Limit", "Stop Market" ],
 	"assets": ["Forex", "CFD"], 
 	"brokerage-url": "https://www.oanda.com/",
-	"documentation": "/docs/v2/cloud-platform/live-trading/brokerages/oanda"
+	"documentation": "/docs/v2/cloud-platform/live-trading/brokerages/oanda",
+	"module-specification": {
+        "download": {
+            "data-types": [
+                "Quote"
+            ],
+            "resolutions": [
+                "Second",
+                "Minute",
+                "Hour",
+                "Daily"
+            ],
+            "security-types": [
+				"Forex"
+            ],
+            "markets": [
+                "Oanda"
+            ]
+        }
+    }
 }
