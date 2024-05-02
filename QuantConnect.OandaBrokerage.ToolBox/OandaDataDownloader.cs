@@ -19,6 +19,7 @@ using System.Linq;
 using NodaTime;
 using QuantConnect.Data;
 using QuantConnect.Data.Market;
+using QuantConnect.Configuration;
 using QuantConnect.Brokerages.Oanda;
 using QuantConnect.Util;
 using Environment = QuantConnect.Brokerages.Oanda.Environment;
@@ -32,6 +33,9 @@ namespace QuantConnect.ToolBox.OandaDownloader
     {
         private readonly OandaBrokerage _brokerage;
         private readonly OandaSymbolMapper _symbolMapper = new OandaSymbolMapper();
+
+        public OandaDataDownloader() : this(Config.Get("oanda-access-token"), Config.Get("oanda-account-id"))
+        { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="OandaDataDownloader"/> class
