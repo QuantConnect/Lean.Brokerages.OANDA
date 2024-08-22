@@ -351,8 +351,9 @@ namespace QuantConnect.Tests.Brokerages.Oanda
             base.LongFromShort(parameters);
         }
 
-        [TestCase("EURUSD", SecurityType.Forex, 1000000, OrderStatus.Invalid, "INSUFFICIENTLIQUIDITY")]
-        public void LongMarketWithInsufficientLiquidityAmount(string ticker, SecurityType securityType, decimal orderAmount, OrderStatus expectedOrderStatus, string expectedOrderMessage)
+        [TestCase("EURUSD", SecurityType.Forex, OrderType.Market, 1000000, OrderStatus.Invalid, "INSUFFICIENTLIQUIDITY")]
+        [TestCase("EURUSD", SecurityType.Forex, OrderType.Limit, 1000000, OrderStatus.Submitted, "")]
+        public void LongMarketWithInsufficientLiquidityAmount(string ticker, SecurityType securityType, OrderType orderType, decimal orderAmount, OrderStatus expectedOrderStatus, string expectedOrderMessage)
         {
             var actualStatus = default(OrderStatus);
             var actualMessage = default(string);
@@ -365,17 +366,28 @@ namespace QuantConnect.Tests.Brokerages.Oanda
                 actualMessage = orderEvent.Message;
             };
 
-            var marketOrder = new MarketOrder(symbol, orderAmount, DateTime.UtcNow);
-            OrderProvider.Add(marketOrder);
+            Order order = orderType switch
+            {
+                OrderType.Market => new MarketOrder(symbol, orderAmount, DateTime.UtcNow),
+                OrderType.Limit => new LimitOrder(symbol, orderAmount, 0.9m, DateTime.UtcNow),
+                _ => throw new NotImplementedException()
+            };
 
-            if (!Brokerage.PlaceOrder(marketOrder))
+            OrderProvider.Add(order);
+
+            var isPlacedOrderSuccessfully = Brokerage.PlaceOrder(order);
+
+            Assert.That(actualStatus, Is.EqualTo(expectedOrderStatus));
+            Assert.That(actualMessage, Is.EqualTo(expectedOrderMessage));
+
+            switch (orderType)
             {
-                Assert.That(actualStatus, Is.EqualTo(expectedOrderStatus));
-                Assert.That(actualMessage, Is.EqualTo(expectedOrderMessage));
-            }
-            else
-            {
-                Assert.Fail($"Brokerage is placed the order: {marketOrder} - SUCESSFULLY");
+                case OrderType.Market when isPlacedOrderSuccessfully == true:
+                    Assert.Fail($"Brokerage is placed the order: {order} - SUCESSFULLY");
+                    break;
+                case OrderType.Limit:
+                    Assert.IsTrue(Brokerage.CancelOrder(order));
+                    break;
             }
         }
     }
