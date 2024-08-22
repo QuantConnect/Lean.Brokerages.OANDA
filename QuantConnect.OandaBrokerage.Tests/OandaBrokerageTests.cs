@@ -1,4 +1,4 @@
-﻿/*
+/*
  * QUANTCONNECT.COM - Democratizing Finance, Empowering Individuals.
  * Lean Algorithmic Trading Engine v2.0. Copyright 2014 QuantConnect Corporation.
  *
@@ -349,6 +349,34 @@ namespace QuantConnect.Tests.Brokerages.Oanda
         public override void LongFromShort(OrderTestParameters parameters)
         {
             base.LongFromShort(parameters);
+        }
+
+        [TestCase("EURUSD", SecurityType.Forex, 1000000, OrderStatus.Invalid, "INSUFFICIENTLIQUIDITY")]
+        public void LongMarketWithInsufficientLiquidityAmount(string ticker, SecurityType securityType, decimal orderAmount, OrderStatus expectedOrderStatus, string expectedOrderMessage)
+        {
+            var actualStatus = default(OrderStatus);
+            var actualMessage = default(string);
+            var symbol = Symbol.Create(ticker, securityType, Market.Oanda);
+
+            Brokerage.OrdersStatusChanged += (object _, List<OrderEvent> events) =>
+            {
+                var orderEvent = events[0];
+                actualStatus = orderEvent.Status;
+                actualMessage = orderEvent.Message;
+            };
+
+            var marketOrder = new MarketOrder(symbol, orderAmount, DateTime.UtcNow);
+            OrderProvider.Add(marketOrder);
+
+            if (!Brokerage.PlaceOrder(marketOrder))
+            {
+                Assert.That(actualStatus, Is.EqualTo(expectedOrderStatus));
+                Assert.That(actualMessage, Is.EqualTo(expectedOrderMessage));
+            }
+            else
+            {
+                Assert.Fail($"Brokerage is placed the order: {marketOrder} - SUCESSFULLY");
+            }
         }
     }
 }

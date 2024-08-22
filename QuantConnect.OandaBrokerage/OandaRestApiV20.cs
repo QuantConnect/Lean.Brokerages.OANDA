@@ -181,6 +181,12 @@ namespace QuantConnect.Brokerages.Oanda
                 // if the order was Filled/PartiallyFilled, find fill quantity and price and inform the user
                 if (order.Type == OrderType.Market)
                 {
+                    if (response.Data.OrderCancelTransaction != null && response.Data.OrderCancelTransaction.Type == OrderCancelTransaction.TypeEnum.ORDERCANCEL)
+                    {
+                        OnOrderEvent(new OrderEvent(order, DateTime.UtcNow, orderFee, response.Data.OrderCancelTransaction.Reason.ToString()) { Status = OrderStatus.Invalid });
+                        return false;
+                    }
+
                     var fill = response.Data.OrderFillTransaction;
                     marketOrderFillPrice = fill.Price.ConvertInvariant<decimal>();
 
