@@ -6,18 +6,18 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
-    env:
-        QC_OANDA_ENVIRONMENT: ${{ secrets.QC_OANDA_ENVIRONMENT }}
-        QC_OANDA_ACCESS_TOKEN: ${{ secrets.QC_OANDA_ACCESS_TOKEN }}
-        QC_OANDA_ACCOUNT_ID: ${{ secrets.QC_OANDA_ACCOUNT_ID }}
-        QC_JOB_USER_ID: ${{ secrets.JOB_USER_ID }}
-        QC_API_ACCESS_TOKEN: ${{ secrets.API_ACCESS_TOKEN }}
-        QC_JOB_ORGANIZATION_ID: ${{ secrets.JOB_ORGANIZATION_ID }}
-    container:
-        image: quantconnect/lean:foundation
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Liberate disk space
+        uses: jlumbroso/free-disk-space@main
+        with:
+          tool-cache: true
+          large-packages: false
+          docker-images: false
+          swap-storage: false
 
       - name: Checkout Lean Same Branch
         id: lean-same-branch
@@ -38,8 +38,13 @@ jobs:
       - name: Move Lean
         run: mv Lean ../Lean
 
-      - name: Build
-        run: dotnet build /p:Configuration=Release /v:quiet /p:WarningLevel=1 QuantConnect.OandaBrokerage.sln
-
-      - name: Run Tests
-        run: dotnet test ./QuantConnect.OandaBrokerage.Tests/bin/Release/QuantConnect.OandaBrokerage.Tests.dll
+      - uses: addnab/docker-run-action@v3
+        with:
+          image: quantconnect/lean:foundation
+          options: --workdir /__w/Lean.Brokerages.OANDA/Lean.Brokerages.OANDA -v /home/runner/work:/__w -e QC_OANDA_ENVIRONMENT=${{ secrets.QC_OANDA_ENVIRONMENT }} -e QC_OANDA_ACCESS_TOKEN=${{ secrets.QC_OANDA_ACCESS_TOKEN }} -e QC_OANDA_ACCOUNT_ID=${{ secrets.QC_OANDA_ACCOUNT_ID }} -e QC_JOB_USER_ID=${{ secrets.JOB_USER_ID }} -e QC_API_ACCESS_TOKEN=${{ secrets.API_ACCESS_TOKEN }} -e QC_JOB_ORGANIZATION_ID=${{ secrets.JOB_ORGANIZATION_ID }}
+          shell: bash
+          run: |
+            # Build
+            dotnet build /p:Configuration=Release /v:quiet /p:WarningLevel=1 QuantConnect.OandaBrokerage.sln && \
+            # Run Tests
+            dotnet test ./QuantConnect.OandaBrokerage.Tests/bin/Release/QuantConnect.OandaBrokerage.Tests.dll
