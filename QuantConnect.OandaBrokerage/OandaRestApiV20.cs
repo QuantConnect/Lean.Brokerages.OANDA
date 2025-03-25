@@ -415,7 +415,10 @@ namespace QuantConnect.Brokerages.Oanda
 
                 case "PRICE":
                     var data = obj.ToObject<Price>();
-
+                    if (data.Bids == null || data.Bids.Count == 0 || data.Asks == null || data.Asks.Count == 0)
+                    {
+                        break;
+                    }
                     var securityType = SymbolMapper.GetBrokerageSecurityType(data.Instrument);
                     var symbol = SymbolMapper.GetLeanSymbol(data.Instrument, securityType, Market.Oanda);
                     var time = GetTickDateTimeFromString(data.Time);
