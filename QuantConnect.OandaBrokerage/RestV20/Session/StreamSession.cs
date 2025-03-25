@@ -17,6 +17,7 @@ using System;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
+using QuantConnect.Logging;
 
 namespace Oanda.RestV20.Session
 {
@@ -53,19 +54,26 @@ namespace Oanda.RestV20.Session
 
             _response = GetSession();
 
-            _runningTask = Task.Run(() =>
+            _runningTask = Task.Factory.StartNew(() =>
             {
-                using (var reader = new StreamReader(_response.GetResponseStream()))
+                try
                 {
-                    while (!_shutdown)
+                    using (var reader = new StreamReader(_response.GetResponseStream()))
                     {
-                        var line = reader.ReadLine();
+                        while (!_shutdown)
+                        {
+                            var line = reader.ReadLine();
 
-                        var handler = DataReceived;
-                        if (handler != null) handler(line);
+                            var handler = DataReceived;
+                            if (handler != null) handler(line);
+                        }
                     }
                 }
-            });
+                catch (Exception ex)
+                {
+                    Log.Error(ex);
+                }
+            }, TaskCreationOptions.LongRunning);
         }
 
         /// <summary>
