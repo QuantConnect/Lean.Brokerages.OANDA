@@ -1,5 +1,8 @@
 {
-	"description": "OANDA is an international FOREX and CFD brokerage with a mature API and client base. OANDA has reasonable spread-only pricing.",
+	"name" : "FX Brokerages",
+	"logo-url" : "",
+	"min-deposit" : "50 USD",
+	"description": "QuantConnect integrates with OANDA for CFD and FOREX trading. OANDA was founded by Dr. Michael Stumm and Dr. Richard Olsen in 1995 with the goal to \"transform all aspects of how the world interacts with currencies, whether that be trading or utilizing currency data and information\".",
 	
 	"platforms-features":[
 		{
