@@ -430,8 +430,8 @@ namespace QuantConnect.Brokerages.Oanda
                         _symbolsByInstrument[data.Instrument] = symbolAndTimeZone = (symbol, exchangeTimeZone);
                     }
 
-                    var bidPrice = data.Bids.Last().Price.ConvertInvariant<decimal>();
-                    var askPrice = data.Asks.Last().Price.ConvertInvariant<decimal>();
+                    var bidPrice = data.Bids.OrderByDescending(x => x.Price).First().Price.ConvertInvariant<decimal>();
+                    var askPrice = data.Asks.OrderBy(x => x.Price).First().Price.ConvertInvariant<decimal>();
                     // We use UtcNow instead of data.Time to avoid issues with clock skew and data delay
                     var time = DateTime.UtcNow.ConvertFromUtc(symbolAndTimeZone.ExchangeTimeZone);
                     var tick = new Tick(time, symbolAndTimeZone.Symbol, bidPrice, askPrice);
