@@ -52,7 +52,7 @@ namespace QuantConnect.Brokerages.Oanda
 
         private TransactionStreamSession _eventsSession;
         private PricingStreamSession _ratesSession;
-        private readonly Dictionary<Symbol, DateTimeZone> _symbolExchangeTimeZones = new Dictionary<Symbol, DateTimeZone>();
+        private readonly Dictionary<string, (Symbol Symbol, DateTimeZone ExchangeTimeZone)> _symbolsByInstrument = new Dictionary<string, (Symbol, DateTimeZone)>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="OandaRestApiV20"/> class.
@@ -419,22 +419,22 @@ namespace QuantConnect.Brokerages.Oanda
                     {
                         break;
                     }
-                    var securityType = SymbolMapper.GetBrokerageSecurityType(data.Instrument);
-                    var symbol = SymbolMapper.GetLeanSymbol(data.Instrument, securityType, Market.Oanda);
-                    var time = GetTickDateTimeFromString(data.Time);
 
-                    // live ticks timestamps must be in exchange time zone
-                    DateTimeZone exchangeTimeZone;
-                    if (!_symbolExchangeTimeZones.TryGetValue(symbol, out exchangeTimeZone))
+                    if (!_symbolsByInstrument.TryGetValue(data.Instrument, out var symbolAndTimeZone))
                     {
-                        exchangeTimeZone = MarketHoursDatabase.FromDataFolder().GetExchangeHours(Market.Oanda, symbol, securityType).TimeZone;
-                        _symbolExchangeTimeZones.Add(symbol, exchangeTimeZone);
+                        var securityType = SymbolMapper.GetBrokerageSecurityType(data.Instrument);
+                        var symbol = SymbolMapper.GetLeanSymbol(data.Instrument, securityType, Market.Oanda);
+
+                        // live ticks timestamps must be in exchange time zone
+                        var exchangeTimeZone = MarketHoursDatabase.FromDataFolder().GetExchangeHours(Market.Oanda, symbol, securityType).TimeZone;
+                        _symbolsByInstrument[data.Instrument] = symbolAndTimeZone = (symbol, exchangeTimeZone);
                     }
-                    time = time.ConvertFromUtc(exchangeTimeZone);
 
                     var bidPrice = data.Bids.Last().Price.ConvertInvariant<decimal>();
                     var askPrice = data.Asks.Last().Price.ConvertInvariant<decimal>();
-                    var tick = new Tick(time, symbol, bidPrice, askPrice);
+                    // We use UtcNow instead of data.Time to avoid issues with clock skew and data delay
+                    var time = DateTime.UtcNow.ConvertFromUtc(symbolAndTimeZone.ExchangeTimeZone);
+                    var tick = new Tick(time, symbolAndTimeZone.Symbol, bidPrice, askPrice);
 
                     EmitTick(tick);
                     break;
