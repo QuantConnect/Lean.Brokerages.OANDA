@@ -421,7 +421,6 @@ namespace QuantConnect.Brokerages.Oanda
                     }
                     var securityType = SymbolMapper.GetBrokerageSecurityType(data.Instrument);
                     var symbol = SymbolMapper.GetLeanSymbol(data.Instrument, securityType, Market.Oanda);
-                    var time = GetTickDateTimeFromString(data.Time);
 
                     // live ticks timestamps must be in exchange time zone
                     DateTimeZone exchangeTimeZone;
@@ -430,10 +429,11 @@ namespace QuantConnect.Brokerages.Oanda
                         exchangeTimeZone = MarketHoursDatabase.FromDataFolder().GetExchangeHours(Market.Oanda, symbol, securityType).TimeZone;
                         _symbolExchangeTimeZones.Add(symbol, exchangeTimeZone);
                     }
-                    time = time.ConvertFromUtc(exchangeTimeZone);
 
                     var bidPrice = data.Bids.Last().Price.ConvertInvariant<decimal>();
                     var askPrice = data.Asks.Last().Price.ConvertInvariant<decimal>();
+                    // We use UtcNow instead of data.Time to avoid issues with clock skew and data delay
+                    var time = DateTime.UtcNow.ConvertFromUtc(exchangeTimeZone);
                     var tick = new Tick(time, symbol, bidPrice, askPrice);
 
                     EmitTick(tick);
