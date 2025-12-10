@@ -49,7 +49,7 @@ namespace QuantConnect.Tests.Brokerages.Oanda
             var accountId = Config.Get("oanda-account-id");
             var aggregator = new AggregationManager();
 
-            return new OandaBrokerage(orderProvider, securityProvider, aggregator, environment, accessToken, accountId);
+            return new QuantConnect.Brokerages.Oanda.OandaBrokerage(orderProvider, securityProvider, aggregator, environment, accessToken, accountId);
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace QuantConnect.Tests.Brokerages.Oanda
         /// </summary>
         protected override decimal GetAskPrice(Symbol symbol)
         {
-            var oanda = (OandaBrokerage) Brokerage;
+            var oanda = (QuantConnect.Brokerages.Oanda.OandaBrokerage) Brokerage;
             var quote = oanda.GetRates(new OandaSymbolMapper().GetBrokerageSymbol(symbol));
             var spdb = SymbolPropertiesDatabase.FromDataFolder();
             var symbolProperties = spdb.GetSymbolProperties(symbol.ID.Market, symbol, symbol.SecurityType, "USD");
@@ -101,7 +101,7 @@ namespace QuantConnect.Tests.Brokerages.Oanda
         {
             var orderEventTracker = new ConcurrentBag<OrderEvent>();
             Dictionary<int, Order> orders = new();
-            var oanda = (OandaBrokerage)Brokerage;
+            var oanda = (QuantConnect.Brokerages.Oanda.OandaBrokerage)Brokerage;
             var symbol = Symbol;
             EventHandler<List<OrderEvent>> orderStatusChangedCallback = (s, e) => {
                 var orderEvent = e.Single();
@@ -148,7 +148,7 @@ namespace QuantConnect.Tests.Brokerages.Oanda
         public void ValidateLimitOrders()
         {
             var orderEventTracker = new ConcurrentBag<OrderEvent>();
-            var oanda = (OandaBrokerage)Brokerage;
+            var oanda = (QuantConnect.Brokerages.Oanda.OandaBrokerage)Brokerage;
             var symbol = Symbol;
             var quote = oanda.GetRates(new OandaSymbolMapper().GetBrokerageSymbol(symbol));
             EventHandler<List<OrderEvent>> orderStatusChangedCallback = (s, e) => {
@@ -177,7 +177,7 @@ namespace QuantConnect.Tests.Brokerages.Oanda
         [Test]
         public void ValidateStopMarketOrders()
         {
-            var oanda = (OandaBrokerage)Brokerage;
+            var oanda = (QuantConnect.Brokerages.Oanda.OandaBrokerage)Brokerage;
             var symbol = Symbol;
             var quote = oanda.GetRates(new OandaSymbolMapper().GetBrokerageSymbol(symbol));
 
@@ -205,7 +205,7 @@ namespace QuantConnect.Tests.Brokerages.Oanda
         [Test]
         public void ValidateStopLimitOrders()
         {
-            var oanda = (OandaBrokerage) Brokerage;
+            var oanda = (QuantConnect.Brokerages.Oanda.OandaBrokerage) Brokerage;
             var symbol = Symbol;
             var quote = oanda.GetRates(new OandaSymbolMapper().GetBrokerageSymbol(symbol));
 

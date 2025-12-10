@@ -31,7 +31,7 @@ namespace QuantConnect.ToolBox.OandaDownloader
     /// </summary>
     public class OandaDataDownloader : IDataDownloader
     {
-        private readonly OandaBrokerage _brokerage;
+        private readonly Brokerages.Oanda.OandaBrokerage _brokerage;
         private readonly OandaSymbolMapper _symbolMapper = new OandaSymbolMapper();
 
         public OandaDataDownloader() : this(Config.Get("oanda-access-token"), Config.Get("oanda-account-id"))
@@ -43,7 +43,7 @@ namespace QuantConnect.ToolBox.OandaDownloader
         public OandaDataDownloader(string accessToken, string accountId)
         {
             // Set Oanda account credentials
-            _brokerage = new OandaBrokerage(null,
+            _brokerage = new Brokerages.Oanda.OandaBrokerage(null,
                 null,
                 null,
                 Environment.Practice,

@@ -15,7 +15,6 @@
 
 using System;
 using NUnit.Framework;
-using QuantConnect.Brokerages.Oanda;
 using QuantConnect.Configuration;
 using QuantConnect.Lean.Engine.DataFeeds;
 using Environment = QuantConnect.Brokerages.Oanda.Environment;
@@ -42,14 +41,14 @@ namespace QuantConnect.Tests.Brokerages.Oanda
             Assert.Throws<NotSupportedException>(() => brokerage.GetOpenOrders());
         }
 
-        private OandaBrokerage CreateBrokerage()
+        private QuantConnect.Brokerages.Oanda.OandaBrokerage CreateBrokerage()
         {
             var environment = Config.Get("oanda-environment").ConvertTo<Environment>();
             var accessToken = Config.Get("oanda-access-token");
             var accountId = Config.Get("oanda-account-id");
             var aggregator = new AggregationManager();
 
-            var brokerage =new OandaBrokerage(new OrderProvider(), new SecurityProvider(), aggregator, environment, accessToken, accountId);
+            var brokerage =new QuantConnect.Brokerages.Oanda.OandaBrokerage(new OrderProvider(), new SecurityProvider(), aggregator, environment, accessToken, accountId);
 
             brokerage.Connect();
             Assert.IsTrue(brokerage.IsConnected);

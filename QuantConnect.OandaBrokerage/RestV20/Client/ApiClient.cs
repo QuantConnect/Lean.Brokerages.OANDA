@@ -11,16 +11,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Text.RegularExpressions;
 using System.IO;
-using System.Web;
 using System.Linq;
-using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using QuantConnect;
-using RestSharp;
+using QuantConnect.OandaBrokerage.RestV20.Model;
+using System.Web;
 
 namespace Oanda.RestV20.Client
 {
@@ -35,17 +36,29 @@ namespace Oanda.RestV20.Client
         };
 
         /// <summary>
+        /// Gets or sets the HttpClient.
+        /// </summary>
+        /// <value>An instance of the HttpClient</value>
+        public HttpClient HttpClient { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Configuration.
+        /// </summary>
+        /// <value>An instance of the Configuration.</value>
+        public Configuration Configuration { get; set; }
+
+        /// <summary>
         /// Allows for extending request processing for <see cref="ApiClient"/> generated code.
         /// </summary>
         /// <param name="request">The RestSharp request object</param>
-        partial void InterceptRequest(IRestRequest request);
+        partial void InterceptRequest(HttpRequestMessage request);
 
         /// <summary>
         /// Allows for extending response processing for <see cref="ApiClient"/> generated code.
         /// </summary>
         /// <param name="request">The RestSharp request object</param>
         /// <param name="response">The RestSharp response object</param>
-        partial void InterceptResponse(IRestRequest request, IRestResponse response);
+        partial void InterceptResponse(HttpRequestMessage request, HttpResponseMessage response);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient" /> class
@@ -54,7 +67,7 @@ namespace Oanda.RestV20.Client
         public ApiClient()
         {
             Configuration = Configuration.Default;
-            RestClient = new RestClient("https://localhost/v3");
+            HttpClient = new HttpClient { BaseAddress = new Uri("https://localhost/v3") };
         }
 
         /// <summary>
@@ -64,12 +77,8 @@ namespace Oanda.RestV20.Client
         /// <param name="config">An instance of Configuration.</param>
         public ApiClient(Configuration config = null)
         {
-            if (config == null)
-                Configuration = Configuration.Default;
-            else
-                Configuration = config;
-
-            RestClient = new RestClient("https://localhost/v3");
+            Configuration = config ?? Configuration.Default;
+            HttpClient = new HttpClient { BaseAddress = new Uri("https://localhost/v3") };
         }
 
         /// <summary>
@@ -79,72 +88,79 @@ namespace Oanda.RestV20.Client
         /// <param name="basePath">The base path.</param>
         public ApiClient(String basePath = "https://localhost/v3")
         {
-           if (String.IsNullOrEmpty(basePath))
+            if (String.IsNullOrEmpty(basePath))
                 throw new ArgumentException("basePath cannot be empty");
 
-            RestClient = new RestClient(basePath);
+            HttpClient = new HttpClient { BaseAddress = new Uri(basePath) };
             Configuration = Configuration.Default;
         }
 
-        /// <summary>
-        /// Gets or sets the default API client for making HTTP calls.
-        /// </summary>
-        /// <value>The default API client.</value>
-        [Obsolete("ApiClient.Default is deprecated, please use 'Configuration.Default.ApiClient' instead.")]
-        public static ApiClient Default;
-
-        /// <summary>
-        /// Gets or sets the Configuration.
-        /// </summary>
-        /// <value>An instance of the Configuration.</value>
-        public Configuration Configuration { get; set; }
-
-        /// <summary>
-        /// Gets or sets the RestClient.
-        /// </summary>
-        /// <value>An instance of the RestClient</value>
-        public RestClient RestClient { get; set; }
-
-        // Creates and sets up a RestRequest prior to a call.
-        private RestRequest PrepareRequest(
-            String path, RestSharp.Method method, Dictionary<String, String> queryParams, Object postBody,
+        private HttpRequestMessage PrepareRequest(
+            String path, HttpMethod method, Dictionary<String, String> queryParams, Object postBody,
             Dictionary<String, String> headerParams, Dictionary<String, String> formParams,
             Dictionary<String, FileParameter> fileParams, Dictionary<String, String> pathParams,
             String contentType)
         {
-            var request = new RestRequest(path, method);
-
-            // add path parameter, if any
-            foreach(var param in pathParams)
-                request.AddParameter(param.Key, param.Value, ParameterType.UrlSegment);
-
-            // add header parameter, if any
-            foreach(var param in headerParams)
-                request.AddHeader(param.Key, param.Value);
-
-            // add query parameter, if any
-            foreach(var param in queryParams)
-                request.AddQueryParameter(param.Key, param.Value);
-
-            // add form parameter, if any
-            foreach(var param in formParams)
-                request.AddParameter(param.Key, param.Value);
-
-            // add file parameter, if any
-            foreach(var param in fileParams)
+            // Process Path Parameters
+            foreach (var param in pathParams)
             {
-                request.AddFile(param.Value.Name, param.Value.Writer, param.Value.FileName, param.Value.ContentLength, param.Value.ContentType);
+                path = path.Replace("{" + param.Key + "}", param.Value);
             }
 
-            if (postBody != null) // http body (model or byte[]) parameter
+            // Process Query Parameters
+            var uriBuilder = new UriBuilder(new Uri(HttpClient.BaseAddress, path));
+            if (queryParams.Count > 0)
             {
-                if (postBody.GetType() == typeof(String))
+                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
+                foreach (var param in queryParams)
                 {
-                    request.AddParameter("application/json", postBody, ParameterType.RequestBody);
+                    query[param.Key] = param.Value;
                 }
-                else if (postBody.GetType() == typeof(byte[]))
+                uriBuilder.Query = query.ToString();
+            }
+
+            var request = new HttpRequestMessage(method, uriBuilder.Uri);
+
+            // Process Headers
+            foreach (var param in headerParams)
+            {
+                request.Headers.TryAddWithoutValidation(param.Key, param.Value);
+            }
+
+            // Process Body
+            if (fileParams.Count > 0 || formParams.Count > 0)
+            {
+                var multipartContent = new MultipartFormDataContent();
+                foreach (var param in formParams)
                 {
-                    request.AddParameter(contentType, postBody, ParameterType.RequestBody);
+                    multipartContent.Add(new StringContent(param.Value), param.Key);
+                }
+                foreach (var param in fileParams)
+                {
+                    var streamContent = new StreamContent(param.Value.Writer);
+                    streamContent.Headers.ContentType = MediaTypeHeaderValue.Parse(param.Value.ContentType);
+                    multipartContent.Add(streamContent, param.Value.Name, param.Value.FileName);
+                }
+                request.Content = multipartContent;
+            }
+            else if (postBody != null)
+            {
+                if (postBody is string jsonString)
+                {
+                    request.Content = new StringContent(jsonString, Encoding.UTF8, "application/json");
+                }
+                else if (postBody is byte[] bytes)
+                {
+                    var byteContent = new ByteArrayContent(bytes);
+                    if (!string.IsNullOrEmpty(contentType))
+                        byteContent.Headers.ContentType = MediaTypeHeaderValue.Parse(contentType);
+                    request.Content = byteContent;
+                }
+                else
+                {
+                    // Fallback serialization if object passed
+                    var json = Serialize(postBody);
+                    request.Content = new StringContent(json, Encoding.UTF8, "application/json");
                 }
             }
 
@@ -165,25 +181,28 @@ namespace Oanda.RestV20.Client
         /// <param name="contentType">Content Type of the request</param>
         /// <returns>Object</returns>
         public Object CallApi(
-            String path, RestSharp.Method method, Dictionary<String, String> queryParams, Object postBody,
+            String path, HttpMethod method, Dictionary<String, String> queryParams, Object postBody,
             Dictionary<String, String> headerParams, Dictionary<String, String> formParams,
             Dictionary<String, FileParameter> fileParams, Dictionary<String, String> pathParams,
             String contentType)
         {
-            var request = PrepareRequest(
-                path, method, queryParams, postBody, headerParams, formParams, fileParams,
-                pathParams, contentType);
+            var request = PrepareRequest(path, method, queryParams, postBody, headerParams, formParams, fileParams, pathParams, contentType);
 
             // set timeout
-            RestClient.Timeout = Configuration.Timeout;
-            // set user agent
-            RestClient.UserAgent = Configuration.UserAgent;
+            HttpClient.Timeout = TimeSpan.FromMilliseconds(Configuration.Timeout);
+
+            // set user agent via DefaultRequestHeaders if needed, or per request:
+            if (!request.Headers.Contains("User-Agent"))
+                request.Headers.Add("User-Agent", Configuration.UserAgent);
 
             InterceptRequest(request);
-            var response = RestClient.Execute(request);
+
+            // Blocking call to maintain synchronous signature
+            var response = HttpClient.SendAsync(request).GetAwaiter().GetResult();
+
             InterceptResponse(request, response);
 
-            return (Object) response;
+            return (Object)response;
         }
         /// <summary>
         /// Makes the asynchronous HTTP request.
@@ -198,17 +217,19 @@ namespace Oanda.RestV20.Client
         /// <param name="pathParams">Path parameters.</param>
         /// <param name="contentType">Content type.</param>
         /// <returns>The Task instance.</returns>
-        public async System.Threading.Tasks.Task<Object> CallApiAsync(
-            String path, RestSharp.Method method, Dictionary<String, String> queryParams, Object postBody,
+        public async Task<Object> CallApiAsync(
+            String path, HttpMethod method, Dictionary<String, String> queryParams, Object postBody,
             Dictionary<String, String> headerParams, Dictionary<String, String> formParams,
             Dictionary<String, FileParameter> fileParams, Dictionary<String, String> pathParams,
             String contentType)
         {
-            var request = PrepareRequest(
-                path, method, queryParams, postBody, headerParams, formParams, fileParams,
-                pathParams, contentType);
+            var request = PrepareRequest(path, method, queryParams, postBody, headerParams, formParams, fileParams, pathParams, contentType);
+
+            if (!request.Headers.Contains("User-Agent"))
+                request.Headers.Add("User-Agent", Configuration.UserAgent);
+
             InterceptRequest(request);
-            var response = await RestClient.ExecuteTaskAsync(request);
+            var response = await HttpClient.SendAsync(request);
             InterceptResponse(request, response);
             return (Object)response;
         }
@@ -279,51 +300,46 @@ namespace Oanda.RestV20.Client
         /// <param name="response">The HTTP response.</param>
         /// <param name="type">Object type.</param>
         /// <returns>Object representation of the JSON string.</returns>
-        public object Deserialize(IRestResponse response, Type type)
+        public object Deserialize(HttpResponseMessage response, Type type)
         {
-            IList<Parameter> headers = response.Headers;
-            if (type == typeof(byte[])) // return byte array
+            // Buffer content
+            var contentBytes = response.Content.ReadAsByteArrayAsync().GetAwaiter().GetResult();
+            var contentString = Encoding.UTF8.GetString(contentBytes);
+
+            if (type == typeof(byte[]))
             {
-                return response.RawBytes;
+                return contentBytes;
             }
 
             if (type == typeof(Stream))
             {
-                if (headers != null)
+                if (response.Content.Headers.ContentDisposition != null &&
+                    !string.IsNullOrEmpty(response.Content.Headers.ContentDisposition.FileName))
                 {
                     var filePath = String.IsNullOrEmpty(Configuration.TempFolderPath)
                         ? Path.GetTempPath()
                         : Configuration.TempFolderPath;
-                    var regex = new Regex(@"Content-Disposition=.*filename=['""]?([^'""\s]+)['""]?$");
-                    foreach (var header in headers)
-                    {
-                        var match = regex.Match(header.ToString());
-                        if (match.Success)
-                        {
-                            string fileName = filePath + SanitizeFilename(match.Groups[1].Value.Replace("\"", "").Replace("'", ""));
-                            File.WriteAllBytes(fileName, response.RawBytes);
-                            return new FileStream(fileName, FileMode.Open);
-                        }
-                    }
+
+                    var fileName = filePath + SanitizeFilename(response.Content.Headers.ContentDisposition.FileName.Replace("\"", "").Replace("'", ""));
+                    File.WriteAllBytes(fileName, contentBytes);
+                    return new FileStream(fileName, FileMode.Open);
                 }
-                var stream = new MemoryStream(response.RawBytes);
-                return stream;
+                return new MemoryStream(contentBytes);
             }
 
-            if (type.Name.StartsWith("System.Nullable`1[[System.DateTime")) // return a datetime object
+            if (type.Name.StartsWith("System.Nullable`1[[System.DateTime"))
             {
-                return DateTime.Parse(response.Content,  null, System.Globalization.DateTimeStyles.RoundtripKind);
+                return DateTime.Parse(contentString, null, System.Globalization.DateTimeStyles.RoundtripKind);
             }
 
-            if (type == typeof(String) || type.Name.StartsWith("System.Nullable")) // return primitive type
+            if (type == typeof(String) || type.Name.StartsWith("System.Nullable"))
             {
-                return ConvertType(response.Content, type);
+                return ConvertType(contentString, type);
             }
 
-            // at this point, it must be a model (json)
             try
             {
-                return JsonConvert.DeserializeObject(response.Content, type, serializerSettings);
+                return JsonConvert.DeserializeObject(contentString, type, serializerSettings);
             }
             catch (Exception e)
             {
@@ -414,7 +430,7 @@ namespace Oanda.RestV20.Client
         /// <returns>Byte array</returns>
         public static byte[] ReadAsBytes(Stream input)
         {
-            byte[] buffer = new byte[16*1024];
+            byte[] buffer = new byte[16 * 1024];
             using (MemoryStream ms = new MemoryStream())
             {
                 int read;

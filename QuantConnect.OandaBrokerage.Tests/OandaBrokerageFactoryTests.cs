@@ -14,7 +14,6 @@
 */
 
 using NUnit.Framework;
-using QuantConnect.Brokerages.Oanda;
 using QuantConnect.Interfaces;
 using QuantConnect.Util;
 
@@ -26,7 +25,7 @@ namespace QuantConnect.Tests.Brokerages.Oanda
         [Test]
         public void InitializesFactoryFromComposer()
         {
-            using var factory = Composer.Instance.Single<IBrokerageFactory>(instance => instance.BrokerageType == typeof(OandaBrokerage));
+            using var factory = Composer.Instance.Single<IBrokerageFactory>(instance => instance.BrokerageType == typeof(QuantConnect.Brokerages.Oanda.OandaBrokerage));
             Assert.IsNotNull(factory);
         }
     }

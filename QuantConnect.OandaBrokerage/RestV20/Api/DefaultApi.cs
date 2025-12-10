@@ -12,9 +12,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using RestSharp;
 using Oanda.RestV20.Client;
 using Oanda.RestV20.Model;
+using System.Net.Http;
+using QuantConnect.OandaBrokerage.RestV20.Model;
 
 namespace Oanda.RestV20.Api
 {
@@ -36,7 +37,7 @@ namespace Oanda.RestV20.Api
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse2009</returns>
-        InlineResponse2009 CancelOrder (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null);
+        InlineResponse2009 CancelOrder(string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Cancel Order
@@ -50,7 +51,7 @@ namespace Oanda.RestV20.Api
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2009</returns>
-        ApiResponse<InlineResponse2009> CancelOrderWithHttpInfo (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse2009> CancelOrderWithHttpInfo(string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null);
         /// <summary>
         /// Close Position
         /// </summary>
@@ -64,7 +65,7 @@ namespace Oanda.RestV20.Api
         /// <param name="closePositionBody">Representation of how to close the position</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20014</returns>
-        InlineResponse20014 ClosePosition (string authorization, string accountID, string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null);
+        InlineResponse20014 ClosePosition(string authorization, string accountID, string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Close Position
@@ -79,7 +80,7 @@ namespace Oanda.RestV20.Api
         /// <param name="closePositionBody">Representation of how to close the position</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20014</returns>
-        ApiResponse<InlineResponse20014> ClosePositionWithHttpInfo (string authorization, string accountID, string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse20014> ClosePositionWithHttpInfo(string authorization, string accountID, string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null);
         /// <summary>
         /// Close Trade
         /// </summary>
@@ -93,7 +94,7 @@ namespace Oanda.RestV20.Api
         /// <param name="closeTradeBody">Details of how much of the open Trade to close.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20026</returns>
-        InlineResponse20026 CloseTrade (string authorization, string accountID, string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null);
+        InlineResponse20026 CloseTrade(string authorization, string accountID, string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Close Trade
@@ -108,7 +109,7 @@ namespace Oanda.RestV20.Api
         /// <param name="closeTradeBody">Details of how much of the open Trade to close.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20026</returns>
-        ApiResponse<InlineResponse20026> CloseTradeWithHttpInfo (string authorization, string accountID, string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse20026> CloseTradeWithHttpInfo(string authorization, string accountID, string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null);
         /// <summary>
         /// Configure Account
         /// </summary>
@@ -121,7 +122,7 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="configureAccountBody">Representation of the Account configuration to set (optional)</param>
         /// <returns>InlineResponse2004</returns>
-        InlineResponse2004 ConfigureAccount (string authorization, string accountID, string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null);
+        InlineResponse2004 ConfigureAccount(string authorization, string accountID, string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null);
 
         /// <summary>
         /// Configure Account
@@ -135,7 +136,7 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="configureAccountBody">Representation of the Account configuration to set (optional)</param>
         /// <returns>ApiResponse of InlineResponse2004</returns>
-        ApiResponse<InlineResponse2004> ConfigureAccountWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null);
+        ApiResponse<InlineResponse2004> ConfigureAccountWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null);
         /// <summary>
         /// Create Order
         /// </summary>
@@ -148,7 +149,7 @@ namespace Oanda.RestV20.Api
         /// <param name="createOrderBody"></param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse201</returns>
-        InlineResponse201 CreateOrder (string authorization, string accountID, CreateOrderBody createOrderBody, string acceptDatetimeFormat = null);
+        InlineResponse201 CreateOrder(string authorization, string accountID, CreateOrderBody createOrderBody, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Create Order
@@ -162,7 +163,7 @@ namespace Oanda.RestV20.Api
         /// <param name="createOrderBody"></param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse201</returns>
-        ApiResponse<InlineResponse201> CreateOrderWithHttpInfo (string authorization, string accountID, CreateOrderBody createOrderBody, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse201> CreateOrderWithHttpInfo(string authorization, string accountID, CreateOrderBody createOrderBody, string acceptDatetimeFormat = null);
         /// <summary>
         /// Account Details
         /// </summary>
@@ -174,7 +175,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse2001</returns>
-        InlineResponse2001 GetAccount (string authorization, string accountID, string acceptDatetimeFormat = null);
+        InlineResponse2001 GetAccount(string authorization, string accountID, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Account Details
@@ -187,7 +188,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2001</returns>
-        ApiResponse<InlineResponse2001> GetAccountWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse2001> GetAccountWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null);
         /// <summary>
         /// Poll Account Updates
         /// </summary>
@@ -200,7 +201,7 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="sinceTransactionID">ID of the Transaction to get Account changes since. (optional)</param>
         /// <returns>InlineResponse2005</returns>
-        InlineResponse2005 GetAccountChanges (string authorization, string accountID, string acceptDatetimeFormat = null, string sinceTransactionID = null);
+        InlineResponse2005 GetAccountChanges(string authorization, string accountID, string acceptDatetimeFormat = null, string sinceTransactionID = null);
 
         /// <summary>
         /// Poll Account Updates
@@ -214,7 +215,7 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="sinceTransactionID">ID of the Transaction to get Account changes since. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2005</returns>
-        ApiResponse<InlineResponse2005> GetAccountChangesWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, string sinceTransactionID = null);
+        ApiResponse<InlineResponse2005> GetAccountChangesWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null, string sinceTransactionID = null);
         /// <summary>
         /// Account Instruments
         /// </summary>
@@ -226,7 +227,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of instruments to query specifically. (optional)</param>
         /// <returns>InlineResponse2003</returns>
-        InlineResponse2003 GetAccountInstruments (string authorization, string accountID, List<string> instruments = null);
+        InlineResponse2003 GetAccountInstruments(string authorization, string accountID, List<string> instruments = null);
 
         /// <summary>
         /// Account Instruments
@@ -239,7 +240,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of instruments to query specifically. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2003</returns>
-        ApiResponse<InlineResponse2003> GetAccountInstrumentsWithHttpInfo (string authorization, string accountID, List<string> instruments = null);
+        ApiResponse<InlineResponse2003> GetAccountInstrumentsWithHttpInfo(string authorization, string accountID, List<string> instruments = null);
         /// <summary>
         /// Account Summary
         /// </summary>
@@ -251,7 +252,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse2002</returns>
-        InlineResponse2002 GetAccountSummary (string authorization, string accountID, string acceptDatetimeFormat = null);
+        InlineResponse2002 GetAccountSummary(string authorization, string accountID, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Account Summary
@@ -264,7 +265,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2002</returns>
-        ApiResponse<InlineResponse2002> GetAccountSummaryWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse2002> GetAccountSummaryWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null);
         /// <summary>
         /// External User Info
         /// </summary>
@@ -275,7 +276,7 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>InlineResponse20016</returns>
-        InlineResponse20016 GetExternalUserInfo (string authorization, string userSpecifier);
+        InlineResponse20016 GetExternalUserInfo(string authorization, string userSpecifier);
 
         /// <summary>
         /// External User Info
@@ -287,7 +288,7 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>ApiResponse of InlineResponse20016</returns>
-        ApiResponse<InlineResponse20016> GetExternalUserInfoWithHttpInfo (string authorization, string userSpecifier);
+        ApiResponse<InlineResponse20016> GetExternalUserInfoWithHttpInfo(string authorization, string userSpecifier);
         /// <summary>
         /// Get Candlesticks
         /// </summary>
@@ -309,7 +310,7 @@ namespace Oanda.RestV20.Api
         /// <param name="alignmentTimezone">The timezone to use for the dailyAlignment parameter. Candlesticks with daily alignment will be aligned to the dailyAlignment hour within the alignmentTimezone. (optional)</param>
         /// <param name="weeklyAlignment">The day of the week used for granularities that have weekly alignment. (optional)</param>
         /// <returns>InlineResponse20029</returns>
-        InlineResponse20029 GetInstrumentCandles (string authorization, string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null);
+        InlineResponse20029 GetInstrumentCandles(string authorization, string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null);
 
         /// <summary>
         /// Get Candlesticks
@@ -332,7 +333,7 @@ namespace Oanda.RestV20.Api
         /// <param name="alignmentTimezone">The timezone to use for the dailyAlignment parameter. Candlesticks with daily alignment will be aligned to the dailyAlignment hour within the alignmentTimezone. (optional)</param>
         /// <param name="weeklyAlignment">The day of the week used for granularities that have weekly alignment. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20029</returns>
-        ApiResponse<InlineResponse20029> GetInstrumentCandlesWithHttpInfo (string authorization, string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null);
+        ApiResponse<InlineResponse20029> GetInstrumentCandlesWithHttpInfo(string authorization, string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null);
         /// <summary>
         /// Get Order
         /// </summary>
@@ -345,7 +346,7 @@ namespace Oanda.RestV20.Api
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse2008</returns>
-        InlineResponse2008 GetOrder (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null);
+        InlineResponse2008 GetOrder(string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Get Order
@@ -359,7 +360,7 @@ namespace Oanda.RestV20.Api
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2008</returns>
-        ApiResponse<InlineResponse2008> GetOrderWithHttpInfo (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse2008> GetOrderWithHttpInfo(string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null);
         /// <summary>
         /// Instrument Position
         /// </summary>
@@ -371,7 +372,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <returns>InlineResponse20013</returns>
-        InlineResponse20013 GetPosition (string authorization, string accountID, string instrument);
+        InlineResponse20013 GetPosition(string authorization, string accountID, string instrument);
 
         /// <summary>
         /// Instrument Position
@@ -384,7 +385,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <returns>ApiResponse of InlineResponse20013</returns>
-        ApiResponse<InlineResponse20013> GetPositionWithHttpInfo (string authorization, string accountID, string instrument);
+        ApiResponse<InlineResponse20013> GetPositionWithHttpInfo(string authorization, string accountID, string instrument);
         /// <summary>
         /// Current Account Prices
         /// </summary>
@@ -399,7 +400,7 @@ namespace Oanda.RestV20.Api
         /// <param name="since">Date/Time filter to apply to the returned prices. Only prices with a time later than this filter will be provided. (optional)</param>
         /// <param name="includeUnitsAvailable">Flag that enables the inclusion of the unitsAvailable field in the returned Price objects. (optional)</param>
         /// <returns>InlineResponse20021</returns>
-        InlineResponse20021 GetPrices (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null);
+        InlineResponse20021 GetPrices(string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null);
 
         /// <summary>
         /// Current Account Prices
@@ -415,7 +416,7 @@ namespace Oanda.RestV20.Api
         /// <param name="since">Date/Time filter to apply to the returned prices. Only prices with a time later than this filter will be provided. (optional)</param>
         /// <param name="includeUnitsAvailable">Flag that enables the inclusion of the unitsAvailable field in the returned Price objects. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20021</returns>
-        ApiResponse<InlineResponse20021> GetPricesWithHttpInfo (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null);
+        ApiResponse<InlineResponse20021> GetPricesWithHttpInfo(string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null);
         /// <summary>
         /// Trade Details
         /// </summary>
@@ -428,7 +429,7 @@ namespace Oanda.RestV20.Api
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20025</returns>
-        InlineResponse20025 GetTrade (string authorization, string accountID, string tradeSpecifier, string acceptDatetimeFormat = null);
+        InlineResponse20025 GetTrade(string authorization, string accountID, string tradeSpecifier, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Trade Details
@@ -442,7 +443,7 @@ namespace Oanda.RestV20.Api
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20025</returns>
-        ApiResponse<InlineResponse20025> GetTradeWithHttpInfo (string authorization, string accountID, string tradeSpecifier, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse20025> GetTradeWithHttpInfo(string authorization, string accountID, string tradeSpecifier, string acceptDatetimeFormat = null);
         /// <summary>
         /// Transaction Details
         /// </summary>
@@ -455,7 +456,7 @@ namespace Oanda.RestV20.Api
         /// <param name="transactionID">A Transaction ID</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20018</returns>
-        InlineResponse20018 GetTransaction (string authorization, string accountID, string transactionID, string acceptDatetimeFormat = null);
+        InlineResponse20018 GetTransaction(string authorization, string accountID, string transactionID, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Transaction Details
@@ -469,7 +470,7 @@ namespace Oanda.RestV20.Api
         /// <param name="transactionID">A Transaction ID</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20018</returns>
-        ApiResponse<InlineResponse20018> GetTransactionWithHttpInfo (string authorization, string accountID, string transactionID, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse20018> GetTransactionWithHttpInfo(string authorization, string accountID, string transactionID, string acceptDatetimeFormat = null);
         /// <summary>
         /// Transaction ID Range
         /// </summary>
@@ -484,7 +485,7 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="type">The filter that restricts the types of Transactions to retreive. (optional)</param>
         /// <returns>InlineResponse20019</returns>
-        InlineResponse20019 GetTransactionRange (string authorization, string accountID, string from, string to, string acceptDatetimeFormat = null, List<string> type = null);
+        InlineResponse20019 GetTransactionRange(string authorization, string accountID, string from, string to, string acceptDatetimeFormat = null, List<string> type = null);
 
         /// <summary>
         /// Transaction ID Range
@@ -500,7 +501,7 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="type">The filter that restricts the types of Transactions to retreive. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20019</returns>
-        ApiResponse<InlineResponse20019> GetTransactionRangeWithHttpInfo (string authorization, string accountID, string from, string to, string acceptDatetimeFormat = null, List<string> type = null);
+        ApiResponse<InlineResponse20019> GetTransactionRangeWithHttpInfo(string authorization, string accountID, string from, string to, string acceptDatetimeFormat = null, List<string> type = null);
         /// <summary>
         /// Transactions Since ID
         /// </summary>
@@ -513,7 +514,7 @@ namespace Oanda.RestV20.Api
         /// <param name="id">The ID of the last Transacion fetched. This query will return all Transactions newer than the TransactionID.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20019</returns>
-        InlineResponse20019 GetTransactionsSinceId (string authorization, string accountID, string id, string acceptDatetimeFormat = null);
+        InlineResponse20019 GetTransactionsSinceId(string authorization, string accountID, string id, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Transactions Since ID
@@ -527,7 +528,7 @@ namespace Oanda.RestV20.Api
         /// <param name="id">The ID of the last Transacion fetched. This query will return all Transactions newer than the TransactionID.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20019</returns>
-        ApiResponse<InlineResponse20019> GetTransactionsSinceIdWithHttpInfo (string authorization, string accountID, string id, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse20019> GetTransactionsSinceIdWithHttpInfo(string authorization, string accountID, string id, string acceptDatetimeFormat = null);
         /// <summary>
         /// User Info
         /// </summary>
@@ -538,7 +539,7 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>InlineResponse20015</returns>
-        InlineResponse20015 GetUserInfo (string authorization, string userSpecifier);
+        InlineResponse20015 GetUserInfo(string authorization, string userSpecifier);
 
         /// <summary>
         /// User Info
@@ -550,7 +551,7 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>ApiResponse of InlineResponse20015</returns>
-        ApiResponse<InlineResponse20015> GetUserInfoWithHttpInfo (string authorization, string userSpecifier);
+        ApiResponse<InlineResponse20015> GetUserInfoWithHttpInfo(string authorization, string userSpecifier);
         /// <summary>
         /// List Accounts
         /// </summary>
@@ -560,7 +561,7 @@ namespace Oanda.RestV20.Api
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <returns>InlineResponse200</returns>
-        InlineResponse200 ListAccounts (string authorization);
+        InlineResponse200 ListAccounts(string authorization);
 
         /// <summary>
         /// List Accounts
@@ -571,7 +572,7 @@ namespace Oanda.RestV20.Api
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <returns>ApiResponse of InlineResponse200</returns>
-        ApiResponse<InlineResponse200> ListAccountsWithHttpInfo (string authorization);
+        ApiResponse<InlineResponse200> ListAccountsWithHttpInfo(string authorization);
         /// <summary>
         /// Open Positions
         /// </summary>
@@ -582,7 +583,7 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="accountID">Account Identifier</param>
         /// <returns>InlineResponse20012</returns>
-        InlineResponse20012 ListOpenPositions (string authorization, string accountID);
+        InlineResponse20012 ListOpenPositions(string authorization, string accountID);
 
         /// <summary>
         /// Open Positions
@@ -594,7 +595,7 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="accountID">Account Identifier</param>
         /// <returns>ApiResponse of InlineResponse20012</returns>
-        ApiResponse<InlineResponse20012> ListOpenPositionsWithHttpInfo (string authorization, string accountID);
+        ApiResponse<InlineResponse20012> ListOpenPositionsWithHttpInfo(string authorization, string accountID);
         /// <summary>
         /// List Open Trades
         /// </summary>
@@ -606,7 +607,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20024</returns>
-        InlineResponse20024 ListOpenTrades (string authorization, string accountID, string acceptDatetimeFormat = null);
+        InlineResponse20024 ListOpenTrades(string authorization, string accountID, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// List Open Trades
@@ -619,7 +620,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20024</returns>
-        ApiResponse<InlineResponse20024> ListOpenTradesWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse20024> ListOpenTradesWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null);
         /// <summary>
         /// List Orders
         /// </summary>
@@ -636,7 +637,7 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Orders to return (optional)</param>
         /// <param name="beforeID">The maximum Order ID to return. If not provided the most recent Orders in the Account are returned (optional)</param>
         /// <returns>InlineResponse2006</returns>
-        InlineResponse2006 ListOrders (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
+        InlineResponse2006 ListOrders(string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
 
         /// <summary>
         /// List Orders
@@ -654,7 +655,7 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Orders to return (optional)</param>
         /// <param name="beforeID">The maximum Order ID to return. If not provided the most recent Orders in the Account are returned (optional)</param>
         /// <returns>ApiResponse of InlineResponse2006</returns>
-        ApiResponse<InlineResponse2006> ListOrdersWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
+        ApiResponse<InlineResponse2006> ListOrdersWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
         /// <summary>
         /// Pending Orders
         /// </summary>
@@ -666,7 +667,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse2007</returns>
-        InlineResponse2007 ListPendingOrders (string authorization, string accountID, string acceptDatetimeFormat = null);
+        InlineResponse2007 ListPendingOrders(string authorization, string accountID, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Pending Orders
@@ -679,7 +680,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2007</returns>
-        ApiResponse<InlineResponse2007> ListPendingOrdersWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse2007> ListPendingOrdersWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null);
         /// <summary>
         /// List Positions
         /// </summary>
@@ -690,7 +691,7 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="accountID">Account Identifier</param>
         /// <returns>InlineResponse20011</returns>
-        InlineResponse20011 ListPositions (string authorization, string accountID);
+        InlineResponse20011 ListPositions(string authorization, string accountID);
 
         /// <summary>
         /// List Positions
@@ -702,7 +703,7 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="accountID">Account Identifier</param>
         /// <returns>ApiResponse of InlineResponse20011</returns>
-        ApiResponse<InlineResponse20011> ListPositionsWithHttpInfo (string authorization, string accountID);
+        ApiResponse<InlineResponse20011> ListPositionsWithHttpInfo(string authorization, string accountID);
         /// <summary>
         /// List Trades
         /// </summary>
@@ -719,7 +720,7 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Trades to return. (optional)</param>
         /// <param name="beforeID">The maximum Trade ID to return. If not provided the most recent Trades in the Account are returned. (optional)</param>
         /// <returns>InlineResponse20023</returns>
-        InlineResponse20023 ListTrades (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
+        InlineResponse20023 ListTrades(string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
 
         /// <summary>
         /// List Trades
@@ -737,7 +738,7 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Trades to return. (optional)</param>
         /// <param name="beforeID">The maximum Trade ID to return. If not provided the most recent Trades in the Account are returned. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20023</returns>
-        ApiResponse<InlineResponse20023> ListTradesWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
+        ApiResponse<InlineResponse20023> ListTradesWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
         /// <summary>
         /// List Transactions
         /// </summary>
@@ -753,7 +754,7 @@ namespace Oanda.RestV20.Api
         /// <param name="pageSize">The number of Transactions to include in each page of the results. (optional)</param>
         /// <param name="type">A filter for restricting the types of Transactions to retreive. (optional)</param>
         /// <returns>InlineResponse20017</returns>
-        InlineResponse20017 ListTransactions (string authorization, string accountID, string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null);
+        InlineResponse20017 ListTransactions(string authorization, string accountID, string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null);
 
         /// <summary>
         /// List Transactions
@@ -770,7 +771,7 @@ namespace Oanda.RestV20.Api
         /// <param name="pageSize">The number of Transactions to include in each page of the results. (optional)</param>
         /// <param name="type">A filter for restricting the types of Transactions to retreive. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20017</returns>
-        ApiResponse<InlineResponse20017> ListTransactionsWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null);
+        ApiResponse<InlineResponse20017> ListTransactionsWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null);
         /// <summary>
         /// Replace Order
         /// </summary>
@@ -784,7 +785,7 @@ namespace Oanda.RestV20.Api
         /// <param name="replaceOrderBody">Specification of the replacing Order. The replacing order must have the same type as the replaced Order.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse2011</returns>
-        InlineResponse2011 ReplaceOrder (string authorization, string accountID, string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null);
+        InlineResponse2011 ReplaceOrder(string authorization, string accountID, string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Replace Order
@@ -799,7 +800,7 @@ namespace Oanda.RestV20.Api
         /// <param name="replaceOrderBody">Specification of the replacing Order. The replacing order must have the same type as the replaced Order.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2011</returns>
-        ApiResponse<InlineResponse2011> ReplaceOrderWithHttpInfo (string authorization, string accountID, string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse2011> ReplaceOrderWithHttpInfo(string authorization, string accountID, string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null);
         /// <summary>
         /// Set Order Extensions
         /// </summary>
@@ -813,7 +814,7 @@ namespace Oanda.RestV20.Api
         /// <param name="setOrderClientExtensionsBody">Representation of the replacing Order</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20010</returns>
-        InlineResponse20010 SetOrderClientExtensions (string authorization, string accountID, string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null);
+        InlineResponse20010 SetOrderClientExtensions(string authorization, string accountID, string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Set Order Extensions
@@ -828,7 +829,7 @@ namespace Oanda.RestV20.Api
         /// <param name="setOrderClientExtensionsBody">Representation of the replacing Order</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20010</returns>
-        ApiResponse<InlineResponse20010> SetOrderClientExtensionsWithHttpInfo (string authorization, string accountID, string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse20010> SetOrderClientExtensionsWithHttpInfo(string authorization, string accountID, string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null);
         /// <summary>
         /// Set Trade Client Extensions
         /// </summary>
@@ -842,7 +843,7 @@ namespace Oanda.RestV20.Api
         /// <param name="setTradeClientExtensionsBody">Details of how to modify the Trade&#39;s Client Extensions.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20027</returns>
-        InlineResponse20027 SetTradeClientExtensions (string authorization, string accountID, string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null);
+        InlineResponse20027 SetTradeClientExtensions(string authorization, string accountID, string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Set Trade Client Extensions
@@ -857,7 +858,7 @@ namespace Oanda.RestV20.Api
         /// <param name="setTradeClientExtensionsBody">Details of how to modify the Trade&#39;s Client Extensions.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20027</returns>
-        ApiResponse<InlineResponse20027> SetTradeClientExtensionsWithHttpInfo (string authorization, string accountID, string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse20027> SetTradeClientExtensionsWithHttpInfo(string authorization, string accountID, string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null);
         /// <summary>
         /// Set Dependent Orders
         /// </summary>
@@ -871,7 +872,7 @@ namespace Oanda.RestV20.Api
         /// <param name="setTradeDependentOrdersBody">Details of how to modify the Trade&#39;s dependent Orders.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20028</returns>
-        InlineResponse20028 SetTradeDependentOrders (string authorization, string accountID, string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null);
+        InlineResponse20028 SetTradeDependentOrders(string authorization, string accountID, string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Set Dependent Orders
@@ -886,7 +887,7 @@ namespace Oanda.RestV20.Api
         /// <param name="setTradeDependentOrdersBody">Details of how to modify the Trade&#39;s dependent Orders.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20028</returns>
-        ApiResponse<InlineResponse20028> SetTradeDependentOrdersWithHttpInfo (string authorization, string accountID, string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse20028> SetTradeDependentOrdersWithHttpInfo(string authorization, string accountID, string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null);
         /// <summary>
         /// Price Stream
         /// </summary>
@@ -900,7 +901,7 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="snapshot">Flag that enables/disables the sending of a pricing snapshot when initially connecting to the stream. (optional)</param>
         /// <returns>InlineResponse20022</returns>
-        InlineResponse20022 StreamPricing (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null);
+        InlineResponse20022 StreamPricing(string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null);
 
         /// <summary>
         /// Price Stream
@@ -915,7 +916,7 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="snapshot">Flag that enables/disables the sending of a pricing snapshot when initially connecting to the stream. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20022</returns>
-        ApiResponse<InlineResponse20022> StreamPricingWithHttpInfo (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null);
+        ApiResponse<InlineResponse20022> StreamPricingWithHttpInfo(string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null);
         /// <summary>
         /// Transaction Stream
         /// </summary>
@@ -926,7 +927,7 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="accountID">Account Identifier</param>
         /// <returns>InlineResponse20020</returns>
-        InlineResponse20020 StreamTransactions (string authorization, string accountID);
+        InlineResponse20020 StreamTransactions(string authorization, string accountID);
 
         /// <summary>
         /// Transaction Stream
@@ -938,7 +939,7 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="accountID">Account Identifier</param>
         /// <returns>ApiResponse of InlineResponse20020</returns>
-        ApiResponse<InlineResponse20020> StreamTransactionsWithHttpInfo (string authorization, string accountID);
+        ApiResponse<InlineResponse20020> StreamTransactionsWithHttpInfo(string authorization, string accountID);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -953,7 +954,7 @@ namespace Oanda.RestV20.Api
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse2009</returns>
-        System.Threading.Tasks.Task<InlineResponse2009> CancelOrderAsync (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse2009> CancelOrderAsync(string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Cancel Order
@@ -967,7 +968,7 @@ namespace Oanda.RestV20.Api
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2009)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse2009>> CancelOrderAsyncWithHttpInfo (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse2009>> CancelOrderAsyncWithHttpInfo(string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null);
         /// <summary>
         /// Close Position
         /// </summary>
@@ -981,7 +982,7 @@ namespace Oanda.RestV20.Api
         /// <param name="closePositionBody">Representation of how to close the position</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20014</returns>
-        System.Threading.Tasks.Task<InlineResponse20014> ClosePositionAsync (string authorization, string accountID, string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse20014> ClosePositionAsync(string authorization, string accountID, string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Close Position
@@ -996,7 +997,7 @@ namespace Oanda.RestV20.Api
         /// <param name="closePositionBody">Representation of how to close the position</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20014)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20014>> ClosePositionAsyncWithHttpInfo (string authorization, string accountID, string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20014>> ClosePositionAsyncWithHttpInfo(string authorization, string accountID, string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null);
         /// <summary>
         /// Close Trade
         /// </summary>
@@ -1010,7 +1011,7 @@ namespace Oanda.RestV20.Api
         /// <param name="closeTradeBody">Details of how much of the open Trade to close.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20026</returns>
-        System.Threading.Tasks.Task<InlineResponse20026> CloseTradeAsync (string authorization, string accountID, string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse20026> CloseTradeAsync(string authorization, string accountID, string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Close Trade
@@ -1025,7 +1026,7 @@ namespace Oanda.RestV20.Api
         /// <param name="closeTradeBody">Details of how much of the open Trade to close.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20026)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20026>> CloseTradeAsyncWithHttpInfo (string authorization, string accountID, string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20026>> CloseTradeAsyncWithHttpInfo(string authorization, string accountID, string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null);
         /// <summary>
         /// Configure Account
         /// </summary>
@@ -1038,7 +1039,7 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="configureAccountBody">Representation of the Account configuration to set (optional)</param>
         /// <returns>Task of InlineResponse2004</returns>
-        System.Threading.Tasks.Task<InlineResponse2004> ConfigureAccountAsync (string authorization, string accountID, string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null);
+        System.Threading.Tasks.Task<InlineResponse2004> ConfigureAccountAsync(string authorization, string accountID, string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null);
 
         /// <summary>
         /// Configure Account
@@ -1052,7 +1053,7 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="configureAccountBody">Representation of the Account configuration to set (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2004)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse2004>> ConfigureAccountAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse2004>> ConfigureAccountAsyncWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null);
         /// <summary>
         /// Create Order
         /// </summary>
@@ -1065,7 +1066,7 @@ namespace Oanda.RestV20.Api
         /// <param name="createOrderBody"></param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse201</returns>
-        System.Threading.Tasks.Task<InlineResponse201> CreateOrderAsync (string authorization, string accountID, CreateOrderBody createOrderBody, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse201> CreateOrderAsync(string authorization, string accountID, CreateOrderBody createOrderBody, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Create Order
@@ -1079,7 +1080,7 @@ namespace Oanda.RestV20.Api
         /// <param name="createOrderBody"></param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse201)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse201>> CreateOrderAsyncWithHttpInfo (string authorization, string accountID, CreateOrderBody createOrderBody, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse201>> CreateOrderAsyncWithHttpInfo(string authorization, string accountID, CreateOrderBody createOrderBody, string acceptDatetimeFormat = null);
         /// <summary>
         /// Account Details
         /// </summary>
@@ -1091,7 +1092,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse2001</returns>
-        System.Threading.Tasks.Task<InlineResponse2001> GetAccountAsync (string authorization, string accountID, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse2001> GetAccountAsync(string authorization, string accountID, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Account Details
@@ -1104,7 +1105,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2001)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse2001>> GetAccountAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse2001>> GetAccountAsyncWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null);
         /// <summary>
         /// Poll Account Updates
         /// </summary>
@@ -1117,7 +1118,7 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="sinceTransactionID">ID of the Transaction to get Account changes since. (optional)</param>
         /// <returns>Task of InlineResponse2005</returns>
-        System.Threading.Tasks.Task<InlineResponse2005> GetAccountChangesAsync (string authorization, string accountID, string acceptDatetimeFormat = null, string sinceTransactionID = null);
+        System.Threading.Tasks.Task<InlineResponse2005> GetAccountChangesAsync(string authorization, string accountID, string acceptDatetimeFormat = null, string sinceTransactionID = null);
 
         /// <summary>
         /// Poll Account Updates
@@ -1131,7 +1132,7 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="sinceTransactionID">ID of the Transaction to get Account changes since. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2005)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse2005>> GetAccountChangesAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, string sinceTransactionID = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse2005>> GetAccountChangesAsyncWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null, string sinceTransactionID = null);
         /// <summary>
         /// Account Instruments
         /// </summary>
@@ -1143,7 +1144,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of instruments to query specifically. (optional)</param>
         /// <returns>Task of InlineResponse2003</returns>
-        System.Threading.Tasks.Task<InlineResponse2003> GetAccountInstrumentsAsync (string authorization, string accountID, List<string> instruments = null);
+        System.Threading.Tasks.Task<InlineResponse2003> GetAccountInstrumentsAsync(string authorization, string accountID, List<string> instruments = null);
 
         /// <summary>
         /// Account Instruments
@@ -1156,7 +1157,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of instruments to query specifically. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2003)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse2003>> GetAccountInstrumentsAsyncWithHttpInfo (string authorization, string accountID, List<string> instruments = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse2003>> GetAccountInstrumentsAsyncWithHttpInfo(string authorization, string accountID, List<string> instruments = null);
         /// <summary>
         /// Account Summary
         /// </summary>
@@ -1168,7 +1169,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse2002</returns>
-        System.Threading.Tasks.Task<InlineResponse2002> GetAccountSummaryAsync (string authorization, string accountID, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse2002> GetAccountSummaryAsync(string authorization, string accountID, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Account Summary
@@ -1181,7 +1182,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2002)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse2002>> GetAccountSummaryAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse2002>> GetAccountSummaryAsyncWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null);
         /// <summary>
         /// External User Info
         /// </summary>
@@ -1192,7 +1193,7 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>Task of InlineResponse20016</returns>
-        System.Threading.Tasks.Task<InlineResponse20016> GetExternalUserInfoAsync (string authorization, string userSpecifier);
+        System.Threading.Tasks.Task<InlineResponse20016> GetExternalUserInfoAsync(string authorization, string userSpecifier);
 
         /// <summary>
         /// External User Info
@@ -1204,7 +1205,7 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>Task of ApiResponse (InlineResponse20016)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20016>> GetExternalUserInfoAsyncWithHttpInfo (string authorization, string userSpecifier);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20016>> GetExternalUserInfoAsyncWithHttpInfo(string authorization, string userSpecifier);
         /// <summary>
         /// Get Candlesticks
         /// </summary>
@@ -1226,7 +1227,7 @@ namespace Oanda.RestV20.Api
         /// <param name="alignmentTimezone">The timezone to use for the dailyAlignment parameter. Candlesticks with daily alignment will be aligned to the dailyAlignment hour within the alignmentTimezone. (optional)</param>
         /// <param name="weeklyAlignment">The day of the week used for granularities that have weekly alignment. (optional)</param>
         /// <returns>Task of InlineResponse20029</returns>
-        System.Threading.Tasks.Task<InlineResponse20029> GetInstrumentCandlesAsync (string authorization, string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null);
+        System.Threading.Tasks.Task<InlineResponse20029> GetInstrumentCandlesAsync(string authorization, string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null);
 
         /// <summary>
         /// Get Candlesticks
@@ -1249,7 +1250,7 @@ namespace Oanda.RestV20.Api
         /// <param name="alignmentTimezone">The timezone to use for the dailyAlignment parameter. Candlesticks with daily alignment will be aligned to the dailyAlignment hour within the alignmentTimezone. (optional)</param>
         /// <param name="weeklyAlignment">The day of the week used for granularities that have weekly alignment. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20029)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20029>> GetInstrumentCandlesAsyncWithHttpInfo (string authorization, string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20029>> GetInstrumentCandlesAsyncWithHttpInfo(string authorization, string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null);
         /// <summary>
         /// Get Order
         /// </summary>
@@ -1262,7 +1263,7 @@ namespace Oanda.RestV20.Api
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse2008</returns>
-        System.Threading.Tasks.Task<InlineResponse2008> GetOrderAsync (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse2008> GetOrderAsync(string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Get Order
@@ -1276,7 +1277,7 @@ namespace Oanda.RestV20.Api
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2008)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse2008>> GetOrderAsyncWithHttpInfo (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse2008>> GetOrderAsyncWithHttpInfo(string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null);
         /// <summary>
         /// Instrument Position
         /// </summary>
@@ -1288,7 +1289,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <returns>Task of InlineResponse20013</returns>
-        System.Threading.Tasks.Task<InlineResponse20013> GetPositionAsync (string authorization, string accountID, string instrument);
+        System.Threading.Tasks.Task<InlineResponse20013> GetPositionAsync(string authorization, string accountID, string instrument);
 
         /// <summary>
         /// Instrument Position
@@ -1301,7 +1302,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <returns>Task of ApiResponse (InlineResponse20013)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20013>> GetPositionAsyncWithHttpInfo (string authorization, string accountID, string instrument);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20013>> GetPositionAsyncWithHttpInfo(string authorization, string accountID, string instrument);
         /// <summary>
         /// Current Account Prices
         /// </summary>
@@ -1316,7 +1317,7 @@ namespace Oanda.RestV20.Api
         /// <param name="since">Date/Time filter to apply to the returned prices. Only prices with a time later than this filter will be provided. (optional)</param>
         /// <param name="includeUnitsAvailable">Flag that enables the inclusion of the unitsAvailable field in the returned Price objects. (optional)</param>
         /// <returns>Task of InlineResponse20021</returns>
-        System.Threading.Tasks.Task<InlineResponse20021> GetPricesAsync (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null);
+        System.Threading.Tasks.Task<InlineResponse20021> GetPricesAsync(string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null);
 
         /// <summary>
         /// Current Account Prices
@@ -1332,7 +1333,7 @@ namespace Oanda.RestV20.Api
         /// <param name="since">Date/Time filter to apply to the returned prices. Only prices with a time later than this filter will be provided. (optional)</param>
         /// <param name="includeUnitsAvailable">Flag that enables the inclusion of the unitsAvailable field in the returned Price objects. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20021)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20021>> GetPricesAsyncWithHttpInfo (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20021>> GetPricesAsyncWithHttpInfo(string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null);
         /// <summary>
         /// Trade Details
         /// </summary>
@@ -1345,7 +1346,7 @@ namespace Oanda.RestV20.Api
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20025</returns>
-        System.Threading.Tasks.Task<InlineResponse20025> GetTradeAsync (string authorization, string accountID, string tradeSpecifier, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse20025> GetTradeAsync(string authorization, string accountID, string tradeSpecifier, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Trade Details
@@ -1359,7 +1360,7 @@ namespace Oanda.RestV20.Api
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20025)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20025>> GetTradeAsyncWithHttpInfo (string authorization, string accountID, string tradeSpecifier, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20025>> GetTradeAsyncWithHttpInfo(string authorization, string accountID, string tradeSpecifier, string acceptDatetimeFormat = null);
         /// <summary>
         /// Transaction Details
         /// </summary>
@@ -1372,7 +1373,7 @@ namespace Oanda.RestV20.Api
         /// <param name="transactionID">A Transaction ID</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20018</returns>
-        System.Threading.Tasks.Task<InlineResponse20018> GetTransactionAsync (string authorization, string accountID, string transactionID, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse20018> GetTransactionAsync(string authorization, string accountID, string transactionID, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Transaction Details
@@ -1386,7 +1387,7 @@ namespace Oanda.RestV20.Api
         /// <param name="transactionID">A Transaction ID</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20018)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20018>> GetTransactionAsyncWithHttpInfo (string authorization, string accountID, string transactionID, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20018>> GetTransactionAsyncWithHttpInfo(string authorization, string accountID, string transactionID, string acceptDatetimeFormat = null);
         /// <summary>
         /// Transaction ID Range
         /// </summary>
@@ -1401,7 +1402,7 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="type">The filter that restricts the types of Transactions to retreive. (optional)</param>
         /// <returns>Task of InlineResponse20019</returns>
-        System.Threading.Tasks.Task<InlineResponse20019> GetTransactionRangeAsync (string authorization, string accountID, string from, string to, string acceptDatetimeFormat = null, List<string> type = null);
+        System.Threading.Tasks.Task<InlineResponse20019> GetTransactionRangeAsync(string authorization, string accountID, string from, string to, string acceptDatetimeFormat = null, List<string> type = null);
 
         /// <summary>
         /// Transaction ID Range
@@ -1417,7 +1418,7 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="type">The filter that restricts the types of Transactions to retreive. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20019)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20019>> GetTransactionRangeAsyncWithHttpInfo (string authorization, string accountID, string from, string to, string acceptDatetimeFormat = null, List<string> type = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20019>> GetTransactionRangeAsyncWithHttpInfo(string authorization, string accountID, string from, string to, string acceptDatetimeFormat = null, List<string> type = null);
         /// <summary>
         /// Transactions Since ID
         /// </summary>
@@ -1430,7 +1431,7 @@ namespace Oanda.RestV20.Api
         /// <param name="id">The ID of the last Transacion fetched. This query will return all Transactions newer than the TransactionID.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20019</returns>
-        System.Threading.Tasks.Task<InlineResponse20019> GetTransactionsSinceIdAsync (string authorization, string accountID, string id, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse20019> GetTransactionsSinceIdAsync(string authorization, string accountID, string id, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Transactions Since ID
@@ -1444,7 +1445,7 @@ namespace Oanda.RestV20.Api
         /// <param name="id">The ID of the last Transacion fetched. This query will return all Transactions newer than the TransactionID.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20019)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20019>> GetTransactionsSinceIdAsyncWithHttpInfo (string authorization, string accountID, string id, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20019>> GetTransactionsSinceIdAsyncWithHttpInfo(string authorization, string accountID, string id, string acceptDatetimeFormat = null);
         /// <summary>
         /// User Info
         /// </summary>
@@ -1455,7 +1456,7 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>Task of InlineResponse20015</returns>
-        System.Threading.Tasks.Task<InlineResponse20015> GetUserInfoAsync (string authorization, string userSpecifier);
+        System.Threading.Tasks.Task<InlineResponse20015> GetUserInfoAsync(string authorization, string userSpecifier);
 
         /// <summary>
         /// User Info
@@ -1467,7 +1468,7 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>Task of ApiResponse (InlineResponse20015)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20015>> GetUserInfoAsyncWithHttpInfo (string authorization, string userSpecifier);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20015>> GetUserInfoAsyncWithHttpInfo(string authorization, string userSpecifier);
         /// <summary>
         /// List Accounts
         /// </summary>
@@ -1477,7 +1478,7 @@ namespace Oanda.RestV20.Api
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <returns>Task of InlineResponse200</returns>
-        System.Threading.Tasks.Task<InlineResponse200> ListAccountsAsync (string authorization);
+        System.Threading.Tasks.Task<InlineResponse200> ListAccountsAsync(string authorization);
 
         /// <summary>
         /// List Accounts
@@ -1488,7 +1489,7 @@ namespace Oanda.RestV20.Api
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <returns>Task of ApiResponse (InlineResponse200)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse200>> ListAccountsAsyncWithHttpInfo (string authorization);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse200>> ListAccountsAsyncWithHttpInfo(string authorization);
         /// <summary>
         /// Open Positions
         /// </summary>
@@ -1499,7 +1500,7 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="accountID">Account Identifier</param>
         /// <returns>Task of InlineResponse20012</returns>
-        System.Threading.Tasks.Task<InlineResponse20012> ListOpenPositionsAsync (string authorization, string accountID);
+        System.Threading.Tasks.Task<InlineResponse20012> ListOpenPositionsAsync(string authorization, string accountID);
 
         /// <summary>
         /// Open Positions
@@ -1511,7 +1512,7 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="accountID">Account Identifier</param>
         /// <returns>Task of ApiResponse (InlineResponse20012)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20012>> ListOpenPositionsAsyncWithHttpInfo (string authorization, string accountID);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20012>> ListOpenPositionsAsyncWithHttpInfo(string authorization, string accountID);
         /// <summary>
         /// List Open Trades
         /// </summary>
@@ -1523,7 +1524,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20024</returns>
-        System.Threading.Tasks.Task<InlineResponse20024> ListOpenTradesAsync (string authorization, string accountID, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse20024> ListOpenTradesAsync(string authorization, string accountID, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// List Open Trades
@@ -1536,7 +1537,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20024)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20024>> ListOpenTradesAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20024>> ListOpenTradesAsyncWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null);
         /// <summary>
         /// List Orders
         /// </summary>
@@ -1553,7 +1554,7 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Orders to return (optional)</param>
         /// <param name="beforeID">The maximum Order ID to return. If not provided the most recent Orders in the Account are returned (optional)</param>
         /// <returns>Task of InlineResponse2006</returns>
-        System.Threading.Tasks.Task<InlineResponse2006> ListOrdersAsync (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
+        System.Threading.Tasks.Task<InlineResponse2006> ListOrdersAsync(string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
 
         /// <summary>
         /// List Orders
@@ -1571,7 +1572,7 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Orders to return (optional)</param>
         /// <param name="beforeID">The maximum Order ID to return. If not provided the most recent Orders in the Account are returned (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2006)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse2006>> ListOrdersAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse2006>> ListOrdersAsyncWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
         /// <summary>
         /// Pending Orders
         /// </summary>
@@ -1583,7 +1584,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse2007</returns>
-        System.Threading.Tasks.Task<InlineResponse2007> ListPendingOrdersAsync (string authorization, string accountID, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse2007> ListPendingOrdersAsync(string authorization, string accountID, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Pending Orders
@@ -1596,7 +1597,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2007)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse2007>> ListPendingOrdersAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse2007>> ListPendingOrdersAsyncWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null);
         /// <summary>
         /// List Positions
         /// </summary>
@@ -1607,7 +1608,7 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="accountID">Account Identifier</param>
         /// <returns>Task of InlineResponse20011</returns>
-        System.Threading.Tasks.Task<InlineResponse20011> ListPositionsAsync (string authorization, string accountID);
+        System.Threading.Tasks.Task<InlineResponse20011> ListPositionsAsync(string authorization, string accountID);
 
         /// <summary>
         /// List Positions
@@ -1619,7 +1620,7 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="accountID">Account Identifier</param>
         /// <returns>Task of ApiResponse (InlineResponse20011)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20011>> ListPositionsAsyncWithHttpInfo (string authorization, string accountID);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20011>> ListPositionsAsyncWithHttpInfo(string authorization, string accountID);
         /// <summary>
         /// List Trades
         /// </summary>
@@ -1636,7 +1637,7 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Trades to return. (optional)</param>
         /// <param name="beforeID">The maximum Trade ID to return. If not provided the most recent Trades in the Account are returned. (optional)</param>
         /// <returns>Task of InlineResponse20023</returns>
-        System.Threading.Tasks.Task<InlineResponse20023> ListTradesAsync (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
+        System.Threading.Tasks.Task<InlineResponse20023> ListTradesAsync(string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
 
         /// <summary>
         /// List Trades
@@ -1654,7 +1655,7 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Trades to return. (optional)</param>
         /// <param name="beforeID">The maximum Trade ID to return. If not provided the most recent Trades in the Account are returned. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20023)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20023>> ListTradesAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20023>> ListTradesAsyncWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
         /// <summary>
         /// List Transactions
         /// </summary>
@@ -1670,7 +1671,7 @@ namespace Oanda.RestV20.Api
         /// <param name="pageSize">The number of Transactions to include in each page of the results. (optional)</param>
         /// <param name="type">A filter for restricting the types of Transactions to retreive. (optional)</param>
         /// <returns>Task of InlineResponse20017</returns>
-        System.Threading.Tasks.Task<InlineResponse20017> ListTransactionsAsync (string authorization, string accountID, string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null);
+        System.Threading.Tasks.Task<InlineResponse20017> ListTransactionsAsync(string authorization, string accountID, string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null);
 
         /// <summary>
         /// List Transactions
@@ -1687,7 +1688,7 @@ namespace Oanda.RestV20.Api
         /// <param name="pageSize">The number of Transactions to include in each page of the results. (optional)</param>
         /// <param name="type">A filter for restricting the types of Transactions to retreive. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20017)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20017>> ListTransactionsAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20017>> ListTransactionsAsyncWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null);
         /// <summary>
         /// Replace Order
         /// </summary>
@@ -1701,7 +1702,7 @@ namespace Oanda.RestV20.Api
         /// <param name="replaceOrderBody">Specification of the replacing Order. The replacing order must have the same type as the replaced Order.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse2011</returns>
-        System.Threading.Tasks.Task<InlineResponse2011> ReplaceOrderAsync (string authorization, string accountID, string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse2011> ReplaceOrderAsync(string authorization, string accountID, string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Replace Order
@@ -1716,7 +1717,7 @@ namespace Oanda.RestV20.Api
         /// <param name="replaceOrderBody">Specification of the replacing Order. The replacing order must have the same type as the replaced Order.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2011)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse2011>> ReplaceOrderAsyncWithHttpInfo (string authorization, string accountID, string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse2011>> ReplaceOrderAsyncWithHttpInfo(string authorization, string accountID, string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null);
         /// <summary>
         /// Set Order Extensions
         /// </summary>
@@ -1730,7 +1731,7 @@ namespace Oanda.RestV20.Api
         /// <param name="setOrderClientExtensionsBody">Representation of the replacing Order</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20010</returns>
-        System.Threading.Tasks.Task<InlineResponse20010> SetOrderClientExtensionsAsync (string authorization, string accountID, string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse20010> SetOrderClientExtensionsAsync(string authorization, string accountID, string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Set Order Extensions
@@ -1745,7 +1746,7 @@ namespace Oanda.RestV20.Api
         /// <param name="setOrderClientExtensionsBody">Representation of the replacing Order</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20010)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20010>> SetOrderClientExtensionsAsyncWithHttpInfo (string authorization, string accountID, string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20010>> SetOrderClientExtensionsAsyncWithHttpInfo(string authorization, string accountID, string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null);
         /// <summary>
         /// Set Trade Client Extensions
         /// </summary>
@@ -1759,7 +1760,7 @@ namespace Oanda.RestV20.Api
         /// <param name="setTradeClientExtensionsBody">Details of how to modify the Trade&#39;s Client Extensions.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20027</returns>
-        System.Threading.Tasks.Task<InlineResponse20027> SetTradeClientExtensionsAsync (string authorization, string accountID, string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse20027> SetTradeClientExtensionsAsync(string authorization, string accountID, string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Set Trade Client Extensions
@@ -1774,7 +1775,7 @@ namespace Oanda.RestV20.Api
         /// <param name="setTradeClientExtensionsBody">Details of how to modify the Trade&#39;s Client Extensions.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20027)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20027>> SetTradeClientExtensionsAsyncWithHttpInfo (string authorization, string accountID, string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20027>> SetTradeClientExtensionsAsyncWithHttpInfo(string authorization, string accountID, string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null);
         /// <summary>
         /// Set Dependent Orders
         /// </summary>
@@ -1788,7 +1789,7 @@ namespace Oanda.RestV20.Api
         /// <param name="setTradeDependentOrdersBody">Details of how to modify the Trade&#39;s dependent Orders.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20028</returns>
-        System.Threading.Tasks.Task<InlineResponse20028> SetTradeDependentOrdersAsync (string authorization, string accountID, string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse20028> SetTradeDependentOrdersAsync(string authorization, string accountID, string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Set Dependent Orders
@@ -1803,7 +1804,7 @@ namespace Oanda.RestV20.Api
         /// <param name="setTradeDependentOrdersBody">Details of how to modify the Trade&#39;s dependent Orders.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20028)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20028>> SetTradeDependentOrdersAsyncWithHttpInfo (string authorization, string accountID, string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20028>> SetTradeDependentOrdersAsyncWithHttpInfo(string authorization, string accountID, string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null);
         /// <summary>
         /// Price Stream
         /// </summary>
@@ -1817,7 +1818,7 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="snapshot">Flag that enables/disables the sending of a pricing snapshot when initially connecting to the stream. (optional)</param>
         /// <returns>Task of InlineResponse20022</returns>
-        System.Threading.Tasks.Task<InlineResponse20022> StreamPricingAsync (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null);
+        System.Threading.Tasks.Task<InlineResponse20022> StreamPricingAsync(string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null);
 
         /// <summary>
         /// Price Stream
@@ -1832,7 +1833,7 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="snapshot">Flag that enables/disables the sending of a pricing snapshot when initially connecting to the stream. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20022)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20022>> StreamPricingAsyncWithHttpInfo (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20022>> StreamPricingAsyncWithHttpInfo(string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null);
         /// <summary>
         /// Transaction Stream
         /// </summary>
@@ -1843,7 +1844,7 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="accountID">Account Identifier</param>
         /// <returns>Task of InlineResponse20020</returns>
-        System.Threading.Tasks.Task<InlineResponse20020> StreamTransactionsAsync (string authorization, string accountID);
+        System.Threading.Tasks.Task<InlineResponse20020> StreamTransactionsAsync(string authorization, string accountID);
 
         /// <summary>
         /// Transaction Stream
@@ -1855,7 +1856,7 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="accountID">Account Identifier</param>
         /// <returns>Task of ApiResponse (InlineResponse20020)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20020>> StreamTransactionsAsyncWithHttpInfo (string authorization, string accountID);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20020>> StreamTransactionsAsyncWithHttpInfo(string authorization, string accountID);
         #endregion Asynchronous Operations
     }
 
@@ -1911,7 +1912,7 @@ namespace Oanda.RestV20.Api
         /// <value>The base path</value>
         public String GetBasePath()
         {
-            return this.Configuration.ApiClient.RestClient.BaseUrl.ToString();
+            return this.Configuration.ApiClient.HttpClient.BaseAddress.ToString();
         }
 
         /// <summary>
@@ -1928,7 +1929,7 @@ namespace Oanda.RestV20.Api
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public Configuration Configuration {get; set;}
+        public Configuration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
@@ -1977,10 +1978,10 @@ namespace Oanda.RestV20.Api
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse2009</returns>
-        public InlineResponse2009 CancelOrder (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null)
+        public InlineResponse2009 CancelOrder(string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse2009> localVarResponse = CancelOrderWithHttpInfo(authorization, accountID, orderSpecifier, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse2009> localVarResponse = CancelOrderWithHttpInfo(authorization, accountID, orderSpecifier, acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -1992,7 +1993,7 @@ namespace Oanda.RestV20.Api
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2009</returns>
-        public ApiResponse< InlineResponse2009 > CancelOrderWithHttpInfo (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse2009> CancelOrderWithHttpInfo(string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -2036,11 +2037,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -2049,9 +2050,8 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse2009>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2009) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2009)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2009)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2009)));
         }
 
         /// <summary>
@@ -2063,10 +2063,10 @@ namespace Oanda.RestV20.Api
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse2009</returns>
-        public async System.Threading.Tasks.Task<InlineResponse2009> CancelOrderAsync (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse2009> CancelOrderAsync(string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse2009> localVarResponse = await CancelOrderAsyncWithHttpInfo(authorization, accountID, orderSpecifier, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse2009> localVarResponse = await CancelOrderAsyncWithHttpInfo(authorization, accountID, orderSpecifier, acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -2079,7 +2079,7 @@ namespace Oanda.RestV20.Api
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2009)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2009>> CancelOrderAsyncWithHttpInfo (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2009>> CancelOrderAsyncWithHttpInfo(string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -2123,11 +2123,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -2136,9 +2136,8 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse2009>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2009) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2009)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2009)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2009)));
         }
 
         /// <summary>
@@ -2151,10 +2150,10 @@ namespace Oanda.RestV20.Api
         /// <param name="closePositionBody">Representation of how to close the position</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20014</returns>
-        public InlineResponse20014 ClosePosition (string authorization, string accountID, string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null)
+        public InlineResponse20014 ClosePosition(string authorization, string accountID, string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20014> localVarResponse = ClosePositionWithHttpInfo(authorization, accountID, instrument, closePositionBody, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20014> localVarResponse = ClosePositionWithHttpInfo(authorization, accountID, instrument, closePositionBody, acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -2167,7 +2166,7 @@ namespace Oanda.RestV20.Api
         /// <param name="closePositionBody">Representation of how to close the position</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20014</returns>
-        public ApiResponse< InlineResponse20014 > ClosePositionWithHttpInfo (string authorization, string accountID, string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse20014> ClosePositionWithHttpInfo(string authorization, string accountID, string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -2222,11 +2221,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -2235,9 +2234,8 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20014>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20014) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20014)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20014)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20014)));
         }
 
         /// <summary>
@@ -2250,10 +2248,10 @@ namespace Oanda.RestV20.Api
         /// <param name="closePositionBody">Representation of how to close the position</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20014</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20014> ClosePositionAsync (string authorization, string accountID, string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse20014> ClosePositionAsync(string authorization, string accountID, string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20014> localVarResponse = await ClosePositionAsyncWithHttpInfo(authorization, accountID, instrument, closePositionBody, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20014> localVarResponse = await ClosePositionAsyncWithHttpInfo(authorization, accountID, instrument, closePositionBody, acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -2267,7 +2265,7 @@ namespace Oanda.RestV20.Api
         /// <param name="closePositionBody">Representation of how to close the position</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20014)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20014>> ClosePositionAsyncWithHttpInfo (string authorization, string accountID, string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20014>> ClosePositionAsyncWithHttpInfo(string authorization, string accountID, string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -2322,11 +2320,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -2335,9 +2333,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20014>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20014) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20014)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20014)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20014)));
+
         }
 
         /// <summary>
@@ -2350,10 +2348,10 @@ namespace Oanda.RestV20.Api
         /// <param name="closeTradeBody">Details of how much of the open Trade to close.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20026</returns>
-        public InlineResponse20026 CloseTrade (string authorization, string accountID, string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null)
+        public InlineResponse20026 CloseTrade(string authorization, string accountID, string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20026> localVarResponse = CloseTradeWithHttpInfo(authorization, accountID, tradeSpecifier, closeTradeBody, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20026> localVarResponse = CloseTradeWithHttpInfo(authorization, accountID, tradeSpecifier, closeTradeBody, acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -2366,7 +2364,7 @@ namespace Oanda.RestV20.Api
         /// <param name="closeTradeBody">Details of how much of the open Trade to close.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20026</returns>
-        public ApiResponse< InlineResponse20026 > CloseTradeWithHttpInfo (string authorization, string accountID, string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse20026> CloseTradeWithHttpInfo(string authorization, string accountID, string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -2421,11 +2419,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -2434,9 +2432,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20026>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20026) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20026)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20026)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20026)));
+
         }
 
         /// <summary>
@@ -2449,10 +2447,10 @@ namespace Oanda.RestV20.Api
         /// <param name="closeTradeBody">Details of how much of the open Trade to close.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20026</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20026> CloseTradeAsync (string authorization, string accountID, string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse20026> CloseTradeAsync(string authorization, string accountID, string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20026> localVarResponse = await CloseTradeAsyncWithHttpInfo(authorization, accountID, tradeSpecifier, closeTradeBody, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20026> localVarResponse = await CloseTradeAsyncWithHttpInfo(authorization, accountID, tradeSpecifier, closeTradeBody, acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -2466,7 +2464,7 @@ namespace Oanda.RestV20.Api
         /// <param name="closeTradeBody">Details of how much of the open Trade to close.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20026)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20026>> CloseTradeAsyncWithHttpInfo (string authorization, string accountID, string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20026>> CloseTradeAsyncWithHttpInfo(string authorization, string accountID, string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -2521,11 +2519,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -2534,9 +2532,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20026>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20026) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20026)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20026)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20026)));
+
         }
 
         /// <summary>
@@ -2548,10 +2546,10 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="configureAccountBody">Representation of the Account configuration to set (optional)</param>
         /// <returns>InlineResponse2004</returns>
-        public InlineResponse2004 ConfigureAccount (string authorization, string accountID, string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null)
+        public InlineResponse2004 ConfigureAccount(string authorization, string accountID, string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null)
         {
-             ApiResponse<InlineResponse2004> localVarResponse = ConfigureAccountWithHttpInfo(authorization, accountID, acceptDatetimeFormat, configureAccountBody);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse2004> localVarResponse = ConfigureAccountWithHttpInfo(authorization, accountID, acceptDatetimeFormat, configureAccountBody);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -2563,7 +2561,7 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="configureAccountBody">Representation of the Account configuration to set (optional)</param>
         /// <returns>ApiResponse of InlineResponse2004</returns>
-        public ApiResponse< InlineResponse2004 > ConfigureAccountWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null)
+        public ApiResponse<InlineResponse2004> ConfigureAccountWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -2611,11 +2609,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.PATCH, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Patch, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -2624,9 +2622,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse2004>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2004) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2004)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2004)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2004)));
+
         }
 
         /// <summary>
@@ -2638,10 +2636,10 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="configureAccountBody">Representation of the Account configuration to set (optional)</param>
         /// <returns>Task of InlineResponse2004</returns>
-        public async System.Threading.Tasks.Task<InlineResponse2004> ConfigureAccountAsync (string authorization, string accountID, string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null)
+        public async System.Threading.Tasks.Task<InlineResponse2004> ConfigureAccountAsync(string authorization, string accountID, string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null)
         {
-             ApiResponse<InlineResponse2004> localVarResponse = await ConfigureAccountAsyncWithHttpInfo(authorization, accountID, acceptDatetimeFormat, configureAccountBody);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse2004> localVarResponse = await ConfigureAccountAsyncWithHttpInfo(authorization, accountID, acceptDatetimeFormat, configureAccountBody);
+            return localVarResponse.Data;
 
         }
 
@@ -2654,7 +2652,7 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="configureAccountBody">Representation of the Account configuration to set (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2004)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2004>> ConfigureAccountAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2004>> ConfigureAccountAsyncWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -2702,11 +2700,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PATCH, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Patch, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -2715,9 +2713,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse2004>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2004) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2004)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2004)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2004)));
+
         }
 
         /// <summary>
@@ -2729,10 +2727,10 @@ namespace Oanda.RestV20.Api
         /// <param name="createOrderBody"></param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse201</returns>
-        public InlineResponse201 CreateOrder (string authorization, string accountID, CreateOrderBody createOrderBody, string acceptDatetimeFormat = null)
+        public InlineResponse201 CreateOrder(string authorization, string accountID, CreateOrderBody createOrderBody, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse201> localVarResponse = CreateOrderWithHttpInfo(authorization, accountID, createOrderBody, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse201> localVarResponse = CreateOrderWithHttpInfo(authorization, accountID, createOrderBody, acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -2744,7 +2742,7 @@ namespace Oanda.RestV20.Api
         /// <param name="createOrderBody"></param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse201</returns>
-        public ApiResponse< InlineResponse201 > CreateOrderWithHttpInfo (string authorization, string accountID, CreateOrderBody createOrderBody, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse201> CreateOrderWithHttpInfo(string authorization, string accountID, CreateOrderBody createOrderBody, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -2795,11 +2793,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Post, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -2808,9 +2806,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse201>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse201) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse201)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse201)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse201)));
+
         }
 
         /// <summary>
@@ -2822,10 +2820,10 @@ namespace Oanda.RestV20.Api
         /// <param name="createOrderBody"></param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse201</returns>
-        public async System.Threading.Tasks.Task<InlineResponse201> CreateOrderAsync (string authorization, string accountID, CreateOrderBody createOrderBody, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse201> CreateOrderAsync(string authorization, string accountID, CreateOrderBody createOrderBody, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse201> localVarResponse = await CreateOrderAsyncWithHttpInfo(authorization, accountID, createOrderBody, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse201> localVarResponse = await CreateOrderAsyncWithHttpInfo(authorization, accountID, createOrderBody, acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -2838,7 +2836,7 @@ namespace Oanda.RestV20.Api
         /// <param name="createOrderBody"></param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse201)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse201>> CreateOrderAsyncWithHttpInfo (string authorization, string accountID, CreateOrderBody createOrderBody, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse201>> CreateOrderAsyncWithHttpInfo(string authorization, string accountID, CreateOrderBody createOrderBody, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -2889,11 +2887,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Post, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -2902,9 +2900,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse201>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse201) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse201)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse201)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse201)));
+
         }
 
         /// <summary>
@@ -2915,10 +2913,10 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse2001</returns>
-        public InlineResponse2001 GetAccount (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public InlineResponse2001 GetAccount(string authorization, string accountID, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse2001> localVarResponse = GetAccountWithHttpInfo(authorization, accountID, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse2001> localVarResponse = GetAccountWithHttpInfo(authorization, accountID, acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -2929,7 +2927,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2001</returns>
-        public ApiResponse< InlineResponse2001 > GetAccountWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse2001> GetAccountWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -2969,11 +2967,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -2982,9 +2980,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse2001>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2001) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2001)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2001)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2001)));
+
         }
 
         /// <summary>
@@ -2995,10 +2993,10 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse2001</returns>
-        public async System.Threading.Tasks.Task<InlineResponse2001> GetAccountAsync (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse2001> GetAccountAsync(string authorization, string accountID, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse2001> localVarResponse = await GetAccountAsyncWithHttpInfo(authorization, accountID, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse2001> localVarResponse = await GetAccountAsyncWithHttpInfo(authorization, accountID, acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -3010,7 +3008,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2001)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2001>> GetAccountAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2001>> GetAccountAsyncWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -3050,11 +3048,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -3063,9 +3061,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse2001>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2001) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2001)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2001)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2001)));
+
         }
 
         /// <summary>
@@ -3077,10 +3075,10 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="sinceTransactionID">ID of the Transaction to get Account changes since. (optional)</param>
         /// <returns>InlineResponse2005</returns>
-        public InlineResponse2005 GetAccountChanges (string authorization, string accountID, string acceptDatetimeFormat = null, string sinceTransactionID = null)
+        public InlineResponse2005 GetAccountChanges(string authorization, string accountID, string acceptDatetimeFormat = null, string sinceTransactionID = null)
         {
-             ApiResponse<InlineResponse2005> localVarResponse = GetAccountChangesWithHttpInfo(authorization, accountID, acceptDatetimeFormat, sinceTransactionID);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse2005> localVarResponse = GetAccountChangesWithHttpInfo(authorization, accountID, acceptDatetimeFormat, sinceTransactionID);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -3092,7 +3090,7 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="sinceTransactionID">ID of the Transaction to get Account changes since. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2005</returns>
-        public ApiResponse< InlineResponse2005 > GetAccountChangesWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, string sinceTransactionID = null)
+        public ApiResponse<InlineResponse2005> GetAccountChangesWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null, string sinceTransactionID = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -3133,11 +3131,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -3146,9 +3144,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse2005>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2005) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2005)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2005)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2005)));
+
         }
 
         /// <summary>
@@ -3160,10 +3158,10 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="sinceTransactionID">ID of the Transaction to get Account changes since. (optional)</param>
         /// <returns>Task of InlineResponse2005</returns>
-        public async System.Threading.Tasks.Task<InlineResponse2005> GetAccountChangesAsync (string authorization, string accountID, string acceptDatetimeFormat = null, string sinceTransactionID = null)
+        public async System.Threading.Tasks.Task<InlineResponse2005> GetAccountChangesAsync(string authorization, string accountID, string acceptDatetimeFormat = null, string sinceTransactionID = null)
         {
-             ApiResponse<InlineResponse2005> localVarResponse = await GetAccountChangesAsyncWithHttpInfo(authorization, accountID, acceptDatetimeFormat, sinceTransactionID);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse2005> localVarResponse = await GetAccountChangesAsyncWithHttpInfo(authorization, accountID, acceptDatetimeFormat, sinceTransactionID);
+            return localVarResponse.Data;
 
         }
 
@@ -3176,7 +3174,7 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="sinceTransactionID">ID of the Transaction to get Account changes since. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2005)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2005>> GetAccountChangesAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, string sinceTransactionID = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2005>> GetAccountChangesAsyncWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null, string sinceTransactionID = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -3217,11 +3215,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -3230,9 +3228,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse2005>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2005) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2005)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2005)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2005)));
+
         }
 
         /// <summary>
@@ -3243,10 +3241,10 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of instruments to query specifically. (optional)</param>
         /// <returns>InlineResponse2003</returns>
-        public InlineResponse2003 GetAccountInstruments (string authorization, string accountID, List<string> instruments = null)
+        public InlineResponse2003 GetAccountInstruments(string authorization, string accountID, List<string> instruments = null)
         {
-             ApiResponse<InlineResponse2003> localVarResponse = GetAccountInstrumentsWithHttpInfo(authorization, accountID, instruments);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse2003> localVarResponse = GetAccountInstrumentsWithHttpInfo(authorization, accountID, instruments);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -3257,7 +3255,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of instruments to query specifically. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2003</returns>
-        public ApiResponse< InlineResponse2003 > GetAccountInstrumentsWithHttpInfo (string authorization, string accountID, List<string> instruments = null)
+        public ApiResponse<InlineResponse2003> GetAccountInstrumentsWithHttpInfo(string authorization, string accountID, List<string> instruments = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -3297,11 +3295,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -3310,9 +3308,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse2003>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2003) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2003)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2003)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2003)));
+
         }
 
         /// <summary>
@@ -3323,10 +3321,10 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of instruments to query specifically. (optional)</param>
         /// <returns>Task of InlineResponse2003</returns>
-        public async System.Threading.Tasks.Task<InlineResponse2003> GetAccountInstrumentsAsync (string authorization, string accountID, List<string> instruments = null)
+        public async System.Threading.Tasks.Task<InlineResponse2003> GetAccountInstrumentsAsync(string authorization, string accountID, List<string> instruments = null)
         {
-             ApiResponse<InlineResponse2003> localVarResponse = await GetAccountInstrumentsAsyncWithHttpInfo(authorization, accountID, instruments);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse2003> localVarResponse = await GetAccountInstrumentsAsyncWithHttpInfo(authorization, accountID, instruments);
+            return localVarResponse.Data;
 
         }
 
@@ -3338,7 +3336,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of instruments to query specifically. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2003)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2003>> GetAccountInstrumentsAsyncWithHttpInfo (string authorization, string accountID, List<string> instruments = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2003>> GetAccountInstrumentsAsyncWithHttpInfo(string authorization, string accountID, List<string> instruments = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -3378,11 +3376,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -3391,9 +3389,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse2003>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2003) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2003)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2003)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2003)));
+
         }
 
         /// <summary>
@@ -3404,10 +3402,10 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse2002</returns>
-        public InlineResponse2002 GetAccountSummary (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public InlineResponse2002 GetAccountSummary(string authorization, string accountID, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse2002> localVarResponse = GetAccountSummaryWithHttpInfo(authorization, accountID, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse2002> localVarResponse = GetAccountSummaryWithHttpInfo(authorization, accountID, acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -3418,7 +3416,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2002</returns>
-        public ApiResponse< InlineResponse2002 > GetAccountSummaryWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse2002> GetAccountSummaryWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -3458,11 +3456,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -3471,9 +3469,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse2002>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2002) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2002)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2002)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2002)));
+
         }
 
         /// <summary>
@@ -3484,10 +3482,10 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse2002</returns>
-        public async System.Threading.Tasks.Task<InlineResponse2002> GetAccountSummaryAsync (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse2002> GetAccountSummaryAsync(string authorization, string accountID, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse2002> localVarResponse = await GetAccountSummaryAsyncWithHttpInfo(authorization, accountID, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse2002> localVarResponse = await GetAccountSummaryAsyncWithHttpInfo(authorization, accountID, acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -3499,7 +3497,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2002)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2002>> GetAccountSummaryAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2002>> GetAccountSummaryAsyncWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -3539,11 +3537,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -3552,9 +3550,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse2002>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2002) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2002)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2002)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2002)));
+
         }
 
         /// <summary>
@@ -3564,10 +3562,10 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>InlineResponse20016</returns>
-        public InlineResponse20016 GetExternalUserInfo (string authorization, string userSpecifier)
+        public InlineResponse20016 GetExternalUserInfo(string authorization, string userSpecifier)
         {
-             ApiResponse<InlineResponse20016> localVarResponse = GetExternalUserInfoWithHttpInfo(authorization, userSpecifier);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20016> localVarResponse = GetExternalUserInfoWithHttpInfo(authorization, userSpecifier);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -3577,7 +3575,7 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>ApiResponse of InlineResponse20016</returns>
-        public ApiResponse< InlineResponse20016 > GetExternalUserInfoWithHttpInfo (string authorization, string userSpecifier)
+        public ApiResponse<InlineResponse20016> GetExternalUserInfoWithHttpInfo(string authorization, string userSpecifier)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -3616,11 +3614,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -3629,9 +3627,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20016>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20016) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20016)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20016)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20016)));
+
         }
 
         /// <summary>
@@ -3641,10 +3639,10 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>Task of InlineResponse20016</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20016> GetExternalUserInfoAsync (string authorization, string userSpecifier)
+        public async System.Threading.Tasks.Task<InlineResponse20016> GetExternalUserInfoAsync(string authorization, string userSpecifier)
         {
-             ApiResponse<InlineResponse20016> localVarResponse = await GetExternalUserInfoAsyncWithHttpInfo(authorization, userSpecifier);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20016> localVarResponse = await GetExternalUserInfoAsyncWithHttpInfo(authorization, userSpecifier);
+            return localVarResponse.Data;
 
         }
 
@@ -3655,7 +3653,7 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>Task of ApiResponse (InlineResponse20016)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20016>> GetExternalUserInfoAsyncWithHttpInfo (string authorization, string userSpecifier)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20016>> GetExternalUserInfoAsyncWithHttpInfo(string authorization, string userSpecifier)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -3694,11 +3692,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -3707,9 +3705,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20016>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20016) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20016)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20016)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20016)));
+
         }
 
         /// <summary>
@@ -3730,10 +3728,10 @@ namespace Oanda.RestV20.Api
         /// <param name="alignmentTimezone">The timezone to use for the dailyAlignment parameter. Candlesticks with daily alignment will be aligned to the dailyAlignment hour within the alignmentTimezone. (optional)</param>
         /// <param name="weeklyAlignment">The day of the week used for granularities that have weekly alignment. (optional)</param>
         /// <returns>InlineResponse20029</returns>
-        public InlineResponse20029 GetInstrumentCandles (string authorization, string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null)
+        public InlineResponse20029 GetInstrumentCandles(string authorization, string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null)
         {
-             ApiResponse<InlineResponse20029> localVarResponse = GetInstrumentCandlesWithHttpInfo(authorization, instrument, acceptDatetimeFormat, price, granularity, count, from, to, smooth, includeFirst, dailyAlignment, alignmentTimezone, weeklyAlignment);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20029> localVarResponse = GetInstrumentCandlesWithHttpInfo(authorization, instrument, acceptDatetimeFormat, price, granularity, count, from, to, smooth, includeFirst, dailyAlignment, alignmentTimezone, weeklyAlignment);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -3754,7 +3752,7 @@ namespace Oanda.RestV20.Api
         /// <param name="alignmentTimezone">The timezone to use for the dailyAlignment parameter. Candlesticks with daily alignment will be aligned to the dailyAlignment hour within the alignmentTimezone. (optional)</param>
         /// <param name="weeklyAlignment">The day of the week used for granularities that have weekly alignment. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20029</returns>
-        public ApiResponse< InlineResponse20029 > GetInstrumentCandlesWithHttpInfo (string authorization, string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null)
+        public ApiResponse<InlineResponse20029> GetInstrumentCandlesWithHttpInfo(string authorization, string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -3804,11 +3802,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -3817,9 +3815,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20029>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20029) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20029)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20029)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20029)));
+
         }
 
         /// <summary>
@@ -3840,10 +3838,10 @@ namespace Oanda.RestV20.Api
         /// <param name="alignmentTimezone">The timezone to use for the dailyAlignment parameter. Candlesticks with daily alignment will be aligned to the dailyAlignment hour within the alignmentTimezone. (optional)</param>
         /// <param name="weeklyAlignment">The day of the week used for granularities that have weekly alignment. (optional)</param>
         /// <returns>Task of InlineResponse20029</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20029> GetInstrumentCandlesAsync (string authorization, string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null)
+        public async System.Threading.Tasks.Task<InlineResponse20029> GetInstrumentCandlesAsync(string authorization, string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null)
         {
-             ApiResponse<InlineResponse20029> localVarResponse = await GetInstrumentCandlesAsyncWithHttpInfo(authorization, instrument, acceptDatetimeFormat, price, granularity, count, from, to, smooth, includeFirst, dailyAlignment, alignmentTimezone, weeklyAlignment);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20029> localVarResponse = await GetInstrumentCandlesAsyncWithHttpInfo(authorization, instrument, acceptDatetimeFormat, price, granularity, count, from, to, smooth, includeFirst, dailyAlignment, alignmentTimezone, weeklyAlignment);
+            return localVarResponse.Data;
 
         }
 
@@ -3865,7 +3863,7 @@ namespace Oanda.RestV20.Api
         /// <param name="alignmentTimezone">The timezone to use for the dailyAlignment parameter. Candlesticks with daily alignment will be aligned to the dailyAlignment hour within the alignmentTimezone. (optional)</param>
         /// <param name="weeklyAlignment">The day of the week used for granularities that have weekly alignment. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20029)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20029>> GetInstrumentCandlesAsyncWithHttpInfo (string authorization, string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20029>> GetInstrumentCandlesAsyncWithHttpInfo(string authorization, string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -3915,11 +3913,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -3928,9 +3926,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20029>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20029) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20029)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20029)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20029)));
+
         }
 
         /// <summary>
@@ -3942,10 +3940,10 @@ namespace Oanda.RestV20.Api
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse2008</returns>
-        public InlineResponse2008 GetOrder (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null)
+        public InlineResponse2008 GetOrder(string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse2008> localVarResponse = GetOrderWithHttpInfo(authorization, accountID, orderSpecifier, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse2008> localVarResponse = GetOrderWithHttpInfo(authorization, accountID, orderSpecifier, acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -3957,7 +3955,7 @@ namespace Oanda.RestV20.Api
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2008</returns>
-        public ApiResponse< InlineResponse2008 > GetOrderWithHttpInfo (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse2008> GetOrderWithHttpInfo(string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -4001,11 +3999,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -4014,9 +4012,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse2008>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2008) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2008)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2008)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2008)));
+
         }
 
         /// <summary>
@@ -4028,10 +4026,10 @@ namespace Oanda.RestV20.Api
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse2008</returns>
-        public async System.Threading.Tasks.Task<InlineResponse2008> GetOrderAsync (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse2008> GetOrderAsync(string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse2008> localVarResponse = await GetOrderAsyncWithHttpInfo(authorization, accountID, orderSpecifier, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse2008> localVarResponse = await GetOrderAsyncWithHttpInfo(authorization, accountID, orderSpecifier, acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -4044,7 +4042,7 @@ namespace Oanda.RestV20.Api
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2008)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2008>> GetOrderAsyncWithHttpInfo (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2008>> GetOrderAsyncWithHttpInfo(string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -4088,11 +4086,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -4101,9 +4099,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse2008>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2008) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2008)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2008)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2008)));
+
         }
 
         /// <summary>
@@ -4114,10 +4112,10 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <returns>InlineResponse20013</returns>
-        public InlineResponse20013 GetPosition (string authorization, string accountID, string instrument)
+        public InlineResponse20013 GetPosition(string authorization, string accountID, string instrument)
         {
-             ApiResponse<InlineResponse20013> localVarResponse = GetPositionWithHttpInfo(authorization, accountID, instrument);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20013> localVarResponse = GetPositionWithHttpInfo(authorization, accountID, instrument);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -4128,7 +4126,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <returns>ApiResponse of InlineResponse20013</returns>
-        public ApiResponse< InlineResponse20013 > GetPositionWithHttpInfo (string authorization, string accountID, string instrument)
+        public ApiResponse<InlineResponse20013> GetPositionWithHttpInfo(string authorization, string accountID, string instrument)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -4171,11 +4169,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -4184,9 +4182,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20013>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20013) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20013)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20013)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20013)));
+
         }
 
         /// <summary>
@@ -4197,10 +4195,10 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <returns>Task of InlineResponse20013</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20013> GetPositionAsync (string authorization, string accountID, string instrument)
+        public async System.Threading.Tasks.Task<InlineResponse20013> GetPositionAsync(string authorization, string accountID, string instrument)
         {
-             ApiResponse<InlineResponse20013> localVarResponse = await GetPositionAsyncWithHttpInfo(authorization, accountID, instrument);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20013> localVarResponse = await GetPositionAsyncWithHttpInfo(authorization, accountID, instrument);
+            return localVarResponse.Data;
 
         }
 
@@ -4212,7 +4210,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <returns>Task of ApiResponse (InlineResponse20013)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20013>> GetPositionAsyncWithHttpInfo (string authorization, string accountID, string instrument)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20013>> GetPositionAsyncWithHttpInfo(string authorization, string accountID, string instrument)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -4255,11 +4253,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -4268,9 +4266,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20013>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20013) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20013)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20013)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20013)));
+
         }
 
         /// <summary>
@@ -4284,10 +4282,10 @@ namespace Oanda.RestV20.Api
         /// <param name="since">Date/Time filter to apply to the returned prices. Only prices with a time later than this filter will be provided. (optional)</param>
         /// <param name="includeUnitsAvailable">Flag that enables the inclusion of the unitsAvailable field in the returned Price objects. (optional)</param>
         /// <returns>InlineResponse20021</returns>
-        public InlineResponse20021 GetPrices (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null)
+        public InlineResponse20021 GetPrices(string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null)
         {
-             ApiResponse<InlineResponse20021> localVarResponse = GetPricesWithHttpInfo(authorization, accountID, instruments, acceptDatetimeFormat, since, includeUnitsAvailable);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20021> localVarResponse = GetPricesWithHttpInfo(authorization, accountID, instruments, acceptDatetimeFormat, since, includeUnitsAvailable);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -4301,7 +4299,7 @@ namespace Oanda.RestV20.Api
         /// <param name="since">Date/Time filter to apply to the returned prices. Only prices with a time later than this filter will be provided. (optional)</param>
         /// <param name="includeUnitsAvailable">Flag that enables the inclusion of the unitsAvailable field in the returned Price objects. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20021</returns>
-        public ApiResponse< InlineResponse20021 > GetPricesWithHttpInfo (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null)
+        public ApiResponse<InlineResponse20021> GetPricesWithHttpInfo(string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -4347,11 +4345,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -4360,9 +4358,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20021>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20021) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20021)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20021)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20021)));
+
         }
 
         /// <summary>
@@ -4376,10 +4374,10 @@ namespace Oanda.RestV20.Api
         /// <param name="since">Date/Time filter to apply to the returned prices. Only prices with a time later than this filter will be provided. (optional)</param>
         /// <param name="includeUnitsAvailable">Flag that enables the inclusion of the unitsAvailable field in the returned Price objects. (optional)</param>
         /// <returns>Task of InlineResponse20021</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20021> GetPricesAsync (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null)
+        public async System.Threading.Tasks.Task<InlineResponse20021> GetPricesAsync(string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null)
         {
-             ApiResponse<InlineResponse20021> localVarResponse = await GetPricesAsyncWithHttpInfo(authorization, accountID, instruments, acceptDatetimeFormat, since, includeUnitsAvailable);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20021> localVarResponse = await GetPricesAsyncWithHttpInfo(authorization, accountID, instruments, acceptDatetimeFormat, since, includeUnitsAvailable);
+            return localVarResponse.Data;
 
         }
 
@@ -4394,7 +4392,7 @@ namespace Oanda.RestV20.Api
         /// <param name="since">Date/Time filter to apply to the returned prices. Only prices with a time later than this filter will be provided. (optional)</param>
         /// <param name="includeUnitsAvailable">Flag that enables the inclusion of the unitsAvailable field in the returned Price objects. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20021)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20021>> GetPricesAsyncWithHttpInfo (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20021>> GetPricesAsyncWithHttpInfo(string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -4440,11 +4438,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -4453,9 +4451,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20021>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20021) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20021)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20021)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20021)));
+
         }
 
         /// <summary>
@@ -4467,10 +4465,10 @@ namespace Oanda.RestV20.Api
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20025</returns>
-        public InlineResponse20025 GetTrade (string authorization, string accountID, string tradeSpecifier, string acceptDatetimeFormat = null)
+        public InlineResponse20025 GetTrade(string authorization, string accountID, string tradeSpecifier, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20025> localVarResponse = GetTradeWithHttpInfo(authorization, accountID, tradeSpecifier, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20025> localVarResponse = GetTradeWithHttpInfo(authorization, accountID, tradeSpecifier, acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -4482,7 +4480,7 @@ namespace Oanda.RestV20.Api
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20025</returns>
-        public ApiResponse< InlineResponse20025 > GetTradeWithHttpInfo (string authorization, string accountID, string tradeSpecifier, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse20025> GetTradeWithHttpInfo(string authorization, string accountID, string tradeSpecifier, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -4526,11 +4524,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -4539,9 +4537,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20025>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20025) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20025)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20025)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20025)));
+
         }
 
         /// <summary>
@@ -4553,10 +4551,10 @@ namespace Oanda.RestV20.Api
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20025</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20025> GetTradeAsync (string authorization, string accountID, string tradeSpecifier, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse20025> GetTradeAsync(string authorization, string accountID, string tradeSpecifier, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20025> localVarResponse = await GetTradeAsyncWithHttpInfo(authorization, accountID, tradeSpecifier, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20025> localVarResponse = await GetTradeAsyncWithHttpInfo(authorization, accountID, tradeSpecifier, acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -4569,7 +4567,7 @@ namespace Oanda.RestV20.Api
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20025)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20025>> GetTradeAsyncWithHttpInfo (string authorization, string accountID, string tradeSpecifier, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20025>> GetTradeAsyncWithHttpInfo(string authorization, string accountID, string tradeSpecifier, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -4613,11 +4611,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -4626,9 +4624,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20025>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20025) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20025)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20025)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20025)));
+
         }
 
         /// <summary>
@@ -4640,10 +4638,10 @@ namespace Oanda.RestV20.Api
         /// <param name="transactionID">A Transaction ID</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20018</returns>
-        public InlineResponse20018 GetTransaction (string authorization, string accountID, string transactionID, string acceptDatetimeFormat = null)
+        public InlineResponse20018 GetTransaction(string authorization, string accountID, string transactionID, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20018> localVarResponse = GetTransactionWithHttpInfo(authorization, accountID, transactionID, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20018> localVarResponse = GetTransactionWithHttpInfo(authorization, accountID, transactionID, acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -4655,7 +4653,7 @@ namespace Oanda.RestV20.Api
         /// <param name="transactionID">A Transaction ID</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20018</returns>
-        public ApiResponse< InlineResponse20018 > GetTransactionWithHttpInfo (string authorization, string accountID, string transactionID, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse20018> GetTransactionWithHttpInfo(string authorization, string accountID, string transactionID, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -4699,11 +4697,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -4712,9 +4710,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20018>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20018) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20018)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20018)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20018)));
+
         }
 
         /// <summary>
@@ -4726,10 +4724,10 @@ namespace Oanda.RestV20.Api
         /// <param name="transactionID">A Transaction ID</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20018</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20018> GetTransactionAsync (string authorization, string accountID, string transactionID, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse20018> GetTransactionAsync(string authorization, string accountID, string transactionID, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20018> localVarResponse = await GetTransactionAsyncWithHttpInfo(authorization, accountID, transactionID, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20018> localVarResponse = await GetTransactionAsyncWithHttpInfo(authorization, accountID, transactionID, acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -4742,7 +4740,7 @@ namespace Oanda.RestV20.Api
         /// <param name="transactionID">A Transaction ID</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20018)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20018>> GetTransactionAsyncWithHttpInfo (string authorization, string accountID, string transactionID, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20018>> GetTransactionAsyncWithHttpInfo(string authorization, string accountID, string transactionID, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -4786,11 +4784,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -4799,9 +4797,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20018>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20018) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20018)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20018)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20018)));
+
         }
 
         /// <summary>
@@ -4815,10 +4813,10 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="type">The filter that restricts the types of Transactions to retreive. (optional)</param>
         /// <returns>InlineResponse20019</returns>
-        public InlineResponse20019 GetTransactionRange (string authorization, string accountID, string from, string to, string acceptDatetimeFormat = null, List<string> type = null)
+        public InlineResponse20019 GetTransactionRange(string authorization, string accountID, string from, string to, string acceptDatetimeFormat = null, List<string> type = null)
         {
-             ApiResponse<InlineResponse20019> localVarResponse = GetTransactionRangeWithHttpInfo(authorization, accountID, from, to, acceptDatetimeFormat, type);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20019> localVarResponse = GetTransactionRangeWithHttpInfo(authorization, accountID, from, to, acceptDatetimeFormat, type);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -4832,7 +4830,7 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="type">The filter that restricts the types of Transactions to retreive. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20019</returns>
-        public ApiResponse< InlineResponse20019 > GetTransactionRangeWithHttpInfo (string authorization, string accountID, string from, string to, string acceptDatetimeFormat = null, List<string> type = null)
+        public ApiResponse<InlineResponse20019> GetTransactionRangeWithHttpInfo(string authorization, string accountID, string from, string to, string acceptDatetimeFormat = null, List<string> type = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -4881,11 +4879,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -4894,9 +4892,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20019>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20019) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20019)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20019)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20019)));
+
         }
 
         /// <summary>
@@ -4910,10 +4908,10 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="type">The filter that restricts the types of Transactions to retreive. (optional)</param>
         /// <returns>Task of InlineResponse20019</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20019> GetTransactionRangeAsync (string authorization, string accountID, string from, string to, string acceptDatetimeFormat = null, List<string> type = null)
+        public async System.Threading.Tasks.Task<InlineResponse20019> GetTransactionRangeAsync(string authorization, string accountID, string from, string to, string acceptDatetimeFormat = null, List<string> type = null)
         {
-             ApiResponse<InlineResponse20019> localVarResponse = await GetTransactionRangeAsyncWithHttpInfo(authorization, accountID, from, to, acceptDatetimeFormat, type);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20019> localVarResponse = await GetTransactionRangeAsyncWithHttpInfo(authorization, accountID, from, to, acceptDatetimeFormat, type);
+            return localVarResponse.Data;
 
         }
 
@@ -4928,7 +4926,7 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="type">The filter that restricts the types of Transactions to retreive. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20019)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20019>> GetTransactionRangeAsyncWithHttpInfo (string authorization, string accountID, string from, string to, string acceptDatetimeFormat = null, List<string> type = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20019>> GetTransactionRangeAsyncWithHttpInfo(string authorization, string accountID, string from, string to, string acceptDatetimeFormat = null, List<string> type = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -4977,11 +4975,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -4990,9 +4988,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20019>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20019) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20019)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20019)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20019)));
+
         }
 
         /// <summary>
@@ -5004,10 +5002,10 @@ namespace Oanda.RestV20.Api
         /// <param name="id">The ID of the last Transacion fetched. This query will return all Transactions newer than the TransactionID.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20019</returns>
-        public InlineResponse20019 GetTransactionsSinceId (string authorization, string accountID, string id, string acceptDatetimeFormat = null)
+        public InlineResponse20019 GetTransactionsSinceId(string authorization, string accountID, string id, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20019> localVarResponse = GetTransactionsSinceIdWithHttpInfo(authorization, accountID, id, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20019> localVarResponse = GetTransactionsSinceIdWithHttpInfo(authorization, accountID, id, acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -5019,7 +5017,7 @@ namespace Oanda.RestV20.Api
         /// <param name="id">The ID of the last Transacion fetched. This query will return all Transactions newer than the TransactionID.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20019</returns>
-        public ApiResponse< InlineResponse20019 > GetTransactionsSinceIdWithHttpInfo (string authorization, string accountID, string id, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse20019> GetTransactionsSinceIdWithHttpInfo(string authorization, string accountID, string id, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -5063,11 +5061,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -5076,9 +5074,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20019>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20019) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20019)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20019)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20019)));
+
         }
 
         /// <summary>
@@ -5090,10 +5088,10 @@ namespace Oanda.RestV20.Api
         /// <param name="id">The ID of the last Transacion fetched. This query will return all Transactions newer than the TransactionID.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20019</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20019> GetTransactionsSinceIdAsync (string authorization, string accountID, string id, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse20019> GetTransactionsSinceIdAsync(string authorization, string accountID, string id, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20019> localVarResponse = await GetTransactionsSinceIdAsyncWithHttpInfo(authorization, accountID, id, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20019> localVarResponse = await GetTransactionsSinceIdAsyncWithHttpInfo(authorization, accountID, id, acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -5106,7 +5104,7 @@ namespace Oanda.RestV20.Api
         /// <param name="id">The ID of the last Transacion fetched. This query will return all Transactions newer than the TransactionID.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20019)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20019>> GetTransactionsSinceIdAsyncWithHttpInfo (string authorization, string accountID, string id, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20019>> GetTransactionsSinceIdAsyncWithHttpInfo(string authorization, string accountID, string id, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -5150,11 +5148,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -5163,9 +5161,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20019>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20019) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20019)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20019)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20019)));
+
         }
 
         /// <summary>
@@ -5175,10 +5173,10 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>InlineResponse20015</returns>
-        public InlineResponse20015 GetUserInfo (string authorization, string userSpecifier)
+        public InlineResponse20015 GetUserInfo(string authorization, string userSpecifier)
         {
-             ApiResponse<InlineResponse20015> localVarResponse = GetUserInfoWithHttpInfo(authorization, userSpecifier);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20015> localVarResponse = GetUserInfoWithHttpInfo(authorization, userSpecifier);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -5188,7 +5186,7 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>ApiResponse of InlineResponse20015</returns>
-        public ApiResponse< InlineResponse20015 > GetUserInfoWithHttpInfo (string authorization, string userSpecifier)
+        public ApiResponse<InlineResponse20015> GetUserInfoWithHttpInfo(string authorization, string userSpecifier)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -5227,11 +5225,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -5240,9 +5238,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20015>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20015) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20015)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20015)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20015)));
+
         }
 
         /// <summary>
@@ -5252,10 +5250,10 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>Task of InlineResponse20015</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20015> GetUserInfoAsync (string authorization, string userSpecifier)
+        public async System.Threading.Tasks.Task<InlineResponse20015> GetUserInfoAsync(string authorization, string userSpecifier)
         {
-             ApiResponse<InlineResponse20015> localVarResponse = await GetUserInfoAsyncWithHttpInfo(authorization, userSpecifier);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20015> localVarResponse = await GetUserInfoAsyncWithHttpInfo(authorization, userSpecifier);
+            return localVarResponse.Data;
 
         }
 
@@ -5266,7 +5264,7 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>Task of ApiResponse (InlineResponse20015)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20015>> GetUserInfoAsyncWithHttpInfo (string authorization, string userSpecifier)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20015>> GetUserInfoAsyncWithHttpInfo(string authorization, string userSpecifier)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -5305,11 +5303,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -5318,9 +5316,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20015>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20015) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20015)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20015)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20015)));
+
         }
 
         /// <summary>
@@ -5329,10 +5327,10 @@ namespace Oanda.RestV20.Api
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <returns>InlineResponse200</returns>
-        public InlineResponse200 ListAccounts (string authorization)
+        public InlineResponse200 ListAccounts(string authorization)
         {
-             ApiResponse<InlineResponse200> localVarResponse = ListAccountsWithHttpInfo(authorization);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse200> localVarResponse = ListAccountsWithHttpInfo(authorization);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -5341,7 +5339,7 @@ namespace Oanda.RestV20.Api
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <returns>ApiResponse of InlineResponse200</returns>
-        public ApiResponse< InlineResponse200 > ListAccountsWithHttpInfo (string authorization)
+        public ApiResponse<InlineResponse200> ListAccountsWithHttpInfo(string authorization)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -5376,11 +5374,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -5389,9 +5387,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse200>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse200) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse200)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse200)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse200)));
+
         }
 
         /// <summary>
@@ -5400,10 +5398,10 @@ namespace Oanda.RestV20.Api
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <returns>Task of InlineResponse200</returns>
-        public async System.Threading.Tasks.Task<InlineResponse200> ListAccountsAsync (string authorization)
+        public async System.Threading.Tasks.Task<InlineResponse200> ListAccountsAsync(string authorization)
         {
-             ApiResponse<InlineResponse200> localVarResponse = await ListAccountsAsyncWithHttpInfo(authorization);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse200> localVarResponse = await ListAccountsAsyncWithHttpInfo(authorization);
+            return localVarResponse.Data;
 
         }
 
@@ -5413,7 +5411,7 @@ namespace Oanda.RestV20.Api
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <returns>Task of ApiResponse (InlineResponse200)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse200>> ListAccountsAsyncWithHttpInfo (string authorization)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse200>> ListAccountsAsyncWithHttpInfo(string authorization)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -5448,11 +5446,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -5461,9 +5459,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse200>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse200) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse200)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse200)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse200)));
+
         }
 
         /// <summary>
@@ -5473,10 +5471,10 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="accountID">Account Identifier</param>
         /// <returns>InlineResponse20012</returns>
-        public InlineResponse20012 ListOpenPositions (string authorization, string accountID)
+        public InlineResponse20012 ListOpenPositions(string authorization, string accountID)
         {
-             ApiResponse<InlineResponse20012> localVarResponse = ListOpenPositionsWithHttpInfo(authorization, accountID);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20012> localVarResponse = ListOpenPositionsWithHttpInfo(authorization, accountID);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -5486,7 +5484,7 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="accountID">Account Identifier</param>
         /// <returns>ApiResponse of InlineResponse20012</returns>
-        public ApiResponse< InlineResponse20012 > ListOpenPositionsWithHttpInfo (string authorization, string accountID)
+        public ApiResponse<InlineResponse20012> ListOpenPositionsWithHttpInfo(string authorization, string accountID)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -5525,11 +5523,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -5538,9 +5536,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20012>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20012) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20012)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20012)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20012)));
+
         }
 
         /// <summary>
@@ -5550,10 +5548,10 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="accountID">Account Identifier</param>
         /// <returns>Task of InlineResponse20012</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20012> ListOpenPositionsAsync (string authorization, string accountID)
+        public async System.Threading.Tasks.Task<InlineResponse20012> ListOpenPositionsAsync(string authorization, string accountID)
         {
-             ApiResponse<InlineResponse20012> localVarResponse = await ListOpenPositionsAsyncWithHttpInfo(authorization, accountID);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20012> localVarResponse = await ListOpenPositionsAsyncWithHttpInfo(authorization, accountID);
+            return localVarResponse.Data;
 
         }
 
@@ -5564,7 +5562,7 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="accountID">Account Identifier</param>
         /// <returns>Task of ApiResponse (InlineResponse20012)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20012>> ListOpenPositionsAsyncWithHttpInfo (string authorization, string accountID)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20012>> ListOpenPositionsAsyncWithHttpInfo(string authorization, string accountID)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -5603,11 +5601,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -5616,9 +5614,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20012>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20012) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20012)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20012)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20012)));
+
         }
 
         /// <summary>
@@ -5629,10 +5627,10 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20024</returns>
-        public InlineResponse20024 ListOpenTrades (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public InlineResponse20024 ListOpenTrades(string authorization, string accountID, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20024> localVarResponse = ListOpenTradesWithHttpInfo(authorization, accountID, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20024> localVarResponse = ListOpenTradesWithHttpInfo(authorization, accountID, acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -5643,7 +5641,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20024</returns>
-        public ApiResponse< InlineResponse20024 > ListOpenTradesWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse20024> ListOpenTradesWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -5683,11 +5681,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -5696,9 +5694,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20024>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20024) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20024)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20024)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20024)));
+
         }
 
         /// <summary>
@@ -5709,10 +5707,10 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20024</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20024> ListOpenTradesAsync (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse20024> ListOpenTradesAsync(string authorization, string accountID, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20024> localVarResponse = await ListOpenTradesAsyncWithHttpInfo(authorization, accountID, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20024> localVarResponse = await ListOpenTradesAsyncWithHttpInfo(authorization, accountID, acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -5724,7 +5722,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20024)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20024>> ListOpenTradesAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20024>> ListOpenTradesAsyncWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -5764,11 +5762,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -5777,9 +5775,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20024>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20024) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20024)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20024)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20024)));
+
         }
 
         /// <summary>
@@ -5795,10 +5793,10 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Orders to return (optional)</param>
         /// <param name="beforeID">The maximum Order ID to return. If not provided the most recent Orders in the Account are returned (optional)</param>
         /// <returns>InlineResponse2006</returns>
-        public InlineResponse2006 ListOrders (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
+        public InlineResponse2006 ListOrders(string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
         {
-             ApiResponse<InlineResponse2006> localVarResponse = ListOrdersWithHttpInfo(authorization, accountID, acceptDatetimeFormat, ids, state, instrument, count, beforeID);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse2006> localVarResponse = ListOrdersWithHttpInfo(authorization, accountID, acceptDatetimeFormat, ids, state, instrument, count, beforeID);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -5814,7 +5812,7 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Orders to return (optional)</param>
         /// <param name="beforeID">The maximum Order ID to return. If not provided the most recent Orders in the Account are returned (optional)</param>
         /// <returns>ApiResponse of InlineResponse2006</returns>
-        public ApiResponse< InlineResponse2006 > ListOrdersWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
+        public ApiResponse<InlineResponse2006> ListOrdersWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -5859,11 +5857,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -5872,9 +5870,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse2006>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2006) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2006)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2006)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2006)));
+
         }
 
         /// <summary>
@@ -5890,10 +5888,10 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Orders to return (optional)</param>
         /// <param name="beforeID">The maximum Order ID to return. If not provided the most recent Orders in the Account are returned (optional)</param>
         /// <returns>Task of InlineResponse2006</returns>
-        public async System.Threading.Tasks.Task<InlineResponse2006> ListOrdersAsync (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
+        public async System.Threading.Tasks.Task<InlineResponse2006> ListOrdersAsync(string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
         {
-             ApiResponse<InlineResponse2006> localVarResponse = await ListOrdersAsyncWithHttpInfo(authorization, accountID, acceptDatetimeFormat, ids, state, instrument, count, beforeID);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse2006> localVarResponse = await ListOrdersAsyncWithHttpInfo(authorization, accountID, acceptDatetimeFormat, ids, state, instrument, count, beforeID);
+            return localVarResponse.Data;
 
         }
 
@@ -5910,7 +5908,7 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Orders to return (optional)</param>
         /// <param name="beforeID">The maximum Order ID to return. If not provided the most recent Orders in the Account are returned (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2006)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2006>> ListOrdersAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2006>> ListOrdersAsyncWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -5955,11 +5953,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -5968,9 +5966,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse2006>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2006) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2006)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2006)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2006)));
+
         }
 
         /// <summary>
@@ -5981,10 +5979,10 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse2007</returns>
-        public InlineResponse2007 ListPendingOrders (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public InlineResponse2007 ListPendingOrders(string authorization, string accountID, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse2007> localVarResponse = ListPendingOrdersWithHttpInfo(authorization, accountID, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse2007> localVarResponse = ListPendingOrdersWithHttpInfo(authorization, accountID, acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -5995,7 +5993,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2007</returns>
-        public ApiResponse< InlineResponse2007 > ListPendingOrdersWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse2007> ListPendingOrdersWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -6035,11 +6033,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -6048,9 +6046,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse2007>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2007) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2007)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2007)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2007)));
+
         }
 
         /// <summary>
@@ -6061,10 +6059,10 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse2007</returns>
-        public async System.Threading.Tasks.Task<InlineResponse2007> ListPendingOrdersAsync (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse2007> ListPendingOrdersAsync(string authorization, string accountID, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse2007> localVarResponse = await ListPendingOrdersAsyncWithHttpInfo(authorization, accountID, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse2007> localVarResponse = await ListPendingOrdersAsyncWithHttpInfo(authorization, accountID, acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -6076,7 +6074,7 @@ namespace Oanda.RestV20.Api
         /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2007)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2007>> ListPendingOrdersAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2007>> ListPendingOrdersAsyncWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -6116,11 +6114,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -6129,9 +6127,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse2007>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2007) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2007)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2007)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2007)));
+
         }
 
         /// <summary>
@@ -6141,10 +6139,10 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="accountID">Account Identifier</param>
         /// <returns>InlineResponse20011</returns>
-        public InlineResponse20011 ListPositions (string authorization, string accountID)
+        public InlineResponse20011 ListPositions(string authorization, string accountID)
         {
-             ApiResponse<InlineResponse20011> localVarResponse = ListPositionsWithHttpInfo(authorization, accountID);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20011> localVarResponse = ListPositionsWithHttpInfo(authorization, accountID);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -6154,7 +6152,7 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="accountID">Account Identifier</param>
         /// <returns>ApiResponse of InlineResponse20011</returns>
-        public ApiResponse< InlineResponse20011 > ListPositionsWithHttpInfo (string authorization, string accountID)
+        public ApiResponse<InlineResponse20011> ListPositionsWithHttpInfo(string authorization, string accountID)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -6193,11 +6191,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -6206,9 +6204,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20011>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20011) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20011)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20011)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20011)));
+
         }
 
         /// <summary>
@@ -6218,10 +6216,10 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="accountID">Account Identifier</param>
         /// <returns>Task of InlineResponse20011</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20011> ListPositionsAsync (string authorization, string accountID)
+        public async System.Threading.Tasks.Task<InlineResponse20011> ListPositionsAsync(string authorization, string accountID)
         {
-             ApiResponse<InlineResponse20011> localVarResponse = await ListPositionsAsyncWithHttpInfo(authorization, accountID);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20011> localVarResponse = await ListPositionsAsyncWithHttpInfo(authorization, accountID);
+            return localVarResponse.Data;
 
         }
 
@@ -6232,7 +6230,7 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="accountID">Account Identifier</param>
         /// <returns>Task of ApiResponse (InlineResponse20011)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20011>> ListPositionsAsyncWithHttpInfo (string authorization, string accountID)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20011>> ListPositionsAsyncWithHttpInfo(string authorization, string accountID)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -6271,11 +6269,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -6284,9 +6282,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20011>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20011) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20011)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20011)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20011)));
+
         }
 
         /// <summary>
@@ -6302,10 +6300,10 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Trades to return. (optional)</param>
         /// <param name="beforeID">The maximum Trade ID to return. If not provided the most recent Trades in the Account are returned. (optional)</param>
         /// <returns>InlineResponse20023</returns>
-        public InlineResponse20023 ListTrades (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
+        public InlineResponse20023 ListTrades(string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
         {
-             ApiResponse<InlineResponse20023> localVarResponse = ListTradesWithHttpInfo(authorization, accountID, acceptDatetimeFormat, ids, state, instrument, count, beforeID);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20023> localVarResponse = ListTradesWithHttpInfo(authorization, accountID, acceptDatetimeFormat, ids, state, instrument, count, beforeID);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -6321,7 +6319,7 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Trades to return. (optional)</param>
         /// <param name="beforeID">The maximum Trade ID to return. If not provided the most recent Trades in the Account are returned. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20023</returns>
-        public ApiResponse< InlineResponse20023 > ListTradesWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
+        public ApiResponse<InlineResponse20023> ListTradesWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -6366,11 +6364,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -6379,9 +6377,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20023>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20023) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20023)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20023)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20023)));
+
         }
 
         /// <summary>
@@ -6397,10 +6395,10 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Trades to return. (optional)</param>
         /// <param name="beforeID">The maximum Trade ID to return. If not provided the most recent Trades in the Account are returned. (optional)</param>
         /// <returns>Task of InlineResponse20023</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20023> ListTradesAsync (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
+        public async System.Threading.Tasks.Task<InlineResponse20023> ListTradesAsync(string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
         {
-             ApiResponse<InlineResponse20023> localVarResponse = await ListTradesAsyncWithHttpInfo(authorization, accountID, acceptDatetimeFormat, ids, state, instrument, count, beforeID);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20023> localVarResponse = await ListTradesAsyncWithHttpInfo(authorization, accountID, acceptDatetimeFormat, ids, state, instrument, count, beforeID);
+            return localVarResponse.Data;
 
         }
 
@@ -6417,7 +6415,7 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Trades to return. (optional)</param>
         /// <param name="beforeID">The maximum Trade ID to return. If not provided the most recent Trades in the Account are returned. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20023)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20023>> ListTradesAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20023>> ListTradesAsyncWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -6462,11 +6460,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -6475,9 +6473,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20023>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20023) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20023)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20023)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20023)));
+
         }
 
         /// <summary>
@@ -6492,10 +6490,10 @@ namespace Oanda.RestV20.Api
         /// <param name="pageSize">The number of Transactions to include in each page of the results. (optional)</param>
         /// <param name="type">A filter for restricting the types of Transactions to retreive. (optional)</param>
         /// <returns>InlineResponse20017</returns>
-        public InlineResponse20017 ListTransactions (string authorization, string accountID, string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null)
+        public InlineResponse20017 ListTransactions(string authorization, string accountID, string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null)
         {
-             ApiResponse<InlineResponse20017> localVarResponse = ListTransactionsWithHttpInfo(authorization, accountID, acceptDatetimeFormat, from, to, pageSize, type);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20017> localVarResponse = ListTransactionsWithHttpInfo(authorization, accountID, acceptDatetimeFormat, from, to, pageSize, type);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -6510,7 +6508,7 @@ namespace Oanda.RestV20.Api
         /// <param name="pageSize">The number of Transactions to include in each page of the results. (optional)</param>
         /// <param name="type">A filter for restricting the types of Transactions to retreive. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20017</returns>
-        public ApiResponse< InlineResponse20017 > ListTransactionsWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null)
+        public ApiResponse<InlineResponse20017> ListTransactionsWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -6554,11 +6552,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -6567,9 +6565,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20017>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20017) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20017)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20017)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20017)));
+
         }
 
         /// <summary>
@@ -6584,10 +6582,10 @@ namespace Oanda.RestV20.Api
         /// <param name="pageSize">The number of Transactions to include in each page of the results. (optional)</param>
         /// <param name="type">A filter for restricting the types of Transactions to retreive. (optional)</param>
         /// <returns>Task of InlineResponse20017</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20017> ListTransactionsAsync (string authorization, string accountID, string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null)
+        public async System.Threading.Tasks.Task<InlineResponse20017> ListTransactionsAsync(string authorization, string accountID, string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null)
         {
-             ApiResponse<InlineResponse20017> localVarResponse = await ListTransactionsAsyncWithHttpInfo(authorization, accountID, acceptDatetimeFormat, from, to, pageSize, type);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20017> localVarResponse = await ListTransactionsAsyncWithHttpInfo(authorization, accountID, acceptDatetimeFormat, from, to, pageSize, type);
+            return localVarResponse.Data;
 
         }
 
@@ -6603,7 +6601,7 @@ namespace Oanda.RestV20.Api
         /// <param name="pageSize">The number of Transactions to include in each page of the results. (optional)</param>
         /// <param name="type">A filter for restricting the types of Transactions to retreive. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20017)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20017>> ListTransactionsAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20017>> ListTransactionsAsyncWithHttpInfo(string authorization, string accountID, string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -6647,11 +6645,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -6660,9 +6658,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20017>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20017) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20017)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20017)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20017)));
+
         }
 
         /// <summary>
@@ -6675,10 +6673,10 @@ namespace Oanda.RestV20.Api
         /// <param name="replaceOrderBody">Specification of the replacing Order. The replacing order must have the same type as the replaced Order.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse2011</returns>
-        public InlineResponse2011 ReplaceOrder (string authorization, string accountID, string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null)
+        public InlineResponse2011 ReplaceOrder(string authorization, string accountID, string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse2011> localVarResponse = ReplaceOrderWithHttpInfo(authorization, accountID, orderSpecifier, replaceOrderBody, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse2011> localVarResponse = ReplaceOrderWithHttpInfo(authorization, accountID, orderSpecifier, replaceOrderBody, acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -6691,7 +6689,7 @@ namespace Oanda.RestV20.Api
         /// <param name="replaceOrderBody">Specification of the replacing Order. The replacing order must have the same type as the replaced Order.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2011</returns>
-        public ApiResponse< InlineResponse2011 > ReplaceOrderWithHttpInfo (string authorization, string accountID, string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse2011> ReplaceOrderWithHttpInfo(string authorization, string accountID, string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -6746,11 +6744,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -6759,9 +6757,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse2011>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2011) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2011)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2011)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2011)));
+
         }
 
         /// <summary>
@@ -6774,10 +6772,10 @@ namespace Oanda.RestV20.Api
         /// <param name="replaceOrderBody">Specification of the replacing Order. The replacing order must have the same type as the replaced Order.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse2011</returns>
-        public async System.Threading.Tasks.Task<InlineResponse2011> ReplaceOrderAsync (string authorization, string accountID, string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse2011> ReplaceOrderAsync(string authorization, string accountID, string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse2011> localVarResponse = await ReplaceOrderAsyncWithHttpInfo(authorization, accountID, orderSpecifier, replaceOrderBody, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse2011> localVarResponse = await ReplaceOrderAsyncWithHttpInfo(authorization, accountID, orderSpecifier, replaceOrderBody, acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -6791,7 +6789,7 @@ namespace Oanda.RestV20.Api
         /// <param name="replaceOrderBody">Specification of the replacing Order. The replacing order must have the same type as the replaced Order.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2011)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2011>> ReplaceOrderAsyncWithHttpInfo (string authorization, string accountID, string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2011>> ReplaceOrderAsyncWithHttpInfo(string authorization, string accountID, string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -6846,11 +6844,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -6859,9 +6857,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse2011>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2011) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2011)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2011)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2011)));
+
         }
 
         /// <summary>
@@ -6874,10 +6872,10 @@ namespace Oanda.RestV20.Api
         /// <param name="setOrderClientExtensionsBody">Representation of the replacing Order</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20010</returns>
-        public InlineResponse20010 SetOrderClientExtensions (string authorization, string accountID, string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null)
+        public InlineResponse20010 SetOrderClientExtensions(string authorization, string accountID, string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20010> localVarResponse = SetOrderClientExtensionsWithHttpInfo(authorization, accountID, orderSpecifier, setOrderClientExtensionsBody, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20010> localVarResponse = SetOrderClientExtensionsWithHttpInfo(authorization, accountID, orderSpecifier, setOrderClientExtensionsBody, acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -6890,7 +6888,7 @@ namespace Oanda.RestV20.Api
         /// <param name="setOrderClientExtensionsBody">Representation of the replacing Order</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20010</returns>
-        public ApiResponse< InlineResponse20010 > SetOrderClientExtensionsWithHttpInfo (string authorization, string accountID, string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse20010> SetOrderClientExtensionsWithHttpInfo(string authorization, string accountID, string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -6945,11 +6943,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -6958,9 +6956,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20010>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20010) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20010)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20010)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20010)));
+
         }
 
         /// <summary>
@@ -6973,10 +6971,10 @@ namespace Oanda.RestV20.Api
         /// <param name="setOrderClientExtensionsBody">Representation of the replacing Order</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20010</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20010> SetOrderClientExtensionsAsync (string authorization, string accountID, string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse20010> SetOrderClientExtensionsAsync(string authorization, string accountID, string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20010> localVarResponse = await SetOrderClientExtensionsAsyncWithHttpInfo(authorization, accountID, orderSpecifier, setOrderClientExtensionsBody, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20010> localVarResponse = await SetOrderClientExtensionsAsyncWithHttpInfo(authorization, accountID, orderSpecifier, setOrderClientExtensionsBody, acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -6990,7 +6988,7 @@ namespace Oanda.RestV20.Api
         /// <param name="setOrderClientExtensionsBody">Representation of the replacing Order</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20010)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20010>> SetOrderClientExtensionsAsyncWithHttpInfo (string authorization, string accountID, string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20010>> SetOrderClientExtensionsAsyncWithHttpInfo(string authorization, string accountID, string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -7045,11 +7043,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -7058,9 +7056,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20010>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20010) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20010)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20010)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20010)));
+
         }
 
         /// <summary>
@@ -7073,10 +7071,10 @@ namespace Oanda.RestV20.Api
         /// <param name="setTradeClientExtensionsBody">Details of how to modify the Trade&#39;s Client Extensions.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20027</returns>
-        public InlineResponse20027 SetTradeClientExtensions (string authorization, string accountID, string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null)
+        public InlineResponse20027 SetTradeClientExtensions(string authorization, string accountID, string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20027> localVarResponse = SetTradeClientExtensionsWithHttpInfo(authorization, accountID, tradeSpecifier, setTradeClientExtensionsBody, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20027> localVarResponse = SetTradeClientExtensionsWithHttpInfo(authorization, accountID, tradeSpecifier, setTradeClientExtensionsBody, acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -7089,7 +7087,7 @@ namespace Oanda.RestV20.Api
         /// <param name="setTradeClientExtensionsBody">Details of how to modify the Trade&#39;s Client Extensions.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20027</returns>
-        public ApiResponse< InlineResponse20027 > SetTradeClientExtensionsWithHttpInfo (string authorization, string accountID, string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse20027> SetTradeClientExtensionsWithHttpInfo(string authorization, string accountID, string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -7144,11 +7142,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -7157,9 +7155,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20027>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20027) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20027)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20027)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20027)));
+
         }
 
         /// <summary>
@@ -7172,10 +7170,10 @@ namespace Oanda.RestV20.Api
         /// <param name="setTradeClientExtensionsBody">Details of how to modify the Trade&#39;s Client Extensions.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20027</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20027> SetTradeClientExtensionsAsync (string authorization, string accountID, string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse20027> SetTradeClientExtensionsAsync(string authorization, string accountID, string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20027> localVarResponse = await SetTradeClientExtensionsAsyncWithHttpInfo(authorization, accountID, tradeSpecifier, setTradeClientExtensionsBody, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20027> localVarResponse = await SetTradeClientExtensionsAsyncWithHttpInfo(authorization, accountID, tradeSpecifier, setTradeClientExtensionsBody, acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -7189,7 +7187,7 @@ namespace Oanda.RestV20.Api
         /// <param name="setTradeClientExtensionsBody">Details of how to modify the Trade&#39;s Client Extensions.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20027)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20027>> SetTradeClientExtensionsAsyncWithHttpInfo (string authorization, string accountID, string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20027>> SetTradeClientExtensionsAsyncWithHttpInfo(string authorization, string accountID, string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -7244,11 +7242,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -7257,9 +7255,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20027>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20027) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20027)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20027)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20027)));
+
         }
 
         /// <summary>
@@ -7272,10 +7270,10 @@ namespace Oanda.RestV20.Api
         /// <param name="setTradeDependentOrdersBody">Details of how to modify the Trade&#39;s dependent Orders.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20028</returns>
-        public InlineResponse20028 SetTradeDependentOrders (string authorization, string accountID, string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null)
+        public InlineResponse20028 SetTradeDependentOrders(string authorization, string accountID, string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20028> localVarResponse = SetTradeDependentOrdersWithHttpInfo(authorization, accountID, tradeSpecifier, setTradeDependentOrdersBody, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20028> localVarResponse = SetTradeDependentOrdersWithHttpInfo(authorization, accountID, tradeSpecifier, setTradeDependentOrdersBody, acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -7288,7 +7286,7 @@ namespace Oanda.RestV20.Api
         /// <param name="setTradeDependentOrdersBody">Details of how to modify the Trade&#39;s dependent Orders.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20028</returns>
-        public ApiResponse< InlineResponse20028 > SetTradeDependentOrdersWithHttpInfo (string authorization, string accountID, string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse20028> SetTradeDependentOrdersWithHttpInfo(string authorization, string accountID, string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -7343,11 +7341,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -7356,9 +7354,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20028>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20028) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20028)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20028)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20028)));
+
         }
 
         /// <summary>
@@ -7371,10 +7369,10 @@ namespace Oanda.RestV20.Api
         /// <param name="setTradeDependentOrdersBody">Details of how to modify the Trade&#39;s dependent Orders.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20028</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20028> SetTradeDependentOrdersAsync (string authorization, string accountID, string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse20028> SetTradeDependentOrdersAsync(string authorization, string accountID, string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20028> localVarResponse = await SetTradeDependentOrdersAsyncWithHttpInfo(authorization, accountID, tradeSpecifier, setTradeDependentOrdersBody, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20028> localVarResponse = await SetTradeDependentOrdersAsyncWithHttpInfo(authorization, accountID, tradeSpecifier, setTradeDependentOrdersBody, acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -7388,7 +7386,7 @@ namespace Oanda.RestV20.Api
         /// <param name="setTradeDependentOrdersBody">Details of how to modify the Trade&#39;s dependent Orders.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20028)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20028>> SetTradeDependentOrdersAsyncWithHttpInfo (string authorization, string accountID, string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20028>> SetTradeDependentOrdersAsyncWithHttpInfo(string authorization, string accountID, string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -7443,11 +7441,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -7456,9 +7454,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20028>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20028) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20028)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20028)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20028)));
+
         }
 
         /// <summary>
@@ -7471,10 +7469,10 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="snapshot">Flag that enables/disables the sending of a pricing snapshot when initially connecting to the stream. (optional)</param>
         /// <returns>InlineResponse20022</returns>
-        public InlineResponse20022 StreamPricing (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null)
+        public InlineResponse20022 StreamPricing(string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null)
         {
-             ApiResponse<InlineResponse20022> localVarResponse = StreamPricingWithHttpInfo(authorization, accountID, instruments, acceptDatetimeFormat, snapshot);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20022> localVarResponse = StreamPricingWithHttpInfo(authorization, accountID, instruments, acceptDatetimeFormat, snapshot);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -7487,7 +7485,7 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="snapshot">Flag that enables/disables the sending of a pricing snapshot when initially connecting to the stream. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20022</returns>
-        public ApiResponse< InlineResponse20022 > StreamPricingWithHttpInfo (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null)
+        public ApiResponse<InlineResponse20022> StreamPricingWithHttpInfo(string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -7532,11 +7530,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -7545,9 +7543,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20022>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20022) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20022)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20022)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20022)));
+
         }
 
         /// <summary>
@@ -7560,10 +7558,10 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="snapshot">Flag that enables/disables the sending of a pricing snapshot when initially connecting to the stream. (optional)</param>
         /// <returns>Task of InlineResponse20022</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20022> StreamPricingAsync (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null)
+        public async System.Threading.Tasks.Task<InlineResponse20022> StreamPricingAsync(string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null)
         {
-             ApiResponse<InlineResponse20022> localVarResponse = await StreamPricingAsyncWithHttpInfo(authorization, accountID, instruments, acceptDatetimeFormat, snapshot);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20022> localVarResponse = await StreamPricingAsyncWithHttpInfo(authorization, accountID, instruments, acceptDatetimeFormat, snapshot);
+            return localVarResponse.Data;
 
         }
 
@@ -7577,7 +7575,7 @@ namespace Oanda.RestV20.Api
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="snapshot">Flag that enables/disables the sending of a pricing snapshot when initially connecting to the stream. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20022)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20022>> StreamPricingAsyncWithHttpInfo (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20022>> StreamPricingAsyncWithHttpInfo(string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -7622,11 +7620,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -7635,9 +7633,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20022>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20022) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20022)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20022)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20022)));
+
         }
 
         /// <summary>
@@ -7647,10 +7645,10 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="accountID">Account Identifier</param>
         /// <returns>InlineResponse20020</returns>
-        public InlineResponse20020 StreamTransactions (string authorization, string accountID)
+        public InlineResponse20020 StreamTransactions(string authorization, string accountID)
         {
-             ApiResponse<InlineResponse20020> localVarResponse = StreamTransactionsWithHttpInfo(authorization, accountID);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20020> localVarResponse = StreamTransactionsWithHttpInfo(authorization, accountID);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -7660,7 +7658,7 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="accountID">Account Identifier</param>
         /// <returns>ApiResponse of InlineResponse20020</returns>
-        public ApiResponse< InlineResponse20020 > StreamTransactionsWithHttpInfo (string authorization, string accountID)
+        public ApiResponse<InlineResponse20020> StreamTransactionsWithHttpInfo(string authorization, string accountID)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -7699,11 +7697,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -7712,9 +7710,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20020>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20020) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20020)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20020)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20020)));
+
         }
 
         /// <summary>
@@ -7724,10 +7722,10 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="accountID">Account Identifier</param>
         /// <returns>Task of InlineResponse20020</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20020> StreamTransactionsAsync (string authorization, string accountID)
+        public async System.Threading.Tasks.Task<InlineResponse20020> StreamTransactionsAsync(string authorization, string accountID)
         {
-             ApiResponse<InlineResponse20020> localVarResponse = await StreamTransactionsAsyncWithHttpInfo(authorization, accountID);
-             return localVarResponse.Data;
+            ApiResponse<InlineResponse20020> localVarResponse = await StreamTransactionsAsyncWithHttpInfo(authorization, accountID);
+            return localVarResponse.Data;
 
         }
 
@@ -7738,7 +7736,7 @@ namespace Oanda.RestV20.Api
         /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="accountID">Account Identifier</param>
         /// <returns>Task of ApiResponse (InlineResponse20020)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20020>> StreamTransactionsAsyncWithHttpInfo (string authorization, string accountID)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20020>> StreamTransactionsAsyncWithHttpInfo(string authorization, string accountID)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
@@ -7777,11 +7775,11 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -7790,9 +7788,9 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse20020>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20020) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20020)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20020)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20020)));
+
         }
 
     }

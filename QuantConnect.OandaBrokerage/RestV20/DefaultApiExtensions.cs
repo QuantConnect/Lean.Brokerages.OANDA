@@ -16,9 +16,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using Oanda.RestV20.Client;
 using Oanda.RestV20.Model;
-using RestSharp;
+using QuantConnect.OandaBrokerage.RestV20.Model;
 
 namespace Oanda.RestV20.Api
 {
@@ -71,8 +72,8 @@ namespace Oanda.RestV20.Api
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse)Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
             if (ExceptionFactory != null)
@@ -81,7 +82,7 @@ namespace Oanda.RestV20.Api
                 if (exception != null) throw exception;
             }
 
-            return localVarResponse.Content;
+            return localVarResponse.Content.ReadAsStringAsync().GetAwaiter().GetResult();
         }
 
 
@@ -138,8 +139,8 @@ namespace Oanda.RestV20.Api
             localVarPostBody = createOrderBody; // json
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse)Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Post, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
             int localVarStatusCode = (int)localVarResponse.StatusCode;
@@ -151,7 +152,7 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse201>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse201)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse201)));
         }
 
@@ -213,8 +214,8 @@ namespace Oanda.RestV20.Api
             localVarPostBody = replaceOrderBody; // json
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse)Configuration.ApiClient.CallApi(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
             int localVarStatusCode = (int)localVarResponse.StatusCode;
@@ -226,7 +227,7 @@ namespace Oanda.RestV20.Api
             }
 
             return new ApiResponse<InlineResponse2011>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse2011)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2011)));
         }
 
