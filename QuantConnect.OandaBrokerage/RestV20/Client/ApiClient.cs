@@ -67,7 +67,7 @@ namespace Oanda.RestV20.Client
         public ApiClient()
         {
             Configuration = Configuration.Default;
-            HttpClient = new HttpClient { BaseAddress = new Uri("https://localhost/v3") };
+            HttpClient = new HttpClient { BaseAddress = new Uri("https://localhost/v3/") };
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Oanda.RestV20.Client
         public ApiClient(Configuration config = null)
         {
             Configuration = config ?? Configuration.Default;
-            HttpClient = new HttpClient { BaseAddress = new Uri("https://localhost/v3") };
+            HttpClient = new HttpClient { BaseAddress = new Uri("https://localhost/v3/") };
         }
 
         /// <summary>
@@ -91,7 +91,12 @@ namespace Oanda.RestV20.Client
             if (String.IsNullOrEmpty(basePath))
                 throw new ArgumentException("basePath cannot be empty");
 
-            HttpClient = new HttpClient { BaseAddress = new Uri(basePath) };
+            var baseAddress = $"{basePath}/";
+            HttpClient = new HttpClient
+            {
+                BaseAddress = new Uri(baseAddress),
+                Timeout = TimeSpan.FromSeconds(100)
+            };
             Configuration = Configuration.Default;
         }
 
@@ -101,6 +106,12 @@ namespace Oanda.RestV20.Client
             Dictionary<String, FileParameter> fileParams, Dictionary<String, String> pathParams,
             String contentType)
         {
+            // Ensure path does not start with / for proper BaseAddress combination
+            if (path.StartsWith('/'))
+            {
+                path = path.TrimStart('/');
+            }
+
             // Process Path Parameters
             foreach (var param in pathParams)
             {
@@ -108,18 +119,17 @@ namespace Oanda.RestV20.Client
             }
 
             // Process Query Parameters
-            var uriBuilder = new UriBuilder(new Uri(HttpClient.BaseAddress, path));
             if (queryParams.Count > 0)
             {
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
+                var query = HttpUtility.ParseQueryString(string.Empty);
                 foreach (var param in queryParams)
                 {
                     query[param.Key] = param.Value;
                 }
-                uriBuilder.Query = query.ToString();
+                path = $"{path}?{query}";
             }
 
-            var request = new HttpRequestMessage(method, uriBuilder.Uri);
+            var request = new HttpRequestMessage(method, path);
 
             // Process Headers
             foreach (var param in headerParams)
@@ -187,13 +197,6 @@ namespace Oanda.RestV20.Client
             String contentType)
         {
             var request = PrepareRequest(path, method, queryParams, postBody, headerParams, formParams, fileParams, pathParams, contentType);
-
-            // set timeout
-            HttpClient.Timeout = TimeSpan.FromMilliseconds(Configuration.Timeout);
-
-            // set user agent via DefaultRequestHeaders if needed, or per request:
-            if (!request.Headers.Contains("User-Agent"))
-                request.Headers.Add("User-Agent", Configuration.UserAgent);
 
             InterceptRequest(request);
 
