@@ -86,7 +86,7 @@ namespace Oanda.RestV20.Client
         /// with default configuration.
         /// </summary>
         /// <param name="basePath">The base path.</param>
-        public ApiClient(String basePath = "https://localhost/v3")
+        public ApiClient(String basePath = "https://localhost/v3", string accessToken = null)
         {
             if (String.IsNullOrEmpty(basePath))
                 throw new ArgumentException("basePath cannot be empty");
@@ -98,6 +98,10 @@ namespace Oanda.RestV20.Client
                 Timeout = TimeSpan.FromSeconds(100)
             };
             Configuration = Configuration.Default;
+            if (accessToken != null)
+            {
+                HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            }
         }
 
         private HttpRequestMessage PrepareRequest(

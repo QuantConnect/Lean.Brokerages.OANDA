@@ -76,10 +76,10 @@ namespace QuantConnect.Brokerages.Oanda
                 "https://stream-fxtrade.oanda.com/v3" :
                 "https://stream-fxpractice.oanda.com/v3";
 
-            _apiRest = new DefaultApi(basePathRest);
+            _apiRest = new DefaultApi(basePathRest, accessToken);
             _apiRest.Configuration.AddDefaultHeader(OandaAgentKey, Agent);
 
-            _apiStreaming = new DefaultApi(basePathStreaming);
+            _apiStreaming = new DefaultApi(basePathStreaming, accessToken);
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace QuantConnect.Brokerages.Oanda
         /// </summary>
         public override string GetAccountBaseCurrency()
         {
-            var response = _apiRest.GetAccount(Authorization, AccountId);
+            var response = _apiRest.GetAccount(AccountId);
 
             return response.Account.Currency;
         }
@@ -97,7 +97,7 @@ namespace QuantConnect.Brokerages.Oanda
         /// </summary>
         public override List<string> GetInstrumentList()
         {
-            var response = _apiRest.GetAccountInstruments(Authorization, AccountId);
+            var response = _apiRest.GetAccountInstruments(AccountId);
 
             return response.Instruments.Select(x => x.Name).ToList();
         }
@@ -109,7 +109,7 @@ namespace QuantConnect.Brokerages.Oanda
         /// <returns>The open orders returned from Oanda</returns>
         public override List<Order> GetOpenOrders()
         {
-            var json = _apiRest.ListPendingOrdersAsJson(Authorization, AccountId);
+            var json = _apiRest.ListPendingOrdersAsJson(AccountId);
 
             var response = (JObject)JsonConvert.DeserializeObject(json);
 
@@ -122,7 +122,7 @@ namespace QuantConnect.Brokerages.Oanda
         /// <returns>The current holdings from the account</returns>
         public override List<Holding> GetAccountHoldings()
         {
-            var response = _apiRest.ListOpenPositions(Authorization, AccountId);
+            var response = _apiRest.ListOpenPositions(AccountId);
 
             return response.Positions.Select(ConvertHolding).ToList();
         }
@@ -133,7 +133,7 @@ namespace QuantConnect.Brokerages.Oanda
         /// <returns>The current cash balance for each currency available for trading</returns>
         public override List<CashAmount> GetCashBalance()
         {
-            var response = _apiRest.GetAccountSummary(Authorization, AccountId);
+            var response = _apiRest.GetAccountSummary(AccountId);
 
             return new List<CashAmount>
             {
@@ -149,7 +149,7 @@ namespace QuantConnect.Brokerages.Oanda
         /// <returns>Dictionary containing the current quotes for each instrument</returns>
         public override Dictionary<string, Tick> GetRates(List<string> instruments)
         {
-            var response = _apiRest.GetPrices(Authorization, AccountId, instruments);
+            var response = _apiRest.GetPrices(AccountId, instruments);
 
             return response.Prices
                 .ToDictionary(
@@ -174,7 +174,7 @@ namespace QuantConnect.Brokerages.Oanda
 
             lock (Locker)
             {
-                var response = _apiRest.CreateOrder(Authorization, AccountId, request);
+                var response = _apiRest.CreateOrder(AccountId, request);
                 order.BrokerId.Add(response.Data.OrderCreateTransaction.Id);
 
                 // Market orders are special, due to the callback not being triggered always,
@@ -249,7 +249,7 @@ namespace QuantConnect.Brokerages.Oanda
             var request = GenerateOrderRequest(order);
 
             var orderId = order.BrokerId.First();
-            var response = _apiRest.ReplaceOrder(Authorization, AccountId, orderId, request);
+            var response = _apiRest.ReplaceOrder(AccountId, orderId, request);
 
             // replace the brokerage order id
             order.BrokerId[0] = response.Data.OrderCreateTransaction.Id;
@@ -287,11 +287,12 @@ namespace QuantConnect.Brokerages.Oanda
 
             foreach (var orderId in order.BrokerId)
             {
-                _apiRest.CancelOrder(Authorization, AccountId, orderId);
+                _apiRest.CancelOrder(AccountId, orderId);
                 OnOrderEvent(new OrderEvent(order,
                     DateTime.UtcNow,
                     OrderFee.Zero,
-                    "Oanda Cancel Order Event") { Status = OrderStatus.Canceled });
+                    "Oanda Cancel Order Event")
+                { Status = OrderStatus.Canceled });
             }
 
             return true;
@@ -538,7 +539,7 @@ namespace QuantConnect.Brokerages.Oanda
             // Oanda only has 5-second bars, we return these for Resolution.Second
             var period = resolution == Resolution.Second ? TimeSpan.FromSeconds(5) : resolution.ToTimeSpan();
 
-            var response = _apiRest.GetInstrumentCandles(Authorization, oandaSymbol, null, "M", ToGranularity(resolution).ToString(), null, startUtc, endUtc);
+            var response = _apiRest.GetInstrumentCandles(oandaSymbol, null, "M", ToGranularity(resolution).ToString(), null, startUtc, endUtc);
             foreach (var candle in response.Candles)
             {
                 var time = GetTickDateTimeFromString(candle.Time);
@@ -574,7 +575,7 @@ namespace QuantConnect.Brokerages.Oanda
             // Oanda only has 5-second bars, we return these for Resolution.Second
             var period = resolution == Resolution.Second ? TimeSpan.FromSeconds(5) : resolution.ToTimeSpan();
 
-            var response = _apiRest.GetInstrumentCandles(Authorization, oandaSymbol, null, "BA", ToGranularity(resolution).ToString(), OandaBrokerage.MaxBarsPerRequest, startUtc);
+            var response = _apiRest.GetInstrumentCandles(oandaSymbol, null, "BA", ToGranularity(resolution).ToString(), OandaBrokerage.MaxBarsPerRequest, startUtc);
             foreach (var candle in response.Candles)
             {
                 var time = GetTickDateTimeFromString(candle.Time);
