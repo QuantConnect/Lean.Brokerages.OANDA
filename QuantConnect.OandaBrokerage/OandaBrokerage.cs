@@ -28,7 +28,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using QuantConnect.Api;
-using RestSharp;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Security.Cryptography;
@@ -38,6 +37,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using HistoryRequest = QuantConnect.Data.HistoryRequest;
 using Order = QuantConnect.Orders.Order;
+using System.Net.Http;
 
 namespace QuantConnect.Brokerages.Oanda
 {
@@ -515,8 +515,15 @@ namespace QuantConnect.Brokerages.Oanda
                 {
                     information.Add("organizationId", organizationId);
                 }
-                var request = new RestRequest("modules/license/read", Method.POST) { RequestFormat = DataFormat.Json };
-                request.AddParameter("application/json", JsonConvert.SerializeObject(information), ParameterType.RequestBody);
+
+                // Create HTTP request
+                var request = new HttpRequestMessage(HttpMethod.Post, "modules/license/read");
+                request.Content = new StringContent(
+                    JsonConvert.SerializeObject(information),
+                    Encoding.UTF8,
+                    "application/json"
+                );
+
                 api.TryRequest(request, out ModulesReadLicenseRead result);
                 if (!result.Success)
                 {
