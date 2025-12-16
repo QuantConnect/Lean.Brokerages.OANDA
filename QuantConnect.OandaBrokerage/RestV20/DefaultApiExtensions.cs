@@ -19,6 +19,7 @@ using System.Linq;
 using System.Net.Http;
 using Oanda.RestV20.Client;
 using Oanda.RestV20.Model;
+using QuantConnect;
 using QuantConnect.OandaBrokerage.RestV20.Model;
 
 namespace Oanda.RestV20.Api
@@ -68,7 +69,7 @@ namespace Oanda.RestV20.Api
                 if (exception != null) throw exception;
             }
 
-            return localVarResponse.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            return localVarResponse.Content.ReadAsStringAsync().SynchronouslyAwaitTaskResult();
         }
 
 

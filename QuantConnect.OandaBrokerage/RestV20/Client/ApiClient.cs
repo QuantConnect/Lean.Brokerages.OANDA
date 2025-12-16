@@ -102,6 +102,7 @@ namespace Oanda.RestV20.Client
             {
                 HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
             }
+            HttpClient.DefaultRequestHeaders.UserAgent.ParseAdd(Configuration.UserAgent);
         }
 
         private HttpRequestMessage PrepareRequest(
@@ -142,8 +143,9 @@ namespace Oanda.RestV20.Client
             }
 
             // Process Body
-            if (fileParams.Count > 0 || formParams.Count > 0)
+            if (fileParams.Count > 0)
             {
+                // Files present, we need to use multipart form data
                 var multipartContent = new MultipartFormDataContent();
                 foreach (var param in formParams)
                 {
@@ -157,7 +159,13 @@ namespace Oanda.RestV20.Client
                 }
                 request.Content = multipartContent;
             }
-            else if (postBody != null)
+            else if (formParams.Count > 0)
+            {
+                // Form params only, we can use form url encoded
+                request.Content = new FormUrlEncodedContent(formParams);
+            }
+
+            if (postBody != null)
             {
                 if (postBody is string jsonString)
                 {
@@ -203,12 +211,8 @@ namespace Oanda.RestV20.Client
             var request = PrepareRequest(path, method, queryParams, postBody, headerParams, formParams, fileParams, pathParams, contentType);
 
             InterceptRequest(request);
-
-            // Blocking call to maintain synchronous signature
-            var response = HttpClient.SendAsync(request).GetAwaiter().GetResult();
-
+            var response = HttpClient.SendAsync(request).SynchronouslyAwaitTaskResult();
             InterceptResponse(request, response);
-
             return (Object)response;
         }
         /// <summary>
@@ -231,9 +235,6 @@ namespace Oanda.RestV20.Client
             String contentType)
         {
             var request = PrepareRequest(path, method, queryParams, postBody, headerParams, formParams, fileParams, pathParams, contentType);
-
-            if (!request.Headers.Contains("User-Agent"))
-                request.Headers.Add("User-Agent", Configuration.UserAgent);
 
             InterceptRequest(request);
             var response = await HttpClient.SendAsync(request);
@@ -310,7 +311,7 @@ namespace Oanda.RestV20.Client
         public object Deserialize(HttpResponseMessage response, Type type)
         {
             // Buffer content
-            var contentBytes = response.Content.ReadAsByteArrayAsync().GetAwaiter().GetResult();
+            var contentBytes = response.Content.ReadAsByteArrayAsync().SynchronouslyAwaitTaskResult();
             var contentString = Encoding.UTF8.GetString(contentBytes);
 
             if (type == typeof(byte[]))

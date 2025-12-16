@@ -45,7 +45,7 @@ namespace Oanda.RestV20.Client
                              string tempFolderPath = null,
                              string dateTimeFormat = null,
                              int timeout = 100000,
-                             string userAgent = "Swagger-Codegen/1.0.0/csharp"
+                             string userAgent = "Swagger-Codegen/1.0.0 (csharp)"
                             )
         {
             setApiClientUsingDefault(apiClient);
