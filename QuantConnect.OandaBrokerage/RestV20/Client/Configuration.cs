@@ -93,17 +93,17 @@ namespace Oanda.RestV20.Client
         /// </summary>
         public static readonly ExceptionFactory DefaultExceptionFactory = (methodName, response) =>
         {
-            int status = (int)response.StatusCode;
+            var status = (int)response.StatusCode;
 
             if (status >= 400)
             {
-                string content = response.Content.ReadAsStringAsync().Result;
+                var content = response.Content.ReadAsStringAsync().Result;
                 return new ApiException(status, $"Error calling {methodName}: {content}", content);
             }
 
             if (status == 0)
             {
-                string reasonPhrase = response.ReasonPhrase ?? "Unknown error";
+                var reasonPhrase = response.ReasonPhrase ?? "Unknown error";
                 return new ApiException(status, $"Error calling {methodName}: {reasonPhrase}", reasonPhrase);
             }
 

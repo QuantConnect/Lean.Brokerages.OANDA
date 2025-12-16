@@ -1732,7 +1732,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse2009</returns>
         public InlineResponse2009 CancelOrder(string orderSpecifier, string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse2009> localVarResponse = CancelOrderWithHttpInfo(orderSpecifier, acceptDatetimeFormat);
+            var localVarResponse = CancelOrderWithHttpInfo(orderSpecifier, acceptDatetimeFormat);
             return localVarResponse.Data;
         }
 
@@ -1758,16 +1758,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -1776,15 +1776,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("CancelOrder", localVarResponse);
+                var exception = ExceptionFactory("CancelOrder", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -1802,7 +1802,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse2009</returns>
         public async System.Threading.Tasks.Task<InlineResponse2009> CancelOrderAsync(string orderSpecifier, string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse2009> localVarResponse = await CancelOrderAsyncWithHttpInfo(orderSpecifier, acceptDatetimeFormat);
+            var localVarResponse = await CancelOrderAsyncWithHttpInfo(orderSpecifier, acceptDatetimeFormat);
             return localVarResponse.Data;
 
         }
@@ -1829,16 +1829,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -1846,15 +1846,15 @@ namespace Oanda.RestV20.Api
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("CancelOrder", localVarResponse);
+                var exception = ExceptionFactory("CancelOrder", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -1873,7 +1873,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse20014</returns>
         public InlineResponse20014 ClosePosition(string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse20014> localVarResponse = ClosePositionWithHttpInfo(instrument, closePositionBody, acceptDatetimeFormat);
+            var localVarResponse = ClosePositionWithHttpInfo(instrument, closePositionBody, acceptDatetimeFormat);
             return localVarResponse.Data;
         }
 
@@ -1903,16 +1903,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -1928,15 +1928,15 @@ namespace Oanda.RestV20.Api
             }
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ClosePosition", localVarResponse);
+                var exception = ExceptionFactory("ClosePosition", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -1955,7 +1955,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse20014</returns>
         public async System.Threading.Tasks.Task<InlineResponse20014> ClosePositionAsync(string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse20014> localVarResponse = await ClosePositionAsyncWithHttpInfo(instrument, closePositionBody, acceptDatetimeFormat);
+            var localVarResponse = await ClosePositionAsyncWithHttpInfo(instrument, closePositionBody, acceptDatetimeFormat);
             return localVarResponse.Data;
 
         }
@@ -1986,16 +1986,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -2011,15 +2011,15 @@ namespace Oanda.RestV20.Api
             }
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ClosePosition", localVarResponse);
+                var exception = ExceptionFactory("ClosePosition", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -2039,7 +2039,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse20026</returns>
         public InlineResponse20026 CloseTrade(string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse20026> localVarResponse = CloseTradeWithHttpInfo(tradeSpecifier, closeTradeBody, acceptDatetimeFormat);
+            var localVarResponse = CloseTradeWithHttpInfo(tradeSpecifier, closeTradeBody, acceptDatetimeFormat);
             return localVarResponse.Data;
         }
 
@@ -2069,16 +2069,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -2095,15 +2095,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("CloseTrade", localVarResponse);
+                var exception = ExceptionFactory("CloseTrade", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -2123,7 +2123,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse20026</returns>
         public async System.Threading.Tasks.Task<InlineResponse20026> CloseTradeAsync(string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse20026> localVarResponse = await CloseTradeAsyncWithHttpInfo(tradeSpecifier, closeTradeBody, acceptDatetimeFormat);
+            var localVarResponse = await CloseTradeAsyncWithHttpInfo(tradeSpecifier, closeTradeBody, acceptDatetimeFormat);
             return localVarResponse.Data;
 
         }
@@ -2154,16 +2154,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -2180,15 +2180,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("CloseTrade", localVarResponse);
+                var exception = ExceptionFactory("CloseTrade", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -2207,7 +2207,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse2004</returns>
         public InlineResponse2004 ConfigureAccount(string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null)
         {
-            ApiResponse<InlineResponse2004> localVarResponse = ConfigureAccountWithHttpInfo(acceptDatetimeFormat, configureAccountBody);
+            var localVarResponse = ConfigureAccountWithHttpInfo(acceptDatetimeFormat, configureAccountBody);
             return localVarResponse.Data;
         }
 
@@ -2229,16 +2229,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -2254,15 +2254,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Patch, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ConfigureAccount", localVarResponse);
+                var exception = ExceptionFactory("ConfigureAccount", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -2281,7 +2281,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse2004</returns>
         public async System.Threading.Tasks.Task<InlineResponse2004> ConfigureAccountAsync(string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null)
         {
-            ApiResponse<InlineResponse2004> localVarResponse = await ConfigureAccountAsyncWithHttpInfo(acceptDatetimeFormat, configureAccountBody);
+            var localVarResponse = await ConfigureAccountAsyncWithHttpInfo(acceptDatetimeFormat, configureAccountBody);
             return localVarResponse.Data;
 
         }
@@ -2304,16 +2304,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -2329,15 +2329,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Patch, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ConfigureAccount", localVarResponse);
+                var exception = ExceptionFactory("ConfigureAccount", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -2356,7 +2356,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse201</returns>
         public InlineResponse201 CreateOrder(CreateOrderBody createOrderBody, string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse201> localVarResponse = CreateOrderWithHttpInfo(createOrderBody, acceptDatetimeFormat);
+            var localVarResponse = CreateOrderWithHttpInfo(createOrderBody, acceptDatetimeFormat);
             return localVarResponse.Data;
         }
 
@@ -2382,16 +2382,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -2407,15 +2407,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Post, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("CreateOrder", localVarResponse);
+                var exception = ExceptionFactory("CreateOrder", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -2434,7 +2434,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse201</returns>
         public async System.Threading.Tasks.Task<InlineResponse201> CreateOrderAsync(CreateOrderBody createOrderBody, string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse201> localVarResponse = await CreateOrderAsyncWithHttpInfo(createOrderBody, acceptDatetimeFormat);
+            var localVarResponse = await CreateOrderAsyncWithHttpInfo(createOrderBody, acceptDatetimeFormat);
             return localVarResponse.Data;
 
         }
@@ -2461,16 +2461,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -2486,15 +2486,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Post, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("CreateOrder", localVarResponse);
+                var exception = ExceptionFactory("CreateOrder", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -2512,7 +2512,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse2001</returns>
         public InlineResponse2001 GetAccount(string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse2001> localVarResponse = GetAccountWithHttpInfo(acceptDatetimeFormat);
+            var localVarResponse = GetAccountWithHttpInfo(acceptDatetimeFormat);
             return localVarResponse.Data;
         }
 
@@ -2533,16 +2533,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -2550,15 +2550,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetAccount", localVarResponse);
+                var exception = ExceptionFactory("GetAccount", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -2576,7 +2576,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse2001</returns>
         public async System.Threading.Tasks.Task<InlineResponse2001> GetAccountAsync(string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse2001> localVarResponse = await GetAccountAsyncWithHttpInfo(acceptDatetimeFormat);
+            var localVarResponse = await GetAccountAsyncWithHttpInfo(acceptDatetimeFormat);
             return localVarResponse.Data;
 
         }
@@ -2598,16 +2598,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -2615,15 +2615,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetAccount", localVarResponse);
+                var exception = ExceptionFactory("GetAccount", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -2642,7 +2642,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse2005</returns>
         public InlineResponse2005 GetAccountChanges(string acceptDatetimeFormat = null, string sinceTransactionID = null)
         {
-            ApiResponse<InlineResponse2005> localVarResponse = GetAccountChangesWithHttpInfo(acceptDatetimeFormat, sinceTransactionID);
+            var localVarResponse = GetAccountChangesWithHttpInfo(acceptDatetimeFormat, sinceTransactionID);
             return localVarResponse.Data;
         }
 
@@ -2664,16 +2664,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -2682,15 +2682,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetAccountChanges", localVarResponse);
+                var exception = ExceptionFactory("GetAccountChanges", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -2709,7 +2709,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse2005</returns>
         public async System.Threading.Tasks.Task<InlineResponse2005> GetAccountChangesAsync(string acceptDatetimeFormat = null, string sinceTransactionID = null)
         {
-            ApiResponse<InlineResponse2005> localVarResponse = await GetAccountChangesAsyncWithHttpInfo(acceptDatetimeFormat, sinceTransactionID);
+            var localVarResponse = await GetAccountChangesAsyncWithHttpInfo(acceptDatetimeFormat, sinceTransactionID);
             return localVarResponse.Data;
 
         }
@@ -2732,16 +2732,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -2750,15 +2750,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetAccountChanges", localVarResponse);
+                var exception = ExceptionFactory("GetAccountChanges", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -2776,7 +2776,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse2003</returns>
         public InlineResponse2003 GetAccountInstruments(List<string> instruments = null)
         {
-            ApiResponse<InlineResponse2003> localVarResponse = GetAccountInstrumentsWithHttpInfo(instruments);
+            var localVarResponse = GetAccountInstrumentsWithHttpInfo(instruments);
             return localVarResponse.Data;
         }
 
@@ -2797,16 +2797,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -2814,15 +2814,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetAccountInstruments", localVarResponse);
+                var exception = ExceptionFactory("GetAccountInstruments", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -2840,7 +2840,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse2003</returns>
         public async System.Threading.Tasks.Task<InlineResponse2003> GetAccountInstrumentsAsync(List<string> instruments = null)
         {
-            ApiResponse<InlineResponse2003> localVarResponse = await GetAccountInstrumentsAsyncWithHttpInfo(instruments);
+            var localVarResponse = await GetAccountInstrumentsAsyncWithHttpInfo(instruments);
             return localVarResponse.Data;
 
         }
@@ -2862,16 +2862,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -2879,15 +2879,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetAccountInstruments", localVarResponse);
+                var exception = ExceptionFactory("GetAccountInstruments", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -2905,7 +2905,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse2002</returns>
         public InlineResponse2002 GetAccountSummary(string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse2002> localVarResponse = GetAccountSummaryWithHttpInfo(acceptDatetimeFormat);
+            var localVarResponse = GetAccountSummaryWithHttpInfo(acceptDatetimeFormat);
             return localVarResponse.Data;
         }
 
@@ -2926,16 +2926,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -2943,15 +2943,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetAccountSummary", localVarResponse);
+                var exception = ExceptionFactory("GetAccountSummary", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -2969,7 +2969,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse2002</returns>
         public async System.Threading.Tasks.Task<InlineResponse2002> GetAccountSummaryAsync(string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse2002> localVarResponse = await GetAccountSummaryAsyncWithHttpInfo(acceptDatetimeFormat);
+            var localVarResponse = await GetAccountSummaryAsyncWithHttpInfo(acceptDatetimeFormat);
             return localVarResponse.Data;
 
         }
@@ -2991,16 +2991,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -3008,15 +3008,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetAccountSummary", localVarResponse);
+                var exception = ExceptionFactory("GetAccountSummary", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -3034,7 +3034,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse20016</returns>
         public InlineResponse20016 GetExternalUserInfo(string userSpecifier)
         {
-            ApiResponse<InlineResponse20016> localVarResponse = GetExternalUserInfoWithHttpInfo(userSpecifier);
+            var localVarResponse = GetExternalUserInfoWithHttpInfo(userSpecifier);
             return localVarResponse.Data;
         }
 
@@ -3059,16 +3059,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -3079,15 +3079,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetExternalUserInfo", localVarResponse);
+                var exception = ExceptionFactory("GetExternalUserInfo", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -3105,7 +3105,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse20016</returns>
         public async System.Threading.Tasks.Task<InlineResponse20016> GetExternalUserInfoAsync(string userSpecifier)
         {
-            ApiResponse<InlineResponse20016> localVarResponse = await GetExternalUserInfoAsyncWithHttpInfo(userSpecifier);
+            var localVarResponse = await GetExternalUserInfoAsyncWithHttpInfo(userSpecifier);
             return localVarResponse.Data;
 
         }
@@ -3131,16 +3131,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -3151,15 +3151,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetExternalUserInfo", localVarResponse);
+                var exception = ExceptionFactory("GetExternalUserInfo", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -3188,7 +3188,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse20029</returns>
         public InlineResponse20029 GetInstrumentCandles(string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null)
         {
-            ApiResponse<InlineResponse20029> localVarResponse = GetInstrumentCandlesWithHttpInfo(instrument, acceptDatetimeFormat, price, granularity, count, from, to, smooth, includeFirst, dailyAlignment, alignmentTimezone, weeklyAlignment);
+            var localVarResponse = GetInstrumentCandlesWithHttpInfo(instrument, acceptDatetimeFormat, price, granularity, count, from, to, smooth, includeFirst, dailyAlignment, alignmentTimezone, weeklyAlignment);
             return localVarResponse.Data;
         }
 
@@ -3224,16 +3224,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -3255,15 +3255,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetInstrumentCandles", localVarResponse);
+                var exception = ExceptionFactory("GetInstrumentCandles", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -3292,7 +3292,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse20029</returns>
         public async System.Threading.Tasks.Task<InlineResponse20029> GetInstrumentCandlesAsync(string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null)
         {
-            ApiResponse<InlineResponse20029> localVarResponse = await GetInstrumentCandlesAsyncWithHttpInfo(instrument, acceptDatetimeFormat, price, granularity, count, from, to, smooth, includeFirst, dailyAlignment, alignmentTimezone, weeklyAlignment);
+            var localVarResponse = await GetInstrumentCandlesAsyncWithHttpInfo(instrument, acceptDatetimeFormat, price, granularity, count, from, to, smooth, includeFirst, dailyAlignment, alignmentTimezone, weeklyAlignment);
             return localVarResponse.Data;
 
         }
@@ -3329,16 +3329,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -3360,15 +3360,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetInstrumentCandles", localVarResponse);
+                var exception = ExceptionFactory("GetInstrumentCandles", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -3387,7 +3387,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse2008</returns>
         public InlineResponse2008 GetOrder(string orderSpecifier, string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse2008> localVarResponse = GetOrderWithHttpInfo(orderSpecifier, acceptDatetimeFormat);
+            var localVarResponse = GetOrderWithHttpInfo(orderSpecifier, acceptDatetimeFormat);
             return localVarResponse.Data;
         }
 
@@ -3413,16 +3413,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -3431,15 +3431,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetOrder", localVarResponse);
+                var exception = ExceptionFactory("GetOrder", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -3458,7 +3458,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse2008</returns>
         public async System.Threading.Tasks.Task<InlineResponse2008> GetOrderAsync(string orderSpecifier, string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse2008> localVarResponse = await GetOrderAsyncWithHttpInfo(orderSpecifier, acceptDatetimeFormat);
+            var localVarResponse = await GetOrderAsyncWithHttpInfo(orderSpecifier, acceptDatetimeFormat);
             return localVarResponse.Data;
 
         }
@@ -3485,16 +3485,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -3503,15 +3503,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetOrder", localVarResponse);
+                var exception = ExceptionFactory("GetOrder", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -3529,7 +3529,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse20013</returns>
         public InlineResponse20013 GetPosition(string instrument)
         {
-            ApiResponse<InlineResponse20013> localVarResponse = GetPositionWithHttpInfo(instrument);
+            var localVarResponse = GetPositionWithHttpInfo(instrument);
             return localVarResponse.Data;
         }
 
@@ -3554,16 +3554,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -3571,15 +3571,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetPosition", localVarResponse);
+                var exception = ExceptionFactory("GetPosition", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -3597,7 +3597,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse20013</returns>
         public async System.Threading.Tasks.Task<InlineResponse20013> GetPositionAsync(string instrument)
         {
-            ApiResponse<InlineResponse20013> localVarResponse = await GetPositionAsyncWithHttpInfo(instrument);
+            var localVarResponse = await GetPositionAsyncWithHttpInfo(instrument);
             return localVarResponse.Data;
 
         }
@@ -3623,16 +3623,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -3640,15 +3640,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetPosition", localVarResponse);
+                var exception = ExceptionFactory("GetPosition", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -3669,7 +3669,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse20021</returns>
         public InlineResponse20021 GetPrices(List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null)
         {
-            ApiResponse<InlineResponse20021> localVarResponse = GetPricesWithHttpInfo(instruments, acceptDatetimeFormat, since, includeUnitsAvailable);
+            var localVarResponse = GetPricesWithHttpInfo(instruments, acceptDatetimeFormat, since, includeUnitsAvailable);
             return localVarResponse.Data;
         }
 
@@ -3697,16 +3697,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -3717,15 +3717,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetPrices", localVarResponse);
+                var exception = ExceptionFactory("GetPrices", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -3746,7 +3746,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse20021</returns>
         public async System.Threading.Tasks.Task<InlineResponse20021> GetPricesAsync(List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null)
         {
-            ApiResponse<InlineResponse20021> localVarResponse = await GetPricesAsyncWithHttpInfo(instruments, acceptDatetimeFormat, since, includeUnitsAvailable);
+            var localVarResponse = await GetPricesAsyncWithHttpInfo(instruments, acceptDatetimeFormat, since, includeUnitsAvailable);
             return localVarResponse.Data;
 
         }
@@ -3775,16 +3775,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -3795,15 +3795,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetPrices", localVarResponse);
+                var exception = ExceptionFactory("GetPrices", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -3822,7 +3822,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse20025</returns>
         public InlineResponse20025 GetTrade(string tradeSpecifier, string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse20025> localVarResponse = GetTradeWithHttpInfo(tradeSpecifier, acceptDatetimeFormat);
+            var localVarResponse = GetTradeWithHttpInfo(tradeSpecifier, acceptDatetimeFormat);
             return localVarResponse.Data;
         }
 
@@ -3848,16 +3848,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -3866,15 +3866,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetTrade", localVarResponse);
+                var exception = ExceptionFactory("GetTrade", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -3893,7 +3893,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse20025</returns>
         public async System.Threading.Tasks.Task<InlineResponse20025> GetTradeAsync(string tradeSpecifier, string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse20025> localVarResponse = await GetTradeAsyncWithHttpInfo(tradeSpecifier, acceptDatetimeFormat);
+            var localVarResponse = await GetTradeAsyncWithHttpInfo(tradeSpecifier, acceptDatetimeFormat);
             return localVarResponse.Data;
 
         }
@@ -3920,16 +3920,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -3938,15 +3938,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetTrade", localVarResponse);
+                var exception = ExceptionFactory("GetTrade", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -3965,7 +3965,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse20018</returns>
         public InlineResponse20018 GetTransaction(string transactionID, string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse20018> localVarResponse = GetTransactionWithHttpInfo(transactionID, acceptDatetimeFormat);
+            var localVarResponse = GetTransactionWithHttpInfo(transactionID, acceptDatetimeFormat);
             return localVarResponse.Data;
         }
 
@@ -3991,16 +3991,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -4009,15 +4009,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetTransaction", localVarResponse);
+                var exception = ExceptionFactory("GetTransaction", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -4036,7 +4036,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse20018</returns>
         public async System.Threading.Tasks.Task<InlineResponse20018> GetTransactionAsync(string transactionID, string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse20018> localVarResponse = await GetTransactionAsyncWithHttpInfo(transactionID, acceptDatetimeFormat);
+            var localVarResponse = await GetTransactionAsyncWithHttpInfo(transactionID, acceptDatetimeFormat);
             return localVarResponse.Data;
 
         }
@@ -4063,16 +4063,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -4081,15 +4081,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetTransaction", localVarResponse);
+                var exception = ExceptionFactory("GetTransaction", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -4110,7 +4110,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse20019</returns>
         public InlineResponse20019 GetTransactionRange(string from, string to, string acceptDatetimeFormat = null, List<string> type = null)
         {
-            ApiResponse<InlineResponse20019> localVarResponse = GetTransactionRangeWithHttpInfo(from, to, acceptDatetimeFormat, type);
+            var localVarResponse = GetTransactionRangeWithHttpInfo(from, to, acceptDatetimeFormat, type);
             return localVarResponse.Data;
         }
 
@@ -4141,16 +4141,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -4161,15 +4161,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetTransactionRange", localVarResponse);
+                var exception = ExceptionFactory("GetTransactionRange", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -4190,7 +4190,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse20019</returns>
         public async System.Threading.Tasks.Task<InlineResponse20019> GetTransactionRangeAsync(string from, string to, string acceptDatetimeFormat = null, List<string> type = null)
         {
-            ApiResponse<InlineResponse20019> localVarResponse = await GetTransactionRangeAsyncWithHttpInfo(from, to, acceptDatetimeFormat, type);
+            var localVarResponse = await GetTransactionRangeAsyncWithHttpInfo(from, to, acceptDatetimeFormat, type);
             return localVarResponse.Data;
 
         }
@@ -4222,16 +4222,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -4242,15 +4242,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetTransactionRange", localVarResponse);
+                var exception = ExceptionFactory("GetTransactionRange", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -4269,7 +4269,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse20019</returns>
         public InlineResponse20019 GetTransactionsSinceId(string id, string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse20019> localVarResponse = GetTransactionsSinceIdWithHttpInfo(id, acceptDatetimeFormat);
+            var localVarResponse = GetTransactionsSinceIdWithHttpInfo(id, acceptDatetimeFormat);
             return localVarResponse.Data;
         }
 
@@ -4295,16 +4295,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -4313,15 +4313,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetTransactionsSinceId", localVarResponse);
+                var exception = ExceptionFactory("GetTransactionsSinceId", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -4340,7 +4340,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse20019</returns>
         public async System.Threading.Tasks.Task<InlineResponse20019> GetTransactionsSinceIdAsync(string id, string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse20019> localVarResponse = await GetTransactionsSinceIdAsyncWithHttpInfo(id, acceptDatetimeFormat);
+            var localVarResponse = await GetTransactionsSinceIdAsyncWithHttpInfo(id, acceptDatetimeFormat);
             return localVarResponse.Data;
 
         }
@@ -4367,16 +4367,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -4385,15 +4385,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetTransactionsSinceId", localVarResponse);
+                var exception = ExceptionFactory("GetTransactionsSinceId", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -4411,7 +4411,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse20015</returns>
         public InlineResponse20015 GetUserInfo(string userSpecifier)
         {
-            ApiResponse<InlineResponse20015> localVarResponse = GetUserInfoWithHttpInfo(userSpecifier);
+            var localVarResponse = GetUserInfoWithHttpInfo(userSpecifier);
             return localVarResponse.Data;
         }
 
@@ -4436,16 +4436,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -4456,15 +4456,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetUserInfo", localVarResponse);
+                var exception = ExceptionFactory("GetUserInfo", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -4482,7 +4482,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse20015</returns>
         public async System.Threading.Tasks.Task<InlineResponse20015> GetUserInfoAsync(string userSpecifier)
         {
-            ApiResponse<InlineResponse20015> localVarResponse = await GetUserInfoAsyncWithHttpInfo(userSpecifier);
+            var localVarResponse = await GetUserInfoAsyncWithHttpInfo(userSpecifier);
             return localVarResponse.Data;
 
         }
@@ -4508,16 +4508,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -4528,15 +4528,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetUserInfo", localVarResponse);
+                var exception = ExceptionFactory("GetUserInfo", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -4553,7 +4553,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse200</returns>
         public InlineResponse200 ListAccounts()
         {
-            ApiResponse<InlineResponse200> localVarResponse = ListAccountsWithHttpInfo();
+            var localVarResponse = ListAccountsWithHttpInfo();
             return localVarResponse.Data;
         }
 
@@ -4574,16 +4574,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -4593,15 +4593,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListAccounts", localVarResponse);
+                var exception = ExceptionFactory("ListAccounts", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -4617,7 +4617,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse200</returns>
         public async System.Threading.Tasks.Task<InlineResponse200> ListAccountsAsync()
         {
-            ApiResponse<InlineResponse200> localVarResponse = await ListAccountsAsyncWithHttpInfo();
+            var localVarResponse = await ListAccountsAsyncWithHttpInfo();
             return localVarResponse.Data;
 
         }
@@ -4638,16 +4638,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -4657,15 +4657,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListAccounts", localVarResponse);
+                var exception = ExceptionFactory("ListAccounts", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -4681,7 +4681,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse20012</returns>
         public InlineResponse20012 ListOpenPositions()
         {
-            ApiResponse<InlineResponse20012> localVarResponse = ListOpenPositionsWithHttpInfo();
+            var localVarResponse = ListOpenPositionsWithHttpInfo();
             return localVarResponse.Data;
         }
 
@@ -4701,29 +4701,29 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListOpenPositions", localVarResponse);
+                var exception = ExceptionFactory("ListOpenPositions", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -4739,7 +4739,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse20012</returns>
         public async System.Threading.Tasks.Task<InlineResponse20012> ListOpenPositionsAsync()
         {
-            ApiResponse<InlineResponse20012> localVarResponse = await ListOpenPositionsAsyncWithHttpInfo();
+            var localVarResponse = await ListOpenPositionsAsyncWithHttpInfo();
             return localVarResponse.Data;
 
         }
@@ -4760,29 +4760,29 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListOpenPositions", localVarResponse);
+                var exception = ExceptionFactory("ListOpenPositions", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -4800,7 +4800,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse20024</returns>
         public InlineResponse20024 ListOpenTrades(string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse20024> localVarResponse = ListOpenTradesWithHttpInfo(acceptDatetimeFormat);
+            var localVarResponse = ListOpenTradesWithHttpInfo(acceptDatetimeFormat);
             return localVarResponse.Data;
         }
 
@@ -4821,16 +4821,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -4838,15 +4838,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListOpenTrades", localVarResponse);
+                var exception = ExceptionFactory("ListOpenTrades", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -4864,7 +4864,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse20024</returns>
         public async System.Threading.Tasks.Task<InlineResponse20024> ListOpenTradesAsync(string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse20024> localVarResponse = await ListOpenTradesAsyncWithHttpInfo(acceptDatetimeFormat);
+            var localVarResponse = await ListOpenTradesAsyncWithHttpInfo(acceptDatetimeFormat);
             return localVarResponse.Data;
 
         }
@@ -4886,16 +4886,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -4903,15 +4903,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListOpenTrades", localVarResponse);
+                var exception = ExceptionFactory("ListOpenTrades", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -4934,7 +4934,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse2006</returns>
         public InlineResponse2006 ListOrders(string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
         {
-            ApiResponse<InlineResponse2006> localVarResponse = ListOrdersWithHttpInfo(acceptDatetimeFormat, ids, state, instrument, count, beforeID);
+            var localVarResponse = ListOrdersWithHttpInfo(acceptDatetimeFormat, ids, state, instrument, count, beforeID);
             return localVarResponse.Data;
         }
 
@@ -4960,16 +4960,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -4982,15 +4982,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListOrders", localVarResponse);
+                var exception = ExceptionFactory("ListOrders", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -5013,7 +5013,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse2006</returns>
         public async System.Threading.Tasks.Task<InlineResponse2006> ListOrdersAsync(string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
         {
-            ApiResponse<InlineResponse2006> localVarResponse = await ListOrdersAsyncWithHttpInfo(acceptDatetimeFormat, ids, state, instrument, count, beforeID);
+            var localVarResponse = await ListOrdersAsyncWithHttpInfo(acceptDatetimeFormat, ids, state, instrument, count, beforeID);
             return localVarResponse.Data;
 
         }
@@ -5040,16 +5040,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -5062,15 +5062,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListOrders", localVarResponse);
+                var exception = ExceptionFactory("ListOrders", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -5088,7 +5088,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse2007</returns>
         public InlineResponse2007 ListPendingOrders(string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse2007> localVarResponse = ListPendingOrdersWithHttpInfo(acceptDatetimeFormat);
+            var localVarResponse = ListPendingOrdersWithHttpInfo(acceptDatetimeFormat);
             return localVarResponse.Data;
         }
 
@@ -5109,16 +5109,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -5126,15 +5126,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListPendingOrders", localVarResponse);
+                var exception = ExceptionFactory("ListPendingOrders", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -5152,7 +5152,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse2007</returns>
         public async System.Threading.Tasks.Task<InlineResponse2007> ListPendingOrdersAsync(string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse2007> localVarResponse = await ListPendingOrdersAsyncWithHttpInfo(acceptDatetimeFormat);
+            var localVarResponse = await ListPendingOrdersAsyncWithHttpInfo(acceptDatetimeFormat);
             return localVarResponse.Data;
 
         }
@@ -5174,16 +5174,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -5191,15 +5191,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListPendingOrders", localVarResponse);
+                var exception = ExceptionFactory("ListPendingOrders", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -5216,7 +5216,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse20011</returns>
         public InlineResponse20011 ListPositions()
         {
-            ApiResponse<InlineResponse20011> localVarResponse = ListPositionsWithHttpInfo();
+            var localVarResponse = ListPositionsWithHttpInfo();
             return localVarResponse.Data;
         }
 
@@ -5236,29 +5236,29 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListPositions", localVarResponse);
+                var exception = ExceptionFactory("ListPositions", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -5275,7 +5275,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse20011</returns>
         public async System.Threading.Tasks.Task<InlineResponse20011> ListPositionsAsync()
         {
-            ApiResponse<InlineResponse20011> localVarResponse = await ListPositionsAsyncWithHttpInfo();
+            var localVarResponse = await ListPositionsAsyncWithHttpInfo();
             return localVarResponse.Data;
 
         }
@@ -5296,29 +5296,29 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListPositions", localVarResponse);
+                var exception = ExceptionFactory("ListPositions", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -5341,7 +5341,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse20023</returns>
         public InlineResponse20023 ListTrades(string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
         {
-            ApiResponse<InlineResponse20023> localVarResponse = ListTradesWithHttpInfo(acceptDatetimeFormat, ids, state, instrument, count, beforeID);
+            var localVarResponse = ListTradesWithHttpInfo(acceptDatetimeFormat, ids, state, instrument, count, beforeID);
             return localVarResponse.Data;
         }
 
@@ -5367,16 +5367,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -5389,15 +5389,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListTrades", localVarResponse);
+                var exception = ExceptionFactory("ListTrades", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -5420,7 +5420,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse20023</returns>
         public async System.Threading.Tasks.Task<InlineResponse20023> ListTradesAsync(string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
         {
-            ApiResponse<InlineResponse20023> localVarResponse = await ListTradesAsyncWithHttpInfo(acceptDatetimeFormat, ids, state, instrument, count, beforeID);
+            var localVarResponse = await ListTradesAsyncWithHttpInfo(acceptDatetimeFormat, ids, state, instrument, count, beforeID);
             return localVarResponse.Data;
 
         }
@@ -5447,16 +5447,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -5469,15 +5469,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListTrades", localVarResponse);
+                var exception = ExceptionFactory("ListTrades", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -5499,7 +5499,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse20017</returns>
         public InlineResponse20017 ListTransactions(string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null)
         {
-            ApiResponse<InlineResponse20017> localVarResponse = ListTransactionsWithHttpInfo(acceptDatetimeFormat, from, to, pageSize, type);
+            var localVarResponse = ListTransactionsWithHttpInfo(acceptDatetimeFormat, from, to, pageSize, type);
             return localVarResponse.Data;
         }
 
@@ -5524,16 +5524,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -5545,15 +5545,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListTransactions", localVarResponse);
+                var exception = ExceptionFactory("ListTransactions", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -5575,7 +5575,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse20017</returns>
         public async System.Threading.Tasks.Task<InlineResponse20017> ListTransactionsAsync(string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null)
         {
-            ApiResponse<InlineResponse20017> localVarResponse = await ListTransactionsAsyncWithHttpInfo(acceptDatetimeFormat, from, to, pageSize, type);
+            var localVarResponse = await ListTransactionsAsyncWithHttpInfo(acceptDatetimeFormat, from, to, pageSize, type);
             return localVarResponse.Data;
 
         }
@@ -5601,16 +5601,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -5622,15 +5622,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListTransactions", localVarResponse);
+                var exception = ExceptionFactory("ListTransactions", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -5650,7 +5650,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse2011</returns>
         public InlineResponse2011 ReplaceOrder(string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse2011> localVarResponse = ReplaceOrderWithHttpInfo(orderSpecifier, replaceOrderBody, acceptDatetimeFormat);
+            var localVarResponse = ReplaceOrderWithHttpInfo(orderSpecifier, replaceOrderBody, acceptDatetimeFormat);
             return localVarResponse.Data;
         }
 
@@ -5680,16 +5680,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -5706,15 +5706,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ReplaceOrder", localVarResponse);
+                var exception = ExceptionFactory("ReplaceOrder", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -5734,7 +5734,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse2011</returns>
         public async System.Threading.Tasks.Task<InlineResponse2011> ReplaceOrderAsync(string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse2011> localVarResponse = await ReplaceOrderAsyncWithHttpInfo(orderSpecifier, replaceOrderBody, acceptDatetimeFormat);
+            var localVarResponse = await ReplaceOrderAsyncWithHttpInfo(orderSpecifier, replaceOrderBody, acceptDatetimeFormat);
             return localVarResponse.Data;
 
         }
@@ -5765,16 +5765,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -5791,15 +5791,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ReplaceOrder", localVarResponse);
+                var exception = ExceptionFactory("ReplaceOrder", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -5819,7 +5819,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse20010</returns>
         public InlineResponse20010 SetOrderClientExtensions(string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse20010> localVarResponse = SetOrderClientExtensionsWithHttpInfo(orderSpecifier, setOrderClientExtensionsBody, acceptDatetimeFormat);
+            var localVarResponse = SetOrderClientExtensionsWithHttpInfo(orderSpecifier, setOrderClientExtensionsBody, acceptDatetimeFormat);
             return localVarResponse.Data;
         }
 
@@ -5849,16 +5849,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -5875,15 +5875,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("SetOrderClientExtensions", localVarResponse);
+                var exception = ExceptionFactory("SetOrderClientExtensions", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -5903,7 +5903,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse20010</returns>
         public async System.Threading.Tasks.Task<InlineResponse20010> SetOrderClientExtensionsAsync(string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse20010> localVarResponse = await SetOrderClientExtensionsAsyncWithHttpInfo(orderSpecifier, setOrderClientExtensionsBody, acceptDatetimeFormat);
+            var localVarResponse = await SetOrderClientExtensionsAsyncWithHttpInfo(orderSpecifier, setOrderClientExtensionsBody, acceptDatetimeFormat);
             return localVarResponse.Data;
 
         }
@@ -5934,16 +5934,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -5960,15 +5960,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("SetOrderClientExtensions", localVarResponse);
+                var exception = ExceptionFactory("SetOrderClientExtensions", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -5988,7 +5988,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse20027</returns>
         public InlineResponse20027 SetTradeClientExtensions(string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse20027> localVarResponse = SetTradeClientExtensionsWithHttpInfo(tradeSpecifier, setTradeClientExtensionsBody, acceptDatetimeFormat);
+            var localVarResponse = SetTradeClientExtensionsWithHttpInfo(tradeSpecifier, setTradeClientExtensionsBody, acceptDatetimeFormat);
             return localVarResponse.Data;
         }
 
@@ -6018,16 +6018,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -6044,15 +6044,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("SetTradeClientExtensions", localVarResponse);
+                var exception = ExceptionFactory("SetTradeClientExtensions", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -6072,7 +6072,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse20027</returns>
         public async System.Threading.Tasks.Task<InlineResponse20027> SetTradeClientExtensionsAsync(string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse20027> localVarResponse = await SetTradeClientExtensionsAsyncWithHttpInfo(tradeSpecifier, setTradeClientExtensionsBody, acceptDatetimeFormat);
+            var localVarResponse = await SetTradeClientExtensionsAsyncWithHttpInfo(tradeSpecifier, setTradeClientExtensionsBody, acceptDatetimeFormat);
             return localVarResponse.Data;
 
         }
@@ -6103,16 +6103,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -6129,15 +6129,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("SetTradeClientExtensions", localVarResponse);
+                var exception = ExceptionFactory("SetTradeClientExtensions", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -6157,7 +6157,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse20028</returns>
         public InlineResponse20028 SetTradeDependentOrders(string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse20028> localVarResponse = SetTradeDependentOrdersWithHttpInfo(tradeSpecifier, setTradeDependentOrdersBody, acceptDatetimeFormat);
+            var localVarResponse = SetTradeDependentOrdersWithHttpInfo(tradeSpecifier, setTradeDependentOrdersBody, acceptDatetimeFormat);
             return localVarResponse.Data;
         }
 
@@ -6187,16 +6187,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -6213,15 +6213,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("SetTradeDependentOrders", localVarResponse);
+                var exception = ExceptionFactory("SetTradeDependentOrders", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -6241,7 +6241,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse20028</returns>
         public async System.Threading.Tasks.Task<InlineResponse20028> SetTradeDependentOrdersAsync(string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null)
         {
-            ApiResponse<InlineResponse20028> localVarResponse = await SetTradeDependentOrdersAsyncWithHttpInfo(tradeSpecifier, setTradeDependentOrdersBody, acceptDatetimeFormat);
+            var localVarResponse = await SetTradeDependentOrdersAsyncWithHttpInfo(tradeSpecifier, setTradeDependentOrdersBody, acceptDatetimeFormat);
             return localVarResponse.Data;
 
         }
@@ -6272,16 +6272,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -6298,15 +6298,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("SetTradeDependentOrders", localVarResponse);
+                var exception = ExceptionFactory("SetTradeDependentOrders", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -6326,7 +6326,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse20022</returns>
         public InlineResponse20022 StreamPricing(List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null)
         {
-            ApiResponse<InlineResponse20022> localVarResponse = StreamPricingWithHttpInfo(instruments, acceptDatetimeFormat, snapshot);
+            var localVarResponse = StreamPricingWithHttpInfo(instruments, acceptDatetimeFormat, snapshot);
             return localVarResponse.Data;
         }
 
@@ -6353,16 +6353,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -6372,15 +6372,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("StreamPricing", localVarResponse);
+                var exception = ExceptionFactory("StreamPricing", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -6400,7 +6400,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse20022</returns>
         public async System.Threading.Tasks.Task<InlineResponse20022> StreamPricingAsync(List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null)
         {
-            ApiResponse<InlineResponse20022> localVarResponse = await StreamPricingAsyncWithHttpInfo(instruments, acceptDatetimeFormat, snapshot);
+            var localVarResponse = await StreamPricingAsyncWithHttpInfo(instruments, acceptDatetimeFormat, snapshot);
             return localVarResponse.Data;
 
         }
@@ -6428,16 +6428,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -6447,15 +6447,15 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("StreamPricing", localVarResponse);
+                var exception = ExceptionFactory("StreamPricing", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -6472,7 +6472,7 @@ namespace Oanda.RestV20.Api
         /// <returns>InlineResponse20020</returns>
         public InlineResponse20020 StreamTransactions()
         {
-            ApiResponse<InlineResponse20020> localVarResponse = StreamTransactionsWithHttpInfo();
+            var localVarResponse = StreamTransactionsWithHttpInfo();
             return localVarResponse.Data;
         }
 
@@ -6492,31 +6492,31 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
 
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("StreamTransactions", localVarResponse);
+                var exception = ExceptionFactory("StreamTransactions", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -6533,7 +6533,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of InlineResponse20020</returns>
         public async System.Threading.Tasks.Task<InlineResponse20020> StreamTransactionsAsync()
         {
-            ApiResponse<InlineResponse20020> localVarResponse = await StreamTransactionsAsyncWithHttpInfo();
+            var localVarResponse = await StreamTransactionsAsyncWithHttpInfo();
             return localVarResponse.Data;
 
         }
@@ -6554,29 +6554,29 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("StreamTransactions", localVarResponse);
+                var exception = ExceptionFactory("StreamTransactions", localVarResponse);
                 if (exception != null) throw exception;
             }
 

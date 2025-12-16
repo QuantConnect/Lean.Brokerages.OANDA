@@ -42,29 +42,29 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListPendingOrders", localVarResponse);
+                var exception = ExceptionFactory("ListPendingOrders", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -94,16 +94,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -112,15 +112,15 @@ namespace Oanda.RestV20.Api
             localVarPostBody = createOrderBody; // json
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Post, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("CreateOrder", localVarResponse);
+                var exception = ExceptionFactory("CreateOrder", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -155,16 +155,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -174,15 +174,15 @@ namespace Oanda.RestV20.Api
             localVarPostBody = replaceOrderBody; // json
 
             // make the HTTP request
-            HttpResponseMessage localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ReplaceOrder", localVarResponse);
+                var exception = ExceptionFactory("ReplaceOrder", localVarResponse);
                 if (exception != null) throw exception;
             }
 

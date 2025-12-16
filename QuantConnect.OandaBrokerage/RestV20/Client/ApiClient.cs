@@ -437,7 +437,7 @@ namespace Oanda.RestV20.Client
         /// <returns>Byte array</returns>
         public static byte[] ReadAsBytes(Stream input)
         {
-            byte[] buffer = new byte[16 * 1024];
+            var buffer = new byte[16 * 1024];
             using (MemoryStream ms = new MemoryStream())
             {
                 int read;
@@ -469,13 +469,13 @@ namespace Oanda.RestV20.Client
                 return Uri.EscapeDataString(input);
             }
 
-            StringBuilder sb = new StringBuilder(input.Length * 2);
-            int index = 0;
+            var sb = new StringBuilder(input.Length * 2);
+            var index = 0;
 
             while (index < input.Length)
             {
-                int length = Math.Min(input.Length - index, maxLength);
-                string subString = input.Substring(index, length);
+                var length = Math.Min(input.Length - index, maxLength);
+                var subString = input.Substring(index, length);
 
                 sb.Append(Uri.EscapeDataString(subString));
                 index += subString.Length;
@@ -491,7 +491,7 @@ namespace Oanda.RestV20.Client
         /// <returns>Filename</returns>
         public static string SanitizeFilename(string filename)
         {
-            Match match = Regex.Match(filename, @".*[/\\](.*)$");
+            var match = Regex.Match(filename, @".*[/\\](.*)$");
 
             if (match.Success)
             {

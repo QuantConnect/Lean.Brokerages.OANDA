@@ -682,7 +682,7 @@ namespace QuantConnect.Brokerages.Oanda
             var longUnits = position._Long.Units.ConvertInvariant<decimal>();
             var shortUnits = position._Short.Units.ConvertInvariant<decimal>();
 
-            decimal averagePrice = 0;
+            var averagePrice = 0m;
             var quantity = 0m;
             if (longUnits > 0)
             {
