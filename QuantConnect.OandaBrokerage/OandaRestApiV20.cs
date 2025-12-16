@@ -76,10 +76,10 @@ namespace QuantConnect.Brokerages.Oanda
                 "https://stream-fxtrade.oanda.com/v3" :
                 "https://stream-fxpractice.oanda.com/v3";
 
-            _apiRest = new DefaultApi(basePathRest, accessToken);
+            _apiRest = new DefaultApi(basePathRest, accessToken, accountId);
             _apiRest.Configuration.AddDefaultHeader(OandaAgentKey, Agent);
 
-            _apiStreaming = new DefaultApi(basePathStreaming, accessToken);
+            _apiStreaming = new DefaultApi(basePathStreaming, accessToken, accountId);
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace QuantConnect.Brokerages.Oanda
         /// </summary>
         public override string GetAccountBaseCurrency()
         {
-            var response = _apiRest.GetAccount(AccountId);
+            var response = _apiRest.GetAccount();
 
             return response.Account.Currency;
         }
@@ -97,7 +97,7 @@ namespace QuantConnect.Brokerages.Oanda
         /// </summary>
         public override List<string> GetInstrumentList()
         {
-            var response = _apiRest.GetAccountInstruments(AccountId);
+            var response = _apiRest.GetAccountInstruments();
 
             return response.Instruments.Select(x => x.Name).ToList();
         }
@@ -109,7 +109,7 @@ namespace QuantConnect.Brokerages.Oanda
         /// <returns>The open orders returned from Oanda</returns>
         public override List<Order> GetOpenOrders()
         {
-            var json = _apiRest.ListPendingOrdersAsJson(AccountId);
+            var json = _apiRest.ListPendingOrdersAsJson();
 
             var response = (JObject)JsonConvert.DeserializeObject(json);
 
@@ -122,7 +122,7 @@ namespace QuantConnect.Brokerages.Oanda
         /// <returns>The current holdings from the account</returns>
         public override List<Holding> GetAccountHoldings()
         {
-            var response = _apiRest.ListOpenPositions(AccountId);
+            var response = _apiRest.ListOpenPositions();
 
             return response.Positions.Select(ConvertHolding).ToList();
         }
@@ -133,7 +133,7 @@ namespace QuantConnect.Brokerages.Oanda
         /// <returns>The current cash balance for each currency available for trading</returns>
         public override List<CashAmount> GetCashBalance()
         {
-            var response = _apiRest.GetAccountSummary(AccountId);
+            var response = _apiRest.GetAccountSummary();
 
             return new List<CashAmount>
             {
@@ -149,7 +149,7 @@ namespace QuantConnect.Brokerages.Oanda
         /// <returns>Dictionary containing the current quotes for each instrument</returns>
         public override Dictionary<string, Tick> GetRates(List<string> instruments)
         {
-            var response = _apiRest.GetPrices(AccountId, instruments);
+            var response = _apiRest.GetPrices(instruments);
 
             return response.Prices
                 .ToDictionary(
@@ -174,7 +174,7 @@ namespace QuantConnect.Brokerages.Oanda
 
             lock (Locker)
             {
-                var response = _apiRest.CreateOrder(AccountId, request);
+                var response = _apiRest.CreateOrder(request);
                 order.BrokerId.Add(response.Data.OrderCreateTransaction.Id);
 
                 // Market orders are special, due to the callback not being triggered always,
@@ -249,7 +249,7 @@ namespace QuantConnect.Brokerages.Oanda
             var request = GenerateOrderRequest(order);
 
             var orderId = order.BrokerId.First();
-            var response = _apiRest.ReplaceOrder(AccountId, orderId, request);
+            var response = _apiRest.ReplaceOrder(orderId, request);
 
             // replace the brokerage order id
             order.BrokerId[0] = response.Data.OrderCreateTransaction.Id;
@@ -287,7 +287,7 @@ namespace QuantConnect.Brokerages.Oanda
 
             foreach (var orderId in order.BrokerId)
             {
-                _apiRest.CancelOrder(AccountId, orderId);
+                _apiRest.CancelOrder(orderId);
                 OnOrderEvent(new OrderEvent(order,
                     DateTime.UtcNow,
                     OrderFee.Zero,

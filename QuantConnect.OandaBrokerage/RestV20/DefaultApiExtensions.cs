@@ -29,16 +29,11 @@ namespace Oanda.RestV20.Api
         /// Pending Orders List all pending Orders in an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>JSON string response</returns>
-        public string ListPendingOrdersAsJson(string accountID, string acceptDatetimeFormat = null)
+        public string ListPendingOrdersAsJson(string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->ListPendingOrders");
-
-            var localVarPath = "/accounts/{accountID}/pendingOrders";
+            var localVarPath = $"accounts/{_accountId}/" + "pendingOrders";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -60,10 +55,6 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
             // make the HTTP request
@@ -85,20 +76,16 @@ namespace Oanda.RestV20.Api
         /// Create Order Create an Order for an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="createOrderBody"></param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse201</returns>
-        public ApiResponse<InlineResponse201> CreateOrder(string accountID, string createOrderBody, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse201> CreateOrder(string createOrderBody, string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->CreateOrder");
             // verify the required parameter 'createOrderBody' is set
             if (createOrderBody == null)
                 throw new ApiException(400, "Missing required parameter 'createOrderBody' when calling DefaultApi->CreateOrder");
 
-            var localVarPath = "/accounts/{accountID}/orders";
+            var localVarPath = $"accounts/{_accountId}/" + "orders";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -120,10 +107,6 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
             localVarPostBody = createOrderBody; // json
@@ -150,16 +133,12 @@ namespace Oanda.RestV20.Api
         /// Replace Order Replace an Order in an Account by simultaneously cancelling it and creating a replacement Order
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="replaceOrderBody">Specification of the replacing Order. The replacing order must have the same type as the replaced Order.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2011</returns>
-        public ApiResponse<InlineResponse2011> ReplaceOrder(string accountID, string orderSpecifier, string replaceOrderBody, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse2011> ReplaceOrder(string orderSpecifier, string replaceOrderBody, string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->ReplaceOrder");
             // verify the required parameter 'orderSpecifier' is set
             if (orderSpecifier == null)
                 throw new ApiException(400, "Missing required parameter 'orderSpecifier' when calling DefaultApi->ReplaceOrder");
@@ -167,7 +146,7 @@ namespace Oanda.RestV20.Api
             if (replaceOrderBody == null)
                 throw new ApiException(400, "Missing required parameter 'replaceOrderBody' when calling DefaultApi->ReplaceOrder");
 
-            var localVarPath = "/accounts/{accountID}/orders/{orderSpecifier}";
+            var localVarPath = $"/accounts/{_accountId}/" + "orders/{orderSpecifier}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -189,10 +168,6 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
             if (orderSpecifier != null) localVarPathParams.Add("orderSpecifier", Configuration.ApiClient.ParameterToString(orderSpecifier)); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
