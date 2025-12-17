@@ -145,10 +145,10 @@ namespace Oanda.RestV20.Client
                 request.Headers.TryAddWithoutValidation(param.Key, param.Value);
             }
 
-            // Process Body
-            if (fileParams.Count > 0)
+            // Process Content
+            HttpContent httpContent = null;
+            if (fileParams.Count > 0 || (postBody != null && formParams.Count > 0))
             {
-                // Files present, we need to use multipart form data
                 var multipartContent = new MultipartFormDataContent();
                 foreach (var param in formParams)
                 {
@@ -160,36 +160,42 @@ namespace Oanda.RestV20.Client
                     streamContent.Headers.ContentType = MediaTypeHeaderValue.Parse(param.Value.ContentType);
                     multipartContent.Add(streamContent, param.Value.Name, param.Value.FileName);
                 }
-                request.Content = multipartContent;
+
+                if (postBody != null)
+                {
+                    multipartContent.Add(CreateBody(postBody, contentType), "application/json");
+                }
+
+                httpContent = multipartContent;
+            }
+            else if (postBody != null)
+            {
+                httpContent = CreateBody(postBody, contentType);
             }
             else if (formParams.Count > 0)
             {
                 // Form params only, we can use form url encoded
-                request.Content = new FormUrlEncodedContent(formParams);
+                httpContent = new FormUrlEncodedContent(formParams);
             }
 
-            if (postBody != null)
-            {
-                if (postBody is string jsonString)
-                {
-                    request.Content = new StringContent(jsonString, Encoding.UTF8, "application/json");
-                }
-                else if (postBody is byte[] bytes)
-                {
-                    var byteContent = new ByteArrayContent(bytes);
-                    if (!string.IsNullOrEmpty(contentType))
-                        byteContent.Headers.ContentType = MediaTypeHeaderValue.Parse(contentType);
-                    request.Content = byteContent;
-                }
-                else
-                {
-                    // Fallback serialization if object passed
-                    var json = Serialize(postBody);
-                    request.Content = new StringContent(json, Encoding.UTF8, "application/json");
-                }
-            }
-
+            request.Content = httpContent;
             return request;
+        }
+
+        private HttpContent CreateBody(object postBody, string contentType)
+        {
+            if (postBody is byte[] bytes)
+            {
+                var byteContent = new ByteArrayContent(bytes);
+                if (!string.IsNullOrEmpty(contentType))
+                {
+                    byteContent.Headers.ContentType = MediaTypeHeaderValue.Parse(contentType);
+                }
+                return byteContent;
+            }
+
+            var json = postBody as string ?? Serialize(postBody);
+            return new StringContent(json, Encoding.UTF8, "application/json");
         }
 
         /// <summary>
