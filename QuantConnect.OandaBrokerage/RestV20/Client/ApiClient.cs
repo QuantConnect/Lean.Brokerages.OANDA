@@ -86,7 +86,7 @@ namespace Oanda.RestV20.Client
         /// with default configuration.
         /// </summary>
         /// <param name="basePath">The base path.</param>
-        public ApiClient(String basePath = "https://localhost/v3/", string accessToken = null)
+        public ApiClient(string accessToken, String basePath = "https://localhost/v3/")
         {
             if (String.IsNullOrEmpty(basePath))
                 throw new ArgumentException("basePath cannot be empty");
@@ -319,13 +319,9 @@ namespace Oanda.RestV20.Client
         /// <returns>Object representation of the JSON string.</returns>
         public object Deserialize(HttpResponseMessage response, Type type)
         {
-            // Buffer content
-            var contentBytes = response.Content.ReadAsByteArrayAsync().SynchronouslyAwaitTaskResult();
-            var contentString = Encoding.UTF8.GetString(contentBytes);
-
             if (type == typeof(byte[]))
             {
-                return contentBytes;
+                return response.Content.ReadAsByteArrayAsync().SynchronouslyAwaitTaskResult();
             }
 
             if (type == typeof(Stream))
@@ -338,12 +334,21 @@ namespace Oanda.RestV20.Client
                         : Configuration.TempFolderPath;
 
                     var fileName = filePath + SanitizeFilename(response.Content.Headers.ContentDisposition.FileName.Replace("\"", "").Replace("'", ""));
-                    File.WriteAllBytes(fileName, contentBytes);
+
+                    using (var stream = response.Content.ReadAsStreamAsync().SynchronouslyAwaitTaskResult())
+                    using (var fileStream = new FileStream(fileName, FileMode.Create))
+                    {
+                        stream.CopyTo(fileStream);
+                    }
+
                     return new FileStream(fileName, FileMode.Open);
                 }
-                return new MemoryStream(contentBytes);
+
+                var bytes = response.Content.ReadAsByteArrayAsync().SynchronouslyAwaitTaskResult();
+                return new MemoryStream(bytes);
             }
 
+            var contentString = response.Content.ReadAsStringAsync().SynchronouslyAwaitTaskResult();
             if (type.Name.StartsWith("System.Nullable`1[[System.DateTime"))
             {
                 return DateTime.Parse(contentString, null, System.Globalization.DateTimeStyles.RoundtripKind);

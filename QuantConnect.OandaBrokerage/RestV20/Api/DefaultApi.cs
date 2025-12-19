@@ -1626,7 +1626,7 @@ namespace Oanda.RestV20.Api
         /// <returns></returns>
         public DefaultApi(String basePath, string accessToken, string accountId)
         {
-            this.Configuration = new Configuration(new ApiClient(basePath, accessToken));
+            this.Configuration = new Configuration(new ApiClient(accessToken, basePath));
 
             ExceptionFactory = Oanda.RestV20.Client.Configuration.DefaultExceptionFactory;
 
@@ -1749,7 +1749,7 @@ namespace Oanda.RestV20.Api
             if (orderSpecifier == null)
                 throw new ApiException(400, "Missing required parameter 'orderSpecifier' when calling DefaultApi->CancelOrder");
 
-            var localVarPath = $"accounts/{_accountId}/orders/{orderSpecifier}/cancel";
+            var localVarPath = "accounts/{accountID}/orders/{orderSpecifier}/cancel";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1771,6 +1771,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter;
+            localVarPathParams.Add("orderSpecifier", orderSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
             // make the HTTP request
@@ -1818,7 +1820,7 @@ namespace Oanda.RestV20.Api
             if (orderSpecifier == null)
                 throw new ApiException(400, "Missing required parameter 'orderSpecifier' when calling DefaultApi->CancelOrder");
 
-            var localVarPath = $"accounts/{_accountId}/orders/{orderSpecifier}/cancel";
+            var localVarPath = "accounts/{accountID}/orders/{orderSpecifier}/cancel";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1840,6 +1842,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("orderSpecifier", orderSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
             // make the HTTP request
@@ -1891,7 +1895,7 @@ namespace Oanda.RestV20.Api
             if (closePositionBody == null)
                 throw new ApiException(400, "Missing required parameter 'closePositionBody' when calling DefaultApi->ClosePosition");
 
-            var localVarPath = $"accounts/{_accountId}/positions/{instrument}/close";
+            var localVarPath = "accounts/{accountID}/positions/{instrument}/close";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1913,6 +1917,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("instrument", instrument); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (closePositionBody != null && closePositionBody.GetType() != typeof(byte[]))
             {
@@ -1973,7 +1979,7 @@ namespace Oanda.RestV20.Api
             if (closePositionBody == null)
                 throw new ApiException(400, "Missing required parameter 'closePositionBody' when calling DefaultApi->ClosePosition");
 
-            var localVarPath = $"accounts/{_accountId}/positions/{instrument}/close";
+            var localVarPath = "accounts/{accountID}/positions/{instrument}/close";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1995,6 +2001,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("instrument", instrument); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (closePositionBody != null && closePositionBody.GetType() != typeof(byte[]))
             {
@@ -2055,7 +2063,7 @@ namespace Oanda.RestV20.Api
             if (closeTradeBody == null)
                 throw new ApiException(400, "Missing required parameter 'closeTradeBody' when calling DefaultApi->CloseTrade");
 
-            var localVarPath = $"accounts/{_accountId}/trades/{tradeSpecifier}/close";
+            var localVarPath = "accounts/{accountID}/trades/{tradeSpecifier}/close";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2077,6 +2085,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("tradeSpecifier", tradeSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (closeTradeBody != null && closeTradeBody.GetType() != typeof(byte[]))
             {
@@ -2139,7 +2149,7 @@ namespace Oanda.RestV20.Api
             if (closeTradeBody == null)
                 throw new ApiException(400, "Missing required parameter 'closeTradeBody' when calling DefaultApi->CloseTrade");
 
-            var localVarPath = $"accounts/{_accountId}/trades/{tradeSpecifier}/close";
+            var localVarPath = "accounts/{accountID}/trades/{tradeSpecifier}/close";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2161,6 +2171,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("tradeSpecifier", tradeSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (closeTradeBody != null && closeTradeBody.GetType() != typeof(byte[]))
             {
@@ -2213,7 +2225,7 @@ namespace Oanda.RestV20.Api
         /// <returns>ApiResponse of InlineResponse2004</returns>
         public ApiResponse<InlineResponse2004> ConfigureAccountWithHttpInfo(string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null)
         {
-            var localVarPath = $"accounts/{_accountId}/configuration";
+            var localVarPath = "accounts/{accountID}/configuration";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2235,6 +2247,7 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (configureAccountBody != null && configureAccountBody.GetType() != typeof(byte[]))
             {
@@ -2288,7 +2301,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of ApiResponse (InlineResponse2004)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2004>> ConfigureAccountAsyncWithHttpInfo(string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null)
         {
-            var localVarPath = $"accounts/{_accountId}/configuration";
+            var localVarPath = "accounts/{accountID}/configuration";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2310,6 +2323,7 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (configureAccountBody != null && configureAccountBody.GetType() != typeof(byte[]))
             {
@@ -2366,7 +2380,7 @@ namespace Oanda.RestV20.Api
             if (createOrderBody == null)
                 throw new ApiException(400, "Missing required parameter 'createOrderBody' when calling DefaultApi->CreateOrder");
 
-            var localVarPath = $"accounts/{_accountId}/orders";
+            var localVarPath = "accounts/{accountID}/orders";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2388,6 +2402,7 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (createOrderBody != null && createOrderBody.GetType() != typeof(byte[]))
             {
@@ -2445,7 +2460,7 @@ namespace Oanda.RestV20.Api
             if (createOrderBody == null)
                 throw new ApiException(400, "Missing required parameter 'createOrderBody' when calling DefaultApi->CreateOrder");
 
-            var localVarPath = $"accounts/{_accountId}/orders";
+            var localVarPath = "accounts/{accountID}/orders";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2467,6 +2482,7 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (createOrderBody != null && createOrderBody.GetType() != typeof(byte[]))
             {
@@ -2517,7 +2533,7 @@ namespace Oanda.RestV20.Api
         /// <returns>ApiResponse of InlineResponse2001</returns>
         public ApiResponse<InlineResponse2001> GetAccountWithHttpInfo(string acceptDatetimeFormat = null)
         {
-            var localVarPath = $"accounts/{_accountId}";
+            var localVarPath = "accounts/{accountID}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2539,8 +2555,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
-
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
@@ -2582,7 +2598,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of ApiResponse (InlineResponse2001)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2001>> GetAccountAsyncWithHttpInfo(string acceptDatetimeFormat = null)
         {
-            var localVarPath = $"accounts/{_accountId}";
+            var localVarPath = "accounts/{accountID}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2604,8 +2620,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
-
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -2623,7 +2639,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse2001>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse2001)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2001)));
-
         }
 
         /// <summary>
@@ -2648,7 +2663,7 @@ namespace Oanda.RestV20.Api
         /// <returns>ApiResponse of InlineResponse2005</returns>
         public ApiResponse<InlineResponse2005> GetAccountChangesWithHttpInfo(string acceptDatetimeFormat = null, string sinceTransactionID = null)
         {
-            var localVarPath = $"accounts/{_accountId}/changes";
+            var localVarPath = "accounts/{accountID}/changes";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2670,9 +2685,9 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (sinceTransactionID != null) localVarQueryParams.Add("sinceTransactionID", Configuration.ApiClient.ParameterToString(sinceTransactionID)); // query parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
-
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
@@ -2690,7 +2705,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse2005>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse2005)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2005)));
-
         }
 
         /// <summary>
@@ -2716,7 +2730,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of ApiResponse (InlineResponse2005)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2005>> GetAccountChangesAsyncWithHttpInfo(string acceptDatetimeFormat = null, string sinceTransactionID = null)
         {
-            var localVarPath = $"accounts/{_accountId}/changes";
+            var localVarPath = "accounts/{accountID}/changes";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2738,9 +2752,9 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (sinceTransactionID != null) localVarQueryParams.Add("sinceTransactionID", Configuration.ApiClient.ParameterToString(sinceTransactionID)); // query parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
-
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -2758,7 +2772,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse2005>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse2005)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2005)));
-
         }
 
         /// <summary>
@@ -2781,7 +2794,7 @@ namespace Oanda.RestV20.Api
         /// <returns>ApiResponse of InlineResponse2003</returns>
         public ApiResponse<InlineResponse2003> GetAccountInstrumentsWithHttpInfo(List<string> instruments = null)
         {
-            var localVarPath = $"accounts/{_accountId}/instruments";
+            var localVarPath = "accounts/{accountID}/instruments";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2803,8 +2816,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (instruments != null) localVarQueryParams.Add("instruments", Configuration.ApiClient.ParameterToString(instruments)); // query parameter
-
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
@@ -2822,7 +2835,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse2003>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse2003)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2003)));
-
         }
 
         /// <summary>
@@ -2846,7 +2858,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of ApiResponse (InlineResponse2003)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2003>> GetAccountInstrumentsAsyncWithHttpInfo(List<string> instruments = null)
         {
-            var localVarPath = $"accounts/{_accountId}/instruments";
+            var localVarPath = "accounts/{accountID}/instruments";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2868,8 +2880,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (instruments != null) localVarQueryParams.Add("instruments", Configuration.ApiClient.ParameterToString(instruments)); // query parameter
-
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -2887,7 +2899,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse2003>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse2003)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2003)));
-
         }
 
         /// <summary>
@@ -2910,7 +2921,7 @@ namespace Oanda.RestV20.Api
         /// <returns>ApiResponse of InlineResponse2002</returns>
         public ApiResponse<InlineResponse2002> GetAccountSummaryWithHttpInfo(string acceptDatetimeFormat = null)
         {
-            var localVarPath = $"accounts/{_accountId}/summary";
+            var localVarPath = "accounts/{accountID}/summary";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2932,8 +2943,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
-
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
@@ -2951,7 +2962,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse2002>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse2002)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2002)));
-
         }
 
         /// <summary>
@@ -2975,7 +2985,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of ApiResponse (InlineResponse2002)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2002>> GetAccountSummaryAsyncWithHttpInfo(string acceptDatetimeFormat = null)
         {
-            var localVarPath = $"accounts/{_accountId}/summary";
+            var localVarPath = "accounts/{accountID}/summary";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2997,8 +3007,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
-
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -3016,7 +3026,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse2002>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse2002)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2002)));
-
         }
 
         /// <summary>
@@ -3397,7 +3406,7 @@ namespace Oanda.RestV20.Api
             if (orderSpecifier == null)
                 throw new ApiException(400, "Missing required parameter 'orderSpecifier' when calling DefaultApi->GetOrder");
 
-            var localVarPath = $"accounts/{_accountId}/orders/{orderSpecifier}";
+            var localVarPath = "accounts/{accountID}/orders/{orderSpecifier}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3419,6 +3428,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("orderSpecifier", orderSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
             // make the HTTP request
@@ -3437,7 +3448,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse2008>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse2008)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2008)));
-
         }
 
         /// <summary>
@@ -3467,7 +3477,7 @@ namespace Oanda.RestV20.Api
             if (orderSpecifier == null)
                 throw new ApiException(400, "Missing required parameter 'orderSpecifier' when calling DefaultApi->GetOrder");
 
-            var localVarPath = $"accounts/{_accountId}/orders/{orderSpecifier}";
+            var localVarPath = "accounts/{accountID}/orders/{orderSpecifier}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3489,6 +3499,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("orderSpecifier", orderSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
             // make the HTTP request
@@ -3507,7 +3519,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse2008>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse2008)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2008)));
-
         }
 
         /// <summary>
@@ -3534,7 +3545,7 @@ namespace Oanda.RestV20.Api
             if (instrument == null)
                 throw new ApiException(400, "Missing required parameter 'instrument' when calling DefaultApi->GetPosition");
 
-            var localVarPath = $"accounts/{_accountId}/positions/{instrument}";
+            var localVarPath = "accounts/{accountID}/positions/{instrument}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3555,6 +3566,9 @@ namespace Oanda.RestV20.Api
             var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("instrument", instrument); // path parameter
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
@@ -3599,7 +3613,7 @@ namespace Oanda.RestV20.Api
             if (instrument == null)
                 throw new ApiException(400, "Missing required parameter 'instrument' when calling DefaultApi->GetPosition");
 
-            var localVarPath = $"accounts/{_accountId}/positions/{instrument}";
+            var localVarPath = "accounts/{accountID}/positions/{instrument}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3621,6 +3635,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("instrument", instrument); // path parameter
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
@@ -3670,7 +3686,7 @@ namespace Oanda.RestV20.Api
             if (instruments == null)
                 throw new ApiException(400, "Missing required parameter 'instruments' when calling DefaultApi->GetPrices");
 
-            var localVarPath = $"accounts/{_accountId}/pricing";
+            var localVarPath = "accounts/{accountID}/pricing";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3692,11 +3708,11 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (instruments != null) localVarQueryParams.Add("instruments", Configuration.ApiClient.ParameterToString(instruments)); // query parameter
             if (since != null) localVarQueryParams.Add("since", Configuration.ApiClient.ParameterToString(since)); // query parameter
             if (includeUnitsAvailable != null) localVarQueryParams.Add("includeUnitsAvailable", Configuration.ApiClient.ParameterToString(includeUnitsAvailable)); // query parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
-
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
@@ -3714,7 +3730,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse20021>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse20021)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20021)));
-
         }
 
         /// <summary>
@@ -3748,7 +3763,7 @@ namespace Oanda.RestV20.Api
             if (instruments == null)
                 throw new ApiException(400, "Missing required parameter 'instruments' when calling DefaultApi->GetPrices");
 
-            var localVarPath = $"accounts/{_accountId}/pricing";
+            var localVarPath = "accounts/{accountID}/pricing";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3770,11 +3785,11 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (instruments != null) localVarQueryParams.Add("instruments", Configuration.ApiClient.ParameterToString(instruments)); // query parameter
             if (since != null) localVarQueryParams.Add("since", Configuration.ApiClient.ParameterToString(since)); // query parameter
             if (includeUnitsAvailable != null) localVarQueryParams.Add("includeUnitsAvailable", Configuration.ApiClient.ParameterToString(includeUnitsAvailable)); // query parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
-
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -3792,7 +3807,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse20021>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse20021)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20021)));
-
         }
 
         /// <summary>
@@ -3821,7 +3835,7 @@ namespace Oanda.RestV20.Api
             if (tradeSpecifier == null)
                 throw new ApiException(400, "Missing required parameter 'tradeSpecifier' when calling DefaultApi->GetTrade");
 
-            var localVarPath = $"accounts/{_accountId}/trades/{tradeSpecifier}";
+            var localVarPath = "accounts/{accountID}/trades/{tradeSpecifier}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3843,6 +3857,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("tradeSpecifier", tradeSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
             // make the HTTP request
@@ -3861,7 +3877,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse20025>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse20025)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20025)));
-
         }
 
         /// <summary>
@@ -3891,7 +3906,7 @@ namespace Oanda.RestV20.Api
             if (tradeSpecifier == null)
                 throw new ApiException(400, "Missing required parameter 'tradeSpecifier' when calling DefaultApi->GetTrade");
 
-            var localVarPath = $"accounts/{_accountId}/trades/{tradeSpecifier}";
+            var localVarPath = "accounts/{accountID}/trades/{tradeSpecifier}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3913,6 +3928,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("tradeSpecifier", tradeSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
             // make the HTTP request
@@ -3931,7 +3948,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse20025>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse20025)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20025)));
-
         }
 
         /// <summary>
@@ -3960,7 +3976,7 @@ namespace Oanda.RestV20.Api
             if (transactionID == null)
                 throw new ApiException(400, "Missing required parameter 'transactionID' when calling DefaultApi->GetTransaction");
 
-            var localVarPath = $"accounts/{_accountId}/transactions/{transactionID}";
+            var localVarPath = "accounts/{accountID}/transactions/{transactionID}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3982,6 +3998,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("transactionID", transactionID); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
             // make the HTTP request
@@ -4000,7 +4018,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse20018>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse20018)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20018)));
-
         }
 
         /// <summary>
@@ -4030,7 +4047,7 @@ namespace Oanda.RestV20.Api
             if (transactionID == null)
                 throw new ApiException(400, "Missing required parameter 'transactionID' when calling DefaultApi->GetTransaction");
 
-            var localVarPath = $"accounts/{_accountId}/transactions/{transactionID}";
+            var localVarPath = "accounts/{accountID}/transactions/{transactionID}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4052,6 +4069,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("transactionID", transactionID); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
             // make the HTTP request
@@ -4070,7 +4089,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse20018>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse20018)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20018)));
-
         }
 
         /// <summary>
@@ -4106,7 +4124,7 @@ namespace Oanda.RestV20.Api
             if (to == null)
                 throw new ApiException(400, "Missing required parameter 'to' when calling DefaultApi->GetTransactionRange");
 
-            var localVarPath = $"accounts/{_accountId}/transactions/idrange";
+            var localVarPath = "accounts/{accountID}/transactions/idrange";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4128,11 +4146,11 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (from != null) localVarQueryParams.Add("from", Configuration.ApiClient.ParameterToString(from)); // query parameter
             if (to != null) localVarQueryParams.Add("to", Configuration.ApiClient.ParameterToString(to)); // query parameter
             if (type != null) localVarQueryParams.Add("type", Configuration.ApiClient.ParameterToString(type)); // query parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
-
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
@@ -4150,7 +4168,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse20019>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse20019)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20019)));
-
         }
 
         /// <summary>
@@ -4187,7 +4204,7 @@ namespace Oanda.RestV20.Api
             if (to == null)
                 throw new ApiException(400, "Missing required parameter 'to' when calling DefaultApi->GetTransactionRange");
 
-            var localVarPath = $"accounts/{_accountId}/transactions/idrange";
+            var localVarPath = "accounts/{accountID}/transactions/idrange";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4209,11 +4226,11 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (from != null) localVarQueryParams.Add("from", Configuration.ApiClient.ParameterToString(from)); // query parameter
             if (to != null) localVarQueryParams.Add("to", Configuration.ApiClient.ParameterToString(to)); // query parameter
             if (type != null) localVarQueryParams.Add("type", Configuration.ApiClient.ParameterToString(type)); // query parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
-
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -4231,7 +4248,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse20019>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse20019)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20019)));
-
         }
 
         /// <summary>
@@ -4260,7 +4276,7 @@ namespace Oanda.RestV20.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling DefaultApi->GetTransactionsSinceId");
 
-            var localVarPath = $"accounts/{_accountId}/transactions/sinceid";
+            var localVarPath = "accounts/{accountID}/transactions/sinceid";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4282,9 +4298,9 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (id != null) localVarQueryParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // query parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
-
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
@@ -4302,7 +4318,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse20019>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse20019)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20019)));
-
         }
 
         /// <summary>
@@ -4332,7 +4347,7 @@ namespace Oanda.RestV20.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling DefaultApi->GetTransactionsSinceId");
 
-            var localVarPath = $"accounts/{_accountId}/transactions/sinceid";
+            var localVarPath = "accounts/{accountID}/transactions/sinceid";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4354,9 +4369,9 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (id != null) localVarQueryParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // query parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
-
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -4374,7 +4389,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse20019>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse20019)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20019)));
-
         }
 
         /// <summary>
@@ -4666,7 +4680,7 @@ namespace Oanda.RestV20.Api
         /// <returns>ApiResponse of InlineResponse20012</returns>
         public ApiResponse<InlineResponse20012> ListOpenPositionsWithHttpInfo()
         {
-            var localVarPath = $"accounts/{_accountId}/openPositions";
+            var localVarPath = "accounts/{accountID}/openPositions";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4687,6 +4701,8 @@ namespace Oanda.RestV20.Api
             var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            localVarPathParams.Add("accountID", _accountId); // path parameter
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
@@ -4725,7 +4741,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of ApiResponse (InlineResponse20012)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20012>> ListOpenPositionsAsyncWithHttpInfo()
         {
-            var localVarPath = $"accounts/{_accountId}/openPositions";
+            var localVarPath = "accounts/{accountID}/openPositions";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4746,6 +4762,8 @@ namespace Oanda.RestV20.Api
             var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            localVarPathParams.Add("accountID", _accountId); // path parameter
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -4786,7 +4804,7 @@ namespace Oanda.RestV20.Api
         /// <returns>ApiResponse of InlineResponse20024</returns>
         public ApiResponse<InlineResponse20024> ListOpenTradesWithHttpInfo(string acceptDatetimeFormat = null)
         {
-            var localVarPath = $"accounts/{_accountId}/openTrades";
+            var localVarPath = "accounts/{accountID}/openTrades";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4808,8 +4826,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
-
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
@@ -4827,7 +4845,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse20024>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse20024)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20024)));
-
         }
 
         /// <summary>
@@ -4851,7 +4868,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of ApiResponse (InlineResponse20024)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20024>> ListOpenTradesAsyncWithHttpInfo(string acceptDatetimeFormat = null)
         {
-            var localVarPath = $"accounts/{_accountId}/openTrades";
+            var localVarPath = "accounts/{accountID}/openTrades";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4873,8 +4890,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
-
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -4892,7 +4909,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse20024>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse20024)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20024)));
-
         }
 
         /// <summary>
@@ -4925,7 +4941,7 @@ namespace Oanda.RestV20.Api
         /// <returns>ApiResponse of InlineResponse2006</returns>
         public ApiResponse<InlineResponse2006> ListOrdersWithHttpInfo(string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
         {
-            var localVarPath = $"accounts/{_accountId}/orders";
+            var localVarPath = "accounts/{accountID}/orders";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4947,13 +4963,13 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (ids != null) localVarQueryParams.Add("ids", Configuration.ApiClient.ParameterToString(ids)); // query parameter
             if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
             if (instrument != null) localVarQueryParams.Add("instrument", Configuration.ApiClient.ParameterToString(instrument)); // query parameter
             if (count != null) localVarQueryParams.Add("count", Configuration.ApiClient.ParameterToString(count)); // query parameter
             if (beforeID != null) localVarQueryParams.Add("beforeID", Configuration.ApiClient.ParameterToString(beforeID)); // query parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
-
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
@@ -4971,7 +4987,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse2006>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse2006)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2006)));
-
         }
 
         /// <summary>
@@ -5005,7 +5020,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of ApiResponse (InlineResponse2006)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2006>> ListOrdersAsyncWithHttpInfo(string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
         {
-            var localVarPath = $"accounts/{_accountId}/orders";
+            var localVarPath = "accounts/{accountID}/orders";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5027,13 +5042,13 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (ids != null) localVarQueryParams.Add("ids", Configuration.ApiClient.ParameterToString(ids)); // query parameter
             if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
             if (instrument != null) localVarQueryParams.Add("instrument", Configuration.ApiClient.ParameterToString(instrument)); // query parameter
             if (count != null) localVarQueryParams.Add("count", Configuration.ApiClient.ParameterToString(count)); // query parameter
             if (beforeID != null) localVarQueryParams.Add("beforeID", Configuration.ApiClient.ParameterToString(beforeID)); // query parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
-
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -5051,7 +5066,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse2006>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse2006)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2006)));
-
         }
 
         /// <summary>
@@ -5074,7 +5088,7 @@ namespace Oanda.RestV20.Api
         /// <returns>ApiResponse of InlineResponse2007</returns>
         public ApiResponse<InlineResponse2007> ListPendingOrdersWithHttpInfo(string acceptDatetimeFormat = null)
         {
-            var localVarPath = $"accounts/{_accountId}/pendingOrders";
+            var localVarPath = "accounts/{accountID}/pendingOrders";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5096,8 +5110,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
-
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
@@ -5115,7 +5129,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse2007>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse2007)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2007)));
-
         }
 
         /// <summary>
@@ -5139,7 +5152,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of ApiResponse (InlineResponse2007)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2007>> ListPendingOrdersAsyncWithHttpInfo(string acceptDatetimeFormat = null)
         {
-            var localVarPath = $"accounts/{_accountId}/pendingOrders";
+            var localVarPath = "accounts/{accountID}/pendingOrders";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5161,8 +5174,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
-
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -5180,7 +5193,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse2007>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse2007)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2007)));
-
         }
 
         /// <summary>
@@ -5201,7 +5213,7 @@ namespace Oanda.RestV20.Api
         /// <returns>ApiResponse of InlineResponse20011</returns>
         public ApiResponse<InlineResponse20011> ListPositionsWithHttpInfo()
         {
-            var localVarPath = $"accounts/{_accountId}/positions";
+            var localVarPath = "accounts/{accountID}/positions";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5223,6 +5235,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
@@ -5239,7 +5253,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse20011>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse20011)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20011)));
-
         }
 
         /// <summary>
@@ -5261,7 +5274,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of ApiResponse (InlineResponse20011)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20011>> ListPositionsAsyncWithHttpInfo()
         {
-            var localVarPath = $"accounts/{_accountId}/positions";
+            var localVarPath = "accounts/{accountID}/positions";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5283,6 +5296,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
@@ -5299,7 +5314,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse20011>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse20011)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20011)));
-
         }
 
         /// <summary>
@@ -5332,7 +5346,7 @@ namespace Oanda.RestV20.Api
         /// <returns>ApiResponse of InlineResponse20023</returns>
         public ApiResponse<InlineResponse20023> ListTradesWithHttpInfo(string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
         {
-            var localVarPath = $"accounts/{_accountId}/trades";
+            var localVarPath = "accounts/{accountID}/trades";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5354,13 +5368,13 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (ids != null) localVarQueryParams.Add("ids", Configuration.ApiClient.ParameterToString(ids)); // query parameter
             if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
             if (instrument != null) localVarQueryParams.Add("instrument", Configuration.ApiClient.ParameterToString(instrument)); // query parameter
             if (count != null) localVarQueryParams.Add("count", Configuration.ApiClient.ParameterToString(count)); // query parameter
             if (beforeID != null) localVarQueryParams.Add("beforeID", Configuration.ApiClient.ParameterToString(beforeID)); // query parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
-
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
@@ -5378,7 +5392,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse20023>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse20023)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20023)));
-
         }
 
         /// <summary>
@@ -5412,7 +5425,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of ApiResponse (InlineResponse20023)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20023>> ListTradesAsyncWithHttpInfo(string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
         {
-            var localVarPath = $"accounts/{_accountId}/trades";
+            var localVarPath = "accounts/{accountID}/trades";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5434,13 +5447,13 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (ids != null) localVarQueryParams.Add("ids", Configuration.ApiClient.ParameterToString(ids)); // query parameter
             if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
             if (instrument != null) localVarQueryParams.Add("instrument", Configuration.ApiClient.ParameterToString(instrument)); // query parameter
             if (count != null) localVarQueryParams.Add("count", Configuration.ApiClient.ParameterToString(count)); // query parameter
             if (beforeID != null) localVarQueryParams.Add("beforeID", Configuration.ApiClient.ParameterToString(beforeID)); // query parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
-
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -5458,7 +5471,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse20023>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse20023)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20023)));
-
         }
 
         /// <summary>
@@ -5489,7 +5501,7 @@ namespace Oanda.RestV20.Api
         /// <returns>ApiResponse of InlineResponse20017</returns>
         public ApiResponse<InlineResponse20017> ListTransactionsWithHttpInfo(string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null)
         {
-            var localVarPath = $"accounts/{_accountId}/transactions";
+            var localVarPath = "accounts/{accountID}/transactions";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5511,12 +5523,12 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (from != null) localVarQueryParams.Add("from", Configuration.ApiClient.ParameterToString(from)); // query parameter
             if (to != null) localVarQueryParams.Add("to", Configuration.ApiClient.ParameterToString(to)); // query parameter
             if (pageSize != null) localVarQueryParams.Add("pageSize", Configuration.ApiClient.ParameterToString(pageSize)); // query parameter
             if (type != null) localVarQueryParams.Add("type", Configuration.ApiClient.ParameterToString(type)); // query parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
-
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
@@ -5534,7 +5546,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse20017>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse20017)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20017)));
-
         }
 
         /// <summary>
@@ -5566,7 +5577,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of ApiResponse (InlineResponse20017)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20017>> ListTransactionsAsyncWithHttpInfo(string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null)
         {
-            var localVarPath = $"accounts/{_accountId}/transactions";
+            var localVarPath = "accounts/{accountID}/transactions";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5588,12 +5599,12 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (from != null) localVarQueryParams.Add("from", Configuration.ApiClient.ParameterToString(from)); // query parameter
             if (to != null) localVarQueryParams.Add("to", Configuration.ApiClient.ParameterToString(to)); // query parameter
             if (pageSize != null) localVarQueryParams.Add("pageSize", Configuration.ApiClient.ParameterToString(pageSize)); // query parameter
             if (type != null) localVarQueryParams.Add("type", Configuration.ApiClient.ParameterToString(type)); // query parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
-
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -5611,7 +5622,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse20017>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse20017)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20017)));
-
         }
 
         /// <summary>
@@ -5645,7 +5655,7 @@ namespace Oanda.RestV20.Api
             if (replaceOrderBody == null)
                 throw new ApiException(400, "Missing required parameter 'replaceOrderBody' when calling DefaultApi->ReplaceOrder");
 
-            var localVarPath = $"accounts/{_accountId}/orders/{orderSpecifier}";
+            var localVarPath = "accounts/{accountID}/orders/{orderSpecifier}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5667,6 +5677,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("orderSpecifier", orderSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (replaceOrderBody != null && replaceOrderBody.GetType() != typeof(byte[]))
             {
@@ -5693,7 +5705,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse2011>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse2011)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2011)));
-
         }
 
         /// <summary>
@@ -5728,7 +5739,7 @@ namespace Oanda.RestV20.Api
             if (replaceOrderBody == null)
                 throw new ApiException(400, "Missing required parameter 'replaceOrderBody' when calling DefaultApi->ReplaceOrder");
 
-            var localVarPath = $"accounts/{_accountId}/orders/{orderSpecifier}";
+            var localVarPath = "accounts/{accountID}/orders/{orderSpecifier}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5750,6 +5761,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("orderSpecifier", orderSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (replaceOrderBody != null && replaceOrderBody.GetType() != typeof(byte[]))
             {
@@ -5809,7 +5822,7 @@ namespace Oanda.RestV20.Api
             if (setOrderClientExtensionsBody == null)
                 throw new ApiException(400, "Missing required parameter 'setOrderClientExtensionsBody' when calling DefaultApi->SetOrderClientExtensions");
 
-            var localVarPath = $"accounts/{_accountId}/orders/{orderSpecifier}/clientExtensions";
+            var localVarPath = "accounts/{accountID}/orders/{orderSpecifier}/clientExtensions";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5831,6 +5844,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("orderSpecifier", orderSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (setOrderClientExtensionsBody != null && setOrderClientExtensionsBody.GetType() != typeof(byte[]))
             {
@@ -5891,7 +5906,7 @@ namespace Oanda.RestV20.Api
             if (setOrderClientExtensionsBody == null)
                 throw new ApiException(400, "Missing required parameter 'setOrderClientExtensionsBody' when calling DefaultApi->SetOrderClientExtensions");
 
-            var localVarPath = $"accounts/{_accountId}/orders/{orderSpecifier}/clientExtensions";
+            var localVarPath = "accounts/{accountID}/orders/{orderSpecifier}/clientExtensions";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5913,6 +5928,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("orderSpecifier", orderSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (setOrderClientExtensionsBody != null && setOrderClientExtensionsBody.GetType() != typeof(byte[]))
             {
@@ -5922,7 +5939,6 @@ namespace Oanda.RestV20.Api
             {
                 localVarPostBody = setOrderClientExtensionsBody; // byte array
             }
-
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -5940,7 +5956,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse20010>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse20010)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20010)));
-
         }
 
         /// <summary>
@@ -5974,7 +5989,7 @@ namespace Oanda.RestV20.Api
             if (setTradeClientExtensionsBody == null)
                 throw new ApiException(400, "Missing required parameter 'setTradeClientExtensionsBody' when calling DefaultApi->SetTradeClientExtensions");
 
-            var localVarPath = $"accounts/{_accountId}/trades/{tradeSpecifier}/clientExtensions";
+            var localVarPath = "accounts/{accountID}/trades/{tradeSpecifier}/clientExtensions";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5996,6 +6011,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("tradeSpecifier", tradeSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (setTradeClientExtensionsBody != null && setTradeClientExtensionsBody.GetType() != typeof(byte[]))
             {
@@ -6056,7 +6073,7 @@ namespace Oanda.RestV20.Api
             if (setTradeClientExtensionsBody == null)
                 throw new ApiException(400, "Missing required parameter 'setTradeClientExtensionsBody' when calling DefaultApi->SetTradeClientExtensions");
 
-            var localVarPath = $"accounts/{_accountId}/trades/{tradeSpecifier}/clientExtensions";
+            var localVarPath = "accounts/{accountID}/trades/{tradeSpecifier}/clientExtensions";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -6078,6 +6095,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("tradeSpecifier", tradeSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (setTradeClientExtensionsBody != null && setTradeClientExtensionsBody.GetType() != typeof(byte[]))
             {
@@ -6087,7 +6106,6 @@ namespace Oanda.RestV20.Api
             {
                 localVarPostBody = setTradeClientExtensionsBody; // byte array
             }
-
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -6105,7 +6123,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse20027>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse20027)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20027)));
-
         }
 
         /// <summary>
@@ -6139,7 +6156,7 @@ namespace Oanda.RestV20.Api
             if (setTradeDependentOrdersBody == null)
                 throw new ApiException(400, "Missing required parameter 'setTradeDependentOrdersBody' when calling DefaultApi->SetTradeDependentOrders");
 
-            var localVarPath = $"accounts/{_accountId}/trades/{tradeSpecifier}/orders";
+            var localVarPath = "accounts/{accountID}/trades/{tradeSpecifier}/orders";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -6161,6 +6178,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("tradeSpecifier", tradeSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (setTradeDependentOrdersBody != null && setTradeDependentOrdersBody.GetType() != typeof(byte[]))
             {
@@ -6170,7 +6189,6 @@ namespace Oanda.RestV20.Api
             {
                 localVarPostBody = setTradeDependentOrdersBody; // byte array
             }
-
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
@@ -6188,7 +6206,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse20028>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse20028)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20028)));
-
         }
 
         /// <summary>
@@ -6223,7 +6240,7 @@ namespace Oanda.RestV20.Api
             if (setTradeDependentOrdersBody == null)
                 throw new ApiException(400, "Missing required parameter 'setTradeDependentOrdersBody' when calling DefaultApi->SetTradeDependentOrders");
 
-            var localVarPath = $"accounts/{_accountId}/trades/{tradeSpecifier}/orders";
+            var localVarPath = "accounts/{accountID}/trades/{tradeSpecifier}/orders";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -6245,6 +6262,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("tradeSpecifier", tradeSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (setTradeDependentOrdersBody != null && setTradeDependentOrdersBody.GetType() != typeof(byte[]))
             {
@@ -6254,7 +6273,6 @@ namespace Oanda.RestV20.Api
             {
                 localVarPostBody = setTradeDependentOrdersBody; // byte array
             }
-
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -6272,7 +6290,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse20028>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse20028)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20028)));
-
         }
 
         /// <summary>
@@ -6303,7 +6320,7 @@ namespace Oanda.RestV20.Api
             if (instruments == null)
                 throw new ApiException(400, "Missing required parameter 'instruments' when calling DefaultApi->StreamPricing");
 
-            var localVarPath = $"accounts/{_accountId}/pricing/stream";
+            var localVarPath = "accounts/{accountID}/pricing/stream";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -6325,10 +6342,10 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (instruments != null) localVarQueryParams.Add("instruments", Configuration.ApiClient.ParameterToString(instruments)); // query parameter
             if (snapshot != null) localVarQueryParams.Add("snapshot", Configuration.ApiClient.ParameterToString(snapshot)); // query parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
-
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
@@ -6346,7 +6363,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse20022>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse20022)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20022)));
-
         }
 
         /// <summary>
@@ -6378,7 +6394,7 @@ namespace Oanda.RestV20.Api
             if (instruments == null)
                 throw new ApiException(400, "Missing required parameter 'instruments' when calling DefaultApi->StreamPricing");
 
-            var localVarPath = $"accounts/{_accountId}/pricing/stream";
+            var localVarPath = "accounts/{accountID}/pricing/stream";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -6400,10 +6416,10 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (instruments != null) localVarQueryParams.Add("instruments", Configuration.ApiClient.ParameterToString(instruments)); // query parameter
             if (snapshot != null) localVarQueryParams.Add("snapshot", Configuration.ApiClient.ParameterToString(snapshot)); // query parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
-
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -6421,7 +6437,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse20022>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse20022)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20022)));
-
         }
 
         /// <summary>
@@ -6442,7 +6457,7 @@ namespace Oanda.RestV20.Api
         /// <returns>ApiResponse of InlineResponse20020</returns>
         public ApiResponse<InlineResponse20020> StreamTransactionsWithHttpInfo()
         {
-            var localVarPath = $"accounts/{_accountId}/transactions/stream";
+            var localVarPath = "accounts/{accountID}/transactions/stream";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -6464,7 +6479,7 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-
+            localVarPathParams.Add("accountID", _accountId); // path parameter
 
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
@@ -6482,7 +6497,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse20020>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse20020)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20020)));
-
         }
 
         /// <summary>
@@ -6504,7 +6518,7 @@ namespace Oanda.RestV20.Api
         /// <returns>Task of ApiResponse (InlineResponse20020)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20020>> StreamTransactionsAsyncWithHttpInfo()
         {
-            var localVarPath = $"accounts/{_accountId}/transactions/stream";
+            var localVarPath = "accounts/{accountID}/transactions/stream";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -6526,6 +6540,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+
             // make the HTTP request
             var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
                 HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
@@ -6542,7 +6558,6 @@ namespace Oanda.RestV20.Api
             return new ApiResponse<InlineResponse20020>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
                 (InlineResponse20020)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20020)));
-
         }
 
     }
