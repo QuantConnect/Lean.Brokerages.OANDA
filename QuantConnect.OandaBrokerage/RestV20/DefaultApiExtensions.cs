@@ -20,7 +20,6 @@ using System.Net.Http;
 using Oanda.RestV20.Client;
 using Oanda.RestV20.Model;
 using QuantConnect;
-using QuantConnect.OandaBrokerage.RestV20.Model;
 
 namespace Oanda.RestV20.Api
 {
@@ -34,7 +33,7 @@ namespace Oanda.RestV20.Api
         /// <returns>JSON string response</returns>
         public string ListPendingOrdersAsJson(string acceptDatetimeFormat = null)
         {
-            var localVarPath = $"accounts/{_accountId}/" + "pendingOrders";
+            var localVarPath = "accounts/{accountID}/pendingOrders";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -56,6 +55,7 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
             // make the HTTP request
@@ -86,7 +86,7 @@ namespace Oanda.RestV20.Api
             if (createOrderBody == null)
                 throw new ApiException(400, "Missing required parameter 'createOrderBody' when calling DefaultApi->CreateOrder");
 
-            var localVarPath = $"accounts/{_accountId}/" + "orders";
+            var localVarPath = "accounts/{accountID}/orders";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -108,6 +108,7 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
             localVarPostBody = createOrderBody; // json
@@ -147,7 +148,7 @@ namespace Oanda.RestV20.Api
             if (replaceOrderBody == null)
                 throw new ApiException(400, "Missing required parameter 'replaceOrderBody' when calling DefaultApi->ReplaceOrder");
 
-            var localVarPath = $"/accounts/{_accountId}/" + "orders/{orderSpecifier}";
+            var localVarPath = "/accounts/{accountID}/orders/{orderSpecifier}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -169,7 +170,8 @@ namespace Oanda.RestV20.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (orderSpecifier != null) localVarPathParams.Add("orderSpecifier", Configuration.ApiClient.ParameterToString(orderSpecifier)); // path parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("orderSpecifier", orderSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
             localVarPostBody = replaceOrderBody; // json

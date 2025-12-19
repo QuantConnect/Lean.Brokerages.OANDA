@@ -15,7 +15,6 @@ using System.Linq;
 using Oanda.RestV20.Client;
 using Oanda.RestV20.Model;
 using System.Net.Http;
-using QuantConnect.OandaBrokerage.RestV20.Model;
 
 namespace Oanda.RestV20.Api
 {

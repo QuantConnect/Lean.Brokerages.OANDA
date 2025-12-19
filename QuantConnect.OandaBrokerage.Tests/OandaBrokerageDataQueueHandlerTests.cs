@@ -33,7 +33,7 @@ namespace QuantConnect.Tests.Brokerages.Oanda
         public void GetsTickData()
         {
             var cancelationToken = new CancellationTokenSource();
-            var brokerage = (QuantConnect.Brokerages.Oanda.OandaBrokerage)Brokerage;
+            var brokerage = (OandaBrokerage)Brokerage;
 
             var configs = new SubscriptionDataConfig[] {
                 GetSubscriptionDataConfig<QuoteBar>(Symbol.Create("EURJPY", SecurityType.Forex, Market.Oanda), Resolution.Second),
@@ -86,7 +86,7 @@ namespace QuantConnect.Tests.Brokerages.Oanda
                 configs.Add(GetSubscriptionDataConfig<QuoteBar>(Symbol.Create(symbol, SecurityType.Forex, Market.Oanda), Resolution.Second));
             }
 
-            var brokerage = (QuantConnect.Brokerages.Oanda.OandaBrokerage)Brokerage;
+            var brokerage = (OandaBrokerage)Brokerage;
 
             var stopwatch = Stopwatch.StartNew();
             foreach (var config in configs)

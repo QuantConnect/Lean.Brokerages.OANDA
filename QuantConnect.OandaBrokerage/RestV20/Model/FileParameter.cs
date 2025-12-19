@@ -15,7 +15,7 @@
 
 using System.IO;
 
-namespace QuantConnect.OandaBrokerage.RestV20.Model
+namespace Oanda.RestV20.Model
 {
     public struct FileParameter
     {

@@ -20,8 +20,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using QuantConnect;
-using QuantConnect.OandaBrokerage.RestV20.Model;
 using System.Web;
+using Oanda.RestV20.Model;
 
 namespace Oanda.RestV20.Client
 {
@@ -284,12 +284,12 @@ namespace Oanda.RestV20.Client
         /// <returns>Formatted string.</returns>
         public string ParameterToString(object obj)
         {
-            if (obj is DateTime)
+            if (obj is System.DateTime)
                 // Return a formatted date string - Can be customized with Configuration.DateTimeFormat
                 // Defaults to an ISO 8601, using the known as a Round-trip date/time pattern ("o")
                 // https://msdn.microsoft.com/en-us/library/az4se3k1(v=vs.110).aspx#Anchor_8
                 // For example: 2009-06-15T13:45:30.0000000
-                return ((DateTime)obj).ToStringInvariant(Configuration.DateTimeFormat);
+                return ((System.DateTime)obj).ToStringInvariant(Configuration.DateTimeFormat);
             else if (obj is DateTimeOffset)
                 // Return a formatted date string - Can be customized with Configuration.DateTimeFormat
                 // Defaults to an ISO 8601, using the known as a Round-trip date/time pattern ("o")
@@ -351,7 +351,7 @@ namespace Oanda.RestV20.Client
             var contentString = response.Content.ReadAsStringAsync().SynchronouslyAwaitTaskResult();
             if (type.Name.StartsWith("System.Nullable`1[[System.DateTime"))
             {
-                return DateTime.Parse(contentString, null, System.Globalization.DateTimeStyles.RoundtripKind);
+                return System.DateTime.Parse(contentString, null, System.Globalization.DateTimeStyles.RoundtripKind);
             }
 
             if (type == typeof(String) || type.Name.StartsWith("System.Nullable"))
