@@ -55,16 +55,19 @@ namespace QuantConnect.Tests.Brokerages.Oanda
         /// <summary>
         /// Provides the data required to test each order type in various cases
         /// </summary>
-        public static IEnumerable<TestCaseData> OrderParameters
+        private static TestCaseData[] OrderParameters()
         {
-            get
-            {
-                TestGlobals.Initialize();
+            TestGlobals.Initialize();
+            var marketOrder = new MarketOrderTestParameters(Symbol.Create("EURUSD", SecurityType.Forex, Market.Oanda));
+            var limitOrder = new LimitOrderTestParameters(Symbol.Create("EURUSD", SecurityType.Forex, Market.Oanda), 5m, 0.32m);
+            var stopMarketOrder = new StopMarketOrderTestParameters(Symbol.Create("EURUSD", SecurityType.Forex, Market.Oanda), 5m, 0.32m);
 
-                yield return new TestCaseData(new MarketOrderTestParameters(Symbol.Create("EURUSD", SecurityType.Forex, Market.Oanda))).SetName("MarketOrder");
-                yield return new TestCaseData(new LimitOrderTestParameters(Symbol.Create("EURUSD", SecurityType.Forex, Market.Oanda), 5m, 0.32m)).SetName("LimitOrder");
-                yield return new TestCaseData(new StopMarketOrderTestParameters(Symbol.Create("EURUSD", SecurityType.Forex, Market.Oanda), 5m, 0.32m)).SetName("StopMarketOrder");
-            }
+            return new[]
+            {
+                new TestCaseData(marketOrder),
+                new TestCaseData(limitOrder),
+                new TestCaseData(stopMarketOrder)
+            };
         }
 
         /// <summary>
@@ -90,7 +93,7 @@ namespace QuantConnect.Tests.Brokerages.Oanda
         /// </summary>
         protected override decimal GetAskPrice(Symbol symbol)
         {
-            var oanda = (OandaBrokerage) Brokerage;
+            var oanda = (OandaBrokerage)Brokerage;
             var quote = oanda.GetRates(new OandaSymbolMapper().GetBrokerageSymbol(symbol));
             var spdb = SymbolPropertiesDatabase.FromDataFolder();
             var symbolProperties = spdb.GetSymbolProperties(symbol.ID.Market, symbol, symbol.SecurityType, "USD");
@@ -103,7 +106,8 @@ namespace QuantConnect.Tests.Brokerages.Oanda
             Dictionary<int, Order> orders = new();
             var oanda = (OandaBrokerage)Brokerage;
             var symbol = Symbol;
-            EventHandler<List<OrderEvent>> orderStatusChangedCallback = (s, e) => {
+            EventHandler<List<OrderEvent>> orderStatusChangedCallback = (s, e) =>
+            {
                 var orderEvent = e.Single();
                 orderEventTracker.Add(orderEvent);
                 if (orders.TryGetValue(orderEvent.OrderId, out Order order))
@@ -151,7 +155,8 @@ namespace QuantConnect.Tests.Brokerages.Oanda
             var oanda = (OandaBrokerage)Brokerage;
             var symbol = Symbol;
             var quote = oanda.GetRates(new OandaSymbolMapper().GetBrokerageSymbol(symbol));
-            EventHandler<List<OrderEvent>> orderStatusChangedCallback = (s, e) => {
+            EventHandler<List<OrderEvent>> orderStatusChangedCallback = (s, e) =>
+            {
                 orderEventTracker.Add(e.Single());
             };
             oanda.OrdersStatusChanged += orderStatusChangedCallback;
@@ -205,7 +210,7 @@ namespace QuantConnect.Tests.Brokerages.Oanda
         [Test]
         public void ValidateStopLimitOrders()
         {
-            var oanda = (OandaBrokerage) Brokerage;
+            var oanda = (OandaBrokerage)Brokerage;
             var symbol = Symbol;
             var quote = oanda.GetRates(new OandaSymbolMapper().GetBrokerageSymbol(symbol));
 

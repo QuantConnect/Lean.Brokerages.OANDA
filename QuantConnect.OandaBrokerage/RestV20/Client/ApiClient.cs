@@ -98,7 +98,6 @@ namespace Oanda.RestV20.Client
             HttpClient = new HttpClient
             {
                 BaseAddress = new Uri(basePath),
-                Timeout = TimeSpan.FromSeconds(100)
             };
             Configuration = Configuration.Default;
             if (accessToken != null)

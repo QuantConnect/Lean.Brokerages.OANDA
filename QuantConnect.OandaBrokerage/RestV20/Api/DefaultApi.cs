@@ -1617,7 +1617,7 @@ namespace Oanda.RestV20.Api
     public partial class DefaultApi : IDefaultApi
     {
         private Oanda.RestV20.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
-        private string _accountId;
+        private readonly string _accountId;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DefaultApi"/> class.
