@@ -12,9 +12,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using RestSharp;
 using Oanda.RestV20.Client;
 using Oanda.RestV20.Model;
+using System.Net.Http;
 
 namespace Oanda.RestV20.Api
 {
@@ -31,12 +31,10 @@ namespace Oanda.RestV20.Api
         /// Cancel a pending Order in an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse2009</returns>
-        InlineResponse2009 CancelOrder (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null);
+        InlineResponse2009 CancelOrder(string orderSpecifier, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Cancel Order
@@ -45,12 +43,10 @@ namespace Oanda.RestV20.Api
         /// Cancel a pending Order in an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2009</returns>
-        ApiResponse<InlineResponse2009> CancelOrderWithHttpInfo (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse2009> CancelOrderWithHttpInfo(string orderSpecifier, string acceptDatetimeFormat = null);
         /// <summary>
         /// Close Position
         /// </summary>
@@ -58,13 +54,11 @@ namespace Oanda.RestV20.Api
         /// Closeout the open Position for a specific instrument in an Account.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <param name="closePositionBody">Representation of how to close the position</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20014</returns>
-        InlineResponse20014 ClosePosition (string authorization, string accountID, string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null);
+        InlineResponse20014 ClosePosition(string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Close Position
@@ -73,13 +67,11 @@ namespace Oanda.RestV20.Api
         /// Closeout the open Position for a specific instrument in an Account.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <param name="closePositionBody">Representation of how to close the position</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20014</returns>
-        ApiResponse<InlineResponse20014> ClosePositionWithHttpInfo (string authorization, string accountID, string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse20014> ClosePositionWithHttpInfo(string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null);
         /// <summary>
         /// Close Trade
         /// </summary>
@@ -87,13 +79,11 @@ namespace Oanda.RestV20.Api
         /// Close (partially or fully) a specific open Trade in an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="closeTradeBody">Details of how much of the open Trade to close.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20026</returns>
-        InlineResponse20026 CloseTrade (string authorization, string accountID, string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null);
+        InlineResponse20026 CloseTrade(string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Close Trade
@@ -102,13 +92,11 @@ namespace Oanda.RestV20.Api
         /// Close (partially or fully) a specific open Trade in an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="closeTradeBody">Details of how much of the open Trade to close.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20026</returns>
-        ApiResponse<InlineResponse20026> CloseTradeWithHttpInfo (string authorization, string accountID, string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse20026> CloseTradeWithHttpInfo(string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null);
         /// <summary>
         /// Configure Account
         /// </summary>
@@ -116,12 +104,10 @@ namespace Oanda.RestV20.Api
         /// Set the client-configurable portions of an Account.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="configureAccountBody">Representation of the Account configuration to set (optional)</param>
         /// <returns>InlineResponse2004</returns>
-        InlineResponse2004 ConfigureAccount (string authorization, string accountID, string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null);
+        InlineResponse2004 ConfigureAccount(string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null);
 
         /// <summary>
         /// Configure Account
@@ -130,12 +116,10 @@ namespace Oanda.RestV20.Api
         /// Set the client-configurable portions of an Account.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="configureAccountBody">Representation of the Account configuration to set (optional)</param>
         /// <returns>ApiResponse of InlineResponse2004</returns>
-        ApiResponse<InlineResponse2004> ConfigureAccountWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null);
+        ApiResponse<InlineResponse2004> ConfigureAccountWithHttpInfo(string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null);
         /// <summary>
         /// Create Order
         /// </summary>
@@ -143,12 +127,10 @@ namespace Oanda.RestV20.Api
         /// Create an Order for an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="createOrderBody"></param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse201</returns>
-        InlineResponse201 CreateOrder (string authorization, string accountID, CreateOrderBody createOrderBody, string acceptDatetimeFormat = null);
+        InlineResponse201 CreateOrder(CreateOrderBody createOrderBody, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Create Order
@@ -157,12 +139,10 @@ namespace Oanda.RestV20.Api
         /// Create an Order for an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="createOrderBody"></param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse201</returns>
-        ApiResponse<InlineResponse201> CreateOrderWithHttpInfo (string authorization, string accountID, CreateOrderBody createOrderBody, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse201> CreateOrderWithHttpInfo(CreateOrderBody createOrderBody, string acceptDatetimeFormat = null);
         /// <summary>
         /// Account Details
         /// </summary>
@@ -170,11 +150,9 @@ namespace Oanda.RestV20.Api
         /// Get the full details for a single Account that a client has access to. Full pending Order, open Trade and open Position representations are provided.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse2001</returns>
-        InlineResponse2001 GetAccount (string authorization, string accountID, string acceptDatetimeFormat = null);
+        InlineResponse2001 GetAccount(string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Account Details
@@ -183,11 +161,9 @@ namespace Oanda.RestV20.Api
         /// Get the full details for a single Account that a client has access to. Full pending Order, open Trade and open Position representations are provided.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2001</returns>
-        ApiResponse<InlineResponse2001> GetAccountWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse2001> GetAccountWithHttpInfo(string acceptDatetimeFormat = null);
         /// <summary>
         /// Poll Account Updates
         /// </summary>
@@ -195,12 +171,10 @@ namespace Oanda.RestV20.Api
         /// Endpoint used to poll an Account for its current state and changes since a specified TransactionID.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="sinceTransactionID">ID of the Transaction to get Account changes since. (optional)</param>
         /// <returns>InlineResponse2005</returns>
-        InlineResponse2005 GetAccountChanges (string authorization, string accountID, string acceptDatetimeFormat = null, string sinceTransactionID = null);
+        InlineResponse2005 GetAccountChanges(string acceptDatetimeFormat = null, string sinceTransactionID = null);
 
         /// <summary>
         /// Poll Account Updates
@@ -209,12 +183,10 @@ namespace Oanda.RestV20.Api
         /// Endpoint used to poll an Account for its current state and changes since a specified TransactionID.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="sinceTransactionID">ID of the Transaction to get Account changes since. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2005</returns>
-        ApiResponse<InlineResponse2005> GetAccountChangesWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, string sinceTransactionID = null);
+        ApiResponse<InlineResponse2005> GetAccountChangesWithHttpInfo(string acceptDatetimeFormat = null, string sinceTransactionID = null);
         /// <summary>
         /// Account Instruments
         /// </summary>
@@ -222,11 +194,9 @@ namespace Oanda.RestV20.Api
         /// Get the list of tradeable instruments for the given Account. The list of tradeable instruments is dependent on the regulatory division that the Account is located in, thus should be the same for all Accounts owned by a single user.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of instruments to query specifically. (optional)</param>
         /// <returns>InlineResponse2003</returns>
-        InlineResponse2003 GetAccountInstruments (string authorization, string accountID, List<string> instruments = null);
+        InlineResponse2003 GetAccountInstruments(List<string> instruments = null);
 
         /// <summary>
         /// Account Instruments
@@ -235,11 +205,9 @@ namespace Oanda.RestV20.Api
         /// Get the list of tradeable instruments for the given Account. The list of tradeable instruments is dependent on the regulatory division that the Account is located in, thus should be the same for all Accounts owned by a single user.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of instruments to query specifically. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2003</returns>
-        ApiResponse<InlineResponse2003> GetAccountInstrumentsWithHttpInfo (string authorization, string accountID, List<string> instruments = null);
+        ApiResponse<InlineResponse2003> GetAccountInstrumentsWithHttpInfo(List<string> instruments = null);
         /// <summary>
         /// Account Summary
         /// </summary>
@@ -247,11 +215,9 @@ namespace Oanda.RestV20.Api
         /// Get a summary for a single Account that a client has access to.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse2002</returns>
-        InlineResponse2002 GetAccountSummary (string authorization, string accountID, string acceptDatetimeFormat = null);
+        InlineResponse2002 GetAccountSummary(string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Account Summary
@@ -260,11 +226,9 @@ namespace Oanda.RestV20.Api
         /// Get a summary for a single Account that a client has access to.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2002</returns>
-        ApiResponse<InlineResponse2002> GetAccountSummaryWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse2002> GetAccountSummaryWithHttpInfo(string acceptDatetimeFormat = null);
         /// <summary>
         /// External User Info
         /// </summary>
@@ -272,10 +236,9 @@ namespace Oanda.RestV20.Api
         /// Fetch the externally-available user information for the specified user. This endpoint is intended to be used by 3rd parties that have been authorized by a user to view their personal information.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>InlineResponse20016</returns>
-        InlineResponse20016 GetExternalUserInfo (string authorization, string userSpecifier);
+        InlineResponse20016 GetExternalUserInfo(string userSpecifier);
 
         /// <summary>
         /// External User Info
@@ -284,10 +247,9 @@ namespace Oanda.RestV20.Api
         /// Fetch the externally-available user information for the specified user. This endpoint is intended to be used by 3rd parties that have been authorized by a user to view their personal information.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>ApiResponse of InlineResponse20016</returns>
-        ApiResponse<InlineResponse20016> GetExternalUserInfoWithHttpInfo (string authorization, string userSpecifier);
+        ApiResponse<InlineResponse20016> GetExternalUserInfoWithHttpInfo(string userSpecifier);
         /// <summary>
         /// Get Candlesticks
         /// </summary>
@@ -295,7 +257,6 @@ namespace Oanda.RestV20.Api
         /// Fetch candlestick data for an instrument.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="price">The Price component(s) to get candlestick data for. Can contain any combination of the characters \&quot;M\&quot; (midpoint candles) \&quot;B\&quot; (bid candles) and \&quot;A\&quot; (ask candles). (optional)</param>
@@ -309,7 +270,7 @@ namespace Oanda.RestV20.Api
         /// <param name="alignmentTimezone">The timezone to use for the dailyAlignment parameter. Candlesticks with daily alignment will be aligned to the dailyAlignment hour within the alignmentTimezone. (optional)</param>
         /// <param name="weeklyAlignment">The day of the week used for granularities that have weekly alignment. (optional)</param>
         /// <returns>InlineResponse20029</returns>
-        InlineResponse20029 GetInstrumentCandles (string authorization, string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null);
+        InlineResponse20029 GetInstrumentCandles(string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null);
 
         /// <summary>
         /// Get Candlesticks
@@ -318,7 +279,6 @@ namespace Oanda.RestV20.Api
         /// Fetch candlestick data for an instrument.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="price">The Price component(s) to get candlestick data for. Can contain any combination of the characters \&quot;M\&quot; (midpoint candles) \&quot;B\&quot; (bid candles) and \&quot;A\&quot; (ask candles). (optional)</param>
@@ -332,7 +292,7 @@ namespace Oanda.RestV20.Api
         /// <param name="alignmentTimezone">The timezone to use for the dailyAlignment parameter. Candlesticks with daily alignment will be aligned to the dailyAlignment hour within the alignmentTimezone. (optional)</param>
         /// <param name="weeklyAlignment">The day of the week used for granularities that have weekly alignment. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20029</returns>
-        ApiResponse<InlineResponse20029> GetInstrumentCandlesWithHttpInfo (string authorization, string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null);
+        ApiResponse<InlineResponse20029> GetInstrumentCandlesWithHttpInfo(string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null);
         /// <summary>
         /// Get Order
         /// </summary>
@@ -340,12 +300,10 @@ namespace Oanda.RestV20.Api
         /// Get details for a single Order in an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse2008</returns>
-        InlineResponse2008 GetOrder (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null);
+        InlineResponse2008 GetOrder(string orderSpecifier, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Get Order
@@ -354,12 +312,10 @@ namespace Oanda.RestV20.Api
         /// Get details for a single Order in an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2008</returns>
-        ApiResponse<InlineResponse2008> GetOrderWithHttpInfo (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse2008> GetOrderWithHttpInfo(string orderSpecifier, string acceptDatetimeFormat = null);
         /// <summary>
         /// Instrument Position
         /// </summary>
@@ -367,11 +323,9 @@ namespace Oanda.RestV20.Api
         /// Get the details of a single Instrument&#39;s Position in an Account. The Position may by open or not.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <returns>InlineResponse20013</returns>
-        InlineResponse20013 GetPosition (string authorization, string accountID, string instrument);
+        InlineResponse20013 GetPosition(string instrument);
 
         /// <summary>
         /// Instrument Position
@@ -380,11 +334,9 @@ namespace Oanda.RestV20.Api
         /// Get the details of a single Instrument&#39;s Position in an Account. The Position may by open or not.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <returns>ApiResponse of InlineResponse20013</returns>
-        ApiResponse<InlineResponse20013> GetPositionWithHttpInfo (string authorization, string accountID, string instrument);
+        ApiResponse<InlineResponse20013> GetPositionWithHttpInfo(string instrument);
         /// <summary>
         /// Current Account Prices
         /// </summary>
@@ -392,14 +344,12 @@ namespace Oanda.RestV20.Api
         /// Get pricing information for a specified list of Instruments within an Account.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of Instruments to get pricing for.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="since">Date/Time filter to apply to the returned prices. Only prices with a time later than this filter will be provided. (optional)</param>
         /// <param name="includeUnitsAvailable">Flag that enables the inclusion of the unitsAvailable field in the returned Price objects. (optional)</param>
         /// <returns>InlineResponse20021</returns>
-        InlineResponse20021 GetPrices (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null);
+        InlineResponse20021 GetPrices(List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null);
 
         /// <summary>
         /// Current Account Prices
@@ -408,14 +358,12 @@ namespace Oanda.RestV20.Api
         /// Get pricing information for a specified list of Instruments within an Account.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of Instruments to get pricing for.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="since">Date/Time filter to apply to the returned prices. Only prices with a time later than this filter will be provided. (optional)</param>
         /// <param name="includeUnitsAvailable">Flag that enables the inclusion of the unitsAvailable field in the returned Price objects. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20021</returns>
-        ApiResponse<InlineResponse20021> GetPricesWithHttpInfo (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null);
+        ApiResponse<InlineResponse20021> GetPricesWithHttpInfo(List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null);
         /// <summary>
         /// Trade Details
         /// </summary>
@@ -423,12 +371,10 @@ namespace Oanda.RestV20.Api
         /// Get the details of a specific Trade in an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20025</returns>
-        InlineResponse20025 GetTrade (string authorization, string accountID, string tradeSpecifier, string acceptDatetimeFormat = null);
+        InlineResponse20025 GetTrade(string tradeSpecifier, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Trade Details
@@ -437,12 +383,10 @@ namespace Oanda.RestV20.Api
         /// Get the details of a specific Trade in an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20025</returns>
-        ApiResponse<InlineResponse20025> GetTradeWithHttpInfo (string authorization, string accountID, string tradeSpecifier, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse20025> GetTradeWithHttpInfo(string tradeSpecifier, string acceptDatetimeFormat = null);
         /// <summary>
         /// Transaction Details
         /// </summary>
@@ -450,12 +394,10 @@ namespace Oanda.RestV20.Api
         /// Get the details of a single Account Transaction.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="transactionID">A Transaction ID</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20018</returns>
-        InlineResponse20018 GetTransaction (string authorization, string accountID, string transactionID, string acceptDatetimeFormat = null);
+        InlineResponse20018 GetTransaction(string transactionID, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Transaction Details
@@ -464,12 +406,10 @@ namespace Oanda.RestV20.Api
         /// Get the details of a single Account Transaction.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="transactionID">A Transaction ID</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20018</returns>
-        ApiResponse<InlineResponse20018> GetTransactionWithHttpInfo (string authorization, string accountID, string transactionID, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse20018> GetTransactionWithHttpInfo(string transactionID, string acceptDatetimeFormat = null);
         /// <summary>
         /// Transaction ID Range
         /// </summary>
@@ -477,14 +417,12 @@ namespace Oanda.RestV20.Api
         /// Get a range of Transactions for an Account based on the Transaction IDs.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="from">The starting Transacion ID (inclusive) to fetch.</param>
         /// <param name="to">The ending Transaction ID (inclusive) to fetch.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="type">The filter that restricts the types of Transactions to retreive. (optional)</param>
         /// <returns>InlineResponse20019</returns>
-        InlineResponse20019 GetTransactionRange (string authorization, string accountID, string from, string to, string acceptDatetimeFormat = null, List<string> type = null);
+        InlineResponse20019 GetTransactionRange(string from, string to, string acceptDatetimeFormat = null, List<string> type = null);
 
         /// <summary>
         /// Transaction ID Range
@@ -493,14 +431,12 @@ namespace Oanda.RestV20.Api
         /// Get a range of Transactions for an Account based on the Transaction IDs.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="from">The starting Transacion ID (inclusive) to fetch.</param>
         /// <param name="to">The ending Transaction ID (inclusive) to fetch.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="type">The filter that restricts the types of Transactions to retreive. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20019</returns>
-        ApiResponse<InlineResponse20019> GetTransactionRangeWithHttpInfo (string authorization, string accountID, string from, string to, string acceptDatetimeFormat = null, List<string> type = null);
+        ApiResponse<InlineResponse20019> GetTransactionRangeWithHttpInfo(string from, string to, string acceptDatetimeFormat = null, List<string> type = null);
         /// <summary>
         /// Transactions Since ID
         /// </summary>
@@ -508,12 +444,10 @@ namespace Oanda.RestV20.Api
         /// Get a range of Transactions for an Account starting at (but not including) a provided Transaction ID.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="id">The ID of the last Transacion fetched. This query will return all Transactions newer than the TransactionID.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20019</returns>
-        InlineResponse20019 GetTransactionsSinceId (string authorization, string accountID, string id, string acceptDatetimeFormat = null);
+        InlineResponse20019 GetTransactionsSinceId(string id, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Transactions Since ID
@@ -522,12 +456,10 @@ namespace Oanda.RestV20.Api
         /// Get a range of Transactions for an Account starting at (but not including) a provided Transaction ID.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="id">The ID of the last Transacion fetched. This query will return all Transactions newer than the TransactionID.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20019</returns>
-        ApiResponse<InlineResponse20019> GetTransactionsSinceIdWithHttpInfo (string authorization, string accountID, string id, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse20019> GetTransactionsSinceIdWithHttpInfo(string id, string acceptDatetimeFormat = null);
         /// <summary>
         /// User Info
         /// </summary>
@@ -535,10 +467,9 @@ namespace Oanda.RestV20.Api
         /// Fetch the user information for the specified user. This endpoint is intended to be used by the user themself to obtain their own information.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>InlineResponse20015</returns>
-        InlineResponse20015 GetUserInfo (string authorization, string userSpecifier);
+        InlineResponse20015 GetUserInfo(string userSpecifier);
 
         /// <summary>
         /// User Info
@@ -547,10 +478,9 @@ namespace Oanda.RestV20.Api
         /// Fetch the user information for the specified user. This endpoint is intended to be used by the user themself to obtain their own information.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>ApiResponse of InlineResponse20015</returns>
-        ApiResponse<InlineResponse20015> GetUserInfoWithHttpInfo (string authorization, string userSpecifier);
+        ApiResponse<InlineResponse20015> GetUserInfoWithHttpInfo(string userSpecifier);
         /// <summary>
         /// List Accounts
         /// </summary>
@@ -558,9 +488,8 @@ namespace Oanda.RestV20.Api
         /// Get a list of all Accounts authorized for the provided token.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <returns>InlineResponse200</returns>
-        InlineResponse200 ListAccounts (string authorization);
+        InlineResponse200 ListAccounts();
 
         /// <summary>
         /// List Accounts
@@ -569,9 +498,8 @@ namespace Oanda.RestV20.Api
         /// Get a list of all Accounts authorized for the provided token.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <returns>ApiResponse of InlineResponse200</returns>
-        ApiResponse<InlineResponse200> ListAccountsWithHttpInfo (string authorization);
+        ApiResponse<InlineResponse200> ListAccountsWithHttpInfo();
         /// <summary>
         /// Open Positions
         /// </summary>
@@ -579,10 +507,8 @@ namespace Oanda.RestV20.Api
         /// List all open Positions for an Account. An open Position is a Position in an Account that currently has a Trade opened for it.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <returns>InlineResponse20012</returns>
-        InlineResponse20012 ListOpenPositions (string authorization, string accountID);
+        InlineResponse20012 ListOpenPositions();
 
         /// <summary>
         /// Open Positions
@@ -591,10 +517,8 @@ namespace Oanda.RestV20.Api
         /// List all open Positions for an Account. An open Position is a Position in an Account that currently has a Trade opened for it.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <returns>ApiResponse of InlineResponse20012</returns>
-        ApiResponse<InlineResponse20012> ListOpenPositionsWithHttpInfo (string authorization, string accountID);
+        ApiResponse<InlineResponse20012> ListOpenPositionsWithHttpInfo();
         /// <summary>
         /// List Open Trades
         /// </summary>
@@ -602,11 +526,9 @@ namespace Oanda.RestV20.Api
         /// Get the list of open Trades for an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20024</returns>
-        InlineResponse20024 ListOpenTrades (string authorization, string accountID, string acceptDatetimeFormat = null);
+        InlineResponse20024 ListOpenTrades(string acceptDatetimeFormat = null);
 
         /// <summary>
         /// List Open Trades
@@ -615,11 +537,9 @@ namespace Oanda.RestV20.Api
         /// Get the list of open Trades for an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20024</returns>
-        ApiResponse<InlineResponse20024> ListOpenTradesWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse20024> ListOpenTradesWithHttpInfo(string acceptDatetimeFormat = null);
         /// <summary>
         /// List Orders
         /// </summary>
@@ -627,8 +547,6 @@ namespace Oanda.RestV20.Api
         /// Get a list of Orders for an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="ids">List of Order IDs to retrieve (optional)</param>
         /// <param name="state">The state to filter the requested Orders by (optional)</param>
@@ -636,7 +554,7 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Orders to return (optional)</param>
         /// <param name="beforeID">The maximum Order ID to return. If not provided the most recent Orders in the Account are returned (optional)</param>
         /// <returns>InlineResponse2006</returns>
-        InlineResponse2006 ListOrders (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
+        InlineResponse2006 ListOrders(string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
 
         /// <summary>
         /// List Orders
@@ -645,8 +563,6 @@ namespace Oanda.RestV20.Api
         /// Get a list of Orders for an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="ids">List of Order IDs to retrieve (optional)</param>
         /// <param name="state">The state to filter the requested Orders by (optional)</param>
@@ -654,7 +570,7 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Orders to return (optional)</param>
         /// <param name="beforeID">The maximum Order ID to return. If not provided the most recent Orders in the Account are returned (optional)</param>
         /// <returns>ApiResponse of InlineResponse2006</returns>
-        ApiResponse<InlineResponse2006> ListOrdersWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
+        ApiResponse<InlineResponse2006> ListOrdersWithHttpInfo(string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
         /// <summary>
         /// Pending Orders
         /// </summary>
@@ -662,11 +578,9 @@ namespace Oanda.RestV20.Api
         /// List all pending Orders in an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse2007</returns>
-        InlineResponse2007 ListPendingOrders (string authorization, string accountID, string acceptDatetimeFormat = null);
+        InlineResponse2007 ListPendingOrders(string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Pending Orders
@@ -675,11 +589,9 @@ namespace Oanda.RestV20.Api
         /// List all pending Orders in an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2007</returns>
-        ApiResponse<InlineResponse2007> ListPendingOrdersWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse2007> ListPendingOrdersWithHttpInfo(string acceptDatetimeFormat = null);
         /// <summary>
         /// List Positions
         /// </summary>
@@ -687,10 +599,8 @@ namespace Oanda.RestV20.Api
         /// List all Positions for an Account. The Positions returned are for every instrument that has had a position during the lifetime of an the Account.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <returns>InlineResponse20011</returns>
-        InlineResponse20011 ListPositions (string authorization, string accountID);
+        InlineResponse20011 ListPositions();
 
         /// <summary>
         /// List Positions
@@ -699,10 +609,8 @@ namespace Oanda.RestV20.Api
         /// List all Positions for an Account. The Positions returned are for every instrument that has had a position during the lifetime of an the Account.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <returns>ApiResponse of InlineResponse20011</returns>
-        ApiResponse<InlineResponse20011> ListPositionsWithHttpInfo (string authorization, string accountID);
+        ApiResponse<InlineResponse20011> ListPositionsWithHttpInfo();
         /// <summary>
         /// List Trades
         /// </summary>
@@ -710,8 +618,6 @@ namespace Oanda.RestV20.Api
         /// Get a list of Trades for an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="ids">List of Trade IDs to retrieve. (optional)</param>
         /// <param name="state">The state to filter the requested Trades by. (optional)</param>
@@ -719,7 +625,7 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Trades to return. (optional)</param>
         /// <param name="beforeID">The maximum Trade ID to return. If not provided the most recent Trades in the Account are returned. (optional)</param>
         /// <returns>InlineResponse20023</returns>
-        InlineResponse20023 ListTrades (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
+        InlineResponse20023 ListTrades(string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
 
         /// <summary>
         /// List Trades
@@ -728,8 +634,6 @@ namespace Oanda.RestV20.Api
         /// Get a list of Trades for an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="ids">List of Trade IDs to retrieve. (optional)</param>
         /// <param name="state">The state to filter the requested Trades by. (optional)</param>
@@ -737,7 +641,7 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Trades to return. (optional)</param>
         /// <param name="beforeID">The maximum Trade ID to return. If not provided the most recent Trades in the Account are returned. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20023</returns>
-        ApiResponse<InlineResponse20023> ListTradesWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
+        ApiResponse<InlineResponse20023> ListTradesWithHttpInfo(string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
         /// <summary>
         /// List Transactions
         /// </summary>
@@ -745,15 +649,13 @@ namespace Oanda.RestV20.Api
         /// Get a list of Transactions pages that satisfy a time-based Transaction query.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="from">The starting time (inclusive) of the time range for the Transactions being queried. (optional)</param>
         /// <param name="to">The ending time (inclusive) of the time range for the Transactions being queried. (optional)</param>
         /// <param name="pageSize">The number of Transactions to include in each page of the results. (optional)</param>
         /// <param name="type">A filter for restricting the types of Transactions to retreive. (optional)</param>
         /// <returns>InlineResponse20017</returns>
-        InlineResponse20017 ListTransactions (string authorization, string accountID, string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null);
+        InlineResponse20017 ListTransactions(string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null);
 
         /// <summary>
         /// List Transactions
@@ -762,15 +664,13 @@ namespace Oanda.RestV20.Api
         /// Get a list of Transactions pages that satisfy a time-based Transaction query.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="from">The starting time (inclusive) of the time range for the Transactions being queried. (optional)</param>
         /// <param name="to">The ending time (inclusive) of the time range for the Transactions being queried. (optional)</param>
         /// <param name="pageSize">The number of Transactions to include in each page of the results. (optional)</param>
         /// <param name="type">A filter for restricting the types of Transactions to retreive. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20017</returns>
-        ApiResponse<InlineResponse20017> ListTransactionsWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null);
+        ApiResponse<InlineResponse20017> ListTransactionsWithHttpInfo(string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null);
         /// <summary>
         /// Replace Order
         /// </summary>
@@ -778,13 +678,11 @@ namespace Oanda.RestV20.Api
         /// Replace an Order in an Account by simultaneously cancelling it and creating a replacement Order
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="replaceOrderBody">Specification of the replacing Order. The replacing order must have the same type as the replaced Order.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse2011</returns>
-        InlineResponse2011 ReplaceOrder (string authorization, string accountID, string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null);
+        InlineResponse2011 ReplaceOrder(string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Replace Order
@@ -793,13 +691,11 @@ namespace Oanda.RestV20.Api
         /// Replace an Order in an Account by simultaneously cancelling it and creating a replacement Order
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="replaceOrderBody">Specification of the replacing Order. The replacing order must have the same type as the replaced Order.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2011</returns>
-        ApiResponse<InlineResponse2011> ReplaceOrderWithHttpInfo (string authorization, string accountID, string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse2011> ReplaceOrderWithHttpInfo(string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null);
         /// <summary>
         /// Set Order Extensions
         /// </summary>
@@ -807,13 +703,11 @@ namespace Oanda.RestV20.Api
         /// Update the Client Extensions for an Order in an Account. Do not set, modify, or delete clientExtensions if your account is associated with MT4.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="setOrderClientExtensionsBody">Representation of the replacing Order</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20010</returns>
-        InlineResponse20010 SetOrderClientExtensions (string authorization, string accountID, string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null);
+        InlineResponse20010 SetOrderClientExtensions(string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Set Order Extensions
@@ -822,13 +716,11 @@ namespace Oanda.RestV20.Api
         /// Update the Client Extensions for an Order in an Account. Do not set, modify, or delete clientExtensions if your account is associated with MT4.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="setOrderClientExtensionsBody">Representation of the replacing Order</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20010</returns>
-        ApiResponse<InlineResponse20010> SetOrderClientExtensionsWithHttpInfo (string authorization, string accountID, string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse20010> SetOrderClientExtensionsWithHttpInfo(string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null);
         /// <summary>
         /// Set Trade Client Extensions
         /// </summary>
@@ -836,13 +728,11 @@ namespace Oanda.RestV20.Api
         /// Update the Client Extensions for a Trade. Do not add, update, or delete the Client Extensions if your account is associated with MT4.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="setTradeClientExtensionsBody">Details of how to modify the Trade&#39;s Client Extensions.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20027</returns>
-        InlineResponse20027 SetTradeClientExtensions (string authorization, string accountID, string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null);
+        InlineResponse20027 SetTradeClientExtensions(string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Set Trade Client Extensions
@@ -851,13 +741,11 @@ namespace Oanda.RestV20.Api
         /// Update the Client Extensions for a Trade. Do not add, update, or delete the Client Extensions if your account is associated with MT4.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="setTradeClientExtensionsBody">Details of how to modify the Trade&#39;s Client Extensions.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20027</returns>
-        ApiResponse<InlineResponse20027> SetTradeClientExtensionsWithHttpInfo (string authorization, string accountID, string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse20027> SetTradeClientExtensionsWithHttpInfo(string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null);
         /// <summary>
         /// Set Dependent Orders
         /// </summary>
@@ -865,13 +753,11 @@ namespace Oanda.RestV20.Api
         /// Create, replace and cancel a Trade&#39;s dependent Orders (Take Profit, Stop Loss and Trailing Stop Loss) through the Trade itself
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="setTradeDependentOrdersBody">Details of how to modify the Trade&#39;s dependent Orders.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20028</returns>
-        InlineResponse20028 SetTradeDependentOrders (string authorization, string accountID, string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null);
+        InlineResponse20028 SetTradeDependentOrders(string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Set Dependent Orders
@@ -880,13 +766,11 @@ namespace Oanda.RestV20.Api
         /// Create, replace and cancel a Trade&#39;s dependent Orders (Take Profit, Stop Loss and Trailing Stop Loss) through the Trade itself
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="setTradeDependentOrdersBody">Details of how to modify the Trade&#39;s dependent Orders.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20028</returns>
-        ApiResponse<InlineResponse20028> SetTradeDependentOrdersWithHttpInfo (string authorization, string accountID, string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null);
+        ApiResponse<InlineResponse20028> SetTradeDependentOrdersWithHttpInfo(string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null);
         /// <summary>
         /// Price Stream
         /// </summary>
@@ -894,13 +778,11 @@ namespace Oanda.RestV20.Api
         /// Get a stream of Account Prices starting from when the request is made. This pricing stream does not include every single price created for the Account, but instead will provide at most 4 prices per second (every 250 milliseconds) for each instrument being requested. If more than one price is created for an instrument during the 250 millisecond window, only the price in effect at the end of the window is sent. This means that during periods of rapid price movement, subscribers to this stream will not be sent every price. Pricing windows for different connections to the price stream are not all aligned in the same way (i.e. they are not all aligned to the top of the second). This means that during periods of rapid price movement, different subscribers may observe different prices depending on their alignment.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of Instruments to stream Prices for.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="snapshot">Flag that enables/disables the sending of a pricing snapshot when initially connecting to the stream. (optional)</param>
         /// <returns>InlineResponse20022</returns>
-        InlineResponse20022 StreamPricing (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null);
+        InlineResponse20022 StreamPricing(List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null);
 
         /// <summary>
         /// Price Stream
@@ -909,13 +791,11 @@ namespace Oanda.RestV20.Api
         /// Get a stream of Account Prices starting from when the request is made. This pricing stream does not include every single price created for the Account, but instead will provide at most 4 prices per second (every 250 milliseconds) for each instrument being requested. If more than one price is created for an instrument during the 250 millisecond window, only the price in effect at the end of the window is sent. This means that during periods of rapid price movement, subscribers to this stream will not be sent every price. Pricing windows for different connections to the price stream are not all aligned in the same way (i.e. they are not all aligned to the top of the second). This means that during periods of rapid price movement, different subscribers may observe different prices depending on their alignment.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of Instruments to stream Prices for.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="snapshot">Flag that enables/disables the sending of a pricing snapshot when initially connecting to the stream. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20022</returns>
-        ApiResponse<InlineResponse20022> StreamPricingWithHttpInfo (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null);
+        ApiResponse<InlineResponse20022> StreamPricingWithHttpInfo(List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null);
         /// <summary>
         /// Transaction Stream
         /// </summary>
@@ -923,10 +803,8 @@ namespace Oanda.RestV20.Api
         /// Get a stream of Transactions for an Account starting from when the request is made.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <returns>InlineResponse20020</returns>
-        InlineResponse20020 StreamTransactions (string authorization, string accountID);
+        InlineResponse20020 StreamTransactions();
 
         /// <summary>
         /// Transaction Stream
@@ -935,10 +813,8 @@ namespace Oanda.RestV20.Api
         /// Get a stream of Transactions for an Account starting from when the request is made.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <returns>ApiResponse of InlineResponse20020</returns>
-        ApiResponse<InlineResponse20020> StreamTransactionsWithHttpInfo (string authorization, string accountID);
+        ApiResponse<InlineResponse20020> StreamTransactionsWithHttpInfo();
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -948,12 +824,10 @@ namespace Oanda.RestV20.Api
         /// Cancel a pending Order in an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse2009</returns>
-        System.Threading.Tasks.Task<InlineResponse2009> CancelOrderAsync (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse2009> CancelOrderAsync(string orderSpecifier, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Cancel Order
@@ -962,12 +836,10 @@ namespace Oanda.RestV20.Api
         /// Cancel a pending Order in an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2009)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse2009>> CancelOrderAsyncWithHttpInfo (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse2009>> CancelOrderAsyncWithHttpInfo(string orderSpecifier, string acceptDatetimeFormat = null);
         /// <summary>
         /// Close Position
         /// </summary>
@@ -975,13 +847,11 @@ namespace Oanda.RestV20.Api
         /// Closeout the open Position for a specific instrument in an Account.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <param name="closePositionBody">Representation of how to close the position</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20014</returns>
-        System.Threading.Tasks.Task<InlineResponse20014> ClosePositionAsync (string authorization, string accountID, string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse20014> ClosePositionAsync(string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Close Position
@@ -990,13 +860,11 @@ namespace Oanda.RestV20.Api
         /// Closeout the open Position for a specific instrument in an Account.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <param name="closePositionBody">Representation of how to close the position</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20014)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20014>> ClosePositionAsyncWithHttpInfo (string authorization, string accountID, string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20014>> ClosePositionAsyncWithHttpInfo(string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null);
         /// <summary>
         /// Close Trade
         /// </summary>
@@ -1004,13 +872,11 @@ namespace Oanda.RestV20.Api
         /// Close (partially or fully) a specific open Trade in an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="closeTradeBody">Details of how much of the open Trade to close.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20026</returns>
-        System.Threading.Tasks.Task<InlineResponse20026> CloseTradeAsync (string authorization, string accountID, string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse20026> CloseTradeAsync(string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Close Trade
@@ -1019,13 +885,11 @@ namespace Oanda.RestV20.Api
         /// Close (partially or fully) a specific open Trade in an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="closeTradeBody">Details of how much of the open Trade to close.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20026)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20026>> CloseTradeAsyncWithHttpInfo (string authorization, string accountID, string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20026>> CloseTradeAsyncWithHttpInfo(string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null);
         /// <summary>
         /// Configure Account
         /// </summary>
@@ -1033,12 +897,10 @@ namespace Oanda.RestV20.Api
         /// Set the client-configurable portions of an Account.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="configureAccountBody">Representation of the Account configuration to set (optional)</param>
         /// <returns>Task of InlineResponse2004</returns>
-        System.Threading.Tasks.Task<InlineResponse2004> ConfigureAccountAsync (string authorization, string accountID, string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null);
+        System.Threading.Tasks.Task<InlineResponse2004> ConfigureAccountAsync(string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null);
 
         /// <summary>
         /// Configure Account
@@ -1047,12 +909,10 @@ namespace Oanda.RestV20.Api
         /// Set the client-configurable portions of an Account.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="configureAccountBody">Representation of the Account configuration to set (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2004)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse2004>> ConfigureAccountAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse2004>> ConfigureAccountAsyncWithHttpInfo(string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null);
         /// <summary>
         /// Create Order
         /// </summary>
@@ -1060,12 +920,10 @@ namespace Oanda.RestV20.Api
         /// Create an Order for an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="createOrderBody"></param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse201</returns>
-        System.Threading.Tasks.Task<InlineResponse201> CreateOrderAsync (string authorization, string accountID, CreateOrderBody createOrderBody, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse201> CreateOrderAsync(CreateOrderBody createOrderBody, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Create Order
@@ -1074,12 +932,10 @@ namespace Oanda.RestV20.Api
         /// Create an Order for an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="createOrderBody"></param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse201)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse201>> CreateOrderAsyncWithHttpInfo (string authorization, string accountID, CreateOrderBody createOrderBody, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse201>> CreateOrderAsyncWithHttpInfo(CreateOrderBody createOrderBody, string acceptDatetimeFormat = null);
         /// <summary>
         /// Account Details
         /// </summary>
@@ -1087,11 +943,9 @@ namespace Oanda.RestV20.Api
         /// Get the full details for a single Account that a client has access to. Full pending Order, open Trade and open Position representations are provided.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse2001</returns>
-        System.Threading.Tasks.Task<InlineResponse2001> GetAccountAsync (string authorization, string accountID, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse2001> GetAccountAsync(string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Account Details
@@ -1100,11 +954,9 @@ namespace Oanda.RestV20.Api
         /// Get the full details for a single Account that a client has access to. Full pending Order, open Trade and open Position representations are provided.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2001)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse2001>> GetAccountAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse2001>> GetAccountAsyncWithHttpInfo(string acceptDatetimeFormat = null);
         /// <summary>
         /// Poll Account Updates
         /// </summary>
@@ -1112,12 +964,10 @@ namespace Oanda.RestV20.Api
         /// Endpoint used to poll an Account for its current state and changes since a specified TransactionID.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="sinceTransactionID">ID of the Transaction to get Account changes since. (optional)</param>
         /// <returns>Task of InlineResponse2005</returns>
-        System.Threading.Tasks.Task<InlineResponse2005> GetAccountChangesAsync (string authorization, string accountID, string acceptDatetimeFormat = null, string sinceTransactionID = null);
+        System.Threading.Tasks.Task<InlineResponse2005> GetAccountChangesAsync(string acceptDatetimeFormat = null, string sinceTransactionID = null);
 
         /// <summary>
         /// Poll Account Updates
@@ -1126,12 +976,10 @@ namespace Oanda.RestV20.Api
         /// Endpoint used to poll an Account for its current state and changes since a specified TransactionID.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="sinceTransactionID">ID of the Transaction to get Account changes since. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2005)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse2005>> GetAccountChangesAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, string sinceTransactionID = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse2005>> GetAccountChangesAsyncWithHttpInfo(string acceptDatetimeFormat = null, string sinceTransactionID = null);
         /// <summary>
         /// Account Instruments
         /// </summary>
@@ -1139,11 +987,9 @@ namespace Oanda.RestV20.Api
         /// Get the list of tradeable instruments for the given Account. The list of tradeable instruments is dependent on the regulatory division that the Account is located in, thus should be the same for all Accounts owned by a single user.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of instruments to query specifically. (optional)</param>
         /// <returns>Task of InlineResponse2003</returns>
-        System.Threading.Tasks.Task<InlineResponse2003> GetAccountInstrumentsAsync (string authorization, string accountID, List<string> instruments = null);
+        System.Threading.Tasks.Task<InlineResponse2003> GetAccountInstrumentsAsync(List<string> instruments = null);
 
         /// <summary>
         /// Account Instruments
@@ -1152,11 +998,9 @@ namespace Oanda.RestV20.Api
         /// Get the list of tradeable instruments for the given Account. The list of tradeable instruments is dependent on the regulatory division that the Account is located in, thus should be the same for all Accounts owned by a single user.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of instruments to query specifically. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2003)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse2003>> GetAccountInstrumentsAsyncWithHttpInfo (string authorization, string accountID, List<string> instruments = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse2003>> GetAccountInstrumentsAsyncWithHttpInfo(List<string> instruments = null);
         /// <summary>
         /// Account Summary
         /// </summary>
@@ -1164,11 +1008,9 @@ namespace Oanda.RestV20.Api
         /// Get a summary for a single Account that a client has access to.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse2002</returns>
-        System.Threading.Tasks.Task<InlineResponse2002> GetAccountSummaryAsync (string authorization, string accountID, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse2002> GetAccountSummaryAsync(string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Account Summary
@@ -1177,11 +1019,9 @@ namespace Oanda.RestV20.Api
         /// Get a summary for a single Account that a client has access to.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2002)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse2002>> GetAccountSummaryAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse2002>> GetAccountSummaryAsyncWithHttpInfo(string acceptDatetimeFormat = null);
         /// <summary>
         /// External User Info
         /// </summary>
@@ -1189,10 +1029,9 @@ namespace Oanda.RestV20.Api
         /// Fetch the externally-available user information for the specified user. This endpoint is intended to be used by 3rd parties that have been authorized by a user to view their personal information.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>Task of InlineResponse20016</returns>
-        System.Threading.Tasks.Task<InlineResponse20016> GetExternalUserInfoAsync (string authorization, string userSpecifier);
+        System.Threading.Tasks.Task<InlineResponse20016> GetExternalUserInfoAsync(string userSpecifier);
 
         /// <summary>
         /// External User Info
@@ -1201,10 +1040,9 @@ namespace Oanda.RestV20.Api
         /// Fetch the externally-available user information for the specified user. This endpoint is intended to be used by 3rd parties that have been authorized by a user to view their personal information.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>Task of ApiResponse (InlineResponse20016)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20016>> GetExternalUserInfoAsyncWithHttpInfo (string authorization, string userSpecifier);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20016>> GetExternalUserInfoAsyncWithHttpInfo(string userSpecifier);
         /// <summary>
         /// Get Candlesticks
         /// </summary>
@@ -1212,7 +1050,6 @@ namespace Oanda.RestV20.Api
         /// Fetch candlestick data for an instrument.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="price">The Price component(s) to get candlestick data for. Can contain any combination of the characters \&quot;M\&quot; (midpoint candles) \&quot;B\&quot; (bid candles) and \&quot;A\&quot; (ask candles). (optional)</param>
@@ -1226,7 +1063,7 @@ namespace Oanda.RestV20.Api
         /// <param name="alignmentTimezone">The timezone to use for the dailyAlignment parameter. Candlesticks with daily alignment will be aligned to the dailyAlignment hour within the alignmentTimezone. (optional)</param>
         /// <param name="weeklyAlignment">The day of the week used for granularities that have weekly alignment. (optional)</param>
         /// <returns>Task of InlineResponse20029</returns>
-        System.Threading.Tasks.Task<InlineResponse20029> GetInstrumentCandlesAsync (string authorization, string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null);
+        System.Threading.Tasks.Task<InlineResponse20029> GetInstrumentCandlesAsync(string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null);
 
         /// <summary>
         /// Get Candlesticks
@@ -1235,7 +1072,6 @@ namespace Oanda.RestV20.Api
         /// Fetch candlestick data for an instrument.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="price">The Price component(s) to get candlestick data for. Can contain any combination of the characters \&quot;M\&quot; (midpoint candles) \&quot;B\&quot; (bid candles) and \&quot;A\&quot; (ask candles). (optional)</param>
@@ -1249,7 +1085,7 @@ namespace Oanda.RestV20.Api
         /// <param name="alignmentTimezone">The timezone to use for the dailyAlignment parameter. Candlesticks with daily alignment will be aligned to the dailyAlignment hour within the alignmentTimezone. (optional)</param>
         /// <param name="weeklyAlignment">The day of the week used for granularities that have weekly alignment. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20029)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20029>> GetInstrumentCandlesAsyncWithHttpInfo (string authorization, string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20029>> GetInstrumentCandlesAsyncWithHttpInfo(string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null);
         /// <summary>
         /// Get Order
         /// </summary>
@@ -1257,12 +1093,10 @@ namespace Oanda.RestV20.Api
         /// Get details for a single Order in an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse2008</returns>
-        System.Threading.Tasks.Task<InlineResponse2008> GetOrderAsync (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse2008> GetOrderAsync(string orderSpecifier, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Get Order
@@ -1271,12 +1105,10 @@ namespace Oanda.RestV20.Api
         /// Get details for a single Order in an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2008)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse2008>> GetOrderAsyncWithHttpInfo (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse2008>> GetOrderAsyncWithHttpInfo(string orderSpecifier, string acceptDatetimeFormat = null);
         /// <summary>
         /// Instrument Position
         /// </summary>
@@ -1284,11 +1116,9 @@ namespace Oanda.RestV20.Api
         /// Get the details of a single Instrument&#39;s Position in an Account. The Position may by open or not.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <returns>Task of InlineResponse20013</returns>
-        System.Threading.Tasks.Task<InlineResponse20013> GetPositionAsync (string authorization, string accountID, string instrument);
+        System.Threading.Tasks.Task<InlineResponse20013> GetPositionAsync(string instrument);
 
         /// <summary>
         /// Instrument Position
@@ -1297,11 +1127,9 @@ namespace Oanda.RestV20.Api
         /// Get the details of a single Instrument&#39;s Position in an Account. The Position may by open or not.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <returns>Task of ApiResponse (InlineResponse20013)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20013>> GetPositionAsyncWithHttpInfo (string authorization, string accountID, string instrument);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20013>> GetPositionAsyncWithHttpInfo(string instrument);
         /// <summary>
         /// Current Account Prices
         /// </summary>
@@ -1309,14 +1137,12 @@ namespace Oanda.RestV20.Api
         /// Get pricing information for a specified list of Instruments within an Account.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of Instruments to get pricing for.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="since">Date/Time filter to apply to the returned prices. Only prices with a time later than this filter will be provided. (optional)</param>
         /// <param name="includeUnitsAvailable">Flag that enables the inclusion of the unitsAvailable field in the returned Price objects. (optional)</param>
         /// <returns>Task of InlineResponse20021</returns>
-        System.Threading.Tasks.Task<InlineResponse20021> GetPricesAsync (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null);
+        System.Threading.Tasks.Task<InlineResponse20021> GetPricesAsync(List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null);
 
         /// <summary>
         /// Current Account Prices
@@ -1325,14 +1151,12 @@ namespace Oanda.RestV20.Api
         /// Get pricing information for a specified list of Instruments within an Account.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of Instruments to get pricing for.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="since">Date/Time filter to apply to the returned prices. Only prices with a time later than this filter will be provided. (optional)</param>
         /// <param name="includeUnitsAvailable">Flag that enables the inclusion of the unitsAvailable field in the returned Price objects. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20021)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20021>> GetPricesAsyncWithHttpInfo (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20021>> GetPricesAsyncWithHttpInfo(List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null);
         /// <summary>
         /// Trade Details
         /// </summary>
@@ -1340,12 +1164,10 @@ namespace Oanda.RestV20.Api
         /// Get the details of a specific Trade in an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20025</returns>
-        System.Threading.Tasks.Task<InlineResponse20025> GetTradeAsync (string authorization, string accountID, string tradeSpecifier, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse20025> GetTradeAsync(string tradeSpecifier, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Trade Details
@@ -1354,12 +1176,10 @@ namespace Oanda.RestV20.Api
         /// Get the details of a specific Trade in an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20025)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20025>> GetTradeAsyncWithHttpInfo (string authorization, string accountID, string tradeSpecifier, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20025>> GetTradeAsyncWithHttpInfo(string tradeSpecifier, string acceptDatetimeFormat = null);
         /// <summary>
         /// Transaction Details
         /// </summary>
@@ -1367,12 +1187,10 @@ namespace Oanda.RestV20.Api
         /// Get the details of a single Account Transaction.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="transactionID">A Transaction ID</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20018</returns>
-        System.Threading.Tasks.Task<InlineResponse20018> GetTransactionAsync (string authorization, string accountID, string transactionID, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse20018> GetTransactionAsync(string transactionID, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Transaction Details
@@ -1381,12 +1199,10 @@ namespace Oanda.RestV20.Api
         /// Get the details of a single Account Transaction.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="transactionID">A Transaction ID</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20018)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20018>> GetTransactionAsyncWithHttpInfo (string authorization, string accountID, string transactionID, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20018>> GetTransactionAsyncWithHttpInfo(string transactionID, string acceptDatetimeFormat = null);
         /// <summary>
         /// Transaction ID Range
         /// </summary>
@@ -1394,14 +1210,12 @@ namespace Oanda.RestV20.Api
         /// Get a range of Transactions for an Account based on the Transaction IDs.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="from">The starting Transacion ID (inclusive) to fetch.</param>
         /// <param name="to">The ending Transaction ID (inclusive) to fetch.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="type">The filter that restricts the types of Transactions to retreive. (optional)</param>
         /// <returns>Task of InlineResponse20019</returns>
-        System.Threading.Tasks.Task<InlineResponse20019> GetTransactionRangeAsync (string authorization, string accountID, string from, string to, string acceptDatetimeFormat = null, List<string> type = null);
+        System.Threading.Tasks.Task<InlineResponse20019> GetTransactionRangeAsync(string from, string to, string acceptDatetimeFormat = null, List<string> type = null);
 
         /// <summary>
         /// Transaction ID Range
@@ -1410,14 +1224,12 @@ namespace Oanda.RestV20.Api
         /// Get a range of Transactions for an Account based on the Transaction IDs.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="from">The starting Transacion ID (inclusive) to fetch.</param>
         /// <param name="to">The ending Transaction ID (inclusive) to fetch.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="type">The filter that restricts the types of Transactions to retreive. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20019)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20019>> GetTransactionRangeAsyncWithHttpInfo (string authorization, string accountID, string from, string to, string acceptDatetimeFormat = null, List<string> type = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20019>> GetTransactionRangeAsyncWithHttpInfo(string from, string to, string acceptDatetimeFormat = null, List<string> type = null);
         /// <summary>
         /// Transactions Since ID
         /// </summary>
@@ -1425,12 +1237,10 @@ namespace Oanda.RestV20.Api
         /// Get a range of Transactions for an Account starting at (but not including) a provided Transaction ID.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="id">The ID of the last Transacion fetched. This query will return all Transactions newer than the TransactionID.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20019</returns>
-        System.Threading.Tasks.Task<InlineResponse20019> GetTransactionsSinceIdAsync (string authorization, string accountID, string id, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse20019> GetTransactionsSinceIdAsync(string id, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Transactions Since ID
@@ -1439,12 +1249,10 @@ namespace Oanda.RestV20.Api
         /// Get a range of Transactions for an Account starting at (but not including) a provided Transaction ID.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="id">The ID of the last Transacion fetched. This query will return all Transactions newer than the TransactionID.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20019)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20019>> GetTransactionsSinceIdAsyncWithHttpInfo (string authorization, string accountID, string id, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20019>> GetTransactionsSinceIdAsyncWithHttpInfo(string id, string acceptDatetimeFormat = null);
         /// <summary>
         /// User Info
         /// </summary>
@@ -1452,10 +1260,9 @@ namespace Oanda.RestV20.Api
         /// Fetch the user information for the specified user. This endpoint is intended to be used by the user themself to obtain their own information.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>Task of InlineResponse20015</returns>
-        System.Threading.Tasks.Task<InlineResponse20015> GetUserInfoAsync (string authorization, string userSpecifier);
+        System.Threading.Tasks.Task<InlineResponse20015> GetUserInfoAsync(string userSpecifier);
 
         /// <summary>
         /// User Info
@@ -1464,10 +1271,9 @@ namespace Oanda.RestV20.Api
         /// Fetch the user information for the specified user. This endpoint is intended to be used by the user themself to obtain their own information.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>Task of ApiResponse (InlineResponse20015)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20015>> GetUserInfoAsyncWithHttpInfo (string authorization, string userSpecifier);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20015>> GetUserInfoAsyncWithHttpInfo(string userSpecifier);
         /// <summary>
         /// List Accounts
         /// </summary>
@@ -1475,9 +1281,8 @@ namespace Oanda.RestV20.Api
         /// Get a list of all Accounts authorized for the provided token.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <returns>Task of InlineResponse200</returns>
-        System.Threading.Tasks.Task<InlineResponse200> ListAccountsAsync (string authorization);
+        System.Threading.Tasks.Task<InlineResponse200> ListAccountsAsync();
 
         /// <summary>
         /// List Accounts
@@ -1486,9 +1291,8 @@ namespace Oanda.RestV20.Api
         /// Get a list of all Accounts authorized for the provided token.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <returns>Task of ApiResponse (InlineResponse200)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse200>> ListAccountsAsyncWithHttpInfo (string authorization);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse200>> ListAccountsAsyncWithHttpInfo();
         /// <summary>
         /// Open Positions
         /// </summary>
@@ -1496,10 +1300,8 @@ namespace Oanda.RestV20.Api
         /// List all open Positions for an Account. An open Position is a Position in an Account that currently has a Trade opened for it.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <returns>Task of InlineResponse20012</returns>
-        System.Threading.Tasks.Task<InlineResponse20012> ListOpenPositionsAsync (string authorization, string accountID);
+        System.Threading.Tasks.Task<InlineResponse20012> ListOpenPositionsAsync();
 
         /// <summary>
         /// Open Positions
@@ -1508,10 +1310,8 @@ namespace Oanda.RestV20.Api
         /// List all open Positions for an Account. An open Position is a Position in an Account that currently has a Trade opened for it.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <returns>Task of ApiResponse (InlineResponse20012)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20012>> ListOpenPositionsAsyncWithHttpInfo (string authorization, string accountID);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20012>> ListOpenPositionsAsyncWithHttpInfo();
         /// <summary>
         /// List Open Trades
         /// </summary>
@@ -1519,11 +1319,9 @@ namespace Oanda.RestV20.Api
         /// Get the list of open Trades for an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20024</returns>
-        System.Threading.Tasks.Task<InlineResponse20024> ListOpenTradesAsync (string authorization, string accountID, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse20024> ListOpenTradesAsync(string acceptDatetimeFormat = null);
 
         /// <summary>
         /// List Open Trades
@@ -1532,11 +1330,9 @@ namespace Oanda.RestV20.Api
         /// Get the list of open Trades for an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20024)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20024>> ListOpenTradesAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20024>> ListOpenTradesAsyncWithHttpInfo(string acceptDatetimeFormat = null);
         /// <summary>
         /// List Orders
         /// </summary>
@@ -1544,8 +1340,6 @@ namespace Oanda.RestV20.Api
         /// Get a list of Orders for an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="ids">List of Order IDs to retrieve (optional)</param>
         /// <param name="state">The state to filter the requested Orders by (optional)</param>
@@ -1553,7 +1347,7 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Orders to return (optional)</param>
         /// <param name="beforeID">The maximum Order ID to return. If not provided the most recent Orders in the Account are returned (optional)</param>
         /// <returns>Task of InlineResponse2006</returns>
-        System.Threading.Tasks.Task<InlineResponse2006> ListOrdersAsync (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
+        System.Threading.Tasks.Task<InlineResponse2006> ListOrdersAsync(string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
 
         /// <summary>
         /// List Orders
@@ -1562,8 +1356,6 @@ namespace Oanda.RestV20.Api
         /// Get a list of Orders for an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="ids">List of Order IDs to retrieve (optional)</param>
         /// <param name="state">The state to filter the requested Orders by (optional)</param>
@@ -1571,7 +1363,7 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Orders to return (optional)</param>
         /// <param name="beforeID">The maximum Order ID to return. If not provided the most recent Orders in the Account are returned (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2006)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse2006>> ListOrdersAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse2006>> ListOrdersAsyncWithHttpInfo(string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
         /// <summary>
         /// Pending Orders
         /// </summary>
@@ -1579,11 +1371,9 @@ namespace Oanda.RestV20.Api
         /// List all pending Orders in an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse2007</returns>
-        System.Threading.Tasks.Task<InlineResponse2007> ListPendingOrdersAsync (string authorization, string accountID, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse2007> ListPendingOrdersAsync(string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Pending Orders
@@ -1592,11 +1382,9 @@ namespace Oanda.RestV20.Api
         /// List all pending Orders in an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2007)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse2007>> ListPendingOrdersAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse2007>> ListPendingOrdersAsyncWithHttpInfo(string acceptDatetimeFormat = null);
         /// <summary>
         /// List Positions
         /// </summary>
@@ -1604,10 +1392,8 @@ namespace Oanda.RestV20.Api
         /// List all Positions for an Account. The Positions returned are for every instrument that has had a position during the lifetime of an the Account.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <returns>Task of InlineResponse20011</returns>
-        System.Threading.Tasks.Task<InlineResponse20011> ListPositionsAsync (string authorization, string accountID);
+        System.Threading.Tasks.Task<InlineResponse20011> ListPositionsAsync();
 
         /// <summary>
         /// List Positions
@@ -1616,10 +1402,8 @@ namespace Oanda.RestV20.Api
         /// List all Positions for an Account. The Positions returned are for every instrument that has had a position during the lifetime of an the Account.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <returns>Task of ApiResponse (InlineResponse20011)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20011>> ListPositionsAsyncWithHttpInfo (string authorization, string accountID);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20011>> ListPositionsAsyncWithHttpInfo();
         /// <summary>
         /// List Trades
         /// </summary>
@@ -1627,8 +1411,6 @@ namespace Oanda.RestV20.Api
         /// Get a list of Trades for an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="ids">List of Trade IDs to retrieve. (optional)</param>
         /// <param name="state">The state to filter the requested Trades by. (optional)</param>
@@ -1636,7 +1418,7 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Trades to return. (optional)</param>
         /// <param name="beforeID">The maximum Trade ID to return. If not provided the most recent Trades in the Account are returned. (optional)</param>
         /// <returns>Task of InlineResponse20023</returns>
-        System.Threading.Tasks.Task<InlineResponse20023> ListTradesAsync (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
+        System.Threading.Tasks.Task<InlineResponse20023> ListTradesAsync(string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
 
         /// <summary>
         /// List Trades
@@ -1645,8 +1427,6 @@ namespace Oanda.RestV20.Api
         /// Get a list of Trades for an Account
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="ids">List of Trade IDs to retrieve. (optional)</param>
         /// <param name="state">The state to filter the requested Trades by. (optional)</param>
@@ -1654,7 +1434,7 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Trades to return. (optional)</param>
         /// <param name="beforeID">The maximum Trade ID to return. If not provided the most recent Trades in the Account are returned. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20023)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20023>> ListTradesAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20023>> ListTradesAsyncWithHttpInfo(string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null);
         /// <summary>
         /// List Transactions
         /// </summary>
@@ -1662,15 +1442,13 @@ namespace Oanda.RestV20.Api
         /// Get a list of Transactions pages that satisfy a time-based Transaction query.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="from">The starting time (inclusive) of the time range for the Transactions being queried. (optional)</param>
         /// <param name="to">The ending time (inclusive) of the time range for the Transactions being queried. (optional)</param>
         /// <param name="pageSize">The number of Transactions to include in each page of the results. (optional)</param>
         /// <param name="type">A filter for restricting the types of Transactions to retreive. (optional)</param>
         /// <returns>Task of InlineResponse20017</returns>
-        System.Threading.Tasks.Task<InlineResponse20017> ListTransactionsAsync (string authorization, string accountID, string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null);
+        System.Threading.Tasks.Task<InlineResponse20017> ListTransactionsAsync(string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null);
 
         /// <summary>
         /// List Transactions
@@ -1679,15 +1457,13 @@ namespace Oanda.RestV20.Api
         /// Get a list of Transactions pages that satisfy a time-based Transaction query.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="from">The starting time (inclusive) of the time range for the Transactions being queried. (optional)</param>
         /// <param name="to">The ending time (inclusive) of the time range for the Transactions being queried. (optional)</param>
         /// <param name="pageSize">The number of Transactions to include in each page of the results. (optional)</param>
         /// <param name="type">A filter for restricting the types of Transactions to retreive. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20017)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20017>> ListTransactionsAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20017>> ListTransactionsAsyncWithHttpInfo(string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null);
         /// <summary>
         /// Replace Order
         /// </summary>
@@ -1695,13 +1471,11 @@ namespace Oanda.RestV20.Api
         /// Replace an Order in an Account by simultaneously cancelling it and creating a replacement Order
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="replaceOrderBody">Specification of the replacing Order. The replacing order must have the same type as the replaced Order.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse2011</returns>
-        System.Threading.Tasks.Task<InlineResponse2011> ReplaceOrderAsync (string authorization, string accountID, string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse2011> ReplaceOrderAsync(string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Replace Order
@@ -1710,13 +1484,11 @@ namespace Oanda.RestV20.Api
         /// Replace an Order in an Account by simultaneously cancelling it and creating a replacement Order
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="replaceOrderBody">Specification of the replacing Order. The replacing order must have the same type as the replaced Order.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2011)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse2011>> ReplaceOrderAsyncWithHttpInfo (string authorization, string accountID, string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse2011>> ReplaceOrderAsyncWithHttpInfo(string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null);
         /// <summary>
         /// Set Order Extensions
         /// </summary>
@@ -1724,13 +1496,11 @@ namespace Oanda.RestV20.Api
         /// Update the Client Extensions for an Order in an Account. Do not set, modify, or delete clientExtensions if your account is associated with MT4.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="setOrderClientExtensionsBody">Representation of the replacing Order</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20010</returns>
-        System.Threading.Tasks.Task<InlineResponse20010> SetOrderClientExtensionsAsync (string authorization, string accountID, string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse20010> SetOrderClientExtensionsAsync(string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Set Order Extensions
@@ -1739,13 +1509,11 @@ namespace Oanda.RestV20.Api
         /// Update the Client Extensions for an Order in an Account. Do not set, modify, or delete clientExtensions if your account is associated with MT4.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="setOrderClientExtensionsBody">Representation of the replacing Order</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20010)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20010>> SetOrderClientExtensionsAsyncWithHttpInfo (string authorization, string accountID, string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20010>> SetOrderClientExtensionsAsyncWithHttpInfo(string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null);
         /// <summary>
         /// Set Trade Client Extensions
         /// </summary>
@@ -1753,13 +1521,11 @@ namespace Oanda.RestV20.Api
         /// Update the Client Extensions for a Trade. Do not add, update, or delete the Client Extensions if your account is associated with MT4.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="setTradeClientExtensionsBody">Details of how to modify the Trade&#39;s Client Extensions.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20027</returns>
-        System.Threading.Tasks.Task<InlineResponse20027> SetTradeClientExtensionsAsync (string authorization, string accountID, string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse20027> SetTradeClientExtensionsAsync(string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Set Trade Client Extensions
@@ -1768,13 +1534,11 @@ namespace Oanda.RestV20.Api
         /// Update the Client Extensions for a Trade. Do not add, update, or delete the Client Extensions if your account is associated with MT4.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="setTradeClientExtensionsBody">Details of how to modify the Trade&#39;s Client Extensions.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20027)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20027>> SetTradeClientExtensionsAsyncWithHttpInfo (string authorization, string accountID, string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20027>> SetTradeClientExtensionsAsyncWithHttpInfo(string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null);
         /// <summary>
         /// Set Dependent Orders
         /// </summary>
@@ -1782,13 +1546,11 @@ namespace Oanda.RestV20.Api
         /// Create, replace and cancel a Trade&#39;s dependent Orders (Take Profit, Stop Loss and Trailing Stop Loss) through the Trade itself
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="setTradeDependentOrdersBody">Details of how to modify the Trade&#39;s dependent Orders.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20028</returns>
-        System.Threading.Tasks.Task<InlineResponse20028> SetTradeDependentOrdersAsync (string authorization, string accountID, string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<InlineResponse20028> SetTradeDependentOrdersAsync(string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null);
 
         /// <summary>
         /// Set Dependent Orders
@@ -1797,13 +1559,11 @@ namespace Oanda.RestV20.Api
         /// Create, replace and cancel a Trade&#39;s dependent Orders (Take Profit, Stop Loss and Trailing Stop Loss) through the Trade itself
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="setTradeDependentOrdersBody">Details of how to modify the Trade&#39;s dependent Orders.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20028)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20028>> SetTradeDependentOrdersAsyncWithHttpInfo (string authorization, string accountID, string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20028>> SetTradeDependentOrdersAsyncWithHttpInfo(string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null);
         /// <summary>
         /// Price Stream
         /// </summary>
@@ -1811,13 +1571,11 @@ namespace Oanda.RestV20.Api
         /// Get a stream of Account Prices starting from when the request is made. This pricing stream does not include every single price created for the Account, but instead will provide at most 4 prices per second (every 250 milliseconds) for each instrument being requested. If more than one price is created for an instrument during the 250 millisecond window, only the price in effect at the end of the window is sent. This means that during periods of rapid price movement, subscribers to this stream will not be sent every price. Pricing windows for different connections to the price stream are not all aligned in the same way (i.e. they are not all aligned to the top of the second). This means that during periods of rapid price movement, different subscribers may observe different prices depending on their alignment.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of Instruments to stream Prices for.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="snapshot">Flag that enables/disables the sending of a pricing snapshot when initially connecting to the stream. (optional)</param>
         /// <returns>Task of InlineResponse20022</returns>
-        System.Threading.Tasks.Task<InlineResponse20022> StreamPricingAsync (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null);
+        System.Threading.Tasks.Task<InlineResponse20022> StreamPricingAsync(List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null);
 
         /// <summary>
         /// Price Stream
@@ -1826,13 +1584,11 @@ namespace Oanda.RestV20.Api
         /// Get a stream of Account Prices starting from when the request is made. This pricing stream does not include every single price created for the Account, but instead will provide at most 4 prices per second (every 250 milliseconds) for each instrument being requested. If more than one price is created for an instrument during the 250 millisecond window, only the price in effect at the end of the window is sent. This means that during periods of rapid price movement, subscribers to this stream will not be sent every price. Pricing windows for different connections to the price stream are not all aligned in the same way (i.e. they are not all aligned to the top of the second). This means that during periods of rapid price movement, different subscribers may observe different prices depending on their alignment.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of Instruments to stream Prices for.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="snapshot">Flag that enables/disables the sending of a pricing snapshot when initially connecting to the stream. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20022)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20022>> StreamPricingAsyncWithHttpInfo (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20022>> StreamPricingAsyncWithHttpInfo(List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null);
         /// <summary>
         /// Transaction Stream
         /// </summary>
@@ -1840,10 +1596,8 @@ namespace Oanda.RestV20.Api
         /// Get a stream of Transactions for an Account starting from when the request is made.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <returns>Task of InlineResponse20020</returns>
-        System.Threading.Tasks.Task<InlineResponse20020> StreamTransactionsAsync (string authorization, string accountID);
+        System.Threading.Tasks.Task<InlineResponse20020> StreamTransactionsAsync();
 
         /// <summary>
         /// Transaction Stream
@@ -1852,10 +1606,8 @@ namespace Oanda.RestV20.Api
         /// Get a stream of Transactions for an Account starting from when the request is made.
         /// </remarks>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <returns>Task of ApiResponse (InlineResponse20020)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse20020>> StreamTransactionsAsyncWithHttpInfo (string authorization, string accountID);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse20020>> StreamTransactionsAsyncWithHttpInfo();
         #endregion Asynchronous Operations
     }
 
@@ -1865,14 +1617,15 @@ namespace Oanda.RestV20.Api
     public partial class DefaultApi : IDefaultApi
     {
         private Oanda.RestV20.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
+        private readonly string _accountId;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DefaultApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public DefaultApi(String basePath)
+        public DefaultApi(String basePath, string accessToken, string accountId)
         {
-            this.Configuration = new Configuration(new ApiClient(basePath));
+            this.Configuration = new Configuration(new ApiClient(accessToken, basePath));
 
             ExceptionFactory = Oanda.RestV20.Client.Configuration.DefaultExceptionFactory;
 
@@ -1881,6 +1634,7 @@ namespace Oanda.RestV20.Api
             {
                 this.Configuration.ApiClient.Configuration = this.Configuration;
             }
+            _accountId = accountId;
         }
 
         /// <summary>
@@ -1911,7 +1665,7 @@ namespace Oanda.RestV20.Api
         /// <value>The base path</value>
         public String GetBasePath()
         {
-            return this.Configuration.ApiClient.RestClient.BaseUrl.ToString();
+            return this.Configuration.ApiClient.HttpClient.BaseAddress.ToString();
         }
 
         /// <summary>
@@ -1928,7 +1682,7 @@ namespace Oanda.RestV20.Api
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public Configuration Configuration {get; set;}
+        public Configuration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
@@ -1972,39 +1726,29 @@ namespace Oanda.RestV20.Api
         /// Cancel Order Cancel a pending Order in an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse2009</returns>
-        public InlineResponse2009 CancelOrder (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null)
+        public InlineResponse2009 CancelOrder(string orderSpecifier, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse2009> localVarResponse = CancelOrderWithHttpInfo(authorization, accountID, orderSpecifier, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = CancelOrderWithHttpInfo(orderSpecifier, acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// Cancel Order Cancel a pending Order in an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2009</returns>
-        public ApiResponse< InlineResponse2009 > CancelOrderWithHttpInfo (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse2009> CancelOrderWithHttpInfo(string orderSpecifier, string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->CancelOrder");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->CancelOrder");
             // verify the required parameter 'orderSpecifier' is set
             if (orderSpecifier == null)
                 throw new ApiException(400, "Missing required parameter 'orderSpecifier' when calling DefaultApi->CancelOrder");
 
-            var localVarPath = "/accounts/{accountID}/orders/{orderSpecifier}/cancel";
+            var localVarPath = "accounts/{accountID}/orders/{orderSpecifier}/cancel";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2013,60 +1757,52 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (orderSpecifier != null) localVarPathParams.Add("orderSpecifier", Configuration.ApiClient.ParameterToString(orderSpecifier)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter;
+            localVarPathParams.Add("orderSpecifier", orderSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("CancelOrder", localVarResponse);
+                var exception = ExceptionFactory("CancelOrder", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse2009>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2009) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2009)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2009)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2009)));
         }
 
         /// <summary>
         /// Cancel Order Cancel a pending Order in an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse2009</returns>
-        public async System.Threading.Tasks.Task<InlineResponse2009> CancelOrderAsync (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse2009> CancelOrderAsync(string orderSpecifier, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse2009> localVarResponse = await CancelOrderAsyncWithHttpInfo(authorization, accountID, orderSpecifier, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = await CancelOrderAsyncWithHttpInfo(orderSpecifier, acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -2074,24 +1810,16 @@ namespace Oanda.RestV20.Api
         /// Cancel Order Cancel a pending Order in an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2009)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2009>> CancelOrderAsyncWithHttpInfo (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2009>> CancelOrderAsyncWithHttpInfo(string orderSpecifier, string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->CancelOrder");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->CancelOrder");
             // verify the required parameter 'orderSpecifier' is set
             if (orderSpecifier == null)
                 throw new ApiException(400, "Missing required parameter 'orderSpecifier' when calling DefaultApi->CancelOrder");
 
-            var localVarPath = "/accounts/{accountID}/orders/{orderSpecifier}/cancel";
+            var localVarPath = "accounts/{accountID}/orders/{orderSpecifier}/cancel";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2100,81 +1828,65 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (orderSpecifier != null) localVarPathParams.Add("orderSpecifier", Configuration.ApiClient.ParameterToString(orderSpecifier)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("orderSpecifier", orderSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("CancelOrder", localVarResponse);
+                var exception = ExceptionFactory("CancelOrder", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse2009>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2009) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2009)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2009)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2009)));
         }
 
         /// <summary>
         /// Close Position Closeout the open Position for a specific instrument in an Account.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <param name="closePositionBody">Representation of how to close the position</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20014</returns>
-        public InlineResponse20014 ClosePosition (string authorization, string accountID, string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null)
+        public InlineResponse20014 ClosePosition(string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20014> localVarResponse = ClosePositionWithHttpInfo(authorization, accountID, instrument, closePositionBody, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = ClosePositionWithHttpInfo(instrument, closePositionBody, acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// Close Position Closeout the open Position for a specific instrument in an Account.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <param name="closePositionBody">Representation of how to close the position</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20014</returns>
-        public ApiResponse< InlineResponse20014 > ClosePositionWithHttpInfo (string authorization, string accountID, string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse20014> ClosePositionWithHttpInfo(string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->ClosePosition");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->ClosePosition");
             // verify the required parameter 'instrument' is set
             if (instrument == null)
                 throw new ApiException(400, "Missing required parameter 'instrument' when calling DefaultApi->ClosePosition");
@@ -2182,7 +1894,7 @@ namespace Oanda.RestV20.Api
             if (closePositionBody == null)
                 throw new ApiException(400, "Missing required parameter 'closePositionBody' when calling DefaultApi->ClosePosition");
 
-            var localVarPath = "/accounts/{accountID}/positions/{instrument}/close";
+            var localVarPath = "accounts/{accountID}/positions/{instrument}/close";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2191,25 +1903,21 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (instrument != null) localVarPathParams.Add("instrument", Configuration.ApiClient.ParameterToString(instrument)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("instrument", instrument); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (closePositionBody != null && closePositionBody.GetType() != typeof(byte[]))
             {
@@ -2220,40 +1928,36 @@ namespace Oanda.RestV20.Api
                 localVarPostBody = closePositionBody; // byte array
             }
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ClosePosition", localVarResponse);
+                var exception = ExceptionFactory("ClosePosition", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20014>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20014) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20014)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20014)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20014)));
         }
 
         /// <summary>
         /// Close Position Closeout the open Position for a specific instrument in an Account.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <param name="closePositionBody">Representation of how to close the position</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20014</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20014> ClosePositionAsync (string authorization, string accountID, string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse20014> ClosePositionAsync(string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20014> localVarResponse = await ClosePositionAsyncWithHttpInfo(authorization, accountID, instrument, closePositionBody, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = await ClosePositionAsyncWithHttpInfo(instrument, closePositionBody, acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -2261,20 +1965,12 @@ namespace Oanda.RestV20.Api
         /// Close Position Closeout the open Position for a specific instrument in an Account.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <param name="closePositionBody">Representation of how to close the position</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20014)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20014>> ClosePositionAsyncWithHttpInfo (string authorization, string accountID, string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20014>> ClosePositionAsyncWithHttpInfo(string instrument, ClosePositionBody closePositionBody, string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->ClosePosition");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->ClosePosition");
             // verify the required parameter 'instrument' is set
             if (instrument == null)
                 throw new ApiException(400, "Missing required parameter 'instrument' when calling DefaultApi->ClosePosition");
@@ -2282,7 +1978,7 @@ namespace Oanda.RestV20.Api
             if (closePositionBody == null)
                 throw new ApiException(400, "Missing required parameter 'closePositionBody' when calling DefaultApi->ClosePosition");
 
-            var localVarPath = "/accounts/{accountID}/positions/{instrument}/close";
+            var localVarPath = "accounts/{accountID}/positions/{instrument}/close";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2291,25 +1987,21 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (instrument != null) localVarPathParams.Add("instrument", Configuration.ApiClient.ParameterToString(instrument)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("instrument", instrument); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (closePositionBody != null && closePositionBody.GetType() != typeof(byte[]))
             {
@@ -2320,60 +2012,49 @@ namespace Oanda.RestV20.Api
                 localVarPostBody = closePositionBody; // byte array
             }
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ClosePosition", localVarResponse);
+                var exception = ExceptionFactory("ClosePosition", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20014>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20014) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20014)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20014)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20014)));
+
         }
 
         /// <summary>
         /// Close Trade Close (partially or fully) a specific open Trade in an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="closeTradeBody">Details of how much of the open Trade to close.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20026</returns>
-        public InlineResponse20026 CloseTrade (string authorization, string accountID, string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null)
+        public InlineResponse20026 CloseTrade(string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20026> localVarResponse = CloseTradeWithHttpInfo(authorization, accountID, tradeSpecifier, closeTradeBody, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = CloseTradeWithHttpInfo(tradeSpecifier, closeTradeBody, acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// Close Trade Close (partially or fully) a specific open Trade in an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="closeTradeBody">Details of how much of the open Trade to close.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20026</returns>
-        public ApiResponse< InlineResponse20026 > CloseTradeWithHttpInfo (string authorization, string accountID, string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse20026> CloseTradeWithHttpInfo(string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->CloseTrade");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->CloseTrade");
             // verify the required parameter 'tradeSpecifier' is set
             if (tradeSpecifier == null)
                 throw new ApiException(400, "Missing required parameter 'tradeSpecifier' when calling DefaultApi->CloseTrade");
@@ -2381,7 +2062,7 @@ namespace Oanda.RestV20.Api
             if (closeTradeBody == null)
                 throw new ApiException(400, "Missing required parameter 'closeTradeBody' when calling DefaultApi->CloseTrade");
 
-            var localVarPath = "/accounts/{accountID}/trades/{tradeSpecifier}/close";
+            var localVarPath = "accounts/{accountID}/trades/{tradeSpecifier}/close";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2390,25 +2071,21 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (tradeSpecifier != null) localVarPathParams.Add("tradeSpecifier", Configuration.ApiClient.ParameterToString(tradeSpecifier)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("tradeSpecifier", tradeSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (closeTradeBody != null && closeTradeBody.GetType() != typeof(byte[]))
             {
@@ -2421,38 +2098,36 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("CloseTrade", localVarResponse);
+                var exception = ExceptionFactory("CloseTrade", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20026>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20026) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20026)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20026)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20026)));
+
         }
 
         /// <summary>
         /// Close Trade Close (partially or fully) a specific open Trade in an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="closeTradeBody">Details of how much of the open Trade to close.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20026</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20026> CloseTradeAsync (string authorization, string accountID, string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse20026> CloseTradeAsync(string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20026> localVarResponse = await CloseTradeAsyncWithHttpInfo(authorization, accountID, tradeSpecifier, closeTradeBody, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = await CloseTradeAsyncWithHttpInfo(tradeSpecifier, closeTradeBody, acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -2460,20 +2135,12 @@ namespace Oanda.RestV20.Api
         /// Close Trade Close (partially or fully) a specific open Trade in an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="closeTradeBody">Details of how much of the open Trade to close.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20026)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20026>> CloseTradeAsyncWithHttpInfo (string authorization, string accountID, string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20026>> CloseTradeAsyncWithHttpInfo(string tradeSpecifier, CloseTradeBody closeTradeBody, string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->CloseTrade");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->CloseTrade");
             // verify the required parameter 'tradeSpecifier' is set
             if (tradeSpecifier == null)
                 throw new ApiException(400, "Missing required parameter 'tradeSpecifier' when calling DefaultApi->CloseTrade");
@@ -2481,7 +2148,7 @@ namespace Oanda.RestV20.Api
             if (closeTradeBody == null)
                 throw new ApiException(400, "Missing required parameter 'closeTradeBody' when calling DefaultApi->CloseTrade");
 
-            var localVarPath = "/accounts/{accountID}/trades/{tradeSpecifier}/close";
+            var localVarPath = "accounts/{accountID}/trades/{tradeSpecifier}/close";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2490,25 +2157,21 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (tradeSpecifier != null) localVarPathParams.Add("tradeSpecifier", Configuration.ApiClient.ParameterToString(tradeSpecifier)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("tradeSpecifier", tradeSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (closeTradeBody != null && closeTradeBody.GetType() != typeof(byte[]))
             {
@@ -2521,58 +2184,47 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("CloseTrade", localVarResponse);
+                var exception = ExceptionFactory("CloseTrade", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20026>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20026) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20026)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20026)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20026)));
+
         }
 
         /// <summary>
         /// Configure Account Set the client-configurable portions of an Account.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="configureAccountBody">Representation of the Account configuration to set (optional)</param>
         /// <returns>InlineResponse2004</returns>
-        public InlineResponse2004 ConfigureAccount (string authorization, string accountID, string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null)
+        public InlineResponse2004 ConfigureAccount(string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null)
         {
-             ApiResponse<InlineResponse2004> localVarResponse = ConfigureAccountWithHttpInfo(authorization, accountID, acceptDatetimeFormat, configureAccountBody);
-             return localVarResponse.Data;
+            var localVarResponse = ConfigureAccountWithHttpInfo(acceptDatetimeFormat, configureAccountBody);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// Configure Account Set the client-configurable portions of an Account.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="configureAccountBody">Representation of the Account configuration to set (optional)</param>
         /// <returns>ApiResponse of InlineResponse2004</returns>
-        public ApiResponse< InlineResponse2004 > ConfigureAccountWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null)
+        public ApiResponse<InlineResponse2004> ConfigureAccountWithHttpInfo(string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->ConfigureAccount");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->ConfigureAccount");
-
-            var localVarPath = "/accounts/{accountID}/configuration";
+            var localVarPath = "accounts/{accountID}/configuration";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2581,24 +2233,20 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (configureAccountBody != null && configureAccountBody.GetType() != typeof(byte[]))
             {
@@ -2611,37 +2259,35 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.PATCH, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Patch, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ConfigureAccount", localVarResponse);
+                var exception = ExceptionFactory("ConfigureAccount", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse2004>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2004) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2004)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2004)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2004)));
+
         }
 
         /// <summary>
         /// Configure Account Set the client-configurable portions of an Account.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="configureAccountBody">Representation of the Account configuration to set (optional)</param>
         /// <returns>Task of InlineResponse2004</returns>
-        public async System.Threading.Tasks.Task<InlineResponse2004> ConfigureAccountAsync (string authorization, string accountID, string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null)
+        public async System.Threading.Tasks.Task<InlineResponse2004> ConfigureAccountAsync(string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null)
         {
-             ApiResponse<InlineResponse2004> localVarResponse = await ConfigureAccountAsyncWithHttpInfo(authorization, accountID, acceptDatetimeFormat, configureAccountBody);
-             return localVarResponse.Data;
+            var localVarResponse = await ConfigureAccountAsyncWithHttpInfo(acceptDatetimeFormat, configureAccountBody);
+            return localVarResponse.Data;
 
         }
 
@@ -2649,21 +2295,12 @@ namespace Oanda.RestV20.Api
         /// Configure Account Set the client-configurable portions of an Account.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="configureAccountBody">Representation of the Account configuration to set (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2004)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2004>> ConfigureAccountAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2004>> ConfigureAccountAsyncWithHttpInfo(string acceptDatetimeFormat = null, ConfigureAccountBody configureAccountBody = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->ConfigureAccount");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->ConfigureAccount");
-
-            var localVarPath = "/accounts/{accountID}/configuration";
+            var localVarPath = "accounts/{accountID}/configuration";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2672,24 +2309,20 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (configureAccountBody != null && configureAccountBody.GetType() != typeof(byte[]))
             {
@@ -2702,61 +2335,51 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PATCH, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Patch, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ConfigureAccount", localVarResponse);
+                var exception = ExceptionFactory("ConfigureAccount", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse2004>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2004) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2004)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2004)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2004)));
+
         }
 
         /// <summary>
         /// Create Order Create an Order for an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="createOrderBody"></param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse201</returns>
-        public InlineResponse201 CreateOrder (string authorization, string accountID, CreateOrderBody createOrderBody, string acceptDatetimeFormat = null)
+        public InlineResponse201 CreateOrder(CreateOrderBody createOrderBody, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse201> localVarResponse = CreateOrderWithHttpInfo(authorization, accountID, createOrderBody, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = CreateOrderWithHttpInfo(createOrderBody, acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// Create Order Create an Order for an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="createOrderBody"></param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse201</returns>
-        public ApiResponse< InlineResponse201 > CreateOrderWithHttpInfo (string authorization, string accountID, CreateOrderBody createOrderBody, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse201> CreateOrderWithHttpInfo(CreateOrderBody createOrderBody, string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->CreateOrder");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->CreateOrder");
             // verify the required parameter 'createOrderBody' is set
             if (createOrderBody == null)
                 throw new ApiException(400, "Missing required parameter 'createOrderBody' when calling DefaultApi->CreateOrder");
 
-            var localVarPath = "/accounts/{accountID}/orders";
+            var localVarPath = "accounts/{accountID}/orders";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2765,24 +2388,20 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (createOrderBody != null && createOrderBody.GetType() != typeof(byte[]))
             {
@@ -2795,37 +2414,35 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Post, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("CreateOrder", localVarResponse);
+                var exception = ExceptionFactory("CreateOrder", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse201>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse201) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse201)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse201)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse201)));
+
         }
 
         /// <summary>
         /// Create Order Create an Order for an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="createOrderBody"></param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse201</returns>
-        public async System.Threading.Tasks.Task<InlineResponse201> CreateOrderAsync (string authorization, string accountID, CreateOrderBody createOrderBody, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse201> CreateOrderAsync(CreateOrderBody createOrderBody, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse201> localVarResponse = await CreateOrderAsyncWithHttpInfo(authorization, accountID, createOrderBody, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = await CreateOrderAsyncWithHttpInfo(createOrderBody, acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -2833,24 +2450,16 @@ namespace Oanda.RestV20.Api
         /// Create Order Create an Order for an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="createOrderBody"></param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse201)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse201>> CreateOrderAsyncWithHttpInfo (string authorization, string accountID, CreateOrderBody createOrderBody, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse201>> CreateOrderAsyncWithHttpInfo(CreateOrderBody createOrderBody, string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->CreateOrder");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->CreateOrder");
             // verify the required parameter 'createOrderBody' is set
             if (createOrderBody == null)
                 throw new ApiException(400, "Missing required parameter 'createOrderBody' when calling DefaultApi->CreateOrder");
 
-            var localVarPath = "/accounts/{accountID}/orders";
+            var localVarPath = "accounts/{accountID}/orders";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2859,24 +2468,20 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (createOrderBody != null && createOrderBody.GetType() != typeof(byte[]))
             {
@@ -2889,56 +2494,45 @@ namespace Oanda.RestV20.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Post, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("CreateOrder", localVarResponse);
+                var exception = ExceptionFactory("CreateOrder", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse201>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse201) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse201)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse201)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse201)));
+
         }
 
         /// <summary>
         /// Account Details Get the full details for a single Account that a client has access to. Full pending Order, open Trade and open Position representations are provided.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse2001</returns>
-        public InlineResponse2001 GetAccount (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public InlineResponse2001 GetAccount(string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse2001> localVarResponse = GetAccountWithHttpInfo(authorization, accountID, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = GetAccountWithHttpInfo(acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// Account Details Get the full details for a single Account that a client has access to. Full pending Order, open Trade and open Position representations are provided.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2001</returns>
-        public ApiResponse< InlineResponse2001 > GetAccountWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse2001> GetAccountWithHttpInfo(string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->GetAccount");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->GetAccount");
-
-            var localVarPath = "/accounts/{accountID}";
+            var localVarPath = "accounts/{accountID}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2947,58 +2541,51 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetAccount", localVarResponse);
+                var exception = ExceptionFactory("GetAccount", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse2001>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2001) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2001)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2001)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2001)));
+
         }
 
         /// <summary>
         /// Account Details Get the full details for a single Account that a client has access to. Full pending Order, open Trade and open Position representations are provided.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse2001</returns>
-        public async System.Threading.Tasks.Task<InlineResponse2001> GetAccountAsync (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse2001> GetAccountAsync(string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse2001> localVarResponse = await GetAccountAsyncWithHttpInfo(authorization, accountID, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = await GetAccountAsyncWithHttpInfo(acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -3006,20 +2593,11 @@ namespace Oanda.RestV20.Api
         /// Account Details Get the full details for a single Account that a client has access to. Full pending Order, open Trade and open Position representations are provided.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2001)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2001>> GetAccountAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2001>> GetAccountAsyncWithHttpInfo(string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->GetAccount");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->GetAccount");
-
-            var localVarPath = "/accounts/{accountID}";
+            var localVarPath = "accounts/{accountID}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3028,80 +2606,63 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetAccount", localVarResponse);
+                var exception = ExceptionFactory("GetAccount", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse2001>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2001) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2001)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2001)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2001)));
         }
 
         /// <summary>
         /// Poll Account Updates Endpoint used to poll an Account for its current state and changes since a specified TransactionID.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="sinceTransactionID">ID of the Transaction to get Account changes since. (optional)</param>
         /// <returns>InlineResponse2005</returns>
-        public InlineResponse2005 GetAccountChanges (string authorization, string accountID, string acceptDatetimeFormat = null, string sinceTransactionID = null)
+        public InlineResponse2005 GetAccountChanges(string acceptDatetimeFormat = null, string sinceTransactionID = null)
         {
-             ApiResponse<InlineResponse2005> localVarResponse = GetAccountChangesWithHttpInfo(authorization, accountID, acceptDatetimeFormat, sinceTransactionID);
-             return localVarResponse.Data;
+            var localVarResponse = GetAccountChangesWithHttpInfo(acceptDatetimeFormat, sinceTransactionID);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// Poll Account Updates Endpoint used to poll an Account for its current state and changes since a specified TransactionID.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="sinceTransactionID">ID of the Transaction to get Account changes since. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2005</returns>
-        public ApiResponse< InlineResponse2005 > GetAccountChangesWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, string sinceTransactionID = null)
+        public ApiResponse<InlineResponse2005> GetAccountChangesWithHttpInfo(string acceptDatetimeFormat = null, string sinceTransactionID = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->GetAccountChanges");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->GetAccountChanges");
-
-            var localVarPath = "/accounts/{accountID}/changes";
+            var localVarPath = "accounts/{accountID}/changes";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3110,60 +2671,52 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (sinceTransactionID != null) localVarQueryParams.Add("sinceTransactionID", Configuration.ApiClient.ParameterToString(sinceTransactionID)); // query parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetAccountChanges", localVarResponse);
+                var exception = ExceptionFactory("GetAccountChanges", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse2005>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2005) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2005)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2005)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2005)));
         }
 
         /// <summary>
         /// Poll Account Updates Endpoint used to poll an Account for its current state and changes since a specified TransactionID.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="sinceTransactionID">ID of the Transaction to get Account changes since. (optional)</param>
         /// <returns>Task of InlineResponse2005</returns>
-        public async System.Threading.Tasks.Task<InlineResponse2005> GetAccountChangesAsync (string authorization, string accountID, string acceptDatetimeFormat = null, string sinceTransactionID = null)
+        public async System.Threading.Tasks.Task<InlineResponse2005> GetAccountChangesAsync(string acceptDatetimeFormat = null, string sinceTransactionID = null)
         {
-             ApiResponse<InlineResponse2005> localVarResponse = await GetAccountChangesAsyncWithHttpInfo(authorization, accountID, acceptDatetimeFormat, sinceTransactionID);
-             return localVarResponse.Data;
+            var localVarResponse = await GetAccountChangesAsyncWithHttpInfo(acceptDatetimeFormat, sinceTransactionID);
+            return localVarResponse.Data;
 
         }
 
@@ -3171,21 +2724,12 @@ namespace Oanda.RestV20.Api
         /// Poll Account Updates Endpoint used to poll an Account for its current state and changes since a specified TransactionID.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="sinceTransactionID">ID of the Transaction to get Account changes since. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2005)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2005>> GetAccountChangesAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, string sinceTransactionID = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2005>> GetAccountChangesAsyncWithHttpInfo(string acceptDatetimeFormat = null, string sinceTransactionID = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->GetAccountChanges");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->GetAccountChanges");
-
-            var localVarPath = "/accounts/{accountID}/changes";
+            var localVarPath = "accounts/{accountID}/changes";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3194,79 +2738,62 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (sinceTransactionID != null) localVarQueryParams.Add("sinceTransactionID", Configuration.ApiClient.ParameterToString(sinceTransactionID)); // query parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetAccountChanges", localVarResponse);
+                var exception = ExceptionFactory("GetAccountChanges", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse2005>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2005) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2005)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2005)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2005)));
         }
 
         /// <summary>
         /// Account Instruments Get the list of tradeable instruments for the given Account. The list of tradeable instruments is dependent on the regulatory division that the Account is located in, thus should be the same for all Accounts owned by a single user.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of instruments to query specifically. (optional)</param>
         /// <returns>InlineResponse2003</returns>
-        public InlineResponse2003 GetAccountInstruments (string authorization, string accountID, List<string> instruments = null)
+        public InlineResponse2003 GetAccountInstruments(List<string> instruments = null)
         {
-             ApiResponse<InlineResponse2003> localVarResponse = GetAccountInstrumentsWithHttpInfo(authorization, accountID, instruments);
-             return localVarResponse.Data;
+            var localVarResponse = GetAccountInstrumentsWithHttpInfo(instruments);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// Account Instruments Get the list of tradeable instruments for the given Account. The list of tradeable instruments is dependent on the regulatory division that the Account is located in, thus should be the same for all Accounts owned by a single user.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of instruments to query specifically. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2003</returns>
-        public ApiResponse< InlineResponse2003 > GetAccountInstrumentsWithHttpInfo (string authorization, string accountID, List<string> instruments = null)
+        public ApiResponse<InlineResponse2003> GetAccountInstrumentsWithHttpInfo(List<string> instruments = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->GetAccountInstruments");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->GetAccountInstruments");
-
-            var localVarPath = "/accounts/{accountID}/instruments";
+            var localVarPath = "accounts/{accountID}/instruments";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3275,58 +2802,50 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (instruments != null) localVarQueryParams.Add("instruments", Configuration.ApiClient.ParameterToString(instruments)); // query parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
-
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetAccountInstruments", localVarResponse);
+                var exception = ExceptionFactory("GetAccountInstruments", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse2003>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2003) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2003)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2003)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2003)));
         }
 
         /// <summary>
         /// Account Instruments Get the list of tradeable instruments for the given Account. The list of tradeable instruments is dependent on the regulatory division that the Account is located in, thus should be the same for all Accounts owned by a single user.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of instruments to query specifically. (optional)</param>
         /// <returns>Task of InlineResponse2003</returns>
-        public async System.Threading.Tasks.Task<InlineResponse2003> GetAccountInstrumentsAsync (string authorization, string accountID, List<string> instruments = null)
+        public async System.Threading.Tasks.Task<InlineResponse2003> GetAccountInstrumentsAsync(List<string> instruments = null)
         {
-             ApiResponse<InlineResponse2003> localVarResponse = await GetAccountInstrumentsAsyncWithHttpInfo(authorization, accountID, instruments);
-             return localVarResponse.Data;
+            var localVarResponse = await GetAccountInstrumentsAsyncWithHttpInfo(instruments);
+            return localVarResponse.Data;
 
         }
 
@@ -3334,20 +2853,11 @@ namespace Oanda.RestV20.Api
         /// Account Instruments Get the list of tradeable instruments for the given Account. The list of tradeable instruments is dependent on the regulatory division that the Account is located in, thus should be the same for all Accounts owned by a single user.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of instruments to query specifically. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2003)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2003>> GetAccountInstrumentsAsyncWithHttpInfo (string authorization, string accountID, List<string> instruments = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2003>> GetAccountInstrumentsAsyncWithHttpInfo(List<string> instruments = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->GetAccountInstruments");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->GetAccountInstruments");
-
-            var localVarPath = "/accounts/{accountID}/instruments";
+            var localVarPath = "accounts/{accountID}/instruments";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3356,78 +2866,61 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (instruments != null) localVarQueryParams.Add("instruments", Configuration.ApiClient.ParameterToString(instruments)); // query parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
-
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetAccountInstruments", localVarResponse);
+                var exception = ExceptionFactory("GetAccountInstruments", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse2003>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2003) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2003)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2003)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2003)));
         }
 
         /// <summary>
         /// Account Summary Get a summary for a single Account that a client has access to.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse2002</returns>
-        public InlineResponse2002 GetAccountSummary (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public InlineResponse2002 GetAccountSummary(string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse2002> localVarResponse = GetAccountSummaryWithHttpInfo(authorization, accountID, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = GetAccountSummaryWithHttpInfo(acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// Account Summary Get a summary for a single Account that a client has access to.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2002</returns>
-        public ApiResponse< InlineResponse2002 > GetAccountSummaryWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse2002> GetAccountSummaryWithHttpInfo(string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->GetAccountSummary");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->GetAccountSummary");
-
-            var localVarPath = "/accounts/{accountID}/summary";
+            var localVarPath = "accounts/{accountID}/summary";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3436,58 +2929,50 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetAccountSummary", localVarResponse);
+                var exception = ExceptionFactory("GetAccountSummary", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse2002>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2002) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2002)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2002)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2002)));
         }
 
         /// <summary>
         /// Account Summary Get a summary for a single Account that a client has access to.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse2002</returns>
-        public async System.Threading.Tasks.Task<InlineResponse2002> GetAccountSummaryAsync (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse2002> GetAccountSummaryAsync(string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse2002> localVarResponse = await GetAccountSummaryAsyncWithHttpInfo(authorization, accountID, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = await GetAccountSummaryAsyncWithHttpInfo(acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -3495,20 +2980,11 @@ namespace Oanda.RestV20.Api
         /// Account Summary Get a summary for a single Account that a client has access to.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2002)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2002>> GetAccountSummaryAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2002>> GetAccountSummaryAsyncWithHttpInfo(string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->GetAccountSummary");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->GetAccountSummary");
-
-            var localVarPath = "/accounts/{accountID}/summary";
+            var localVarPath = "accounts/{accountID}/summary";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3517,76 +2993,65 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetAccountSummary", localVarResponse);
+                var exception = ExceptionFactory("GetAccountSummary", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse2002>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2002) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2002)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2002)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2002)));
         }
 
         /// <summary>
         /// External User Info Fetch the externally-available user information for the specified user. This endpoint is intended to be used by 3rd parties that have been authorized by a user to view their personal information.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>InlineResponse20016</returns>
-        public InlineResponse20016 GetExternalUserInfo (string authorization, string userSpecifier)
+        public InlineResponse20016 GetExternalUserInfo(string userSpecifier)
         {
-             ApiResponse<InlineResponse20016> localVarResponse = GetExternalUserInfoWithHttpInfo(authorization, userSpecifier);
-             return localVarResponse.Data;
+            var localVarResponse = GetExternalUserInfoWithHttpInfo(userSpecifier);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// External User Info Fetch the externally-available user information for the specified user. This endpoint is intended to be used by 3rd parties that have been authorized by a user to view their personal information.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>ApiResponse of InlineResponse20016</returns>
-        public ApiResponse< InlineResponse20016 > GetExternalUserInfoWithHttpInfo (string authorization, string userSpecifier)
+        public ApiResponse<InlineResponse20016> GetExternalUserInfoWithHttpInfo(string userSpecifier)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->GetExternalUserInfo");
             // verify the required parameter 'userSpecifier' is set
             if (userSpecifier == null)
                 throw new ApiException(400, "Missing required parameter 'userSpecifier' when calling DefaultApi->GetExternalUserInfo");
 
-            var localVarPath = "/users/{userSpecifier}/externalInfo";
+            var localVarPath = "users/{userSpecifier}/externalInfo";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3595,16 +3060,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -3612,39 +3077,37 @@ namespace Oanda.RestV20.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (userSpecifier != null) localVarPathParams.Add("userSpecifier", Configuration.ApiClient.ParameterToString(userSpecifier)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetExternalUserInfo", localVarResponse);
+                var exception = ExceptionFactory("GetExternalUserInfo", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20016>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20016) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20016)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20016)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20016)));
+
         }
 
         /// <summary>
         /// External User Info Fetch the externally-available user information for the specified user. This endpoint is intended to be used by 3rd parties that have been authorized by a user to view their personal information.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>Task of InlineResponse20016</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20016> GetExternalUserInfoAsync (string authorization, string userSpecifier)
+        public async System.Threading.Tasks.Task<InlineResponse20016> GetExternalUserInfoAsync(string userSpecifier)
         {
-             ApiResponse<InlineResponse20016> localVarResponse = await GetExternalUserInfoAsyncWithHttpInfo(authorization, userSpecifier);
-             return localVarResponse.Data;
+            var localVarResponse = await GetExternalUserInfoAsyncWithHttpInfo(userSpecifier);
+            return localVarResponse.Data;
 
         }
 
@@ -3652,19 +3115,15 @@ namespace Oanda.RestV20.Api
         /// External User Info Fetch the externally-available user information for the specified user. This endpoint is intended to be used by 3rd parties that have been authorized by a user to view their personal information.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>Task of ApiResponse (InlineResponse20016)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20016>> GetExternalUserInfoAsyncWithHttpInfo (string authorization, string userSpecifier)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20016>> GetExternalUserInfoAsyncWithHttpInfo(string userSpecifier)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->GetExternalUserInfo");
             // verify the required parameter 'userSpecifier' is set
             if (userSpecifier == null)
                 throw new ApiException(400, "Missing required parameter 'userSpecifier' when calling DefaultApi->GetExternalUserInfo");
 
-            var localVarPath = "/users/{userSpecifier}/externalInfo";
+            var localVarPath = "users/{userSpecifier}/externalInfo";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3673,16 +3132,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -3690,33 +3149,31 @@ namespace Oanda.RestV20.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (userSpecifier != null) localVarPathParams.Add("userSpecifier", Configuration.ApiClient.ParameterToString(userSpecifier)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetExternalUserInfo", localVarResponse);
+                var exception = ExceptionFactory("GetExternalUserInfo", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20016>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20016) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20016)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20016)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20016)));
+
         }
 
         /// <summary>
         /// Get Candlesticks Fetch candlestick data for an instrument.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="price">The Price component(s) to get candlestick data for. Can contain any combination of the characters \&quot;M\&quot; (midpoint candles) \&quot;B\&quot; (bid candles) and \&quot;A\&quot; (ask candles). (optional)</param>
@@ -3730,17 +3187,16 @@ namespace Oanda.RestV20.Api
         /// <param name="alignmentTimezone">The timezone to use for the dailyAlignment parameter. Candlesticks with daily alignment will be aligned to the dailyAlignment hour within the alignmentTimezone. (optional)</param>
         /// <param name="weeklyAlignment">The day of the week used for granularities that have weekly alignment. (optional)</param>
         /// <returns>InlineResponse20029</returns>
-        public InlineResponse20029 GetInstrumentCandles (string authorization, string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null)
+        public InlineResponse20029 GetInstrumentCandles(string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null)
         {
-             ApiResponse<InlineResponse20029> localVarResponse = GetInstrumentCandlesWithHttpInfo(authorization, instrument, acceptDatetimeFormat, price, granularity, count, from, to, smooth, includeFirst, dailyAlignment, alignmentTimezone, weeklyAlignment);
-             return localVarResponse.Data;
+            var localVarResponse = GetInstrumentCandlesWithHttpInfo(instrument, acceptDatetimeFormat, price, granularity, count, from, to, smooth, includeFirst, dailyAlignment, alignmentTimezone, weeklyAlignment);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get Candlesticks Fetch candlestick data for an instrument.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="price">The Price component(s) to get candlestick data for. Can contain any combination of the characters \&quot;M\&quot; (midpoint candles) \&quot;B\&quot; (bid candles) and \&quot;A\&quot; (ask candles). (optional)</param>
@@ -3754,16 +3210,13 @@ namespace Oanda.RestV20.Api
         /// <param name="alignmentTimezone">The timezone to use for the dailyAlignment parameter. Candlesticks with daily alignment will be aligned to the dailyAlignment hour within the alignmentTimezone. (optional)</param>
         /// <param name="weeklyAlignment">The day of the week used for granularities that have weekly alignment. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20029</returns>
-        public ApiResponse< InlineResponse20029 > GetInstrumentCandlesWithHttpInfo (string authorization, string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null)
+        public ApiResponse<InlineResponse20029> GetInstrumentCandlesWithHttpInfo(string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->GetInstrumentCandles");
             // verify the required parameter 'instrument' is set
             if (instrument == null)
                 throw new ApiException(400, "Missing required parameter 'instrument' when calling DefaultApi->GetInstrumentCandles");
 
-            var localVarPath = "/instruments/{instrument}/candles";
+            var localVarPath = "instruments/{instrument}/candles";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3772,16 +3225,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -3799,34 +3252,32 @@ namespace Oanda.RestV20.Api
             if (dailyAlignment != null) localVarQueryParams.Add("dailyAlignment", Configuration.ApiClient.ParameterToString(dailyAlignment)); // query parameter
             if (alignmentTimezone != null) localVarQueryParams.Add("alignmentTimezone", Configuration.ApiClient.ParameterToString(alignmentTimezone)); // query parameter
             if (weeklyAlignment != null) localVarQueryParams.Add("weeklyAlignment", Configuration.ApiClient.ParameterToString(weeklyAlignment)); // query parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetInstrumentCandles", localVarResponse);
+                var exception = ExceptionFactory("GetInstrumentCandles", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20029>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20029) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20029)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20029)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20029)));
+
         }
 
         /// <summary>
         /// Get Candlesticks Fetch candlestick data for an instrument.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="price">The Price component(s) to get candlestick data for. Can contain any combination of the characters \&quot;M\&quot; (midpoint candles) \&quot;B\&quot; (bid candles) and \&quot;A\&quot; (ask candles). (optional)</param>
@@ -3840,10 +3291,10 @@ namespace Oanda.RestV20.Api
         /// <param name="alignmentTimezone">The timezone to use for the dailyAlignment parameter. Candlesticks with daily alignment will be aligned to the dailyAlignment hour within the alignmentTimezone. (optional)</param>
         /// <param name="weeklyAlignment">The day of the week used for granularities that have weekly alignment. (optional)</param>
         /// <returns>Task of InlineResponse20029</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20029> GetInstrumentCandlesAsync (string authorization, string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null)
+        public async System.Threading.Tasks.Task<InlineResponse20029> GetInstrumentCandlesAsync(string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null)
         {
-             ApiResponse<InlineResponse20029> localVarResponse = await GetInstrumentCandlesAsyncWithHttpInfo(authorization, instrument, acceptDatetimeFormat, price, granularity, count, from, to, smooth, includeFirst, dailyAlignment, alignmentTimezone, weeklyAlignment);
-             return localVarResponse.Data;
+            var localVarResponse = await GetInstrumentCandlesAsyncWithHttpInfo(instrument, acceptDatetimeFormat, price, granularity, count, from, to, smooth, includeFirst, dailyAlignment, alignmentTimezone, weeklyAlignment);
+            return localVarResponse.Data;
 
         }
 
@@ -3851,7 +3302,6 @@ namespace Oanda.RestV20.Api
         /// Get Candlesticks Fetch candlestick data for an instrument.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="price">The Price component(s) to get candlestick data for. Can contain any combination of the characters \&quot;M\&quot; (midpoint candles) \&quot;B\&quot; (bid candles) and \&quot;A\&quot; (ask candles). (optional)</param>
@@ -3865,16 +3315,13 @@ namespace Oanda.RestV20.Api
         /// <param name="alignmentTimezone">The timezone to use for the dailyAlignment parameter. Candlesticks with daily alignment will be aligned to the dailyAlignment hour within the alignmentTimezone. (optional)</param>
         /// <param name="weeklyAlignment">The day of the week used for granularities that have weekly alignment. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20029)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20029>> GetInstrumentCandlesAsyncWithHttpInfo (string authorization, string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20029>> GetInstrumentCandlesAsyncWithHttpInfo(string instrument, string acceptDatetimeFormat = null, string price = null, string granularity = null, int? count = null, string from = null, string to = null, bool? smooth = null, bool? includeFirst = null, int? dailyAlignment = null, string alignmentTimezone = null, string weeklyAlignment = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->GetInstrumentCandles");
             // verify the required parameter 'instrument' is set
             if (instrument == null)
                 throw new ApiException(400, "Missing required parameter 'instrument' when calling DefaultApi->GetInstrumentCandles");
 
-            var localVarPath = "/instruments/{instrument}/candles";
+            var localVarPath = "instruments/{instrument}/candles";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3883,16 +3330,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -3910,66 +3357,55 @@ namespace Oanda.RestV20.Api
             if (dailyAlignment != null) localVarQueryParams.Add("dailyAlignment", Configuration.ApiClient.ParameterToString(dailyAlignment)); // query parameter
             if (alignmentTimezone != null) localVarQueryParams.Add("alignmentTimezone", Configuration.ApiClient.ParameterToString(alignmentTimezone)); // query parameter
             if (weeklyAlignment != null) localVarQueryParams.Add("weeklyAlignment", Configuration.ApiClient.ParameterToString(weeklyAlignment)); // query parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetInstrumentCandles", localVarResponse);
+                var exception = ExceptionFactory("GetInstrumentCandles", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20029>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20029) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20029)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20029)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20029)));
+
         }
 
         /// <summary>
         /// Get Order Get details for a single Order in an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse2008</returns>
-        public InlineResponse2008 GetOrder (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null)
+        public InlineResponse2008 GetOrder(string orderSpecifier, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse2008> localVarResponse = GetOrderWithHttpInfo(authorization, accountID, orderSpecifier, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = GetOrderWithHttpInfo(orderSpecifier, acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get Order Get details for a single Order in an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2008</returns>
-        public ApiResponse< InlineResponse2008 > GetOrderWithHttpInfo (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse2008> GetOrderWithHttpInfo(string orderSpecifier, string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->GetOrder");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->GetOrder");
             // verify the required parameter 'orderSpecifier' is set
             if (orderSpecifier == null)
                 throw new ApiException(400, "Missing required parameter 'orderSpecifier' when calling DefaultApi->GetOrder");
 
-            var localVarPath = "/accounts/{accountID}/orders/{orderSpecifier}";
+            var localVarPath = "accounts/{accountID}/orders/{orderSpecifier}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3978,60 +3414,52 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (orderSpecifier != null) localVarPathParams.Add("orderSpecifier", Configuration.ApiClient.ParameterToString(orderSpecifier)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("orderSpecifier", orderSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetOrder", localVarResponse);
+                var exception = ExceptionFactory("GetOrder", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse2008>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2008) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2008)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2008)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2008)));
         }
 
         /// <summary>
         /// Get Order Get details for a single Order in an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse2008</returns>
-        public async System.Threading.Tasks.Task<InlineResponse2008> GetOrderAsync (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse2008> GetOrderAsync(string orderSpecifier, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse2008> localVarResponse = await GetOrderAsyncWithHttpInfo(authorization, accountID, orderSpecifier, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = await GetOrderAsyncWithHttpInfo(orderSpecifier, acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -4039,24 +3467,16 @@ namespace Oanda.RestV20.Api
         /// Get Order Get details for a single Order in an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2008)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2008>> GetOrderAsyncWithHttpInfo (string authorization, string accountID, string orderSpecifier, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2008>> GetOrderAsyncWithHttpInfo(string orderSpecifier, string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->GetOrder");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->GetOrder");
             // verify the required parameter 'orderSpecifier' is set
             if (orderSpecifier == null)
                 throw new ApiException(400, "Missing required parameter 'orderSpecifier' when calling DefaultApi->GetOrder");
 
-            var localVarPath = "/accounts/{accountID}/orders/{orderSpecifier}";
+            var localVarPath = "accounts/{accountID}/orders/{orderSpecifier}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4065,82 +3485,66 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (orderSpecifier != null) localVarPathParams.Add("orderSpecifier", Configuration.ApiClient.ParameterToString(orderSpecifier)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("orderSpecifier", orderSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetOrder", localVarResponse);
+                var exception = ExceptionFactory("GetOrder", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse2008>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2008) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2008)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2008)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2008)));
         }
 
         /// <summary>
         /// Instrument Position Get the details of a single Instrument&#39;s Position in an Account. The Position may by open or not.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <returns>InlineResponse20013</returns>
-        public InlineResponse20013 GetPosition (string authorization, string accountID, string instrument)
+        public InlineResponse20013 GetPosition(string instrument)
         {
-             ApiResponse<InlineResponse20013> localVarResponse = GetPositionWithHttpInfo(authorization, accountID, instrument);
-             return localVarResponse.Data;
+            var localVarResponse = GetPositionWithHttpInfo(instrument);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// Instrument Position Get the details of a single Instrument&#39;s Position in an Account. The Position may by open or not.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <returns>ApiResponse of InlineResponse20013</returns>
-        public ApiResponse< InlineResponse20013 > GetPositionWithHttpInfo (string authorization, string accountID, string instrument)
+        public ApiResponse<InlineResponse20013> GetPositionWithHttpInfo(string instrument)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->GetPosition");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->GetPosition");
             // verify the required parameter 'instrument' is set
             if (instrument == null)
                 throw new ApiException(400, "Missing required parameter 'instrument' when calling DefaultApi->GetPosition");
 
-            var localVarPath = "/accounts/{accountID}/positions/{instrument}";
+            var localVarPath = "accounts/{accountID}/positions/{instrument}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4149,58 +3553,50 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (instrument != null) localVarPathParams.Add("instrument", Configuration.ApiClient.ParameterToString(instrument)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
-
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("instrument", instrument); // path parameter
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetPosition", localVarResponse);
+                var exception = ExceptionFactory("GetPosition", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20013>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20013) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20013)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20013)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20013)));
         }
 
         /// <summary>
         /// Instrument Position Get the details of a single Instrument&#39;s Position in an Account. The Position may by open or not.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <returns>Task of InlineResponse20013</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20013> GetPositionAsync (string authorization, string accountID, string instrument)
+        public async System.Threading.Tasks.Task<InlineResponse20013> GetPositionAsync(string instrument)
         {
-             ApiResponse<InlineResponse20013> localVarResponse = await GetPositionAsyncWithHttpInfo(authorization, accountID, instrument);
-             return localVarResponse.Data;
+            var localVarResponse = await GetPositionAsyncWithHttpInfo(instrument);
+            return localVarResponse.Data;
 
         }
 
@@ -4208,23 +3604,15 @@ namespace Oanda.RestV20.Api
         /// Instrument Position Get the details of a single Instrument&#39;s Position in an Account. The Position may by open or not.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instrument">Name of the Instrument</param>
         /// <returns>Task of ApiResponse (InlineResponse20013)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20013>> GetPositionAsyncWithHttpInfo (string authorization, string accountID, string instrument)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20013>> GetPositionAsyncWithHttpInfo(string instrument)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->GetPosition");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->GetPosition");
             // verify the required parameter 'instrument' is set
             if (instrument == null)
                 throw new ApiException(400, "Missing required parameter 'instrument' when calling DefaultApi->GetPosition");
 
-            var localVarPath = "/accounts/{accountID}/positions/{instrument}";
+            var localVarPath = "accounts/{accountID}/positions/{instrument}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4233,87 +3621,71 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (instrument != null) localVarPathParams.Add("instrument", Configuration.ApiClient.ParameterToString(instrument)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
-
-
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("instrument", instrument); // path parameter
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetPosition", localVarResponse);
+                var exception = ExceptionFactory("GetPosition", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20013>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20013) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20013)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20013)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20013)));
+
         }
 
         /// <summary>
         /// Current Account Prices Get pricing information for a specified list of Instruments within an Account.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of Instruments to get pricing for.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="since">Date/Time filter to apply to the returned prices. Only prices with a time later than this filter will be provided. (optional)</param>
         /// <param name="includeUnitsAvailable">Flag that enables the inclusion of the unitsAvailable field in the returned Price objects. (optional)</param>
         /// <returns>InlineResponse20021</returns>
-        public InlineResponse20021 GetPrices (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null)
+        public InlineResponse20021 GetPrices(List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null)
         {
-             ApiResponse<InlineResponse20021> localVarResponse = GetPricesWithHttpInfo(authorization, accountID, instruments, acceptDatetimeFormat, since, includeUnitsAvailable);
-             return localVarResponse.Data;
+            var localVarResponse = GetPricesWithHttpInfo(instruments, acceptDatetimeFormat, since, includeUnitsAvailable);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// Current Account Prices Get pricing information for a specified list of Instruments within an Account.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of Instruments to get pricing for.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="since">Date/Time filter to apply to the returned prices. Only prices with a time later than this filter will be provided. (optional)</param>
         /// <param name="includeUnitsAvailable">Flag that enables the inclusion of the unitsAvailable field in the returned Price objects. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20021</returns>
-        public ApiResponse< InlineResponse20021 > GetPricesWithHttpInfo (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null)
+        public ApiResponse<InlineResponse20021> GetPricesWithHttpInfo(List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->GetPrices");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->GetPrices");
             // verify the required parameter 'instruments' is set
             if (instruments == null)
                 throw new ApiException(400, "Missing required parameter 'instruments' when calling DefaultApi->GetPrices");
 
-            var localVarPath = "/accounts/{accountID}/pricing";
+            var localVarPath = "accounts/{accountID}/pricing";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4322,64 +3694,56 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (instruments != null) localVarQueryParams.Add("instruments", Configuration.ApiClient.ParameterToString(instruments)); // query parameter
             if (since != null) localVarQueryParams.Add("since", Configuration.ApiClient.ParameterToString(since)); // query parameter
             if (includeUnitsAvailable != null) localVarQueryParams.Add("includeUnitsAvailable", Configuration.ApiClient.ParameterToString(includeUnitsAvailable)); // query parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetPrices", localVarResponse);
+                var exception = ExceptionFactory("GetPrices", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20021>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20021) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20021)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20021)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20021)));
         }
 
         /// <summary>
         /// Current Account Prices Get pricing information for a specified list of Instruments within an Account.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of Instruments to get pricing for.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="since">Date/Time filter to apply to the returned prices. Only prices with a time later than this filter will be provided. (optional)</param>
         /// <param name="includeUnitsAvailable">Flag that enables the inclusion of the unitsAvailable field in the returned Price objects. (optional)</param>
         /// <returns>Task of InlineResponse20021</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20021> GetPricesAsync (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null)
+        public async System.Threading.Tasks.Task<InlineResponse20021> GetPricesAsync(List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null)
         {
-             ApiResponse<InlineResponse20021> localVarResponse = await GetPricesAsyncWithHttpInfo(authorization, accountID, instruments, acceptDatetimeFormat, since, includeUnitsAvailable);
-             return localVarResponse.Data;
+            var localVarResponse = await GetPricesAsyncWithHttpInfo(instruments, acceptDatetimeFormat, since, includeUnitsAvailable);
+            return localVarResponse.Data;
 
         }
 
@@ -4387,26 +3751,18 @@ namespace Oanda.RestV20.Api
         /// Current Account Prices Get pricing information for a specified list of Instruments within an Account.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of Instruments to get pricing for.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="since">Date/Time filter to apply to the returned prices. Only prices with a time later than this filter will be provided. (optional)</param>
         /// <param name="includeUnitsAvailable">Flag that enables the inclusion of the unitsAvailable field in the returned Price objects. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20021)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20021>> GetPricesAsyncWithHttpInfo (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20021>> GetPricesAsyncWithHttpInfo(List<string> instruments, string acceptDatetimeFormat = null, string since = null, bool? includeUnitsAvailable = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->GetPrices");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->GetPrices");
             // verify the required parameter 'instruments' is set
             if (instruments == null)
                 throw new ApiException(400, "Missing required parameter 'instruments' when calling DefaultApi->GetPrices");
 
-            var localVarPath = "/accounts/{accountID}/pricing";
+            var localVarPath = "accounts/{accountID}/pricing";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4415,86 +3771,70 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (instruments != null) localVarQueryParams.Add("instruments", Configuration.ApiClient.ParameterToString(instruments)); // query parameter
             if (since != null) localVarQueryParams.Add("since", Configuration.ApiClient.ParameterToString(since)); // query parameter
             if (includeUnitsAvailable != null) localVarQueryParams.Add("includeUnitsAvailable", Configuration.ApiClient.ParameterToString(includeUnitsAvailable)); // query parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetPrices", localVarResponse);
+                var exception = ExceptionFactory("GetPrices", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20021>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20021) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20021)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20021)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20021)));
         }
 
         /// <summary>
         /// Trade Details Get the details of a specific Trade in an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20025</returns>
-        public InlineResponse20025 GetTrade (string authorization, string accountID, string tradeSpecifier, string acceptDatetimeFormat = null)
+        public InlineResponse20025 GetTrade(string tradeSpecifier, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20025> localVarResponse = GetTradeWithHttpInfo(authorization, accountID, tradeSpecifier, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = GetTradeWithHttpInfo(tradeSpecifier, acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// Trade Details Get the details of a specific Trade in an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20025</returns>
-        public ApiResponse< InlineResponse20025 > GetTradeWithHttpInfo (string authorization, string accountID, string tradeSpecifier, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse20025> GetTradeWithHttpInfo(string tradeSpecifier, string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->GetTrade");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->GetTrade");
             // verify the required parameter 'tradeSpecifier' is set
             if (tradeSpecifier == null)
                 throw new ApiException(400, "Missing required parameter 'tradeSpecifier' when calling DefaultApi->GetTrade");
 
-            var localVarPath = "/accounts/{accountID}/trades/{tradeSpecifier}";
+            var localVarPath = "accounts/{accountID}/trades/{tradeSpecifier}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4503,60 +3843,52 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (tradeSpecifier != null) localVarPathParams.Add("tradeSpecifier", Configuration.ApiClient.ParameterToString(tradeSpecifier)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("tradeSpecifier", tradeSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetTrade", localVarResponse);
+                var exception = ExceptionFactory("GetTrade", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20025>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20025) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20025)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20025)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20025)));
         }
 
         /// <summary>
         /// Trade Details Get the details of a specific Trade in an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20025</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20025> GetTradeAsync (string authorization, string accountID, string tradeSpecifier, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse20025> GetTradeAsync(string tradeSpecifier, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20025> localVarResponse = await GetTradeAsyncWithHttpInfo(authorization, accountID, tradeSpecifier, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = await GetTradeAsyncWithHttpInfo(tradeSpecifier, acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -4564,24 +3896,16 @@ namespace Oanda.RestV20.Api
         /// Trade Details Get the details of a specific Trade in an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20025)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20025>> GetTradeAsyncWithHttpInfo (string authorization, string accountID, string tradeSpecifier, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20025>> GetTradeAsyncWithHttpInfo(string tradeSpecifier, string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->GetTrade");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->GetTrade");
             // verify the required parameter 'tradeSpecifier' is set
             if (tradeSpecifier == null)
                 throw new ApiException(400, "Missing required parameter 'tradeSpecifier' when calling DefaultApi->GetTrade");
 
-            var localVarPath = "/accounts/{accountID}/trades/{tradeSpecifier}";
+            var localVarPath = "accounts/{accountID}/trades/{tradeSpecifier}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4590,84 +3914,68 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (tradeSpecifier != null) localVarPathParams.Add("tradeSpecifier", Configuration.ApiClient.ParameterToString(tradeSpecifier)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("tradeSpecifier", tradeSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetTrade", localVarResponse);
+                var exception = ExceptionFactory("GetTrade", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20025>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20025) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20025)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20025)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20025)));
         }
 
         /// <summary>
         /// Transaction Details Get the details of a single Account Transaction.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="transactionID">A Transaction ID</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20018</returns>
-        public InlineResponse20018 GetTransaction (string authorization, string accountID, string transactionID, string acceptDatetimeFormat = null)
+        public InlineResponse20018 GetTransaction(string transactionID, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20018> localVarResponse = GetTransactionWithHttpInfo(authorization, accountID, transactionID, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = GetTransactionWithHttpInfo(transactionID, acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// Transaction Details Get the details of a single Account Transaction.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="transactionID">A Transaction ID</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20018</returns>
-        public ApiResponse< InlineResponse20018 > GetTransactionWithHttpInfo (string authorization, string accountID, string transactionID, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse20018> GetTransactionWithHttpInfo(string transactionID, string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->GetTransaction");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->GetTransaction");
             // verify the required parameter 'transactionID' is set
             if (transactionID == null)
                 throw new ApiException(400, "Missing required parameter 'transactionID' when calling DefaultApi->GetTransaction");
 
-            var localVarPath = "/accounts/{accountID}/transactions/{transactionID}";
+            var localVarPath = "accounts/{accountID}/transactions/{transactionID}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4676,60 +3984,52 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (transactionID != null) localVarPathParams.Add("transactionID", Configuration.ApiClient.ParameterToString(transactionID)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("transactionID", transactionID); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetTransaction", localVarResponse);
+                var exception = ExceptionFactory("GetTransaction", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20018>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20018) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20018)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20018)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20018)));
         }
 
         /// <summary>
         /// Transaction Details Get the details of a single Account Transaction.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="transactionID">A Transaction ID</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20018</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20018> GetTransactionAsync (string authorization, string accountID, string transactionID, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse20018> GetTransactionAsync(string transactionID, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20018> localVarResponse = await GetTransactionAsyncWithHttpInfo(authorization, accountID, transactionID, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = await GetTransactionAsyncWithHttpInfo(transactionID, acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -4737,24 +4037,16 @@ namespace Oanda.RestV20.Api
         /// Transaction Details Get the details of a single Account Transaction.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="transactionID">A Transaction ID</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20018)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20018>> GetTransactionAsyncWithHttpInfo (string authorization, string accountID, string transactionID, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20018>> GetTransactionAsyncWithHttpInfo(string transactionID, string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->GetTransaction");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->GetTransaction");
             // verify the required parameter 'transactionID' is set
             if (transactionID == null)
                 throw new ApiException(400, "Missing required parameter 'transactionID' when calling DefaultApi->GetTransaction");
 
-            var localVarPath = "/accounts/{accountID}/transactions/{transactionID}";
+            var localVarPath = "accounts/{accountID}/transactions/{transactionID}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4763,83 +4055,67 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (transactionID != null) localVarPathParams.Add("transactionID", Configuration.ApiClient.ParameterToString(transactionID)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("transactionID", transactionID); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetTransaction", localVarResponse);
+                var exception = ExceptionFactory("GetTransaction", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20018>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20018) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20018)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20018)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20018)));
         }
 
         /// <summary>
         /// Transaction ID Range Get a range of Transactions for an Account based on the Transaction IDs.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="from">The starting Transacion ID (inclusive) to fetch.</param>
         /// <param name="to">The ending Transaction ID (inclusive) to fetch.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="type">The filter that restricts the types of Transactions to retreive. (optional)</param>
         /// <returns>InlineResponse20019</returns>
-        public InlineResponse20019 GetTransactionRange (string authorization, string accountID, string from, string to, string acceptDatetimeFormat = null, List<string> type = null)
+        public InlineResponse20019 GetTransactionRange(string from, string to, string acceptDatetimeFormat = null, List<string> type = null)
         {
-             ApiResponse<InlineResponse20019> localVarResponse = GetTransactionRangeWithHttpInfo(authorization, accountID, from, to, acceptDatetimeFormat, type);
-             return localVarResponse.Data;
+            var localVarResponse = GetTransactionRangeWithHttpInfo(from, to, acceptDatetimeFormat, type);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// Transaction ID Range Get a range of Transactions for an Account based on the Transaction IDs.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="from">The starting Transacion ID (inclusive) to fetch.</param>
         /// <param name="to">The ending Transaction ID (inclusive) to fetch.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="type">The filter that restricts the types of Transactions to retreive. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20019</returns>
-        public ApiResponse< InlineResponse20019 > GetTransactionRangeWithHttpInfo (string authorization, string accountID, string from, string to, string acceptDatetimeFormat = null, List<string> type = null)
+        public ApiResponse<InlineResponse20019> GetTransactionRangeWithHttpInfo(string from, string to, string acceptDatetimeFormat = null, List<string> type = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->GetTransactionRange");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->GetTransactionRange");
             // verify the required parameter 'from' is set
             if (from == null)
                 throw new ApiException(400, "Missing required parameter 'from' when calling DefaultApi->GetTransactionRange");
@@ -4847,7 +4123,7 @@ namespace Oanda.RestV20.Api
             if (to == null)
                 throw new ApiException(400, "Missing required parameter 'to' when calling DefaultApi->GetTransactionRange");
 
-            var localVarPath = "/accounts/{accountID}/transactions/idrange";
+            var localVarPath = "accounts/{accountID}/transactions/idrange";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4856,64 +4132,56 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (from != null) localVarQueryParams.Add("from", Configuration.ApiClient.ParameterToString(from)); // query parameter
             if (to != null) localVarQueryParams.Add("to", Configuration.ApiClient.ParameterToString(to)); // query parameter
             if (type != null) localVarQueryParams.Add("type", Configuration.ApiClient.ParameterToString(type)); // query parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetTransactionRange", localVarResponse);
+                var exception = ExceptionFactory("GetTransactionRange", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20019>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20019) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20019)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20019)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20019)));
         }
 
         /// <summary>
         /// Transaction ID Range Get a range of Transactions for an Account based on the Transaction IDs.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="from">The starting Transacion ID (inclusive) to fetch.</param>
         /// <param name="to">The ending Transaction ID (inclusive) to fetch.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="type">The filter that restricts the types of Transactions to retreive. (optional)</param>
         /// <returns>Task of InlineResponse20019</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20019> GetTransactionRangeAsync (string authorization, string accountID, string from, string to, string acceptDatetimeFormat = null, List<string> type = null)
+        public async System.Threading.Tasks.Task<InlineResponse20019> GetTransactionRangeAsync(string from, string to, string acceptDatetimeFormat = null, List<string> type = null)
         {
-             ApiResponse<InlineResponse20019> localVarResponse = await GetTransactionRangeAsyncWithHttpInfo(authorization, accountID, from, to, acceptDatetimeFormat, type);
-             return localVarResponse.Data;
+            var localVarResponse = await GetTransactionRangeAsyncWithHttpInfo(from, to, acceptDatetimeFormat, type);
+            return localVarResponse.Data;
 
         }
 
@@ -4921,21 +4189,13 @@ namespace Oanda.RestV20.Api
         /// Transaction ID Range Get a range of Transactions for an Account based on the Transaction IDs.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="from">The starting Transacion ID (inclusive) to fetch.</param>
         /// <param name="to">The ending Transaction ID (inclusive) to fetch.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="type">The filter that restricts the types of Transactions to retreive. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20019)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20019>> GetTransactionRangeAsyncWithHttpInfo (string authorization, string accountID, string from, string to, string acceptDatetimeFormat = null, List<string> type = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20019>> GetTransactionRangeAsyncWithHttpInfo(string from, string to, string acceptDatetimeFormat = null, List<string> type = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->GetTransactionRange");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->GetTransactionRange");
             // verify the required parameter 'from' is set
             if (from == null)
                 throw new ApiException(400, "Missing required parameter 'from' when calling DefaultApi->GetTransactionRange");
@@ -4943,7 +4203,7 @@ namespace Oanda.RestV20.Api
             if (to == null)
                 throw new ApiException(400, "Missing required parameter 'to' when calling DefaultApi->GetTransactionRange");
 
-            var localVarPath = "/accounts/{accountID}/transactions/idrange";
+            var localVarPath = "accounts/{accountID}/transactions/idrange";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4952,86 +4212,70 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (from != null) localVarQueryParams.Add("from", Configuration.ApiClient.ParameterToString(from)); // query parameter
             if (to != null) localVarQueryParams.Add("to", Configuration.ApiClient.ParameterToString(to)); // query parameter
             if (type != null) localVarQueryParams.Add("type", Configuration.ApiClient.ParameterToString(type)); // query parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetTransactionRange", localVarResponse);
+                var exception = ExceptionFactory("GetTransactionRange", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20019>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20019) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20019)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20019)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20019)));
         }
 
         /// <summary>
         /// Transactions Since ID Get a range of Transactions for an Account starting at (but not including) a provided Transaction ID.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="id">The ID of the last Transacion fetched. This query will return all Transactions newer than the TransactionID.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20019</returns>
-        public InlineResponse20019 GetTransactionsSinceId (string authorization, string accountID, string id, string acceptDatetimeFormat = null)
+        public InlineResponse20019 GetTransactionsSinceId(string id, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20019> localVarResponse = GetTransactionsSinceIdWithHttpInfo(authorization, accountID, id, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = GetTransactionsSinceIdWithHttpInfo(id, acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// Transactions Since ID Get a range of Transactions for an Account starting at (but not including) a provided Transaction ID.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="id">The ID of the last Transacion fetched. This query will return all Transactions newer than the TransactionID.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20019</returns>
-        public ApiResponse< InlineResponse20019 > GetTransactionsSinceIdWithHttpInfo (string authorization, string accountID, string id, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse20019> GetTransactionsSinceIdWithHttpInfo(string id, string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->GetTransactionsSinceId");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->GetTransactionsSinceId");
             // verify the required parameter 'id' is set
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling DefaultApi->GetTransactionsSinceId");
 
-            var localVarPath = "/accounts/{accountID}/transactions/sinceid";
+            var localVarPath = "accounts/{accountID}/transactions/sinceid";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5040,60 +4284,52 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (id != null) localVarQueryParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // query parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetTransactionsSinceId", localVarResponse);
+                var exception = ExceptionFactory("GetTransactionsSinceId", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20019>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20019) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20019)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20019)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20019)));
         }
 
         /// <summary>
         /// Transactions Since ID Get a range of Transactions for an Account starting at (but not including) a provided Transaction ID.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="id">The ID of the last Transacion fetched. This query will return all Transactions newer than the TransactionID.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20019</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20019> GetTransactionsSinceIdAsync (string authorization, string accountID, string id, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse20019> GetTransactionsSinceIdAsync(string id, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20019> localVarResponse = await GetTransactionsSinceIdAsyncWithHttpInfo(authorization, accountID, id, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = await GetTransactionsSinceIdAsyncWithHttpInfo(id, acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -5101,24 +4337,16 @@ namespace Oanda.RestV20.Api
         /// Transactions Since ID Get a range of Transactions for an Account starting at (but not including) a provided Transaction ID.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="id">The ID of the last Transacion fetched. This query will return all Transactions newer than the TransactionID.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20019)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20019>> GetTransactionsSinceIdAsyncWithHttpInfo (string authorization, string accountID, string id, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20019>> GetTransactionsSinceIdAsyncWithHttpInfo(string id, string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->GetTransactionsSinceId");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->GetTransactionsSinceId");
             // verify the required parameter 'id' is set
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling DefaultApi->GetTransactionsSinceId");
 
-            var localVarPath = "/accounts/{accountID}/transactions/sinceid";
+            var localVarPath = "accounts/{accountID}/transactions/sinceid";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5127,77 +4355,66 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (id != null) localVarQueryParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // query parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetTransactionsSinceId", localVarResponse);
+                var exception = ExceptionFactory("GetTransactionsSinceId", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20019>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20019) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20019)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20019)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20019)));
         }
 
         /// <summary>
         /// User Info Fetch the user information for the specified user. This endpoint is intended to be used by the user themself to obtain their own information.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>InlineResponse20015</returns>
-        public InlineResponse20015 GetUserInfo (string authorization, string userSpecifier)
+        public InlineResponse20015 GetUserInfo(string userSpecifier)
         {
-             ApiResponse<InlineResponse20015> localVarResponse = GetUserInfoWithHttpInfo(authorization, userSpecifier);
-             return localVarResponse.Data;
+            var localVarResponse = GetUserInfoWithHttpInfo(userSpecifier);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// User Info Fetch the user information for the specified user. This endpoint is intended to be used by the user themself to obtain their own information.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>ApiResponse of InlineResponse20015</returns>
-        public ApiResponse< InlineResponse20015 > GetUserInfoWithHttpInfo (string authorization, string userSpecifier)
+        public ApiResponse<InlineResponse20015> GetUserInfoWithHttpInfo(string userSpecifier)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->GetUserInfo");
             // verify the required parameter 'userSpecifier' is set
             if (userSpecifier == null)
                 throw new ApiException(400, "Missing required parameter 'userSpecifier' when calling DefaultApi->GetUserInfo");
 
-            var localVarPath = "/users/{userSpecifier}";
+            var localVarPath = "users/{userSpecifier}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5206,16 +4423,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -5223,39 +4440,37 @@ namespace Oanda.RestV20.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (userSpecifier != null) localVarPathParams.Add("userSpecifier", Configuration.ApiClient.ParameterToString(userSpecifier)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetUserInfo", localVarResponse);
+                var exception = ExceptionFactory("GetUserInfo", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20015>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20015) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20015)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20015)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20015)));
+
         }
 
         /// <summary>
         /// User Info Fetch the user information for the specified user. This endpoint is intended to be used by the user themself to obtain their own information.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>Task of InlineResponse20015</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20015> GetUserInfoAsync (string authorization, string userSpecifier)
+        public async System.Threading.Tasks.Task<InlineResponse20015> GetUserInfoAsync(string userSpecifier)
         {
-             ApiResponse<InlineResponse20015> localVarResponse = await GetUserInfoAsyncWithHttpInfo(authorization, userSpecifier);
-             return localVarResponse.Data;
+            var localVarResponse = await GetUserInfoAsyncWithHttpInfo(userSpecifier);
+            return localVarResponse.Data;
 
         }
 
@@ -5263,19 +4478,15 @@ namespace Oanda.RestV20.Api
         /// User Info Fetch the user information for the specified user. This endpoint is intended to be used by the user themself to obtain their own information.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <param name="userSpecifier">The User Specifier</param>
         /// <returns>Task of ApiResponse (InlineResponse20015)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20015>> GetUserInfoAsyncWithHttpInfo (string authorization, string userSpecifier)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20015>> GetUserInfoAsyncWithHttpInfo(string userSpecifier)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->GetUserInfo");
             // verify the required parameter 'userSpecifier' is set
             if (userSpecifier == null)
                 throw new ApiException(400, "Missing required parameter 'userSpecifier' when calling DefaultApi->GetUserInfo");
 
-            var localVarPath = "/users/{userSpecifier}";
+            var localVarPath = "users/{userSpecifier}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5284,16 +4495,16 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -5301,53 +4512,47 @@ namespace Oanda.RestV20.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (userSpecifier != null) localVarPathParams.Add("userSpecifier", Configuration.ApiClient.ParameterToString(userSpecifier)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("GetUserInfo", localVarResponse);
+                var exception = ExceptionFactory("GetUserInfo", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20015>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20015) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20015)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20015)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20015)));
+
         }
 
         /// <summary>
         /// List Accounts Get a list of all Accounts authorized for the provided token.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <returns>InlineResponse200</returns>
-        public InlineResponse200 ListAccounts (string authorization)
+        public InlineResponse200 ListAccounts()
         {
-             ApiResponse<InlineResponse200> localVarResponse = ListAccountsWithHttpInfo(authorization);
-             return localVarResponse.Data;
+            var localVarResponse = ListAccountsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// List Accounts Get a list of all Accounts authorized for the provided token.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <returns>ApiResponse of InlineResponse200</returns>
-        public ApiResponse< InlineResponse200 > ListAccountsWithHttpInfo (string authorization)
+        public ApiResponse<InlineResponse200> ListAccountsWithHttpInfo()
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->ListAccounts");
 
-            var localVarPath = "/accounts";
+            var localVarPath = "accounts";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5356,54 +4561,51 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListAccounts", localVarResponse);
+                var exception = ExceptionFactory("ListAccounts", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse200>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse200) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse200)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse200)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse200)));
         }
 
         /// <summary>
         /// List Accounts Get a list of all Accounts authorized for the provided token.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <returns>Task of InlineResponse200</returns>
-        public async System.Threading.Tasks.Task<InlineResponse200> ListAccountsAsync (string authorization)
+        public async System.Threading.Tasks.Task<InlineResponse200> ListAccountsAsync()
         {
-             ApiResponse<InlineResponse200> localVarResponse = await ListAccountsAsyncWithHttpInfo(authorization);
-             return localVarResponse.Data;
+            var localVarResponse = await ListAccountsAsyncWithHttpInfo();
+            return localVarResponse.Data;
 
         }
 
@@ -5411,15 +4613,10 @@ namespace Oanda.RestV20.Api
         /// List Accounts Get a list of all Accounts authorized for the provided token.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
         /// <returns>Task of ApiResponse (InlineResponse200)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse200>> ListAccountsAsyncWithHttpInfo (string authorization)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse200>> ListAccountsAsyncWithHttpInfo()
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->ListAccounts");
-
-            var localVarPath = "/accounts";
+            var localVarPath = "accounts";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5428,74 +4625,61 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListAccounts", localVarResponse);
+                var exception = ExceptionFactory("ListAccounts", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse200>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse200) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse200)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse200)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse200)));
         }
 
         /// <summary>
         /// Open Positions List all open Positions for an Account. An open Position is a Position in an Account that currently has a Trade opened for it.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <returns>InlineResponse20012</returns>
-        public InlineResponse20012 ListOpenPositions (string authorization, string accountID)
+        public InlineResponse20012 ListOpenPositions()
         {
-             ApiResponse<InlineResponse20012> localVarResponse = ListOpenPositionsWithHttpInfo(authorization, accountID);
-             return localVarResponse.Data;
+            var localVarResponse = ListOpenPositionsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// Open Positions List all open Positions for an Account. An open Position is a Position in an Account that currently has a Trade opened for it.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <returns>ApiResponse of InlineResponse20012</returns>
-        public ApiResponse< InlineResponse20012 > ListOpenPositionsWithHttpInfo (string authorization, string accountID)
+        public ApiResponse<InlineResponse20012> ListOpenPositionsWithHttpInfo()
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->ListOpenPositions");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->ListOpenPositions");
-
-            var localVarPath = "/accounts/{accountID}/openPositions";
+            var localVarPath = "accounts/{accountID}/openPositions";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5504,56 +4688,48 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
-
+            localVarPathParams.Add("accountID", _accountId); // path parameter
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListOpenPositions", localVarResponse);
+                var exception = ExceptionFactory("ListOpenPositions", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20012>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20012) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20012)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20012)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20012)));
         }
 
         /// <summary>
         /// Open Positions List all open Positions for an Account. An open Position is a Position in an Account that currently has a Trade opened for it.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <returns>Task of InlineResponse20012</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20012> ListOpenPositionsAsync (string authorization, string accountID)
+        public async System.Threading.Tasks.Task<InlineResponse20012> ListOpenPositionsAsync()
         {
-             ApiResponse<InlineResponse20012> localVarResponse = await ListOpenPositionsAsyncWithHttpInfo(authorization, accountID);
-             return localVarResponse.Data;
+            var localVarResponse = await ListOpenPositionsAsyncWithHttpInfo();
+            return localVarResponse.Data;
 
         }
 
@@ -5561,19 +4737,10 @@ namespace Oanda.RestV20.Api
         /// Open Positions List all open Positions for an Account. An open Position is a Position in an Account that currently has a Trade opened for it.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <returns>Task of ApiResponse (InlineResponse20012)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20012>> ListOpenPositionsAsyncWithHttpInfo (string authorization, string accountID)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20012>> ListOpenPositionsAsyncWithHttpInfo()
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->ListOpenPositions");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->ListOpenPositions");
-
-            var localVarPath = "/accounts/{accountID}/openPositions";
+            var localVarPath = "accounts/{accountID}/openPositions";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5582,77 +4749,61 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
-
+            localVarPathParams.Add("accountID", _accountId); // path parameter
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListOpenPositions", localVarResponse);
+                var exception = ExceptionFactory("ListOpenPositions", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20012>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20012) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20012)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20012)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20012)));
+
         }
 
         /// <summary>
         /// List Open Trades Get the list of open Trades for an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20024</returns>
-        public InlineResponse20024 ListOpenTrades (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public InlineResponse20024 ListOpenTrades(string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20024> localVarResponse = ListOpenTradesWithHttpInfo(authorization, accountID, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = ListOpenTradesWithHttpInfo(acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// List Open Trades Get the list of open Trades for an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20024</returns>
-        public ApiResponse< InlineResponse20024 > ListOpenTradesWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse20024> ListOpenTradesWithHttpInfo(string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->ListOpenTrades");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->ListOpenTrades");
-
-            var localVarPath = "/accounts/{accountID}/openTrades";
+            var localVarPath = "accounts/{accountID}/openTrades";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5661,58 +4812,50 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListOpenTrades", localVarResponse);
+                var exception = ExceptionFactory("ListOpenTrades", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20024>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20024) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20024)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20024)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20024)));
         }
 
         /// <summary>
         /// List Open Trades Get the list of open Trades for an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20024</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20024> ListOpenTradesAsync (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse20024> ListOpenTradesAsync(string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20024> localVarResponse = await ListOpenTradesAsyncWithHttpInfo(authorization, accountID, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = await ListOpenTradesAsyncWithHttpInfo(acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -5720,20 +4863,11 @@ namespace Oanda.RestV20.Api
         /// List Open Trades Get the list of open Trades for an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20024)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20024>> ListOpenTradesAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20024>> ListOpenTradesAsyncWithHttpInfo(string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->ListOpenTrades");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->ListOpenTrades");
-
-            var localVarPath = "/accounts/{accountID}/openTrades";
+            var localVarPath = "accounts/{accountID}/openTrades";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5742,52 +4876,44 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListOpenTrades", localVarResponse);
+                var exception = ExceptionFactory("ListOpenTrades", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20024>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20024) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20024)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20024)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20024)));
         }
 
         /// <summary>
         /// List Orders Get a list of Orders for an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="ids">List of Order IDs to retrieve (optional)</param>
         /// <param name="state">The state to filter the requested Orders by (optional)</param>
@@ -5795,18 +4921,16 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Orders to return (optional)</param>
         /// <param name="beforeID">The maximum Order ID to return. If not provided the most recent Orders in the Account are returned (optional)</param>
         /// <returns>InlineResponse2006</returns>
-        public InlineResponse2006 ListOrders (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
+        public InlineResponse2006 ListOrders(string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
         {
-             ApiResponse<InlineResponse2006> localVarResponse = ListOrdersWithHttpInfo(authorization, accountID, acceptDatetimeFormat, ids, state, instrument, count, beforeID);
-             return localVarResponse.Data;
+            var localVarResponse = ListOrdersWithHttpInfo(acceptDatetimeFormat, ids, state, instrument, count, beforeID);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// List Orders Get a list of Orders for an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="ids">List of Order IDs to retrieve (optional)</param>
         /// <param name="state">The state to filter the requested Orders by (optional)</param>
@@ -5814,16 +4938,9 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Orders to return (optional)</param>
         /// <param name="beforeID">The maximum Order ID to return. If not provided the most recent Orders in the Account are returned (optional)</param>
         /// <returns>ApiResponse of InlineResponse2006</returns>
-        public ApiResponse< InlineResponse2006 > ListOrdersWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
+        public ApiResponse<InlineResponse2006> ListOrdersWithHttpInfo(string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->ListOrders");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->ListOrders");
-
-            var localVarPath = "/accounts/{accountID}/orders";
+            var localVarPath = "accounts/{accountID}/orders";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5832,57 +4949,49 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (ids != null) localVarQueryParams.Add("ids", Configuration.ApiClient.ParameterToString(ids)); // query parameter
             if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
             if (instrument != null) localVarQueryParams.Add("instrument", Configuration.ApiClient.ParameterToString(instrument)); // query parameter
             if (count != null) localVarQueryParams.Add("count", Configuration.ApiClient.ParameterToString(count)); // query parameter
             if (beforeID != null) localVarQueryParams.Add("beforeID", Configuration.ApiClient.ParameterToString(beforeID)); // query parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListOrders", localVarResponse);
+                var exception = ExceptionFactory("ListOrders", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse2006>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2006) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2006)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2006)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2006)));
         }
 
         /// <summary>
         /// List Orders Get a list of Orders for an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="ids">List of Order IDs to retrieve (optional)</param>
         /// <param name="state">The state to filter the requested Orders by (optional)</param>
@@ -5890,10 +4999,10 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Orders to return (optional)</param>
         /// <param name="beforeID">The maximum Order ID to return. If not provided the most recent Orders in the Account are returned (optional)</param>
         /// <returns>Task of InlineResponse2006</returns>
-        public async System.Threading.Tasks.Task<InlineResponse2006> ListOrdersAsync (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
+        public async System.Threading.Tasks.Task<InlineResponse2006> ListOrdersAsync(string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
         {
-             ApiResponse<InlineResponse2006> localVarResponse = await ListOrdersAsyncWithHttpInfo(authorization, accountID, acceptDatetimeFormat, ids, state, instrument, count, beforeID);
-             return localVarResponse.Data;
+            var localVarResponse = await ListOrdersAsyncWithHttpInfo(acceptDatetimeFormat, ids, state, instrument, count, beforeID);
+            return localVarResponse.Data;
 
         }
 
@@ -5901,8 +5010,6 @@ namespace Oanda.RestV20.Api
         /// List Orders Get a list of Orders for an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="ids">List of Order IDs to retrieve (optional)</param>
         /// <param name="state">The state to filter the requested Orders by (optional)</param>
@@ -5910,16 +5017,9 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Orders to return (optional)</param>
         /// <param name="beforeID">The maximum Order ID to return. If not provided the most recent Orders in the Account are returned (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2006)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2006>> ListOrdersAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2006>> ListOrdersAsyncWithHttpInfo(string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->ListOrders");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->ListOrders");
-
-            var localVarPath = "/accounts/{accountID}/orders";
+            var localVarPath = "accounts/{accountID}/orders";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5928,83 +5028,66 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (ids != null) localVarQueryParams.Add("ids", Configuration.ApiClient.ParameterToString(ids)); // query parameter
             if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
             if (instrument != null) localVarQueryParams.Add("instrument", Configuration.ApiClient.ParameterToString(instrument)); // query parameter
             if (count != null) localVarQueryParams.Add("count", Configuration.ApiClient.ParameterToString(count)); // query parameter
             if (beforeID != null) localVarQueryParams.Add("beforeID", Configuration.ApiClient.ParameterToString(beforeID)); // query parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListOrders", localVarResponse);
+                var exception = ExceptionFactory("ListOrders", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse2006>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2006) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2006)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2006)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2006)));
         }
 
         /// <summary>
         /// Pending Orders List all pending Orders in an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse2007</returns>
-        public InlineResponse2007 ListPendingOrders (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public InlineResponse2007 ListPendingOrders(string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse2007> localVarResponse = ListPendingOrdersWithHttpInfo(authorization, accountID, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = ListPendingOrdersWithHttpInfo(acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// Pending Orders List all pending Orders in an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2007</returns>
-        public ApiResponse< InlineResponse2007 > ListPendingOrdersWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse2007> ListPendingOrdersWithHttpInfo(string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->ListPendingOrders");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->ListPendingOrders");
-
-            var localVarPath = "/accounts/{accountID}/pendingOrders";
+            var localVarPath = "accounts/{accountID}/pendingOrders";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -6013,58 +5096,50 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListPendingOrders", localVarResponse);
+                var exception = ExceptionFactory("ListPendingOrders", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse2007>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2007) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2007)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2007)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2007)));
         }
 
         /// <summary>
         /// Pending Orders List all pending Orders in an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse2007</returns>
-        public async System.Threading.Tasks.Task<InlineResponse2007> ListPendingOrdersAsync (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse2007> ListPendingOrdersAsync(string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse2007> localVarResponse = await ListPendingOrdersAsyncWithHttpInfo(authorization, accountID, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = await ListPendingOrdersAsyncWithHttpInfo(acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -6072,20 +5147,11 @@ namespace Oanda.RestV20.Api
         /// Pending Orders List all pending Orders in an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2007)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2007>> ListPendingOrdersAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2007>> ListPendingOrdersAsyncWithHttpInfo(string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->ListPendingOrders");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->ListPendingOrders");
-
-            var localVarPath = "/accounts/{accountID}/pendingOrders";
+            var localVarPath = "accounts/{accountID}/pendingOrders";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -6094,76 +5160,59 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListPendingOrders", localVarResponse);
+                var exception = ExceptionFactory("ListPendingOrders", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse2007>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2007) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2007)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2007)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2007)));
         }
 
         /// <summary>
         /// List Positions List all Positions for an Account. The Positions returned are for every instrument that has had a position during the lifetime of an the Account.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <returns>InlineResponse20011</returns>
-        public InlineResponse20011 ListPositions (string authorization, string accountID)
+        public InlineResponse20011 ListPositions()
         {
-             ApiResponse<InlineResponse20011> localVarResponse = ListPositionsWithHttpInfo(authorization, accountID);
-             return localVarResponse.Data;
+            var localVarResponse = ListPositionsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// List Positions List all Positions for an Account. The Positions returned are for every instrument that has had a position during the lifetime of an the Account.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <returns>ApiResponse of InlineResponse20011</returns>
-        public ApiResponse< InlineResponse20011 > ListPositionsWithHttpInfo (string authorization, string accountID)
+        public ApiResponse<InlineResponse20011> ListPositionsWithHttpInfo()
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->ListPositions");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->ListPositions");
-
-            var localVarPath = "/accounts/{accountID}/positions";
+            var localVarPath = "accounts/{accountID}/positions";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -6172,56 +5221,48 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
-
+            localVarPathParams.Add("accountID", _accountId); // path parameter
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListPositions", localVarResponse);
+                var exception = ExceptionFactory("ListPositions", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20011>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20011) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20011)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20011)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20011)));
         }
 
         /// <summary>
         /// List Positions List all Positions for an Account. The Positions returned are for every instrument that has had a position during the lifetime of an the Account.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <returns>Task of InlineResponse20011</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20011> ListPositionsAsync (string authorization, string accountID)
+        public async System.Threading.Tasks.Task<InlineResponse20011> ListPositionsAsync()
         {
-             ApiResponse<InlineResponse20011> localVarResponse = await ListPositionsAsyncWithHttpInfo(authorization, accountID);
-             return localVarResponse.Data;
+            var localVarResponse = await ListPositionsAsyncWithHttpInfo();
+            return localVarResponse.Data;
 
         }
 
@@ -6229,19 +5270,10 @@ namespace Oanda.RestV20.Api
         /// List Positions List all Positions for an Account. The Positions returned are for every instrument that has had a position during the lifetime of an the Account.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <returns>Task of ApiResponse (InlineResponse20011)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20011>> ListPositionsAsyncWithHttpInfo (string authorization, string accountID)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20011>> ListPositionsAsyncWithHttpInfo()
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->ListPositions");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->ListPositions");
-
-            var localVarPath = "/accounts/{accountID}/positions";
+            var localVarPath = "accounts/{accountID}/positions";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -6250,51 +5282,43 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
-
+            localVarPathParams.Add("accountID", _accountId); // path parameter
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListPositions", localVarResponse);
+                var exception = ExceptionFactory("ListPositions", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20011>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20011) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20011)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20011)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20011)));
         }
 
         /// <summary>
         /// List Trades Get a list of Trades for an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="ids">List of Trade IDs to retrieve. (optional)</param>
         /// <param name="state">The state to filter the requested Trades by. (optional)</param>
@@ -6302,18 +5326,16 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Trades to return. (optional)</param>
         /// <param name="beforeID">The maximum Trade ID to return. If not provided the most recent Trades in the Account are returned. (optional)</param>
         /// <returns>InlineResponse20023</returns>
-        public InlineResponse20023 ListTrades (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
+        public InlineResponse20023 ListTrades(string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
         {
-             ApiResponse<InlineResponse20023> localVarResponse = ListTradesWithHttpInfo(authorization, accountID, acceptDatetimeFormat, ids, state, instrument, count, beforeID);
-             return localVarResponse.Data;
+            var localVarResponse = ListTradesWithHttpInfo(acceptDatetimeFormat, ids, state, instrument, count, beforeID);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// List Trades Get a list of Trades for an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="ids">List of Trade IDs to retrieve. (optional)</param>
         /// <param name="state">The state to filter the requested Trades by. (optional)</param>
@@ -6321,16 +5343,9 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Trades to return. (optional)</param>
         /// <param name="beforeID">The maximum Trade ID to return. If not provided the most recent Trades in the Account are returned. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20023</returns>
-        public ApiResponse< InlineResponse20023 > ListTradesWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
+        public ApiResponse<InlineResponse20023> ListTradesWithHttpInfo(string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->ListTrades");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->ListTrades");
-
-            var localVarPath = "/accounts/{accountID}/trades";
+            var localVarPath = "accounts/{accountID}/trades";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -6339,57 +5354,49 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (ids != null) localVarQueryParams.Add("ids", Configuration.ApiClient.ParameterToString(ids)); // query parameter
             if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
             if (instrument != null) localVarQueryParams.Add("instrument", Configuration.ApiClient.ParameterToString(instrument)); // query parameter
             if (count != null) localVarQueryParams.Add("count", Configuration.ApiClient.ParameterToString(count)); // query parameter
             if (beforeID != null) localVarQueryParams.Add("beforeID", Configuration.ApiClient.ParameterToString(beforeID)); // query parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListTrades", localVarResponse);
+                var exception = ExceptionFactory("ListTrades", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20023>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20023) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20023)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20023)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20023)));
         }
 
         /// <summary>
         /// List Trades Get a list of Trades for an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="ids">List of Trade IDs to retrieve. (optional)</param>
         /// <param name="state">The state to filter the requested Trades by. (optional)</param>
@@ -6397,10 +5404,10 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Trades to return. (optional)</param>
         /// <param name="beforeID">The maximum Trade ID to return. If not provided the most recent Trades in the Account are returned. (optional)</param>
         /// <returns>Task of InlineResponse20023</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20023> ListTradesAsync (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
+        public async System.Threading.Tasks.Task<InlineResponse20023> ListTradesAsync(string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
         {
-             ApiResponse<InlineResponse20023> localVarResponse = await ListTradesAsyncWithHttpInfo(authorization, accountID, acceptDatetimeFormat, ids, state, instrument, count, beforeID);
-             return localVarResponse.Data;
+            var localVarResponse = await ListTradesAsyncWithHttpInfo(acceptDatetimeFormat, ids, state, instrument, count, beforeID);
+            return localVarResponse.Data;
 
         }
 
@@ -6408,8 +5415,6 @@ namespace Oanda.RestV20.Api
         /// List Trades Get a list of Trades for an Account
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="ids">List of Trade IDs to retrieve. (optional)</param>
         /// <param name="state">The state to filter the requested Trades by. (optional)</param>
@@ -6417,16 +5422,9 @@ namespace Oanda.RestV20.Api
         /// <param name="count">The maximum number of Trades to return. (optional)</param>
         /// <param name="beforeID">The maximum Trade ID to return. If not provided the most recent Trades in the Account are returned. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20023)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20023>> ListTradesAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20023>> ListTradesAsyncWithHttpInfo(string acceptDatetimeFormat = null, List<string> ids = null, string state = null, string instrument = null, int? count = null, string beforeID = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->ListTrades");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->ListTrades");
-
-            var localVarPath = "/accounts/{accountID}/trades";
+            var localVarPath = "accounts/{accountID}/trades";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -6435,91 +5433,74 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (ids != null) localVarQueryParams.Add("ids", Configuration.ApiClient.ParameterToString(ids)); // query parameter
             if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
             if (instrument != null) localVarQueryParams.Add("instrument", Configuration.ApiClient.ParameterToString(instrument)); // query parameter
             if (count != null) localVarQueryParams.Add("count", Configuration.ApiClient.ParameterToString(count)); // query parameter
             if (beforeID != null) localVarQueryParams.Add("beforeID", Configuration.ApiClient.ParameterToString(beforeID)); // query parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListTrades", localVarResponse);
+                var exception = ExceptionFactory("ListTrades", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20023>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20023) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20023)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20023)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20023)));
         }
 
         /// <summary>
         /// List Transactions Get a list of Transactions pages that satisfy a time-based Transaction query.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="from">The starting time (inclusive) of the time range for the Transactions being queried. (optional)</param>
         /// <param name="to">The ending time (inclusive) of the time range for the Transactions being queried. (optional)</param>
         /// <param name="pageSize">The number of Transactions to include in each page of the results. (optional)</param>
         /// <param name="type">A filter for restricting the types of Transactions to retreive. (optional)</param>
         /// <returns>InlineResponse20017</returns>
-        public InlineResponse20017 ListTransactions (string authorization, string accountID, string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null)
+        public InlineResponse20017 ListTransactions(string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null)
         {
-             ApiResponse<InlineResponse20017> localVarResponse = ListTransactionsWithHttpInfo(authorization, accountID, acceptDatetimeFormat, from, to, pageSize, type);
-             return localVarResponse.Data;
+            var localVarResponse = ListTransactionsWithHttpInfo(acceptDatetimeFormat, from, to, pageSize, type);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// List Transactions Get a list of Transactions pages that satisfy a time-based Transaction query.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="from">The starting time (inclusive) of the time range for the Transactions being queried. (optional)</param>
         /// <param name="to">The ending time (inclusive) of the time range for the Transactions being queried. (optional)</param>
         /// <param name="pageSize">The number of Transactions to include in each page of the results. (optional)</param>
         /// <param name="type">A filter for restricting the types of Transactions to retreive. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20017</returns>
-        public ApiResponse< InlineResponse20017 > ListTransactionsWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null)
+        public ApiResponse<InlineResponse20017> ListTransactionsWithHttpInfo(string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->ListTransactions");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->ListTransactions");
-
-            var localVarPath = "/accounts/{accountID}/transactions";
+            var localVarPath = "accounts/{accountID}/transactions";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -6528,66 +5509,58 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (from != null) localVarQueryParams.Add("from", Configuration.ApiClient.ParameterToString(from)); // query parameter
             if (to != null) localVarQueryParams.Add("to", Configuration.ApiClient.ParameterToString(to)); // query parameter
             if (pageSize != null) localVarQueryParams.Add("pageSize", Configuration.ApiClient.ParameterToString(pageSize)); // query parameter
             if (type != null) localVarQueryParams.Add("type", Configuration.ApiClient.ParameterToString(type)); // query parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListTransactions", localVarResponse);
+                var exception = ExceptionFactory("ListTransactions", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20017>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20017) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20017)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20017)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20017)));
         }
 
         /// <summary>
         /// List Transactions Get a list of Transactions pages that satisfy a time-based Transaction query.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="from">The starting time (inclusive) of the time range for the Transactions being queried. (optional)</param>
         /// <param name="to">The ending time (inclusive) of the time range for the Transactions being queried. (optional)</param>
         /// <param name="pageSize">The number of Transactions to include in each page of the results. (optional)</param>
         /// <param name="type">A filter for restricting the types of Transactions to retreive. (optional)</param>
         /// <returns>Task of InlineResponse20017</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20017> ListTransactionsAsync (string authorization, string accountID, string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null)
+        public async System.Threading.Tasks.Task<InlineResponse20017> ListTransactionsAsync(string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null)
         {
-             ApiResponse<InlineResponse20017> localVarResponse = await ListTransactionsAsyncWithHttpInfo(authorization, accountID, acceptDatetimeFormat, from, to, pageSize, type);
-             return localVarResponse.Data;
+            var localVarResponse = await ListTransactionsAsyncWithHttpInfo(acceptDatetimeFormat, from, to, pageSize, type);
+            return localVarResponse.Data;
 
         }
 
@@ -6595,24 +5568,15 @@ namespace Oanda.RestV20.Api
         /// List Transactions Get a list of Transactions pages that satisfy a time-based Transaction query.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="from">The starting time (inclusive) of the time range for the Transactions being queried. (optional)</param>
         /// <param name="to">The ending time (inclusive) of the time range for the Transactions being queried. (optional)</param>
         /// <param name="pageSize">The number of Transactions to include in each page of the results. (optional)</param>
         /// <param name="type">A filter for restricting the types of Transactions to retreive. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20017)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20017>> ListTransactionsAsyncWithHttpInfo (string authorization, string accountID, string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20017>> ListTransactionsAsyncWithHttpInfo(string acceptDatetimeFormat = null, string from = null, string to = null, int? pageSize = null, List<string> type = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->ListTransactions");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->ListTransactions");
-
-            var localVarPath = "/accounts/{accountID}/transactions";
+            var localVarPath = "accounts/{accountID}/transactions";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -6621,84 +5585,68 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (from != null) localVarQueryParams.Add("from", Configuration.ApiClient.ParameterToString(from)); // query parameter
             if (to != null) localVarQueryParams.Add("to", Configuration.ApiClient.ParameterToString(to)); // query parameter
             if (pageSize != null) localVarQueryParams.Add("pageSize", Configuration.ApiClient.ParameterToString(pageSize)); // query parameter
             if (type != null) localVarQueryParams.Add("type", Configuration.ApiClient.ParameterToString(type)); // query parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ListTransactions", localVarResponse);
+                var exception = ExceptionFactory("ListTransactions", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20017>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20017) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20017)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20017)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20017)));
         }
 
         /// <summary>
         /// Replace Order Replace an Order in an Account by simultaneously cancelling it and creating a replacement Order
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="replaceOrderBody">Specification of the replacing Order. The replacing order must have the same type as the replaced Order.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse2011</returns>
-        public InlineResponse2011 ReplaceOrder (string authorization, string accountID, string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null)
+        public InlineResponse2011 ReplaceOrder(string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse2011> localVarResponse = ReplaceOrderWithHttpInfo(authorization, accountID, orderSpecifier, replaceOrderBody, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = ReplaceOrderWithHttpInfo(orderSpecifier, replaceOrderBody, acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// Replace Order Replace an Order in an Account by simultaneously cancelling it and creating a replacement Order
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="replaceOrderBody">Specification of the replacing Order. The replacing order must have the same type as the replaced Order.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse2011</returns>
-        public ApiResponse< InlineResponse2011 > ReplaceOrderWithHttpInfo (string authorization, string accountID, string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse2011> ReplaceOrderWithHttpInfo(string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->ReplaceOrder");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->ReplaceOrder");
             // verify the required parameter 'orderSpecifier' is set
             if (orderSpecifier == null)
                 throw new ApiException(400, "Missing required parameter 'orderSpecifier' when calling DefaultApi->ReplaceOrder");
@@ -6706,7 +5654,7 @@ namespace Oanda.RestV20.Api
             if (replaceOrderBody == null)
                 throw new ApiException(400, "Missing required parameter 'replaceOrderBody' when calling DefaultApi->ReplaceOrder");
 
-            var localVarPath = "/accounts/{accountID}/orders/{orderSpecifier}";
+            var localVarPath = "accounts/{accountID}/orders/{orderSpecifier}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -6715,25 +5663,21 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (orderSpecifier != null) localVarPathParams.Add("orderSpecifier", Configuration.ApiClient.ParameterToString(orderSpecifier)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("orderSpecifier", orderSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (replaceOrderBody != null && replaceOrderBody.GetType() != typeof(byte[]))
             {
@@ -6744,40 +5688,36 @@ namespace Oanda.RestV20.Api
                 localVarPostBody = replaceOrderBody; // byte array
             }
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ReplaceOrder", localVarResponse);
+                var exception = ExceptionFactory("ReplaceOrder", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse2011>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2011) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2011)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2011)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2011)));
         }
 
         /// <summary>
         /// Replace Order Replace an Order in an Account by simultaneously cancelling it and creating a replacement Order
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="replaceOrderBody">Specification of the replacing Order. The replacing order must have the same type as the replaced Order.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse2011</returns>
-        public async System.Threading.Tasks.Task<InlineResponse2011> ReplaceOrderAsync (string authorization, string accountID, string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse2011> ReplaceOrderAsync(string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse2011> localVarResponse = await ReplaceOrderAsyncWithHttpInfo(authorization, accountID, orderSpecifier, replaceOrderBody, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = await ReplaceOrderAsyncWithHttpInfo(orderSpecifier, replaceOrderBody, acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -6785,20 +5725,12 @@ namespace Oanda.RestV20.Api
         /// Replace Order Replace an Order in an Account by simultaneously cancelling it and creating a replacement Order
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="replaceOrderBody">Specification of the replacing Order. The replacing order must have the same type as the replaced Order.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse2011)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2011>> ReplaceOrderAsyncWithHttpInfo (string authorization, string accountID, string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse2011>> ReplaceOrderAsyncWithHttpInfo(string orderSpecifier, ReplaceOrderBody replaceOrderBody, string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->ReplaceOrder");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->ReplaceOrder");
             // verify the required parameter 'orderSpecifier' is set
             if (orderSpecifier == null)
                 throw new ApiException(400, "Missing required parameter 'orderSpecifier' when calling DefaultApi->ReplaceOrder");
@@ -6806,7 +5738,7 @@ namespace Oanda.RestV20.Api
             if (replaceOrderBody == null)
                 throw new ApiException(400, "Missing required parameter 'replaceOrderBody' when calling DefaultApi->ReplaceOrder");
 
-            var localVarPath = "/accounts/{accountID}/orders/{orderSpecifier}";
+            var localVarPath = "accounts/{accountID}/orders/{orderSpecifier}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -6815,25 +5747,21 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (orderSpecifier != null) localVarPathParams.Add("orderSpecifier", Configuration.ApiClient.ParameterToString(orderSpecifier)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("orderSpecifier", orderSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (replaceOrderBody != null && replaceOrderBody.GetType() != typeof(byte[]))
             {
@@ -6844,60 +5772,48 @@ namespace Oanda.RestV20.Api
                 localVarPostBody = replaceOrderBody; // byte array
             }
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ReplaceOrder", localVarResponse);
+                var exception = ExceptionFactory("ReplaceOrder", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse2011>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse2011) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2011)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse2011)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse2011)));
         }
 
         /// <summary>
         /// Set Order Extensions Update the Client Extensions for an Order in an Account. Do not set, modify, or delete clientExtensions if your account is associated with MT4.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="setOrderClientExtensionsBody">Representation of the replacing Order</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20010</returns>
-        public InlineResponse20010 SetOrderClientExtensions (string authorization, string accountID, string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null)
+        public InlineResponse20010 SetOrderClientExtensions(string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20010> localVarResponse = SetOrderClientExtensionsWithHttpInfo(authorization, accountID, orderSpecifier, setOrderClientExtensionsBody, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = SetOrderClientExtensionsWithHttpInfo(orderSpecifier, setOrderClientExtensionsBody, acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// Set Order Extensions Update the Client Extensions for an Order in an Account. Do not set, modify, or delete clientExtensions if your account is associated with MT4.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="setOrderClientExtensionsBody">Representation of the replacing Order</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20010</returns>
-        public ApiResponse< InlineResponse20010 > SetOrderClientExtensionsWithHttpInfo (string authorization, string accountID, string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse20010> SetOrderClientExtensionsWithHttpInfo(string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->SetOrderClientExtensions");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->SetOrderClientExtensions");
             // verify the required parameter 'orderSpecifier' is set
             if (orderSpecifier == null)
                 throw new ApiException(400, "Missing required parameter 'orderSpecifier' when calling DefaultApi->SetOrderClientExtensions");
@@ -6905,7 +5821,7 @@ namespace Oanda.RestV20.Api
             if (setOrderClientExtensionsBody == null)
                 throw new ApiException(400, "Missing required parameter 'setOrderClientExtensionsBody' when calling DefaultApi->SetOrderClientExtensions");
 
-            var localVarPath = "/accounts/{accountID}/orders/{orderSpecifier}/clientExtensions";
+            var localVarPath = "accounts/{accountID}/orders/{orderSpecifier}/clientExtensions";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -6914,25 +5830,21 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (orderSpecifier != null) localVarPathParams.Add("orderSpecifier", Configuration.ApiClient.ParameterToString(orderSpecifier)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("orderSpecifier", orderSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (setOrderClientExtensionsBody != null && setOrderClientExtensionsBody.GetType() != typeof(byte[]))
             {
@@ -6943,40 +5855,36 @@ namespace Oanda.RestV20.Api
                 localVarPostBody = setOrderClientExtensionsBody; // byte array
             }
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("SetOrderClientExtensions", localVarResponse);
+                var exception = ExceptionFactory("SetOrderClientExtensions", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20010>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20010) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20010)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20010)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20010)));
         }
 
         /// <summary>
         /// Set Order Extensions Update the Client Extensions for an Order in an Account. Do not set, modify, or delete clientExtensions if your account is associated with MT4.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="setOrderClientExtensionsBody">Representation of the replacing Order</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20010</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20010> SetOrderClientExtensionsAsync (string authorization, string accountID, string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse20010> SetOrderClientExtensionsAsync(string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20010> localVarResponse = await SetOrderClientExtensionsAsyncWithHttpInfo(authorization, accountID, orderSpecifier, setOrderClientExtensionsBody, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = await SetOrderClientExtensionsAsyncWithHttpInfo(orderSpecifier, setOrderClientExtensionsBody, acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -6984,20 +5892,12 @@ namespace Oanda.RestV20.Api
         /// Set Order Extensions Update the Client Extensions for an Order in an Account. Do not set, modify, or delete clientExtensions if your account is associated with MT4.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="orderSpecifier">The Order Specifier</param>
         /// <param name="setOrderClientExtensionsBody">Representation of the replacing Order</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20010)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20010>> SetOrderClientExtensionsAsyncWithHttpInfo (string authorization, string accountID, string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20010>> SetOrderClientExtensionsAsyncWithHttpInfo(string orderSpecifier, SetOrderClientExtensionsBody setOrderClientExtensionsBody, string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->SetOrderClientExtensions");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->SetOrderClientExtensions");
             // verify the required parameter 'orderSpecifier' is set
             if (orderSpecifier == null)
                 throw new ApiException(400, "Missing required parameter 'orderSpecifier' when calling DefaultApi->SetOrderClientExtensions");
@@ -7005,7 +5905,7 @@ namespace Oanda.RestV20.Api
             if (setOrderClientExtensionsBody == null)
                 throw new ApiException(400, "Missing required parameter 'setOrderClientExtensionsBody' when calling DefaultApi->SetOrderClientExtensions");
 
-            var localVarPath = "/accounts/{accountID}/orders/{orderSpecifier}/clientExtensions";
+            var localVarPath = "accounts/{accountID}/orders/{orderSpecifier}/clientExtensions";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -7014,25 +5914,21 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (orderSpecifier != null) localVarPathParams.Add("orderSpecifier", Configuration.ApiClient.ParameterToString(orderSpecifier)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("orderSpecifier", orderSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (setOrderClientExtensionsBody != null && setOrderClientExtensionsBody.GetType() != typeof(byte[]))
             {
@@ -7043,60 +5939,48 @@ namespace Oanda.RestV20.Api
                 localVarPostBody = setOrderClientExtensionsBody; // byte array
             }
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("SetOrderClientExtensions", localVarResponse);
+                var exception = ExceptionFactory("SetOrderClientExtensions", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20010>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20010) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20010)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20010)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20010)));
         }
 
         /// <summary>
         /// Set Trade Client Extensions Update the Client Extensions for a Trade. Do not add, update, or delete the Client Extensions if your account is associated with MT4.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="setTradeClientExtensionsBody">Details of how to modify the Trade&#39;s Client Extensions.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20027</returns>
-        public InlineResponse20027 SetTradeClientExtensions (string authorization, string accountID, string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null)
+        public InlineResponse20027 SetTradeClientExtensions(string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20027> localVarResponse = SetTradeClientExtensionsWithHttpInfo(authorization, accountID, tradeSpecifier, setTradeClientExtensionsBody, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = SetTradeClientExtensionsWithHttpInfo(tradeSpecifier, setTradeClientExtensionsBody, acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// Set Trade Client Extensions Update the Client Extensions for a Trade. Do not add, update, or delete the Client Extensions if your account is associated with MT4.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="setTradeClientExtensionsBody">Details of how to modify the Trade&#39;s Client Extensions.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20027</returns>
-        public ApiResponse< InlineResponse20027 > SetTradeClientExtensionsWithHttpInfo (string authorization, string accountID, string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse20027> SetTradeClientExtensionsWithHttpInfo(string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->SetTradeClientExtensions");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->SetTradeClientExtensions");
             // verify the required parameter 'tradeSpecifier' is set
             if (tradeSpecifier == null)
                 throw new ApiException(400, "Missing required parameter 'tradeSpecifier' when calling DefaultApi->SetTradeClientExtensions");
@@ -7104,7 +5988,7 @@ namespace Oanda.RestV20.Api
             if (setTradeClientExtensionsBody == null)
                 throw new ApiException(400, "Missing required parameter 'setTradeClientExtensionsBody' when calling DefaultApi->SetTradeClientExtensions");
 
-            var localVarPath = "/accounts/{accountID}/trades/{tradeSpecifier}/clientExtensions";
+            var localVarPath = "accounts/{accountID}/trades/{tradeSpecifier}/clientExtensions";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -7113,25 +5997,21 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (tradeSpecifier != null) localVarPathParams.Add("tradeSpecifier", Configuration.ApiClient.ParameterToString(tradeSpecifier)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("tradeSpecifier", tradeSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (setTradeClientExtensionsBody != null && setTradeClientExtensionsBody.GetType() != typeof(byte[]))
             {
@@ -7142,40 +6022,36 @@ namespace Oanda.RestV20.Api
                 localVarPostBody = setTradeClientExtensionsBody; // byte array
             }
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("SetTradeClientExtensions", localVarResponse);
+                var exception = ExceptionFactory("SetTradeClientExtensions", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20027>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20027) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20027)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20027)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20027)));
         }
 
         /// <summary>
         /// Set Trade Client Extensions Update the Client Extensions for a Trade. Do not add, update, or delete the Client Extensions if your account is associated with MT4.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="setTradeClientExtensionsBody">Details of how to modify the Trade&#39;s Client Extensions.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20027</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20027> SetTradeClientExtensionsAsync (string authorization, string accountID, string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse20027> SetTradeClientExtensionsAsync(string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20027> localVarResponse = await SetTradeClientExtensionsAsyncWithHttpInfo(authorization, accountID, tradeSpecifier, setTradeClientExtensionsBody, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = await SetTradeClientExtensionsAsyncWithHttpInfo(tradeSpecifier, setTradeClientExtensionsBody, acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -7183,20 +6059,12 @@ namespace Oanda.RestV20.Api
         /// Set Trade Client Extensions Update the Client Extensions for a Trade. Do not add, update, or delete the Client Extensions if your account is associated with MT4.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="setTradeClientExtensionsBody">Details of how to modify the Trade&#39;s Client Extensions.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20027)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20027>> SetTradeClientExtensionsAsyncWithHttpInfo (string authorization, string accountID, string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20027>> SetTradeClientExtensionsAsyncWithHttpInfo(string tradeSpecifier, SetTradeClientExtensionsBody setTradeClientExtensionsBody, string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->SetTradeClientExtensions");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->SetTradeClientExtensions");
             // verify the required parameter 'tradeSpecifier' is set
             if (tradeSpecifier == null)
                 throw new ApiException(400, "Missing required parameter 'tradeSpecifier' when calling DefaultApi->SetTradeClientExtensions");
@@ -7204,7 +6072,7 @@ namespace Oanda.RestV20.Api
             if (setTradeClientExtensionsBody == null)
                 throw new ApiException(400, "Missing required parameter 'setTradeClientExtensionsBody' when calling DefaultApi->SetTradeClientExtensions");
 
-            var localVarPath = "/accounts/{accountID}/trades/{tradeSpecifier}/clientExtensions";
+            var localVarPath = "accounts/{accountID}/trades/{tradeSpecifier}/clientExtensions";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -7213,25 +6081,21 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (tradeSpecifier != null) localVarPathParams.Add("tradeSpecifier", Configuration.ApiClient.ParameterToString(tradeSpecifier)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("tradeSpecifier", tradeSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (setTradeClientExtensionsBody != null && setTradeClientExtensionsBody.GetType() != typeof(byte[]))
             {
@@ -7242,60 +6106,48 @@ namespace Oanda.RestV20.Api
                 localVarPostBody = setTradeClientExtensionsBody; // byte array
             }
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("SetTradeClientExtensions", localVarResponse);
+                var exception = ExceptionFactory("SetTradeClientExtensions", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20027>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20027) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20027)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20027)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20027)));
         }
 
         /// <summary>
         /// Set Dependent Orders Create, replace and cancel a Trade&#39;s dependent Orders (Take Profit, Stop Loss and Trailing Stop Loss) through the Trade itself
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="setTradeDependentOrdersBody">Details of how to modify the Trade&#39;s dependent Orders.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>InlineResponse20028</returns>
-        public InlineResponse20028 SetTradeDependentOrders (string authorization, string accountID, string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null)
+        public InlineResponse20028 SetTradeDependentOrders(string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20028> localVarResponse = SetTradeDependentOrdersWithHttpInfo(authorization, accountID, tradeSpecifier, setTradeDependentOrdersBody, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = SetTradeDependentOrdersWithHttpInfo(tradeSpecifier, setTradeDependentOrdersBody, acceptDatetimeFormat);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// Set Dependent Orders Create, replace and cancel a Trade&#39;s dependent Orders (Take Profit, Stop Loss and Trailing Stop Loss) through the Trade itself
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="setTradeDependentOrdersBody">Details of how to modify the Trade&#39;s dependent Orders.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20028</returns>
-        public ApiResponse< InlineResponse20028 > SetTradeDependentOrdersWithHttpInfo (string authorization, string accountID, string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null)
+        public ApiResponse<InlineResponse20028> SetTradeDependentOrdersWithHttpInfo(string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->SetTradeDependentOrders");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->SetTradeDependentOrders");
             // verify the required parameter 'tradeSpecifier' is set
             if (tradeSpecifier == null)
                 throw new ApiException(400, "Missing required parameter 'tradeSpecifier' when calling DefaultApi->SetTradeDependentOrders");
@@ -7303,7 +6155,7 @@ namespace Oanda.RestV20.Api
             if (setTradeDependentOrdersBody == null)
                 throw new ApiException(400, "Missing required parameter 'setTradeDependentOrdersBody' when calling DefaultApi->SetTradeDependentOrders");
 
-            var localVarPath = "/accounts/{accountID}/trades/{tradeSpecifier}/orders";
+            var localVarPath = "accounts/{accountID}/trades/{tradeSpecifier}/orders";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -7312,25 +6164,21 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (tradeSpecifier != null) localVarPathParams.Add("tradeSpecifier", Configuration.ApiClient.ParameterToString(tradeSpecifier)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("tradeSpecifier", tradeSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (setTradeDependentOrdersBody != null && setTradeDependentOrdersBody.GetType() != typeof(byte[]))
             {
@@ -7341,40 +6189,36 @@ namespace Oanda.RestV20.Api
                 localVarPostBody = setTradeDependentOrdersBody; // byte array
             }
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("SetTradeDependentOrders", localVarResponse);
+                var exception = ExceptionFactory("SetTradeDependentOrders", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20028>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20028) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20028)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20028)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20028)));
         }
 
         /// <summary>
         /// Set Dependent Orders Create, replace and cancel a Trade&#39;s dependent Orders (Take Profit, Stop Loss and Trailing Stop Loss) through the Trade itself
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="setTradeDependentOrdersBody">Details of how to modify the Trade&#39;s dependent Orders.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of InlineResponse20028</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20028> SetTradeDependentOrdersAsync (string authorization, string accountID, string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<InlineResponse20028> SetTradeDependentOrdersAsync(string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null)
         {
-             ApiResponse<InlineResponse20028> localVarResponse = await SetTradeDependentOrdersAsyncWithHttpInfo(authorization, accountID, tradeSpecifier, setTradeDependentOrdersBody, acceptDatetimeFormat);
-             return localVarResponse.Data;
+            var localVarResponse = await SetTradeDependentOrdersAsyncWithHttpInfo(tradeSpecifier, setTradeDependentOrdersBody, acceptDatetimeFormat);
+            return localVarResponse.Data;
 
         }
 
@@ -7382,20 +6226,12 @@ namespace Oanda.RestV20.Api
         /// Set Dependent Orders Create, replace and cancel a Trade&#39;s dependent Orders (Take Profit, Stop Loss and Trailing Stop Loss) through the Trade itself
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="tradeSpecifier">Specifier for the Trade</param>
         /// <param name="setTradeDependentOrdersBody">Details of how to modify the Trade&#39;s dependent Orders.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20028)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20028>> SetTradeDependentOrdersAsyncWithHttpInfo (string authorization, string accountID, string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20028>> SetTradeDependentOrdersAsyncWithHttpInfo(string tradeSpecifier, SetTradeDependentOrdersBody setTradeDependentOrdersBody, string acceptDatetimeFormat = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->SetTradeDependentOrders");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->SetTradeDependentOrders");
             // verify the required parameter 'tradeSpecifier' is set
             if (tradeSpecifier == null)
                 throw new ApiException(400, "Missing required parameter 'tradeSpecifier' when calling DefaultApi->SetTradeDependentOrders");
@@ -7403,7 +6239,7 @@ namespace Oanda.RestV20.Api
             if (setTradeDependentOrdersBody == null)
                 throw new ApiException(400, "Missing required parameter 'setTradeDependentOrdersBody' when calling DefaultApi->SetTradeDependentOrders");
 
-            var localVarPath = "/accounts/{accountID}/trades/{tradeSpecifier}/orders";
+            var localVarPath = "accounts/{accountID}/trades/{tradeSpecifier}/orders";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -7412,25 +6248,21 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (tradeSpecifier != null) localVarPathParams.Add("tradeSpecifier", Configuration.ApiClient.ParameterToString(tradeSpecifier)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
+            localVarPathParams.Add("tradeSpecifier", tradeSpecifier); // path parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
             if (setTradeDependentOrdersBody != null && setTradeDependentOrdersBody.GetType() != typeof(byte[]))
             {
@@ -7441,65 +6273,53 @@ namespace Oanda.RestV20.Api
                 localVarPostBody = setTradeDependentOrdersBody; // byte array
             }
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Put, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("SetTradeDependentOrders", localVarResponse);
+                var exception = ExceptionFactory("SetTradeDependentOrders", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20028>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20028) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20028)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20028)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20028)));
         }
 
         /// <summary>
         /// Price Stream Get a stream of Account Prices starting from when the request is made. This pricing stream does not include every single price created for the Account, but instead will provide at most 4 prices per second (every 250 milliseconds) for each instrument being requested. If more than one price is created for an instrument during the 250 millisecond window, only the price in effect at the end of the window is sent. This means that during periods of rapid price movement, subscribers to this stream will not be sent every price. Pricing windows for different connections to the price stream are not all aligned in the same way (i.e. they are not all aligned to the top of the second). This means that during periods of rapid price movement, different subscribers may observe different prices depending on their alignment.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of Instruments to stream Prices for.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="snapshot">Flag that enables/disables the sending of a pricing snapshot when initially connecting to the stream. (optional)</param>
         /// <returns>InlineResponse20022</returns>
-        public InlineResponse20022 StreamPricing (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null)
+        public InlineResponse20022 StreamPricing(List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null)
         {
-             ApiResponse<InlineResponse20022> localVarResponse = StreamPricingWithHttpInfo(authorization, accountID, instruments, acceptDatetimeFormat, snapshot);
-             return localVarResponse.Data;
+            var localVarResponse = StreamPricingWithHttpInfo(instruments, acceptDatetimeFormat, snapshot);
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// Price Stream Get a stream of Account Prices starting from when the request is made. This pricing stream does not include every single price created for the Account, but instead will provide at most 4 prices per second (every 250 milliseconds) for each instrument being requested. If more than one price is created for an instrument during the 250 millisecond window, only the price in effect at the end of the window is sent. This means that during periods of rapid price movement, subscribers to this stream will not be sent every price. Pricing windows for different connections to the price stream are not all aligned in the same way (i.e. they are not all aligned to the top of the second). This means that during periods of rapid price movement, different subscribers may observe different prices depending on their alignment.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of Instruments to stream Prices for.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="snapshot">Flag that enables/disables the sending of a pricing snapshot when initially connecting to the stream. (optional)</param>
         /// <returns>ApiResponse of InlineResponse20022</returns>
-        public ApiResponse< InlineResponse20022 > StreamPricingWithHttpInfo (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null)
+        public ApiResponse<InlineResponse20022> StreamPricingWithHttpInfo(List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->StreamPricing");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->StreamPricing");
             // verify the required parameter 'instruments' is set
             if (instruments == null)
                 throw new ApiException(400, "Missing required parameter 'instruments' when calling DefaultApi->StreamPricing");
 
-            var localVarPath = "/accounts/{accountID}/pricing/stream";
+            var localVarPath = "accounts/{accountID}/pricing/stream";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -7508,62 +6328,54 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (instruments != null) localVarQueryParams.Add("instruments", Configuration.ApiClient.ParameterToString(instruments)); // query parameter
             if (snapshot != null) localVarQueryParams.Add("snapshot", Configuration.ApiClient.ParameterToString(snapshot)); // query parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("StreamPricing", localVarResponse);
+                var exception = ExceptionFactory("StreamPricing", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20022>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20022) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20022)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20022)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20022)));
         }
 
         /// <summary>
         /// Price Stream Get a stream of Account Prices starting from when the request is made. This pricing stream does not include every single price created for the Account, but instead will provide at most 4 prices per second (every 250 milliseconds) for each instrument being requested. If more than one price is created for an instrument during the 250 millisecond window, only the price in effect at the end of the window is sent. This means that during periods of rapid price movement, subscribers to this stream will not be sent every price. Pricing windows for different connections to the price stream are not all aligned in the same way (i.e. they are not all aligned to the top of the second). This means that during periods of rapid price movement, different subscribers may observe different prices depending on their alignment.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of Instruments to stream Prices for.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="snapshot">Flag that enables/disables the sending of a pricing snapshot when initially connecting to the stream. (optional)</param>
         /// <returns>Task of InlineResponse20022</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20022> StreamPricingAsync (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null)
+        public async System.Threading.Tasks.Task<InlineResponse20022> StreamPricingAsync(List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null)
         {
-             ApiResponse<InlineResponse20022> localVarResponse = await StreamPricingAsyncWithHttpInfo(authorization, accountID, instruments, acceptDatetimeFormat, snapshot);
-             return localVarResponse.Data;
+            var localVarResponse = await StreamPricingAsyncWithHttpInfo(instruments, acceptDatetimeFormat, snapshot);
+            return localVarResponse.Data;
 
         }
 
@@ -7571,25 +6383,17 @@ namespace Oanda.RestV20.Api
         /// Price Stream Get a stream of Account Prices starting from when the request is made. This pricing stream does not include every single price created for the Account, but instead will provide at most 4 prices per second (every 250 milliseconds) for each instrument being requested. If more than one price is created for an instrument during the 250 millisecond window, only the price in effect at the end of the window is sent. This means that during periods of rapid price movement, subscribers to this stream will not be sent every price. Pricing windows for different connections to the price stream are not all aligned in the same way (i.e. they are not all aligned to the top of the second). This means that during periods of rapid price movement, different subscribers may observe different prices depending on their alignment.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <param name="instruments">List of Instruments to stream Prices for.</param>
         /// <param name="acceptDatetimeFormat">Format of DateTime fields in the request and response. (optional)</param>
         /// <param name="snapshot">Flag that enables/disables the sending of a pricing snapshot when initially connecting to the stream. (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse20022)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20022>> StreamPricingAsyncWithHttpInfo (string authorization, string accountID, List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20022>> StreamPricingAsyncWithHttpInfo(List<string> instruments, string acceptDatetimeFormat = null, bool? snapshot = null)
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->StreamPricing");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->StreamPricing");
             // verify the required parameter 'instruments' is set
             if (instruments == null)
                 throw new ApiException(400, "Missing required parameter 'instruments' when calling DefaultApi->StreamPricing");
 
-            var localVarPath = "/accounts/{accountID}/pricing/stream";
+            var localVarPath = "accounts/{accountID}/pricing/stream";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -7598,78 +6402,61 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
+            localVarPathParams.Add("accountID", _accountId); // path parameter
             if (instruments != null) localVarQueryParams.Add("instruments", Configuration.ApiClient.ParameterToString(instruments)); // query parameter
             if (snapshot != null) localVarQueryParams.Add("snapshot", Configuration.ApiClient.ParameterToString(snapshot)); // query parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
             if (acceptDatetimeFormat != null) localVarHeaderParams.Add("Accept-Datetime-Format", Configuration.ApiClient.ParameterToString(acceptDatetimeFormat)); // header parameter
 
-
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("StreamPricing", localVarResponse);
+                var exception = ExceptionFactory("StreamPricing", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20022>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20022) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20022)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20022)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20022)));
         }
 
         /// <summary>
         /// Transaction Stream Get a stream of Transactions for an Account starting from when the request is made.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <returns>InlineResponse20020</returns>
-        public InlineResponse20020 StreamTransactions (string authorization, string accountID)
+        public InlineResponse20020 StreamTransactions()
         {
-             ApiResponse<InlineResponse20020> localVarResponse = StreamTransactionsWithHttpInfo(authorization, accountID);
-             return localVarResponse.Data;
+            var localVarResponse = StreamTransactionsWithHttpInfo();
+            return localVarResponse.Data;
         }
 
         /// <summary>
         /// Transaction Stream Get a stream of Transactions for an Account starting from when the request is made.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <returns>ApiResponse of InlineResponse20020</returns>
-        public ApiResponse< InlineResponse20020 > StreamTransactionsWithHttpInfo (string authorization, string accountID)
+        public ApiResponse<InlineResponse20020> StreamTransactionsWithHttpInfo()
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->StreamTransactions");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->StreamTransactions");
-
-            var localVarPath = "/accounts/{accountID}/transactions/stream";
+            var localVarPath = "accounts/{accountID}/transactions/stream";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -7678,56 +6465,48 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
-
+            localVarPathParams.Add("accountID", _accountId); // path parameter
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)Configuration.ApiClient.CallApi(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("StreamTransactions", localVarResponse);
+                var exception = ExceptionFactory("StreamTransactions", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20020>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20020) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20020)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20020)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20020)));
         }
 
         /// <summary>
         /// Transaction Stream Get a stream of Transactions for an Account starting from when the request is made.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <returns>Task of InlineResponse20020</returns>
-        public async System.Threading.Tasks.Task<InlineResponse20020> StreamTransactionsAsync (string authorization, string accountID)
+        public async System.Threading.Tasks.Task<InlineResponse20020> StreamTransactionsAsync()
         {
-             ApiResponse<InlineResponse20020> localVarResponse = await StreamTransactionsAsyncWithHttpInfo(authorization, accountID);
-             return localVarResponse.Data;
+            var localVarResponse = await StreamTransactionsAsyncWithHttpInfo();
+            return localVarResponse.Data;
 
         }
 
@@ -7735,19 +6514,10 @@ namespace Oanda.RestV20.Api
         /// Transaction Stream Get a stream of Transactions for an Account starting from when the request is made.
         /// </summary>
         /// <exception cref="Oanda.RestV20.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="authorization">The authorization bearer token previously obtained by the client</param>
-        /// <param name="accountID">Account Identifier</param>
         /// <returns>Task of ApiResponse (InlineResponse20020)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20020>> StreamTransactionsAsyncWithHttpInfo (string authorization, string accountID)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse20020>> StreamTransactionsAsyncWithHttpInfo()
         {
-            // verify the required parameter 'authorization' is set
-            if (authorization == null)
-                throw new ApiException(400, "Missing required parameter 'authorization' when calling DefaultApi->StreamTransactions");
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling DefaultApi->StreamTransactions");
-
-            var localVarPath = "/accounts/{accountID}/transactions/stream";
+            var localVarPath = "accounts/{accountID}/transactions/stream";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -7756,43 +6526,37 @@ namespace Oanda.RestV20.Api
             Object localVarPostBody = null;
 
             // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
+            var localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
+            var localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (authorization != null) localVarHeaderParams.Add("Authorization", Configuration.ApiClient.ParameterToString(authorization)); // header parameter
-
+            localVarPathParams.Add("accountID", _accountId); // path parameter
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+            var localVarResponse = (HttpResponseMessage)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                HttpMethod.Get, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            var localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("StreamTransactions", localVarResponse);
+                var exception = ExceptionFactory("StreamTransactions", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             return new ApiResponse<InlineResponse20020>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (InlineResponse20020) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20020)));
-            
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (InlineResponse20020)Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse20020)));
         }
 
     }

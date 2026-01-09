@@ -13,7 +13,6 @@ using System.Reflection;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace Oanda.RestV20.Client
 {
@@ -46,7 +45,7 @@ namespace Oanda.RestV20.Client
                              string tempFolderPath = null,
                              string dateTimeFormat = null,
                              int timeout = 100000,
-                             string userAgent = "Swagger-Codegen/1.0.0/csharp"
+                             string userAgent = "Swagger-Codegen/1.0.0 (csharp)"
                             )
         {
             setApiClientUsingDefault(apiClient);
@@ -94,9 +93,20 @@ namespace Oanda.RestV20.Client
         /// </summary>
         public static readonly ExceptionFactory DefaultExceptionFactory = (methodName, response) =>
         {
-            int status = (int) response.StatusCode;
-            if (status >= 400) return new ApiException(status, $"Error calling {methodName}: {response.Content}", response.Content);
-            if (status == 0) return new ApiException(status, $"Error calling {methodName}: {response.ErrorMessage}", response.ErrorMessage);
+            var status = (int)response.StatusCode;
+
+            if (status >= 400)
+            {
+                var content = response.Content.ReadAsStringAsync().Result;
+                return new ApiException(status, $"Error calling {methodName}: {content}", content);
+            }
+
+            if (status == 0)
+            {
+                var reasonPhrase = response.ReasonPhrase ?? "Unknown error";
+                return new ApiException(status, $"Error calling {methodName}: {reasonPhrase}", reasonPhrase);
+            }
+
             return null;
         };
 
@@ -106,12 +116,14 @@ namespace Oanda.RestV20.Client
         /// <value>Timeout.</value>
         public int Timeout
         {
-            get { return ApiClient.RestClient.Timeout; }
+            get { return (int)ApiClient.HttpClient.Timeout.TotalMilliseconds; }
 
             set
             {
                 if (ApiClient != null)
-                    ApiClient.RestClient.Timeout = value;
+                {
+                    ApiClient.HttpClient.Timeout = TimeSpan.FromMilliseconds(value);
+                }
             }
         }
 
@@ -126,7 +138,7 @@ namespace Oanda.RestV20.Client
         /// </summary>
         /// <param name="apiClient">An instance of ApiClient.</param>
         /// <returns></returns>
-        public void setApiClientUsingDefault (ApiClient apiClient = null)
+        public void setApiClientUsingDefault(ApiClient apiClient = null)
         {
             if (apiClient == null)
             {
@@ -232,12 +244,12 @@ namespace Oanda.RestV20.Client
         /// </summary>
         /// <param name="apiKeyIdentifier">API key identifier (authentication scheme).</param>
         /// <returns>API key with prefix.</returns>
-        public string GetApiKeyWithPrefix (string apiKeyIdentifier)
+        public string GetApiKeyWithPrefix(string apiKeyIdentifier)
         {
             var apiKeyValue = "";
-            ApiKey.TryGetValue (apiKeyIdentifier, out apiKeyValue);
+            ApiKey.TryGetValue(apiKeyIdentifier, out apiKeyValue);
             var apiKeyPrefix = "";
-            if (ApiKeyPrefix.TryGetValue (apiKeyIdentifier, out apiKeyPrefix))
+            if (ApiKeyPrefix.TryGetValue(apiKeyIdentifier, out apiKeyPrefix))
                 return apiKeyPrefix + " " + apiKeyValue;
             else
                 return apiKeyValue;
@@ -277,7 +289,7 @@ namespace Oanda.RestV20.Client
                 if (value[value.Length - 1] == Path.DirectorySeparatorChar)
                     _tempFolderPath = value;
                 else
-                    _tempFolderPath = value  + Path.DirectorySeparatorChar;
+                    _tempFolderPath = value + Path.DirectorySeparatorChar;
             }
         }
 
@@ -324,7 +336,7 @@ namespace Oanda.RestV20.Client
             report += "    .NET Framework Version: " + Assembly
                      .GetExecutingAssembly()
                      .GetReferencedAssemblies()
-                     .Where(x => x.Name == "System.Core").First().Version.ToString()  + "\n";
+                     .Where(x => x.Name == "System.Core").First().Version.ToString() + "\n";
             report += "    Version of the API: 3.0.15\n";
             report += "    SDK Package Version: 1.0.0\n";
 
