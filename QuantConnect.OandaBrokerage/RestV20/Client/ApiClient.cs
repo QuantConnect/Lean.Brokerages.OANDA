@@ -138,7 +138,7 @@ namespace Oanda.RestV20.Client
 
             if (postBody != null) // http body (model or byte[]) parameter
             {
-                if (postBody.GetType() == typeof(String))
+                if (postBody is string)
                 {
                     request.AddParameter("application/json", postBody, ParameterType.RequestBody);
                 }
@@ -208,7 +208,7 @@ namespace Oanda.RestV20.Client
                 path, method, queryParams, postBody, headerParams, formParams, fileParams,
                 pathParams, contentType);
             InterceptRequest(request);
-            var response = await RestClient.ExecuteTaskAsync(request);
+            var response = await RestClient.ExecuteAsync(request);
             InterceptResponse(request, response);
             return (Object)response;
         }
