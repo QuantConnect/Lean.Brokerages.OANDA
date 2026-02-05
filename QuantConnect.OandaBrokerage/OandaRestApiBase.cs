@@ -11,7 +11,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 
 using System;
 using System.Collections.Concurrent;
@@ -37,19 +37,14 @@ namespace QuantConnect.Brokerages.Oanda
     public abstract class OandaRestApiBase : Brokerage, IDataQueueHandler
     {
         private static readonly TimeSpan SubscribeDelay = TimeSpan.FromMilliseconds(250);
-        private readonly ManualResetEvent _refreshEvent = new ManualResetEvent(false);
-        private readonly CancellationTokenSource _streamingCancellationTokenSource = new CancellationTokenSource();
-
+        private readonly ManualResetEventSlim _refreshEvent = new(false);
+        private readonly CancellationTokenSource _streamingCancellationTokenSource = new();
         private bool _isConnected;
 
         /// <summary>
-        /// This lock is used to sync 'PlaceOrder' and callback 'OnTransactionDataReceived'
-        /// </summary>
-        protected readonly object Locker = new object();
-        /// <summary>
         /// This container is used to keep pending to be filled market orders, so when the callback comes in we send the filled event
         /// </summary>
-        protected readonly ConcurrentDictionary<int, OrderStatus> PendingFilledMarketOrders = new ConcurrentDictionary<int, OrderStatus>();
+        protected readonly ConcurrentDictionary<int, OrderStatus> PendingFilledMarketOrders = new();
 
         /// <summary>
         /// The connection handler for pricing
@@ -162,9 +157,9 @@ namespace QuantConnect.Brokerages.Oanda
             Task.Factory.StartNew(
                 () =>
                 {
-                    do
+                    while (true)
                     {
-                        _refreshEvent.WaitOne();
+                        _refreshEvent.Wait(_streamingCancellationTokenSource.Token);
                         Thread.Sleep(SubscribeDelay);
 
                         if (!_isConnected)
@@ -174,13 +169,20 @@ namespace QuantConnect.Brokerages.Oanda
 
                         _refreshEvent.Reset();
 
+                        // no need to subscribe again if called cancellation
+                        if (_streamingCancellationTokenSource.IsCancellationRequested)
+                        {
+                            break;
+                        }
+
                         var symbolsToSubscribe = SubscribedSymbols;
                         // restart streaming session
                         SubscribeSymbols(symbolsToSubscribe);
-
-                    } while (!_streamingCancellationTokenSource.IsCancellationRequested);
+                    }
                 },
-                TaskCreationOptions.LongRunning
+                _streamingCancellationTokenSource.Token,
+                TaskCreationOptions.LongRunning,
+                TaskScheduler.Default
             );
         }
 
@@ -249,7 +251,7 @@ namespace QuantConnect.Brokerages.Oanda
             Aggregator.DisposeSafely();
             _refreshEvent.DisposeSafely();
 
-            _streamingCancellationTokenSource.Cancel();
+            _streamingCancellationTokenSource.DisposeSafely();
 
             PricingConnectionHandler.ConnectionLost -= OnPricingConnectionLost;
             PricingConnectionHandler.ConnectionRestored -= OnPricingConnectionRestored;
@@ -296,6 +298,7 @@ namespace QuantConnect.Brokerages.Oanda
             StopPricingStream();
 
             _isConnected = false;
+            _streamingCancellationTokenSource.Cancel();
         }
 
         /// <summary>
