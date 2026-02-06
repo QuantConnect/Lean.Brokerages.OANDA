@@ -89,10 +89,12 @@ namespace QuantConnect.Brokerages.Oanda
         /// <summary>
         /// Returns true if we're currently connected to the broker
         /// </summary>
-        public override bool IsConnected
-        {
-            get { return _api.IsConnected; }
-        }
+        public override bool IsConnected => _api.IsConnected;
+
+        /// <summary>
+        /// Enables or disables concurrent processing of messages to and from the brokerage.
+        /// </summary>
+        public override bool ConcurrencyEnabled => true;
 
         /// <summary>
         /// Returns the brokerage account's base currency
@@ -438,7 +440,7 @@ namespace QuantConnect.Brokerages.Oanda
             if (environment != Environment.Trade && environment != Environment.Practice)
                 throw new NotSupportedException("Oanda Environment not supported: " + environment);
 
-            _api = new OandaRestApiV20(_symbolMapper, orderProvider, securityProvider, aggregator, environment, accessToken, accountId, agent);
+            _api = new OandaRestApiV20(_symbolMapper, orderProvider, securityProvider, aggregator, environment, accessToken, accountId, agent, ConcurrencyEnabled);
 
             // forward events received from API
             _api.OrdersStatusChanged += (sender, orderEvents) => OnOrderEvents(orderEvents);

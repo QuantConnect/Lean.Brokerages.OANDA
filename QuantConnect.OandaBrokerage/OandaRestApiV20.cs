@@ -52,7 +52,8 @@ namespace QuantConnect.Brokerages.Oanda
 
         private TransactionStreamSession _eventsSession;
         private PricingStreamSession _ratesSession;
-        private readonly Dictionary<string, (Symbol Symbol, DateTimeZone ExchangeTimeZone)> _symbolsByInstrument = new Dictionary<string, (Symbol, DateTimeZone)>();
+        private readonly Dictionary<string, (Symbol Symbol, DateTimeZone ExchangeTimeZone)> _symbolsByInstrument = new ();
+        private BrokerageConcurrentMessageHandler<string> _messageHandler;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="OandaRestApiV20"/> class.
@@ -65,7 +66,8 @@ namespace QuantConnect.Brokerages.Oanda
         /// <param name="accessToken">The Oanda access token (can be the user's personal access token or the access token obtained with OAuth by QC on behalf of the user)</param>
         /// <param name="accountId">The account identifier.</param>
         /// <param name="agent">The Oanda agent string</param>
-        public OandaRestApiV20(OandaSymbolMapper symbolMapper, IOrderProvider orderProvider, ISecurityProvider securityProvider, IDataAggregator aggregator, Environment environment, string accessToken, string accountId, string agent)
+        /// <param name="concurrencyEnabled">Enables or disables concurrent processing of messages</param>
+        public OandaRestApiV20(OandaSymbolMapper symbolMapper, IOrderProvider orderProvider, ISecurityProvider securityProvider, IDataAggregator aggregator, Environment environment, string accessToken, string accountId, string agent, bool concurrencyEnabled)
             : base(symbolMapper, orderProvider, securityProvider, aggregator, environment, accessToken, accountId, agent)
         {
             var basePathRest = environment == Environment.Trade ?
@@ -76,6 +78,7 @@ namespace QuantConnect.Brokerages.Oanda
                 "https://stream-fxtrade.oanda.com/v3" :
                 "https://stream-fxpractice.oanda.com/v3";
 
+            _messageHandler = new BrokerageConcurrentMessageHandler<string>(OnTransactionDataReceived, concurrencyEnabled);
             _apiRest = new DefaultApi(basePathRest);
             _apiRest.Configuration.AddDefaultHeader(OandaAgentKey, Agent);
 
@@ -135,11 +138,11 @@ namespace QuantConnect.Brokerages.Oanda
         {
             var response = _apiRest.GetAccountSummary(Authorization, AccountId);
 
-            return new List<CashAmount>
-            {
+            return
+            [
                 new CashAmount(response.Account.Balance.ToDecimal(),
                     response.Account.Currency)
-            };
+            ];
         }
 
         /// <summary>
@@ -172,8 +175,8 @@ namespace QuantConnect.Brokerages.Oanda
             var marketOrderStatus = OrderStatus.Filled;
             var request = GenerateOrderRequest(order);
 
-            lock (Locker)
-            {
+            var submitted = true;
+            _messageHandler.WithLockedStream(() => {
                 var response = _apiRest.CreateOrder(Authorization, AccountId, request);
                 order.BrokerId.Add(response.Data.OrderCreateTransaction.Id);
 
@@ -184,7 +187,8 @@ namespace QuantConnect.Brokerages.Oanda
                     if (response.Data.OrderCancelTransaction != null && response.Data.OrderCancelTransaction.Type == OrderCancelTransaction.TypeEnum.ORDERCANCEL)
                     {
                         OnOrderEvent(new OrderEvent(order, DateTime.UtcNow, orderFee, response.Data.OrderCancelTransaction.Reason.ToString()) { Status = OrderStatus.Invalid });
-                        return false;
+                        submitted = false;
+                        return;
                     }
 
                     var fill = response.Data.OrderFillTransaction;
@@ -213,7 +217,7 @@ namespace QuantConnect.Brokerages.Oanda
                         PendingFilledMarketOrders[order.Id] = marketOrderStatus;
                     }
                 }
-            }
+            });
             OnOrderEvent(new OrderEvent(order, DateTime.UtcNow, orderFee) { Status = OrderStatus.Submitted });
 
             // If 'marketOrderRemainingQuantity < order.AbsoluteQuantity' is false it means the order was not even PartiallyFilled, wait for callback
@@ -227,7 +231,7 @@ namespace QuantConnect.Brokerages.Oanda
                 });
             }
 
-            return true;
+            return submitted;
         }
 
         /// <summary>
@@ -247,25 +251,27 @@ namespace QuantConnect.Brokerages.Oanda
             }
 
             var request = GenerateOrderRequest(order);
+            _messageHandler.WithLockedStream(() => {
 
-            var orderId = order.BrokerId.First();
-            var response = _apiRest.ReplaceOrder(Authorization, AccountId, orderId, request);
+                var orderId = order.BrokerId.First();
+                var response = _apiRest.ReplaceOrder(Authorization, AccountId, orderId, request);
 
-            // replace the brokerage order id
-            order.BrokerId[0] = response.Data.OrderCreateTransaction.Id;
+                // replace the brokerage order id
+                order.BrokerId[0] = response.Data.OrderCreateTransaction.Id;
 
-            OnOrderEvent(new OrderEvent(order, DateTime.UtcNow, OrderFee.Zero) { Status = OrderStatus.UpdateSubmitted });
+                OnOrderEvent(new OrderEvent(order, DateTime.UtcNow, OrderFee.Zero) { Status = OrderStatus.UpdateSubmitted });
 
-            // check if the updated (marketable) order was filled
-            if (response.Data.OrderFillTransaction != null)
-            {
-                OnOrderEvent(new OrderEvent(order, DateTime.UtcNow, OrderFee.Zero, "Oanda Fill Event")
+                // check if the updated (marketable) order was filled
+                if (response.Data.OrderFillTransaction != null)
                 {
-                    Status = OrderStatus.Filled,
-                    FillPrice = response.Data.OrderFillTransaction.Price.ToDecimal(),
-                    FillQuantity = response.Data.OrderFillTransaction.Units.ConvertInvariant<decimal>()
-                });
-            }
+                    OnOrderEvent(new OrderEvent(order, DateTime.UtcNow, OrderFee.Zero, "Oanda Fill Event")
+                    {
+                        Status = OrderStatus.Filled,
+                        FillPrice = response.Data.OrderFillTransaction.Price.ToDecimal(),
+                        FillQuantity = response.Data.OrderFillTransaction.Units.ConvertInvariant<decimal>()
+                    });
+                }
+            });
 
             return true;
         }
@@ -285,14 +291,16 @@ namespace QuantConnect.Brokerages.Oanda
                 return false;
             }
 
-            foreach (var orderId in order.BrokerId)
-            {
-                _apiRest.CancelOrder(Authorization, AccountId, orderId);
-                OnOrderEvent(new OrderEvent(order,
-                    DateTime.UtcNow,
-                    OrderFee.Zero,
-                    "Oanda Cancel Order Event") { Status = OrderStatus.Canceled });
-            }
+            _messageHandler.WithLockedStream(() => {
+                foreach (var orderId in order.BrokerId)
+                {
+                    _apiRest.CancelOrder(Authorization, AccountId, orderId);
+                    OnOrderEvent(new OrderEvent(order,
+                        DateTime.UtcNow,
+                        OrderFee.Zero,
+                        "Oanda Cancel Order Event") { Status = OrderStatus.Canceled });
+                }
+            });
 
             return true;
         }
@@ -303,7 +311,7 @@ namespace QuantConnect.Brokerages.Oanda
         public override void StartTransactionStream()
         {
             _eventsSession = new TransactionStreamSession(this);
-            _eventsSession.DataReceived += OnTransactionDataReceived;
+            _eventsSession.DataReceived += OnDataReceived;
             _eventsSession.StartSession();
         }
 
@@ -314,7 +322,7 @@ namespace QuantConnect.Brokerages.Oanda
         {
             if (_eventsSession != null)
             {
-                _eventsSession.DataReceived -= OnTransactionDataReceived;
+                _eventsSession.DataReceived -= OnDataReceived;
                 _eventsSession.StopSession();
             }
         }
@@ -352,6 +360,15 @@ namespace QuantConnect.Brokerages.Oanda
         }
 
         /// <summary>
+        /// Handles the data received from the transaction stream session.
+        /// </summary>
+        /// <param name="data">The raw data string received from the transaction stream.</param>
+        private void OnDataReceived(string data)
+        {
+            _messageHandler.HandleNewMessage(data);
+        }
+
+        /// <summary>
         /// Event handler for streaming events
         /// </summary>
         /// <param name="json">The event object</param>
@@ -369,11 +386,7 @@ namespace QuantConnect.Brokerages.Oanda
                 case "ORDER_FILL":
                     var transaction = obj.ToObject<OrderFillTransaction>();
 
-                    Order order;
-                    lock (Locker)
-                    {
-                        order = OrderProvider.GetOrdersByBrokerageId(transaction.OrderID)?.SingleOrDefault();
-                    }
+                    Order order = OrderProvider.GetOrdersByBrokerageId(transaction.OrderID)?.SingleOrDefault();
                     if (order != null)
                     {
                         OrderStatus status;
