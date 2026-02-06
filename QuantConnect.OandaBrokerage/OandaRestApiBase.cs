@@ -157,7 +157,7 @@ namespace QuantConnect.Brokerages.Oanda
             Task.Factory.StartNew(
                 () =>
                 {
-                    while (true)
+                    while (!_streamingCancellationTokenSource.IsCancellationRequested)
                     {
                         _refreshEvent.Wait(_streamingCancellationTokenSource.Token);
                         Thread.Sleep(SubscribeDelay);
@@ -169,7 +169,7 @@ namespace QuantConnect.Brokerages.Oanda
 
                         _refreshEvent.Reset();
 
-                        // no need to subscribe again if called cancellation
+                        // no need to subscribe again if cancellation called during timeout
                         if (_streamingCancellationTokenSource.IsCancellationRequested)
                         {
                             break;
