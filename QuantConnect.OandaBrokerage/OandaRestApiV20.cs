@@ -457,7 +457,6 @@ namespace QuantConnect.Brokerages.Oanda
 
                         if (data.Bids == null || data.Bids.Count == 0 || data.Asks == null || data.Asks.Count == 0)
                         {
-                            Log.Trace($"{nameof(OandaRestApiV20)}.{nameof(OnPricingDataReceived)}.NullData: {json}");
                             break;
                         }
 
@@ -493,9 +492,6 @@ namespace QuantConnect.Brokerages.Oanda
                         var tick = new Tick(time, symbolAndTimeZone.Symbol, bidPrice, askPrice);
 
                         EmitTick(tick);
-                        break;
-                    default:
-                        Log.Trace($"{nameof(OandaRestApiV20)}.{nameof(OnPricingDataReceived)}.case.default: {json}");
                         break;
                 }
             }
