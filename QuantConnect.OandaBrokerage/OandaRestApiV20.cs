@@ -417,40 +417,91 @@ namespace QuantConnect.Brokerages.Oanda
         /// <param name="json">The data object containing the received tick</param>
         private void OnPricingDataReceived(string json)
         {
-            var obj = (JObject)JsonConvert.DeserializeObject(json);
-            var type = obj["type"].ToString();
-
-            switch (type)
+            if (json == null)
             {
-                case "HEARTBEAT":
-                    PricingConnectionHandler.KeepAlive(DateTime.UtcNow);
-                    break;
+                Log.Error($"{nameof(OandaRestApiV20)}.{nameof(OnPricingDataReceived)}: received null json string");
+                return;
+            }
 
-                case "PRICE":
-                    var data = obj.ToObject<Price>();
-                    if (data.Bids == null || data.Bids.Count == 0 || data.Asks == null || data.Asks.Count == 0)
-                    {
+            try
+            {
+                var obj = (JObject)JsonConvert.DeserializeObject(json);
+                if (obj == null)
+                {
+                    Log.Error($"{nameof(OandaRestApiV20)}.{nameof(OnPricingDataReceived)}: deserialized null object from json: {json}");
+                    return;
+                }
+
+                var typeToken = obj["type"];
+                if (typeToken == null)
+                {
+                    Log.Error($"{nameof(OandaRestApiV20)}.{nameof(OnPricingDataReceived)}: missing 'type' field in json: {json}");
+                    return;
+                }
+
+                var type = typeToken.ToString();
+
+                switch (type)
+                {
+                    case "HEARTBEAT":
+                        PricingConnectionHandler.KeepAlive(DateTime.UtcNow);
                         break;
-                    }
 
-                    if (!_symbolsByInstrument.TryGetValue(data.Instrument, out var symbolAndTimeZone))
-                    {
-                        var securityType = SymbolMapper.GetBrokerageSecurityType(data.Instrument);
-                        var symbol = SymbolMapper.GetLeanSymbol(data.Instrument, securityType, Market.Oanda);
+                    case "PRICE":
+                        var data = obj.ToObject<Price>();
+                        if (data == null)
+                        {
+                            Log.Error($"{nameof(OandaRestApiV20)}.{nameof(OnPricingDataReceived)}: failed to deserialize Price from json: {json}");
+                            break;
+                        }
 
-                        // live ticks timestamps must be in exchange time zone
-                        var exchangeTimeZone = MarketHoursDatabase.FromDataFolder().GetExchangeHours(Market.Oanda, symbol, securityType).TimeZone;
-                        _symbolsByInstrument[data.Instrument] = symbolAndTimeZone = (symbol, exchangeTimeZone);
-                    }
+                        if (data.Bids == null || data.Bids.Count == 0 || data.Asks == null || data.Asks.Count == 0)
+                        {
+                            Log.Trace($"{nameof(OandaRestApiV20)}.{nameof(OnPricingDataReceived)}.NullData: {json}");
+                            break;
+                        }
 
-                    var bidPrice = data.Bids.OrderByDescending(x => x.Price).First().Price.ConvertInvariant<decimal>();
-                    var askPrice = data.Asks.OrderBy(x => x.Price).First().Price.ConvertInvariant<decimal>();
-                    // We use UtcNow instead of data.Time to avoid issues with clock skew and data delay
-                    var time = DateTime.UtcNow.ConvertFromUtc(symbolAndTimeZone.ExchangeTimeZone);
-                    var tick = new Tick(time, symbolAndTimeZone.Symbol, bidPrice, askPrice);
+                        if (data.Instrument == null)
+                        {
+                            Log.Error($"{nameof(OandaRestApiV20)}.{nameof(OnPricingDataReceived)}: null Instrument in PRICE message: {json}");
+                            break;
+                        }
 
-                    EmitTick(tick);
-                    break;
+                        if (!_symbolsByInstrument.TryGetValue(data.Instrument, out var symbolAndTimeZone))
+                        {
+                            var securityType = SymbolMapper.GetBrokerageSecurityType(data.Instrument);
+                            var symbol = SymbolMapper.GetLeanSymbol(data.Instrument, securityType, Market.Oanda);
+
+                            // live ticks timestamps must be in exchange time zone
+                            var exchangeTimeZone = MarketHoursDatabase.FromDataFolder().GetExchangeHours(Market.Oanda, symbol, securityType).TimeZone;
+                            _symbolsByInstrument[data.Instrument] = symbolAndTimeZone = (symbol, exchangeTimeZone);
+                        }
+
+                        var bestBid = data.Bids.OrderByDescending(x => x.Price).First();
+                        var bestAsk = data.Asks.OrderBy(x => x.Price).First();
+
+                        if (bestBid.Price == null || bestAsk.Price == null)
+                        {
+                            Log.Error($"{nameof(OandaRestApiV20)}.{nameof(OnPricingDataReceived)}: null bid or ask price for {data.Instrument}. BidPrice={bestBid.Price}, AskPrice={bestAsk.Price}. Json: {json}");
+                            break;
+                        }
+
+                        var bidPrice = bestBid.Price.ConvertInvariant<decimal>();
+                        var askPrice = bestAsk.Price.ConvertInvariant<decimal>();
+                        // We use UtcNow instead of data.Time to avoid issues with clock skew and data delay
+                        var time = DateTime.UtcNow.ConvertFromUtc(symbolAndTimeZone.ExchangeTimeZone);
+                        var tick = new Tick(time, symbolAndTimeZone.Symbol, bidPrice, askPrice);
+
+                        EmitTick(tick);
+                        break;
+                    default:
+                        Log.Trace($"{nameof(OandaRestApiV20)}.{nameof(OnPricingDataReceived)}.case.default: {json}");
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"{nameof(OandaRestApiV20)}.{nameof(OnPricingDataReceived)}.Exception: {ex}. Json: {json}");
             }
         }
 
