@@ -16,6 +16,7 @@
 using System;
 using System.IO;
 using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 using QuantConnect.Logging;
 
@@ -26,6 +27,8 @@ namespace Oanda.RestV20.Session
     /// </summary>
     public abstract class StreamSession
     {
+        private const int MaxRetries = 5;
+        private static readonly TimeSpan RetryDelay = TimeSpan.FromSeconds(2);
         private WebResponse _response;
         private bool _shutdown;
         private Task _runningTask;
@@ -46,13 +49,34 @@ namespace Oanda.RestV20.Session
         protected abstract WebResponse GetSession();
 
         /// <summary>
+        /// Calls <see cref="GetSession"/> with linear backoff retry up to <see cref="MaxRetries"/> attempts.
+        /// </summary>
+        private WebResponse GetSessionWithRetry()
+        {
+            for (var attempt = 1; attempt <= MaxRetries; attempt++)
+            {
+                try
+                {
+                    return GetSession();
+                }
+                catch (Exception ex) when (attempt < MaxRetries)
+                {
+                    var delay = TimeSpan.FromSeconds(RetryDelay.TotalSeconds * attempt);
+                    Log.Error($"StreamSession.GetSessionWithRetry(): attempt {attempt}/{MaxRetries} failed: {ex.Message}. Retrying in {delay.TotalSeconds}s.");
+                    Thread.Sleep(delay);
+                }
+            }
+            return GetSession();
+        }
+
+        /// <summary>
         /// Starts the session
         /// </summary>
         public void StartSession()
         {
             _shutdown = false;
 
-            _response = GetSession();
+            _response = GetSessionWithRetry();
 
             _runningTask = Task.Factory.StartNew(() =>
             {
