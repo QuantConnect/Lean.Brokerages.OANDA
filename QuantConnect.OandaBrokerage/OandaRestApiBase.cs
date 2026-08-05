@@ -20,6 +20,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using NodaTime;
+using Oanda.RestV20.Client;
 using QuantConnect.Data;
 using QuantConnect.Data.Market;
 using QuantConnect.Interfaces;
@@ -39,6 +40,7 @@ namespace QuantConnect.Brokerages.Oanda
         private static readonly TimeSpan SubscribeDelay = TimeSpan.FromMilliseconds(250);
         private readonly ManualResetEventSlim _refreshEvent = new(false);
         private readonly CancellationTokenSource _streamingCancellationTokenSource = new();
+        private readonly ConcurrentDictionary<string, bool> _instrumentAvailability = new();
         private bool _isConnected;
 
         /// <summary>
@@ -407,7 +409,38 @@ namespace QuantConnect.Brokerages.Oanda
                 (symbol.ID.SecurityType == SecurityType.Forex || symbol.ID.SecurityType == SecurityType.Cfd) &&
                 // ignore universe symbols
                 !symbol.Value.Contains("-UNIVERSE-") &&
-                symbol.ID.Market == Market.Oanda;
+                symbol.ID.Market == Market.Oanda &&
+                SymbolMapper.IsKnownLeanSymbol(symbol) &&
+                // a single unavailable instrument causes Oanda to reject the entire pricing stream request
+                IsInstrumentAvailable(SymbolMapper.GetBrokerageSymbol(symbol));
+        }
+
+        private bool IsInstrumentAvailable(string instrument)
+        {
+            if (_instrumentAvailability.TryGetValue(instrument, out var available))
+            {
+                return available;
+            }
+
+            try
+            {
+                // probe the pricing endpoint, it accepts the same instruments as the pricing stream,
+                // including non-tradeable ones, e.g. USD_INR, unlike the account instruments endpoint
+                GetRates(new List<string> { instrument });
+                return _instrumentAvailability[instrument] = true;
+            }
+            catch (ApiException e) when (e.ErrorCode >= 400 && e.ErrorCode < 500
+                && e.Message.Contains("Invalid Instrument", StringComparison.InvariantCultureIgnoreCase))
+            {
+                Log.Trace($"OandaRestApiBase.IsInstrumentAvailable(): instrument not available at Oanda: {instrument}. {e.Message}");
+                return _instrumentAvailability[instrument] = false;
+            }
+            catch (Exception e)
+            {
+                // transient failure, let the subscription through, this is a best-effort filter
+                Log.Error($"OandaRestApiBase.IsInstrumentAvailable(): failed to check instrument {instrument}: {e.Message}");
+                return true;
+            }
         }
 
         private bool Refresh()
