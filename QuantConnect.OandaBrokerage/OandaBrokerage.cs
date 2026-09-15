@@ -18,6 +18,7 @@ using QuantConnect.Configuration;
 using QuantConnect.Data;
 using QuantConnect.Data.Market;
 using QuantConnect.Interfaces;
+using QuantConnect.Lean.Engine.Results;
 using QuantConnect.Logging;
 using QuantConnect.Packets;
 using QuantConnect.Securities;
@@ -446,6 +447,10 @@ namespace QuantConnect.Brokerages.Oanda
             _api.OrdersStatusChanged += (sender, orderEvents) => OnOrderEvents(orderEvents);
             _api.AccountChanged += (sender, accountEvent) => OnAccountChanged(accountEvent);
             _api.Message += (sender, messageEvent) => OnMessage(messageEvent);
+
+            DeploymentDetailsHelper.Add("oanda-environment", environment.ToStringInvariant());
+            DeploymentDetailsHelper.Add("oanda-account-id", accountId);
+
             ValidateSubscription();
         }
 
