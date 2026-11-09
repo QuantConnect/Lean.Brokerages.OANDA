@@ -29,7 +29,7 @@ For more information about the OANDA brokerage, see the [QuantConnect-OANDA Inte
   
 ### Deploying Oanda with VSCode User Interace
 
-  You can deploy using a visual interface in the QuantConnect cloud. For instructions, [QuantConnect-OANDA Integration Page](https://www.quantconnect.com/brokerages/oanda). 
+  You can deploy using a visual interface in the QuantConnect cloud. For instructions, [QuantConnect-OANDA Integration Page](https://www.quantconnect.com/docs/v2/cloud-platform/live-trading/brokerages/cfd-and-forex-brokerages). 
   
   ![deploy-oanda](https://user-images.githubusercontent.com/38889814/188247050-5333413b-b0a0-4fe6-b89d-b1393ab85062.gif)
   
