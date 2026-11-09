@@ -29,101 +29,97 @@ For more information about the OANDA brokerage, see the [QuantConnect-OANDA Inte
   
 ### Deploying Oanda with VSCode User Interace
 
-  You can deploy using a visual interface in the QuantConnect cloud. For instructions, [QuantConnect-OANDA Integration Page](https://www.quantconnect.com/brokerages/oanda). 
+  You can deploy using a visual interface in the QuantConnect cloud. For instructions, [QuantConnect-OANDA Integration Page](https://www.quantconnect.com/docs/v2/cloud-platform/live-trading/brokerages/cfd-and-forex-brokerages). 
   
   ![deploy-oanda](https://user-images.githubusercontent.com/38889814/188247050-5333413b-b0a0-4fe6-b89d-b1393ab85062.gif)
   
   In the QuantConnect Cloud Platform, you can harness the QuantConnect Live Data Feed. For most users, this is substantially cheaper and easier than self-hosting.
   
-### Deploying Oanda with LEAN CLI
+### Deploying OANDA with LEAN CLI
 
 Follow these steps to start local live trading with the OANDA brokerage:
 
-1.  Open a terminal in your [organization workspace](https://www.quantconnect.com/docs/v2/lean-cli/initialization/organization-workspaces).
-2.  Run `lean live "<projectName>`" to start a live deployment wizard for the project in ./`<projectName>` and then enter the brokerage number.
+1.  [Log in](https://www.quantconnect.com/docs/v2/lean-cli/initialization/authentication#02-Log-In) to the CLI if you haven't done so already.
+
+2.  Open a terminal in the [organization workspace](https://www.quantconnect.com/docs/v2/lean-cli/initialization/organization-workspaces) that contains the project.
+
+3.  Run `lean live deploy "<projectName>"` to start a live deployment wizard for the project in `./<projectName>` and then enter the brokerage number, 4.
 
     ```
-    $ lean live 'My Project'
-     
+    $ lean live deploy "My Project"
     Select a brokerage:
-    1. Paper Trading
-    2. Interactive Brokers
-    3. Tradier
-    4. OANDA
-    5. Bitfinex
-    6. Coinbase Pro
-    7. Binance
-    8. Zerodha
-    9. Samco
-    10. Terminal Link
-    11. Atreyu
-    12. Trading Technologies
-    13. Kraken
-    14. FTX
-    Enter an option: 
-    ```
-  
-3.  Enter the number of the organization that has a subscription for the OANDA module.
-
-    ```
-    $ lean live "My Project" 
-
-    Select the organization with the OANDA module subscription:
-    1. Organization 1
-    2. Organization 2
-    3. Organization 3
-    Enter an option: 1
+    1) Paper Trading
+    2) Interactive Brokers
+    3) Tradier
+    4) Oanda
+    5) Bitfinex
+    6) Coinbase Advanced Trade
+    7) Binance
+    8) Zerodha
+    9) Samco
+    10) Quant Bridge
+    11) Trading Technologies
+    12) Kraken
+    13) CharlesSchwab
+    14) Bybit
+    15) TradeStation
+    16) Alpaca
+    17) Tastytrade
+    18) Eze
+    19) dYdX
+    20) Webull
+    21) Public
+    22) ClearStreet
+    Enter an option: 4
     ```
 
-4.  Enter your OANDA environment.
-
-    ``` 
-    $ lean live "My Project"
-
-    Environment? (Practice, Trade) [Practice]:
-    ```
-
-5.  Enter your OANDA credentials.
+4.  Enter your OANDA account ID, access token, and environment.
 
     ```
-    $ lean live "My Project" 
-    Your OANDA account id can be found on your OANDA Account Statement page (https://www.oanda.com/account/statement/). It
-    follows the following format: ###-###-######-###. You can generate an API token from the Manage API Access page
-    (https://www.oanda.com/account/tpa/personal_token).
-    Account id:
-    Access token:
+    $ lean live deploy "My Project"
+    Your OANDA account id can be found on your OANDA Account Statement page (https://www.oanda.com/account/statement/). It follows the following format: ###-###-######-###. You can generate an API token from the Manage API Access page (https://www.oanda.com/account/tpa/personal_token).
+    Account id: 001-011-5838423-001
+    Access token: ****************
+    Environment? (Practice, Trade): Practice
     ```
 
-6.  Enter the number of the data feed to use and then follow the steps required for the data connection.
+5.  Enter the number of the live data provider(s) to use and then follow the steps required for the data connection.
 
-    ``` 
-    $ lean live 'My Project'
-
-    Select a data feed:
-    1. Interactive Brokers
-    2. Tradier
-    3. Oanda
-    4. Bitfinex
-    5. Coinbase Pro
-    6. Binance
-    7. Zerodha
-    8. Samco
-    9. Terminal Link
-    10. Trading Technologies
-    11. Kraken
-    12. FTX
-    13. IQFeed
-    14. Polygon Data Feed
-    15. Custom Data Only
-    To enter multiple options, separate them with comma:
+    ```
+    $ lean live deploy "My Project"
+    Select a live data feed:
+    1) Interactive Brokers
+    2) Tradier
+    3) Oanda
+    4) Bitfinex
+    5) Coinbase Advanced Trade
+    6) Binance
+    7) Zerodha
+    8) Samco
+    9) Quant Bridge
+    10) Trading Technologies
+    11) Kraken
+    12) CharlesSchwab
+    13) IQFeed
+    14) Polygon
+    15) CoinApi
+    16) ThetaData
+    17) Custom data only
+    18) Bybit
+    19) TradeStation
+    20) Alpaca
+    21) Tastytrade
+    22) Eze
+    23) dYdX
+    24) Databento
+    To enter multiple options, separate them with comma: 3
     ```
 
-    If you select IQFeed, see [IQFeed](https://www.quantconnect.com/docs/v2/lean-cli/live-trading/data-providers/iqfeed) for set up instructions.  
-    If you select Polygon Data Feed, see [Polygon](https://www.quantconnect.com/docs/v2/lean-cli/live-trading/data-providers/polygon) for set up instructions.
+    If you select IQFeed, Polygon, or ThetaData, see [IQFeed](https://www.quantconnect.com/docs/v2/lean-cli/live-trading/data-providers/iqfeed), [Polygon](https://www.quantconnect.com/docs/v2/lean-cli/live-trading/data-providers/polygon), or [Theta Data](https://www.quantconnect.com/docs/v2/lean-cli/live-trading/data-providers/theta-data) for set up instructions.
 
-1. View the result in the `<projectName>/live/<timestamp>` directory. Results are stored in real-time in JSON format. You can save results to a different directory by providing the `--output <path>` option in step 2.
+6.  View the result in the `<projectName>/live/<timestamp>` directory. Results are stored in real-time in JSON format. You can save results to a different directory by providing the `--output <path>` option in step 3.
 
-If you already have a live environment configured in your [Lean configuration file](https://www.quantconnect.com/docs/v2/lean-cli/initialization/configuration#03-Lean-Configuration), you can skip the interactive wizard by providing the `--environment <value>` option in step 2. The value of this option must be the name of an environment which has `live-mode` set to true.
+If you already have a live environment configured in your [Lean configuration file](https://www.quantconnect.com/docs/v2/lean-cli/initialization/configuration#03-Lean-Configuration), you can skip the interactive wizard by providing the `--environment <value>` option in step 3. The value of this option must be the name of an environment which has `live-mode` set to `true`.
 
 ## Account Types
 
